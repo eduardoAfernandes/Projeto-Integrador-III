@@ -1,0 +1,13 @@
+.card-ativos,.li-card-ativo{
+    background-color: oldlace;
+
+}
+.card-ativos{
+    width: 100%;
+    border-radius: 5%;
+    margin-top: 20px;
+}
+.card-img-ativos{
+    width: 250px;
+    height: 250px;
+}
