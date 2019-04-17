@@ -1,5 +1,7 @@
 .card-ativos,.li-card-ativo{
     background-color: oldlace;
+    width: 100%;
+
 
 }
 .card-ativos{
@@ -8,6 +10,6 @@
     margin-top: 20px;
 }
 .card-img-ativos{
-    width: 250px;
-    height: 250px;
+    width: 200px;
+    height: 150px;
 }
