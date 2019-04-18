@@ -6,7 +6,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/section.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -14,55 +17,58 @@
 
 <body>
   <header>
-    <div class="row bg-dark">
-      <div class="col text-center text-light">
-          <a class="navbar-brand mt-3"><h4> Leilão de Quadrinhos </h4></a>
+    <div class="container-fluid">
+      <div class="row bg-dark">
+        <div class="col text-center text-light">
+          <a class="navbar-brand mt-3">
+            <h4> Leilão de Quadrinhos </h4>
+          </a>
 
+        </div>
+
+      </div>
+      <div class="row bg-dark">
+        <div class="col">
+          <nav class="navbar navbar-expand-sm navbar-dark text-light bg-dark justify-content-end">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="collapsibleNavbar">
+              <ul class="nav justify-content-center">
+
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="modal" data-target="#modalLogin">Login</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link">Leilões Ativos</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link">Fale Conosco</a>
+                </li>
+
+              </ul>
+            </div>
+
+          </nav>
+        </div>
       </div>
 
     </div>
-    <div class="row bg-dark">
-      <div class="col">
-        <nav class="navbar navbar-expand-sm navbar-dark text-light bg-dark justify-content-end">
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse justify-content-center" id="collapsibleNavbar">
-            <ul class="nav justify-content-center">
 
-              <li class="nav-item">
-                <a class="nav-link" data-toggle="modal" data-target="#modalLogin">Login</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" >Leilões Ativos</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" >Fale Conosco</a>
-              </li>
-
-            </ul>
-          </div>
-
-        </nav>
-      </div>
-    </div>
-    
 
     <div class="container pt-4">
       <div class="card">
         <div class="card-header bg-dark text-light">
           <div class="row">
-            <div class="col">
+            <div class="col-10">
               <h5>Maiores Lances</h5>
             </div>
-            <div class="col">
+            <div class="col-2">
               <a class="carousel-control-prev" href="#carouselSite" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon"></span>
-                <span class="sr-only">Anterior</span>
               </a>
               <a class="carousel-control-next" href="#carouselSite" role="button" data-slide="next">
                 <span class="carousel-control-next-icon"></span>
-                <span class="sr-only">Proximo</span>
               </a>
             </div>
           </div>
@@ -278,8 +284,8 @@
 
 
     </div>
-    
-    
+
+
     </div>
 
     </div>
@@ -295,22 +301,20 @@
     <h3 class="text-center">Leilões Ativos</h3>
     <div class="row">
       <div class="col-sm-6 col-md-6 col-lg-3">
-        <div class="card card-ativos">
-          <div class="card-header">
-            <h5>Finaliza em: xxx dias </h5>
-          </div>
-          <div class="card-body text-center">
-            <img class="card-img-ativos img-fluid" src="imagens/thanos.jpg">
-            <dl class="row pt-2 text-left">
+        <div class="card card-leiloes-ativos">
+          <img src="imagens/thanos.jpg" class="img-fluid d-block" alt="">
+          <h5 class="text-center mt-3">Finaliza em: xxx dias </h5>
+
+
+          <div class="card-body text-muted">
+            <dl class="row  text-left">
               <dt class="col-sm-7"> Valor Atual:</dt>
               <dd class="col-sm-5">R$25,00</dd>
               <dt class="col-sm-7">Lance Minimo</dt>
               <dd class="col-sm-5">R$1,00</dd>
-              <div class="col text-center">
-                <button type="submit" class="btn btn-primary text-right">Dar Lance</button>
-              </div>
+
             </dl>
-            <dl class="row pt-2 text-left">
+            <dl class="row  text-left">
               <dt class="col-sm-7"> Valor Inicial:</dt>
               <dd class="col-sm-5">R$20,00</dd>
               <dt class="col-sm-6">Inicio:</dt>
@@ -318,86 +322,28 @@
               <dt class="col-sm-6">Fim:</dt>
               <dd class="col-sm-6">06/05/2019</dd>
             </dl>
-          </div>
-
-        </div>
-      </div>
-
-      <div class="col-sm-6 col-md-6 col-lg-3">
-        <div class="card card-ativos">
-          <div class="card-header text-center">
-            <h5>Finaliza em: xxx dias </h5>
-          </div>
-          <div class="card-body text-center">
-            <img class="card-img-ativos img-fluid" src="imagens/thanos.jpg">
-            <dl class="row pt-2 text-left">
-              <dt class="col-sm-7"> Valor Atual:</dt>
-              <dd class="col-sm-5">R$25,00</dd>
-              <dt class="col-sm-7">Lance Minimo</dt>
-              <dd class="col-sm-5">R$1,00</dd>
-              <div class="col text-center">
-                <button type="submit" class="btn btn-primary text-right">Dar Lance</button>
-              </div>
-            </dl>
-            <dl class="row pt-2 text-left">
-              <dt class="col-sm-7"> Valor Inicial:</dt>
-              <dd class="col-sm-5">R$20,00</dd>
-              <dt class="col-sm-6">Inicio:</dt>
-              <dd class="col-sm-6">06/04/2019</dd>
-              <dt class="col-sm-6">Fim:</dt>
-              <dd class="col-sm-6">06/05/2019</dd>
-            </dl>
-          </div>
-
-        </div>
-      </div>
-
-      <div class="col-sm-6 col-md-6 col-lg-3">
-          <div class="card card-ativos">
-            <div class="card-header text-center">
-              <h5>Finaliza em: xxx dias </h5>
+            <div class="col text-center">
+              <button type="submit" class="btn btn-primary text-right">Dar Lance</button>
             </div>
-            <div class="card-body text-center">
-              <img class="card-img-ativos img-fluid" src="imagens/thanos.jpg">
-              <dl class="row pt-2 text-left">
-                <dt class="col-sm-7"> Valor Atual:</dt>
-                <dd class="col-sm-5">R$25,00</dd>
-                <dt class="col-sm-7">Lance Minimo</dt>
-                <dd class="col-sm-5">R$1,00</dd>
-                <div class="col text-center">
-                  <button type="submit" class="btn btn-primary text-right">Dar Lance</button>
-                </div>
-              </dl>
-              <dl class="row pt-2 text-left">
-                <dt class="col-sm-7"> Valor Inicial:</dt>
-                <dd class="col-sm-5">R$20,00</dd>
-                <dt class="col-sm-6">Inicio:</dt>
-                <dd class="col-sm-6">06/04/2019</dd>
-                <dt class="col-sm-6">Fim:</dt>
-                <dd class="col-sm-6">06/05/2019</dd>
-              </dl>
-            </div>
-  
           </div>
         </div>
+      </div>
 
       <div class="col-sm-6 col-md-6 col-lg-3">
-        <div class="card card-ativos">
-          <div class="card-header text-center">
-            <h5>Finaliza em: xxx dias </h5>
-          </div>
-          <div class="card-body text-center">
-            <img class="card-img-ativos img-fluid" src="imagens/thanos.jpg">
-            <dl class="row pt-2 text-left">
+        <div class="card">
+          <img src="imagens/thanos.jpg" class="img-fluid d-block" alt="">
+          <h5 class="text-center mt-3">Finaliza em: xxx dias </h5>
+
+
+          <div class="card-body text-muted">
+            <dl class="row text-left">
               <dt class="col-sm-7"> Valor Atual:</dt>
               <dd class="col-sm-5">R$25,00</dd>
               <dt class="col-sm-7">Lance Minimo</dt>
               <dd class="col-sm-5">R$1,00</dd>
-              <div class="col text-center">
-                <button type="submit" class="btn btn-primary text-right">Dar Lance</button>
-              </div>
+
             </dl>
-            <dl class="row pt-2 text-left">
+            <dl class="row text-left">
               <dt class="col-sm-7"> Valor Inicial:</dt>
               <dd class="col-sm-5">R$20,00</dd>
               <dt class="col-sm-6">Inicio:</dt>
@@ -405,14 +351,114 @@
               <dt class="col-sm-6">Fim:</dt>
               <dd class="col-sm-6">06/05/2019</dd>
             </dl>
+            <div class="col text-center">
+              <button type="submit" class="btn btn-primary text-right">Dar Lance</button>
+            </div>
           </div>
-
         </div>
       </div>
 
+      <div class="col-sm-6 col-md-6 col-lg-3">
+        <div class="card">
+          <img src="imagens/thanos.jpg" class="img-fluid d-block" alt="">
+          <h5 class="text-center mt-3">Finaliza em: xxx dias </h5>
+
+
+          <div class="card-body text-muted">
+            <dl class="row  text-left">
+              <dt class="col-sm-7"> Valor Atual:</dt>
+              <dd class="col-sm-5">R$25,00</dd>
+              <dt class="col-sm-7">Lance Minimo</dt>
+              <dd class="col-sm-5">R$1,00</dd>
+
+            </dl>
+            <dl class="row  text-left">
+              <dt class="col-sm-7"> Valor Inicial:</dt>
+              <dd class="col-sm-5">R$20,00</dd>
+              <dt class="col-sm-6">Inicio:</dt>
+              <dd class="col-sm-6">06/04/2019</dd>
+              <dt class="col-sm-6">Fim:</dt>
+              <dd class="col-sm-6">06/05/2019</dd>
+            </dl>
+            <div class="col text-center">
+              <button type="submit" class="btn btn-primary text-right">Dar Lance</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-md-6 col-lg-3">
+        <div class="card">
+          <img src="imagens/thanos.jpg" class="img-fluid d-block" alt="">
+          <h5 class="text-center mt-3">Finaliza em: xxx dias </h5>
+
+
+          <div class="card-body mt-0 text-muted">
+            <dl class="row  text-left">
+              <dt class="col-sm-7"> Valor Atual:</dt>
+              <dd class="col-sm-5">R$25,00</dd>
+              <dt class="col-sm-7">Lance Minimo</dt>
+              <dd class="col-sm-5">R$1,00</dd>
+
+            </dl>
+            <dl class="row text-left">
+              <dt class="col-sm-7"> Valor Inicial:</dt>
+              <dd class="col-sm-5">R$20,00</dd>
+              <dt class="col-sm-6">Inicio:</dt>
+              <dd class="col-sm-6">06/04/2019</dd>
+              <dt class="col-sm-6">Fim:</dt>
+              <dd class="col-sm-6">06/05/2019</dd>
+            </dl>
+            <div class="col text-center">
+              <button type="submit" class="btn btn-primary text-right">Dar Lance</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
     </div>
   </section>
+  <footer class="footer mt-4 bg-dark container-fluid text-light">
+    <div class="container">
+      <div class="row">
+        <div class=" col-sm-6 col-lg-3 mt-4 mb-4 border-right">
+          <h5>Services</h5>
+          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reprehenderit, facere ipsum. Officia soluta non
+            sapiente molestias</p>
+          <a class="btn btn-md bg-info btn-fb mx-1" type="button" role="button"><i class="fab fa-facebook-f"></i></a>
+          <a class="btn btn-md bg-info btn-tw mx-1" type="button" role="button"><i class="fab fa-twitter"></i></a>
+          <a class="btn btn-md bg-info btn-git mx-1" type="button" role="button"><i class="fab fa-github"></i></a>
+        </div>
+        <div class=" col-sm-6 col-lg-3 mt-4 mb-4 ">
+          <h5>Services</h5>
+          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reprehenderit, facere ipsum. Officia soluta non
+            sapiente molestias</p>
+          <a class="btn btn-md bg-info btn-fb mx-1" type="button" role="button"><i class="fab fa-facebook-f"></i></a>
+          <a class="btn btn-md bg-info btn-tw mx-1" type="button" role="button"><i class="fab fa-twitter"></i></a>
+          <a class="btn btn-md bg-info btn-git mx-1" type="button" role="button"><i class="fab fa-github"></i></a>
+        </div>
+        <div class=" col-sm-6 col-lg-3 mt-4 mb-4 border-right">
+          <h5>Services</h5>
+          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reprehenderit, facere ipsum. Officia soluta non
+            sapiente molestias</p>
+          <a class="btn btn-md bg-info btn-fb mx-1" type="button" role="button"><i class="fab fa-facebook-f"></i></a>
+          <a class="btn btn-md bg-info btn-tw mx-1" type="button" role="button"><i class="fab fa-twitter"></i></a>
+          <a class="btn btn-md bg-info btn-git mx-1" type="button" role="button"><i class="fab fa-github"></i></a>
+        </div>
+        <div class=" col-sm-6 col-lg-3 mt-4 mb-4">
+          <h5>Services</h5>
+          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reprehenderit, facere ipsum. Officia soluta non
+            sapiente molestias</p>
+          <a class="btn btn-md bg-info btn-fb mx-1" type="button" role="button"><i class="fab fa-facebook-f"></i></a>
+          <a class="btn btn-md bg-info btn-tw mx-1" type="button" role="button"><i class="fab fa-twitter"></i></a>
+          <a class="btn btn-md bg-info btn-git mx-1" type="button" role="button"><i class="fab fa-github"></i></a>
+        </div>
+
+
+  </footer>
+
+  </div>
+
 </body>
 <div class="modal fade" id="modalLogin" role="dialog">
   <div class="modal-dialog">
@@ -448,9 +494,9 @@
             </div>
             <div class="row">
               <div class="col">
-                <div class="form-check">
-                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                  <label class="form-check-label" for="Check">Lembrar de mim</label>
+                <div class="custom-control custom-switch">
+                  <input type="checkbox" class="custom-control-input" id="switch1">
+                  <label class="custom-control-label" for="switch1">Lembrar de mim</label>
                 </div>
               </div>
               <div class="col text-right">
@@ -462,7 +508,7 @@
         </div>
       </div>
       <div class="modal-footer bg-white">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
       </div>
     </div>
 
