@@ -7,172 +7,409 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/header.css">
-  <link rel="stylesheet" href="css/section.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 
-<body class="container-fluid">
+<body>
   <header>
-    <div class="row">
+    <div class="row bg-dark">
+      <div class="col text-center text-light">
+          <a class="navbar-brand mt-3"><h4> Leilão de Quadrinhos </h4></a>
+
+      </div>
+
+    </div>
+    <div class="row bg-dark">
       <div class="col">
-        <nav class="navbar navbar-expand-sm navbar-light bg-light justify-content-end">
+        <nav class="navbar navbar-expand-sm navbar-dark text-light bg-dark justify-content-end">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
-
           </button>
           <div class="collapse navbar-collapse justify-content-center" id="collapsibleNavbar">
             <ul class="nav justify-content-center">
+
               <li class="nav-item">
                 <a class="nav-link" data-toggle="modal" data-target="#modalLogin">Login</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Leilões Ativos</a>
+                <a class="nav-link" >Leilões Ativos</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Fale Conosco</a>
+                <a class="nav-link" >Fale Conosco</a>
               </li>
 
             </ul>
           </div>
 
         </nav>
-        
       </div>
     </div>
-    <div class="row">
-      <div class="col pt-3">
-        <h1 class="text-center">Leilão de Quadrinhos</h1>
+    
+
+    <div class="container pt-4">
+      <div class="card">
+        <div class="card-header bg-dark text-light">
+          <div class="row">
+            <div class="col">
+              <h5>Maiores Lances</h5>
+            </div>
+            <div class="col">
+              <a class="carousel-control-prev" href="#carouselSite" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+                <span class="sr-only">Anterior</span>
+              </a>
+              <a class="carousel-control-next" href="#carouselSite" role="button" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+                <span class="sr-only">Proximo</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div id="carouselSite" class="carousel carousel-topo slide" data-ride="carousel">
+
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <div class="card">
+                        <img src="imagens/thanos.jpg" class="img-fluid d-block" alt="">
+                        <div class="card-body text-muted">
+                          <dl class="row pt-0 mb-0 pb-0 text-left">
+                            <dt class="col-sm-7"> Quadrinho:</dt>
+                            <dd class="col-sm-5">Lorem</dd>
+                          </dl>
+                          <dl class="row pt-0 text-left">
+                            <dt class="col-sm-7"> Valor Atual:</dt>
+                            <dd class="col-sm-5">R$20,00</dd>
+                          </dl>
+                          <div class="row ">
+                            <div class="col-6">
+                              <a href="#">Dar Lance</a>
+                            </div>
+                            <div class="col-6">
+                              <a href="#">Detalhes</a>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-3">
+                      <div class="card">
+                        <img src="imagens/thanos.jpg" class="img-fluid d-block" alt="">
+                        <div class="card-body text-muted">
+                          <dl class="row pt-0 mb-0 pb-0 text-left">
+                            <dt class="col-sm-7"> Quadrinho:</dt>
+                            <dd class="col-sm-5">Lorem</dd>
+                          </dl>
+                          <dl class="row pt-0 text-left">
+                            <dt class="col-sm-7"> Valor Atual:</dt>
+                            <dd class="col-sm-5">R$20,00</dd>
+                          </dl>
+                          <div class="row ">
+                            <div class="col-6">
+                              <a href="#">Dar Lance</a>
+                            </div>
+                            <div class="col-6">
+                              <a href="#">Detalhes</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-3">
+                      <div class="card">
+                        <img src="imagens/thanos.jpg" class="img-fluid d-block" alt="">
+                        <div class="card-body text-muted">
+                          <dl class="row pt-0 mb-0 pb-0 text-left">
+                            <dt class="col-sm-7"> Quadrinho:</dt>
+                            <dd class="col-sm-5">Lorem</dd>
+                          </dl>
+                          <dl class="row pt-0 text-left">
+                            <dt class="col-sm-7"> Valor Atual:</dt>
+                            <dd class="col-sm-5">R$20,00</dd>
+                          </dl>
+                          <div class="row ">
+                            <div class="col-6">
+                              <a href="#">Dar Lance</a>
+                            </div>
+                            <div class="col-6">
+                              <a href="#">Detalhes</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-3">
+                      <div class="card">
+                        <img src="imagens/thanos.jpg" class="img-fluid d-block" alt="">
+                        <div class="card-body text-muted">
+                          <dl class="row pt-0 mb-0 pb-0 text-left">
+                            <dt class="col-sm-7"> Quadrinho:</dt>
+                            <dd class="col-sm-5">Lorem</dd>
+                          </dl>
+                          <dl class="row pt-0 text-left">
+                            <dt class="col-sm-7"> Valor Atual:</dt>
+                            <dd class="col-sm-5">R$20,00</dd>
+                          </dl>
+                          <div class="row ">
+                            <div class="col-6">
+                              <a href="#">Dar Lance</a>
+                            </div>
+                            <div class="col-6">
+                              <a href="#">Detalhes</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <div class="card">
+                        <img src="imagens/thanos.jpg" class="img-fluid d-block" alt="">
+                        <div class="card-body text-muted">
+                          <dl class="row pt-0 mb-0 pb-0 text-left">
+                            <dt class="col-sm-7"> Quadrinho:</dt>
+                            <dd class="col-sm-5">Lorem</dd>
+                          </dl>
+                          <dl class="row pt-0 text-left">
+                            <dt class="col-sm-7"> Valor Atual:</dt>
+                            <dd class="col-sm-5">R$20,00</dd>
+                          </dl>
+                          <div class="row ">
+                            <div class="col-6">
+                              <a href="#">Dar Lance</a>
+                            </div>
+                            <div class="col-6">
+                              <a href="#">Detalhes</a>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-3">
+                      <div class="card">
+                        <img src="imagens/thanos.jpg" class="img-fluid d-block" alt="">
+                        <div class="card-body text-muted">
+                          <dl class="row pt-0 mb-0 pb-0 text-left">
+                            <dt class="col-sm-7"> Quadrinho:</dt>
+                            <dd class="col-sm-5">Lorem</dd>
+                          </dl>
+                          <dl class="row pt-0 text-left">
+                            <dt class="col-sm-7"> Valor Atual:</dt>
+                            <dd class="col-sm-5">R$20,00</dd>
+                          </dl>
+                          <div class="row ">
+                            <div class="col-6">
+                              <a href="#">Dar Lance</a>
+                            </div>
+                            <div class="col-6">
+                              <a href="#">Detalhes</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-3">
+                      <div class="card">
+                        <img src="imagens/thanos.jpg" class="img-fluid d-block" alt="">
+                        <div class="card-body text-muted">
+                          <dl class="row pt-0 mb-0 pb-0 text-left">
+                            <dt class="col-sm-7"> Quadrinho:</dt>
+                            <dd class="col-sm-5">Lorem</dd>
+                          </dl>
+                          <dl class="row pt-0 text-left">
+                            <dt class="col-sm-7"> Valor Atual:</dt>
+                            <dd class="col-sm-5">R$20,00</dd>
+                          </dl>
+                          <div class="row ">
+                            <div class="col-6">
+                              <a href="#">Dar Lance</a>
+                            </div>
+                            <div class="col-6">
+                              <a href="#">Detalhes</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-3">
+                      <div class="card">
+                        <img src="imagens/thanos.jpg" class="img-fluid d-block" alt="">
+                        <div class="card-body text-muted">
+                          <dl class="row pt-0 mb-0 pb-0 text-left">
+                            <dt class="col-sm-7"> Quadrinho:</dt>
+                            <dd class="col-sm-5">Lorem</dd>
+                          </dl>
+                          <dl class="row pt-0 text-left">
+                            <dt class="col-sm-7"> Valor Atual:</dt>
+                            <dd class="col-sm-5">R$20,00</dd>
+                          </dl>
+                          <div class="row ">
+                            <div class="col-6">
+                              <a href="#">Dar Lance</a>
+                            </div>
+                            <div class="col-6">
+                              <a href="#">Detalhes</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col pt-5">
-        <h5 class="text-center">Maiores Lances</h5>
-      </div>
+
+
     </div>
-    <div>
-     
+    
+    
+    </div>
+
+    </div>
+
+    </div>
+    </div>
+
+
+
+
   </header>
   <section class="container pt-5">
     <h3 class="text-center">Leilões Ativos</h3>
     <div class="row">
-      <div class="col-sm-6 col-md-3 col-lg-3">
+      <div class="col-sm-6 col-md-6 col-lg-3">
+        <div class="card card-ativos">
+          <div class="card-header">
+            <h5>Finaliza em: xxx dias </h5>
+          </div>
+          <div class="card-body text-center">
+            <img class="card-img-ativos img-fluid" src="imagens/thanos.jpg">
+            <dl class="row pt-2 text-left">
+              <dt class="col-sm-7"> Valor Atual:</dt>
+              <dd class="col-sm-5">R$25,00</dd>
+              <dt class="col-sm-7">Lance Minimo</dt>
+              <dd class="col-sm-5">R$1,00</dd>
+              <div class="col text-center">
+                <button type="submit" class="btn btn-primary text-right">Dar Lance</button>
+              </div>
+            </dl>
+            <dl class="row pt-2 text-left">
+              <dt class="col-sm-7"> Valor Inicial:</dt>
+              <dd class="col-sm-5">R$20,00</dd>
+              <dt class="col-sm-6">Inicio:</dt>
+              <dd class="col-sm-6">06/04/2019</dd>
+              <dt class="col-sm-6">Fim:</dt>
+              <dd class="col-sm-6">06/05/2019</dd>
+            </dl>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-md-6 col-lg-3">
         <div class="card card-ativos">
           <div class="card-header text-center">
             <h5>Finaliza em: xxx dias </h5>
           </div>
           <div class="card-body text-center">
-            <img class="card-img-ativos" src="imagens/thanos.jpg">
+            <img class="card-img-ativos img-fluid" src="imagens/thanos.jpg">
             <dl class="row pt-2 text-left">
-                <dt class="col-sm-7"> Valor Atual:</dt>
-                <dd class="col-sm-5">R$25,00</dd>
-                <dt class="col-sm-7">Lance Minimo</dt>
-                <dd class="col-sm-5">R$1,00</dd> 
-                <div class="col text-center">
-                  <button type="submit" class="btn btn-primary text-right">Dar Lance</button>
-                </div>                                                                      
-              </dl>
-              <dl class="row pt-2 text-left">
-                  <dt class="col-sm-7"> Valor Inicial:</dt>
-                  <dd class="col-sm-5">R$20,00</dd>
-                  <dt class="col-sm-6">Inicio:</dt>
-                  <dd class="col-sm-6">06/04/2019</dd> 
-                  <dt class="col-sm-6">Fim:</dt>
-                  <dd class="col-sm-6">06/05/2019</dd>                                                                                 
-                </dl>
+              <dt class="col-sm-7"> Valor Atual:</dt>
+              <dd class="col-sm-5">R$25,00</dd>
+              <dt class="col-sm-7">Lance Minimo</dt>
+              <dd class="col-sm-5">R$1,00</dd>
+              <div class="col text-center">
+                <button type="submit" class="btn btn-primary text-right">Dar Lance</button>
+              </div>
+            </dl>
+            <dl class="row pt-2 text-left">
+              <dt class="col-sm-7"> Valor Inicial:</dt>
+              <dd class="col-sm-5">R$20,00</dd>
+              <dt class="col-sm-6">Inicio:</dt>
+              <dd class="col-sm-6">06/04/2019</dd>
+              <dt class="col-sm-6">Fim:</dt>
+              <dd class="col-sm-6">06/05/2019</dd>
+            </dl>
           </div>
-          
+
         </div>
       </div>
 
-      <div class="col-sm-6 col-md-3 col-lg-3">
+      <div class="col-sm-6 col-md-6 col-lg-3">
           <div class="card card-ativos">
             <div class="card-header text-center">
               <h5>Finaliza em: xxx dias </h5>
             </div>
             <div class="card-body text-center">
-              <img class="card-img-ativos" src="imagens/thanos.jpg">
+              <img class="card-img-ativos img-fluid" src="imagens/thanos.jpg">
               <dl class="row pt-2 text-left">
-                  <dt class="col-sm-7"> Valor Atual:</dt>
-                  <dd class="col-sm-5">R$25,00</dd>
-                  <dt class="col-sm-7">Lance Minimo</dt>
-                  <dd class="col-sm-5">R$1,00</dd> 
-                  <div class="col text-center">
-                    <button type="submit" class="btn btn-primary text-right">Dar Lance</button>
-                  </div>                                                                      
-                </dl>
-                <dl class="row pt-2 text-left">
-                    <dt class="col-sm-7"> Valor Inicial:</dt>
-                    <dd class="col-sm-5">R$20,00</dd>
-                    <dt class="col-sm-6">Inicio:</dt>
-                    <dd class="col-sm-6">06/04/2019</dd> 
-                    <dt class="col-sm-6">Fim:</dt>
-                    <dd class="col-sm-6">06/05/2019</dd>                                                                                 
-                  </dl>
+                <dt class="col-sm-7"> Valor Atual:</dt>
+                <dd class="col-sm-5">R$25,00</dd>
+                <dt class="col-sm-7">Lance Minimo</dt>
+                <dd class="col-sm-5">R$1,00</dd>
+                <div class="col text-center">
+                  <button type="submit" class="btn btn-primary text-right">Dar Lance</button>
+                </div>
+              </dl>
+              <dl class="row pt-2 text-left">
+                <dt class="col-sm-7"> Valor Inicial:</dt>
+                <dd class="col-sm-5">R$20,00</dd>
+                <dt class="col-sm-6">Inicio:</dt>
+                <dd class="col-sm-6">06/04/2019</dd>
+                <dt class="col-sm-6">Fim:</dt>
+                <dd class="col-sm-6">06/05/2019</dd>
+              </dl>
             </div>
-
+  
           </div>
-        </div>     
-        
-        <div class="col-sm-6 col-md-3 col-lg-3">
-            <div class="card card-ativos">
-              <div class="card-header text-center">
-                <h5>Finaliza em: xxx dias </h5>
+        </div>
+
+      <div class="col-sm-6 col-md-6 col-lg-3">
+        <div class="card card-ativos">
+          <div class="card-header text-center">
+            <h5>Finaliza em: xxx dias </h5>
+          </div>
+          <div class="card-body text-center">
+            <img class="card-img-ativos img-fluid" src="imagens/thanos.jpg">
+            <dl class="row pt-2 text-left">
+              <dt class="col-sm-7"> Valor Atual:</dt>
+              <dd class="col-sm-5">R$25,00</dd>
+              <dt class="col-sm-7">Lance Minimo</dt>
+              <dd class="col-sm-5">R$1,00</dd>
+              <div class="col text-center">
+                <button type="submit" class="btn btn-primary text-right">Dar Lance</button>
               </div>
-              <div class="card-body text-center">
-                <img class="card-img-ativos" src="imagens/thanos.jpg">
-                <dl class="row pt-2 text-left">
-                    <dt class="col-sm-7"> Valor Atual:</dt>
-                    <dd class="col-sm-5">R$25,00</dd>
-                    <dt class="col-sm-7">Lance Minimo</dt>
-                    <dd class="col-sm-5">R$1,00</dd> 
-                    <div class="col text-center">
-                      <button type="submit" class="btn btn-primary text-right">Dar Lance</button>
-                    </div>                                                                      
-                  </dl>
-                  <dl class="row pt-2 text-left">
-                      <dt class="col-sm-7"> Valor Inicial:</dt>
-                      <dd class="col-sm-5">R$20,00</dd>
-                      <dt class="col-sm-6">Inicio:</dt>
-                      <dd class="col-sm-6">06/04/2019</dd> 
-                      <dt class="col-sm-6">Fim:</dt>
-                      <dd class="col-sm-6">06/05/2019</dd>                                                                                 
-                    </dl>
-              </div>
-              
-            </div>
-          </div>   
-          
-          <div class="col-sm-6 col-md-3 col-lg-3">
-              <div class="card card-ativos">
-                <div class="card-header text-center">
-                  <h5>Finaliza em: xxx dias </h5>
-                </div>
-                <div class="card-body text-center">
-                  <img class="card-img-ativos" src="imagens/thanos.jpg">
-                  <dl class="row pt-2 text-left">
-                      <dt class="col-sm-7"> Valor Atual:</dt>
-                      <dd class="col-sm-5">R$25,00</dd>
-                      <dt class="col-sm-7">Lance Minimo</dt>
-                      <dd class="col-sm-5">R$1,00</dd> 
-                      <div class="col text-center">
-                        <button type="submit" class="btn btn-primary text-right">Dar Lance</button>
-                      </div>                                                                      
-                    </dl>
-                    <dl class="row pt-2 text-left">
-                        <dt class="col-sm-7"> Valor Inicial:</dt>
-                        <dd class="col-sm-5">R$20,00</dd>
-                        <dt class="col-sm-6">Inicio:</dt>
-                        <dd class="col-sm-6">06/04/2019</dd> 
-                        <dt class="col-sm-6">Fim:</dt>
-                        <dd class="col-sm-6">06/05/2019</dd>                                                                                 
-                      </dl>
-                </div>
-              
-              </div>
-            </div>
-     
+            </dl>
+            <dl class="row pt-2 text-left">
+              <dt class="col-sm-7"> Valor Inicial:</dt>
+              <dd class="col-sm-5">R$20,00</dd>
+              <dt class="col-sm-6">Inicio:</dt>
+              <dd class="col-sm-6">06/04/2019</dd>
+              <dt class="col-sm-6">Fim:</dt>
+              <dd class="col-sm-6">06/05/2019</dd>
+            </dl>
+          </div>
+
+        </div>
+      </div>
+
 
     </div>
   </section>
@@ -192,23 +429,23 @@
         <div class="container-fluid">
           <form>
             <div class="form-group">
-               <label for="Username">Email</label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                      <div class="input-group-text">@</div>
-                    </div>
-                    <input type="text" class="form-control" id="Username" placeholder="Insira seu email">
-                  </div>
+              <label for="Username">Email</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">@</div>
+                </div>
+                <input type="text" class="form-control" id="Username" placeholder="Insira seu email">
+              </div>
             </div>
             <div class="form-group">
-                <label for="password">Senha</label>
-                 <div class="input-group">
-                     <div class="input-group-prepend">
-                       <div class="input-group-text">**</div>
-                     </div>
-                     <input type="password" class="form-control" id="password" placeholder="Insira sua senha">
-                   </div>
-             </div>
+              <label for="password">Senha</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">**</div>
+                </div>
+                <input type="password" class="form-control" id="password" placeholder="Insira sua senha">
+              </div>
+            </div>
             <div class="row">
               <div class="col">
                 <div class="form-check">
