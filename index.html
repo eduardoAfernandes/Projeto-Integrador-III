@@ -10,13 +10,48 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  
+  <style>
+    
+      h1 {
+        color: darkred;
+          text-shadow: 2px 1px 3px;
+          margin-top: 10px;
+          background-image: url(imagens/)
+      }
+      
+      .nav-item {
+          text-shadow: 2px 1px 3px;
+          cursor: pointer;
+          transition: 0.7s;
+          margin-bottom: 5px;
+      }
+      
+      .nav-item:hover {
+          transform: translateY(-3px);
+          background-color: white;
+          border-radius: 10px;
+          color: darkred;
+          text-shadow: 1px 1px 2px;
+      }
+      
+      .panel-heading {
+          background-color: black;
+          padding: 10px;
+          color: white;
+          margin-bottom: 15px;
+          border-radius: 5px 5px 0px 0px;
+      }
+      
+    
+    </style>
 </head>
 
 <body>
   <header>
     <div class="row bg-dark">
       <div class="col text-center text-light">
-          <a class="navbar-brand mt-3"><h4> Leilão de Quadrinhos </h4></a>
+          <a class="navbar-brand mt-3"><h1> Leilão de Quadrinhos </h1></a>
 
       </div>
 
@@ -292,7 +327,9 @@
 
   </header>
   <section class="container pt-5">
-    <h3 class="text-center">Leilões Ativos</h3>
+    <div class="panel panel-default">
+    <h3 class="text-center panel-heading">Leilões Ativos</h3>
+      </div>
     <div class="row">
       <div class="col-sm-6 col-md-6 col-lg-3">
         <div class="card card-ativos">
