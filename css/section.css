@@ -1,17 +1,9 @@
-.card-leiloes-ativos,.li-card-ativo{
+.card-leiloes-ativos{
     width: 100%;
-
-
-}
-.card-ativos{
-    width: 100%;
+    height: auto;
     border-radius: 5%;
-    margin-top: 20px;
 }
-.card-img-ativos{
-    width: 200px;
-    height: 150px;
-}
+
 
 .panel-heading {
     background-color: black;
