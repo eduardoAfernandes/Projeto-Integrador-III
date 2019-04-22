@@ -12,3 +12,18 @@
     width: 200px;
     height: 150px;
 }
+
+.panel-heading {
+    background-color: black;
+    padding: 10px;
+    color: white;
+    margin-bottom: 15px;
+    border-radius: 5px 5px 0px 0px;
+}
+@media (max-width: 768px) 
+{
+    .card-leiloes-ativos{
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+}
