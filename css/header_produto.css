@@ -1,0 +1,25 @@
+.logo-topo{
+    height: 100px;
+}
+
+.nav-item {
+  text-shadow: 2px 1px 3px;
+  cursor: pointer;
+  transition: 0.7s;
+  margin-bottom: 5px;
+x 
+}
+
+.nav-item:hover {
+  transform: translateY(-3px);
+  background-color: white;
+  border-radius: 10px;
+  color: darkred;
+  text-shadow: 1px 1px 2px;
+}
+@media (max-width: 768px) 
+{
+    .logo-topo{
+      margin-left: 20px;
+    }
+}

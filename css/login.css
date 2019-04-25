@@ -1,0 +1,32 @@
+body {
+    min-height: 100vh;
+    background-color: #CCC;
+    background-image: url('https://source.unsplash.com/1600x900/?comic books,marvel,dc');
+}
+
+.login-form {
+    /* margin-top: 50vh; */
+    /* transform: translateY(-70%); */
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .9);
+    padding: 20px 30px;
+    color: white;
+}
+
+.login-form h1 {
+    margin: 0 0 5px;
+}
+
+.login-form h2 {
+    margin: 0 0 30px;
+    font-size: 1em;
+}
+
+.login-form .icon {
+    min-width: 16px;
+    max-width: 16px;
+}
+
+.login-form .rigth {
+    justify-content: flex-end;
+}
