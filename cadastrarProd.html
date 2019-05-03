@@ -32,6 +32,8 @@
 
         <script src="js/cadastrarProd.js"></script>
 
+
+
     </head>
 </head>
 
@@ -83,87 +85,111 @@
                         <dt class="col-auto">Tire uma foto do quadrinho em um lugar claro,e com foco na capa dele!!</dt>
                     </dl>
 
-                    <form class="pt-4" id="formCadastroQuadrinho" >
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="títuloQuadrinho">Título do Quadrinho</label>
-                                <input type="text" class="form-control " id="títuloQuadrinho"
-                                    placeholder="Insira o título do quadrinho">
-                                <div class="invalid-feedback">
-                                    Título inválido!
-                                </div>
-                            </div>
-                            <div class="form-group col-md-3 col-6">
-                                <label for="editora">Editora</label>
-                                <select class="custom-select" id="editora">
-                                    <option value="editora" selected>Editora...</option>
-                                    <option value="marvel">Marvel</option>
-                                    <option value="dc">DC</option>
-
-                                </select>
-                                <div class="invalid-feedback">
-                                    Escolha a editora do quadrinho!
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-3 col-6">
-                                <label for="categoria">Categoria</label>
-                                <select class="custom-select " id="categoria">
-                                    <option value="categoria" selected>Categoria...</option>
-                                    <option value="TPB">TPB</option>
-                                    <option value="Mensal">Mensal</option>
-                                </select>
-                                <div class="invalid-feedback">
-                                    Escolha a categoria do quadrinho!
-                                </div>
-                            </div>
-
-                            <div class="form-group col-6 col-md-3">
-                                <label for="numeroPags">Número de páginas</label>
-                                <input type="number" name="" id="numeroPags" placeholder="Numero de páginas"
-                                    class="form-control">
-                                <div class="invalid-feedback">
-                                    Número de paginas invalido!
-                                </div>
-                            </div>
-                            <div class="form-group col-6 col-md-3">
-                                <label for="pesoQuadrinho">Peso do quadrinho</label>
-                                <input type="number" name="" placeholder="Insira o peso do quadrinho" id="pesoQuadrinho"
-                                    class="form-control ">
-                                <div class="invalid-feedback">
-                                   Peso inválido!
-                                </div>
-                            </div>
-
-                            <div class="form-group col-12 col-md-6">
-                                <label for="tipoCapa">Tipo de capa</label>
-                                <select class="custom-select " id="tipoCapa">
-                                    <option value="capa">Capa...</option>
-                                    <option value="hard">Hard</option>
-                                    <option value="soft">Soft</option>
-                                </select>
-                                <div class="invalid-feedback">
-                                    Escolha o tipo de capa do quadrinho
-                                </div>
-                            </div>
-
+                    <div class="row  pt-4">
+                        <div class="col-12 col-md-5">
                             <div class="form-group col-12">
-                                <label>Capa do quadrinho</label>
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="cpQuadrinho">
+                                <p class="text-center h5"><b>Capa do quadrinho</b></p>
+                                <div class="custom-file d-none">
+                                    <input type="file" class="custom-file-input" id="cpQuadrinho"
+                                        onchange="readURL(this);">
+
                                     <label class="custom-file-label" for="cpQuadrinho">Anexar foto</label>
                                 </div>
                                 <div class="invalid-feedback">
                                     Escolha a categoria do quadrinho!
                                 </div>
                             </div>
-                            <div class="col-3 my-auto text-center">
-                                    <button type="reset" class=" btn-form btn btn-danger">Limpar</button>
-                                </div>
-                            <div class="col-9 my-auto text-center">
-                                <button type="button" class=" btn-form btn btn-success" onclick="validarDados()">Cadastrar</button>
+                            <div class="text-center ">
+                                <img src="imagens/add-image.png" class="previewQuadrinho" id="previewQuadrinho"
+                                    onclick="clickInputFile()" class="imgPreview">
+                                <p class="pt-3 text-danger d-none" id="msgImage">Anexe a capa do quadrinho!!</p>
                             </div>
+
                         </div>
+                        <div class="col-12 col-md-7 pt-3  caixa-inputs">
+                            <form id="formCadastroQuadrinho">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="títuloQuadrinho">Título do Quadrinho</label>
+                                        <input type="text" class="form-control " id="títuloQuadrinho"
+                                            placeholder="Insira o título do quadrinho">
+                                        <div class="invalid-feedback">
+                                            Título inválido!
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6 col-6">
+                                        <label for="editora">Editora</label>
+                                        <select class="custom-select" id="editora">
+                                            <option value="editora" selected>Editora...</option>
+                                            <option value="marvel">Marvel</option>
+                                            <option value="dc">DC</option>
+
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Escolha a editora do quadrinho!
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-6">
+                                        <label for="categoria">Categoria</label>
+                                        <select class="custom-select " id="categoria">
+                                            <option value="categoria" selected>Categoria...</option>
+                                            <option value="TPB">TPB</option>
+                                            <option value="Mensal">Mensal</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Escolha a categoria do quadrinho!
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-6 ">
+                                        <label for="numeroPags">Número de páginas</label>
+                                        <input type="number" name="" id="numeroPags" placeholder="Numero de páginas"
+                                            class="form-control">
+                                        <div class="invalid-feedback">
+                                            Número de paginas invalido!
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-6">
+                                        <label for="pesoQuadrinho">Peso do quadrinho</label>
+                                        <input type="number" name="" placeholder="Insira o peso do quadrinho"
+                                            id="pesoQuadrinho" class="form-control ">
+                                        <div class="invalid-feedback">
+                                            Peso inválido!
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-12 col-md-6">
+                                        <label for="tipoCapa">Tipo de capa</label>
+                                        <select class="custom-select " id="tipoCapa">
+                                            <option value="capa">Capa...</option>
+                                            <option value="hard">Hard</option>
+                                            <option value="soft">Soft</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Escolha o tipo de capa do quadrinho
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row pt-3">
+                                    <div class="col-3 my-auto text-center">
+                                        <button type="button" onclick="clearForm()" class=" btn-form btn btn-danger">Limpar</button>
+                                    </div>
+                                    <div class="col-9 my-auto text-center">
+                                        <button type="button" class=" btn-form btn btn-success"
+                                            onclick="validarDados()">Cadastrar</button>
+                                    </div>
+                                </div>
+
+                        </div>
+
+                    </div>
+
+
+
+
+
+
 
 
 

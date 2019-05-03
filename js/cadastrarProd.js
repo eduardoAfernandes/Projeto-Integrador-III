@@ -8,10 +8,9 @@ function validarDados(){
     const cpQuadrinho = document.getElementById('cpQuadrinho').value.trim();
    
 
-    
-    var ok =0;    
 
-    if(tituloQuadrinho.length> 0){
+    var ok =0;    
+     if(tituloQuadrinho.length> 0){
         document.getElementById('títuloQuadrinho').classList.add('is-valid');
         document.getElementById('títuloQuadrinho').classList.replace('is-invalid','is-valid');
         ok++;
@@ -74,22 +73,49 @@ function validarDados(){
     }
     
     if(cpQuadrinho != ''){
-        document.getElementById('cpQuadrinho').classList.add('is-valid');
-        document.getElementById('cpQuadrinho').classList.replace('is-invalid','is-valid');
+        document.getElementById('previewQuadrinho').style.boxShadow = ' 5px 5px 5px 5px black'
+        document.getElementById('msgImage').classList.replace('d-block','d-none');
+
         ok++;
 
         
     }else{
-        document.getElementById('cpQuadrinho').classList.add('is-invalid');
+        document.getElementById('previewQuadrinho').style.boxShadow = ' 5px 5px 5px 5px red';
+        document.getElementById('msgImage').classList.add('d-block');
+
 
     }
     if(ok == 7 ){
-        teste();
+        showAlertify();
         document.getElementById('formCadastroQuadrinho').submit();
     }
 }
 
-function teste(){
-    var notification = alertify.notify('Quadrinho cadastrado com sucesso!!', 'success', 5, function(){  console.log('dismissed'); });
+function showAlertify(){
+    var notification = alertify.notify('Quadrinho cadastrado com sucesso!!', 'success', 3, function(){  console.log('dismissed'); });
     notification();
+}
+
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#previewQuadrinho')
+                .attr('src', e.target.result)
+                .width(275)
+                .height(275);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+function clickInputFile(){
+    document.getElementById('cpQuadrinho').click();
+}
+
+function clearForm(){
+    window.location.reload();
+
+
 }
