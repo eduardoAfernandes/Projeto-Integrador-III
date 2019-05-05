@@ -1,0 +1,13 @@
+
+@font-face {font-family: "LeilaoDeQuadrinhos";
+    src: url("//db.onlinewebfonts.com/t/fea8a931fd3f37ee4bc5e4c503ad6c9d.eot");
+    src: url("//db.onlinewebfonts.com/t/fea8a931fd3f37ee4bc5e4c503ad6c9d.eot?#iefix") format("embedded-opentype"),
+    url("//db.onlinewebfonts.com/t/fea8a931fd3f37ee4bc5e4c503ad6c9d.woff2") format("woff2"),
+    url("//db.onlinewebfonts.com/t/fea8a931fd3f37ee4bc5e4c503ad6c9d.woff") format("woff"),
+    url("//db.onlinewebfonts.com/t/fea8a931fd3f37ee4bc5e4c503ad6c9d.ttf") format("truetype"),
+    url("//db.onlinewebfonts.com/t/fea8a931fd3f37ee4bc5e4c503ad6c9d.svg#Gill Sans") format("svg");
+}
+
+.font-leilao-de-quadrinhos {
+    font-family: 'LeilaoDeQuadrinhos';
+}
