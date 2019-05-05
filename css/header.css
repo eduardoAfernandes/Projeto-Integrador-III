@@ -3,9 +3,15 @@
 }
 
 .logo-topo-index {
-    width: 15%;
+    padding-top: 18px;
+    width: 130px;
+    position: fixed;
 }
 
 .logo-footer {
     height: 100px;
+}
+
+.logo-text {
+    padding-left: 125px;
 }
