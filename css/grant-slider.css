@@ -1,0 +1,10 @@
+.max-h-image-sixe {
+    object-fit: none;
+    max-height: 600px;
+}
+
+.carousel-caption {
+    background-color: rgba(0, 0, 0, .7);
+    right: 0%;
+    left: 0%;
+}
