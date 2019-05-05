@@ -1,41 +1,11 @@
-                    * {
-                    font-family: 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
-                }
-                
-                .logo-topo-index {
-                    width: 40%;
-                }
-                
-                .h1-topo {
-                    color: darkred;
-                    text-shadow: 2px 1px 3px;
-                    margin-top: 10px;
-                    background-image: url(../imagens/boom.png);
-                    background-size: 11%;
-                    background-repeat: no-repeat;
-                    background-position: left center;
-                }
-                
-                .nav-item {
-                    text-shadow: 2px 1px 3px;
-                    cursor: pointer;
-                    transition: 0.7s;
-                    margin-bottom: 5px;
-                }
-                
-                .nav-item:hover {
-                    transform: translateY(-3px);
-                    background-color: white;
-                    border-radius: 10px;
-                    color: darkred;
-                    text-shadow: 1px 1px 2px;
-                }
-                
-                .logo-footer {
-                    height: 100px;
-                }
-                
-                @media (max-width: 768px) {
-                    .logo-topo-index {
-                        width: 100%;
-                    }
+* {
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+}
+
+.logo-topo-index {
+    width: 15%;
+}
+
+.logo-footer {
+    height: 100px;
+}
