@@ -6,5 +6,9 @@
 .carousel-caption {
     background-color: rgba(0, 0, 0, .7);
     right: 0%;
-    left: 0%;
+    left: 0%;    
+}
+
+.botton-button {
+    margin-bottom: 15px;
 }
