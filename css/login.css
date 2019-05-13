@@ -1,7 +1,9 @@
 body {
     min-height: 100vh;
     background-color: #CCC;
-    background-image: url('https://source.unsplash.com/1600x900/?comic books,marvel,dc,hulk,iron_man,batman,hero');
+    background-image: url('https://source.unsplash.com/1920x1080/?comic books,marvel,dc,hulk,iron_man,batman,hero');
+    background-size: auto auto;
+    
 }
 
 .login-form {
