@@ -34,11 +34,10 @@
 
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="icon/open-iconic/font/css/open-iconic-bootstrap.min.css">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-            integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-        <link rel="stylesheet" href="css/header.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
         <link rel="stylesheet" href="css/section_produto.css">
-        <link rel="stylesheet" href="css/footer.css">
+        <link rel="stylesheet" href="components/header/header.css">
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -47,48 +46,9 @@
 </head>
 
 <body>
-    <header>
-        <div class="container-fluid">
-            <div class="row bg-dark pt-4 ">
-                <div class="container ">
-                    <div class="col text-center ">
-                        <img src="img/logo_leilao_de_quadrinhos.png" class="logo-topo-index">
-
-                    </div>
-                </div>
-
-
-            </div>
-            <div class="row bg-dark ">
-                <div class="col ">
-                    <nav class="navbar navbar-expand-sm navbar-dark text-light bg-dark justify-content-end">
-                        <button class="navbar-toggler" type="button" data-toggle="collapse"
-                            data-target="#collapsibleNavbar">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse justify-content-center" id="collapsibleNavbar">
-                            <ul class="nav justify-content-center">
-
-                                <li class="nav-item">
-                                    <a class="nav-link" data-toggle="modal" data-target="#modalLogin">Login</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link">Leilões Ativos</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link">Fale Conosco</a>
-                                </li>
-
-                            </ul>
-                        </div>
-
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </header>
+    <div id="header"></div>
     <section>
-        <div class="container-fluid py-5">
+        <div class="container-fluid py-5 mt-5">
 
             <div class="caixa-produto bg-light">
 
@@ -123,9 +83,7 @@
                         <div class="col-12">
                             <h4 class="text-center">Descrição</h4>
                             <p>
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non eum magni natus illo? Ea,
-                                ullam assumenda? Eaque incidunt dolores sequi a ipsum nisi voluptatibus nulla, aut
-                                dolore quisquam officiis laborum? Lorem ipsum dolor sit amet consectetur adipisicing
+                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non eum magni natus illo? Ea, ullam assumenda? Eaque incidunt dolores sequi a ipsum nisi voluptatibus nulla, aut dolore quisquam officiis laborum? Lorem ipsum dolor sit amet consectetur adipisicing
                                 elit. Delectus temporibus dolorem maxime sit veritatis?
                             </p>
                         </div>
@@ -165,50 +123,8 @@
         </div>
 
     </section>
-    <footer class="footer mt-4 bg-dark  text-light">
-        <div class="container">
-            <div class="row ">
-                <div class=" col-12 col-lg-3  mt-4 mb-4">
-                    <h5>Services</h5>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reprehenderit, facere ipsum. Officia
-                        soluta non sapiente molestias</p>
-                    <a class="btn btn-md bg-info btn-fb mx-1" type="button" role="button"><i
-                            class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-md bg-info btn-tw mx-1" type="button" role="button"><i
-                            class="fab fa-twitter"></i></a>
-                    <a class="btn btn-md bg-info btn-git mx-1" type="button" role="button"><i
-                            class="fab fa-github"></i></a>
-                </div>
-                <div class=" col-12  col-lg-3 mt-4 mb-4 ">
-                    <h5>Services</h5>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reprehenderit, facere ipsum. Officia
-                        soluta non sapiente molestias</p>
-                    <a class="btn btn-md bg-info btn-fb mx-1" type="button" role="button"><i
-                            class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-md bg-info btn-tw mx-1" type="button" role="button"><i
-                            class="fab fa-twitter"></i></a>
-                    <a class="btn btn-md bg-info btn-git mx-1" type="button" role="button"><i
-                            class="fab fa-github"></i></a>
-                </div>
-                <div class="d-lg-block d-md-none d-sm-none d-none  col-12 col-lg-3 mt-4 mb-4 border-right">
-                    <h5>Services</h5>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reprehenderit, facere ipsum. Officia
-                        soluta non sapiente molestias</p>
-                    <a class="btn btn-md bg-info btn-fb mx-1" type="button" role="button"><i
-                            class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-md bg-info btn-tw mx-1" type="button" role="button"><i
-                            class="fab fa-twitter"></i></a>
-                    <a class="btn btn-md bg-info btn-git mx-1" type="button" role="button"><i
-                            class="fab fa-github"></i></a>
-                </div>
-                <div class=" col-12 col-lg-3 mt-4 mb-4 my-auto pb-5 text-center">
-                    <div class="col-12 ">
-                        <img src="img/logo_leilao_de_quadrinhos.png" class="logo-footer" alt="">
-                    </div>
-                </div>
 
-
-    </footer>
+    <div id="footer"></div>
 
 
 
@@ -236,8 +152,7 @@
                                         <span class="oi oi-lock-locked icon"></span>
                                     </div>
                                 </div>
-                                <input type="email" class="form-control" name="userLgn" id=""
-                                    placeholder="Insira seu email">
+                                <input type="email" class="form-control" name="userLgn" id="" placeholder="Insira seu email">
                             </div>
                         </div>
                         <div class="form-group">
@@ -248,8 +163,7 @@
                                         <span class="oi oi-account-login icon"></span>
                                     </div>
                                 </div>
-                                <input type="password" class="form-control" name="userPwd" id=""
-                                    placeholder="Insira sua senha">
+                                <input type="password" class="form-control" name="userPwd" id="" placeholder="Insira sua senha">
                             </div>
                         </div>
                         <div class="row">
@@ -281,5 +195,10 @@
   
     </div>
   </div>
-
+  <script>
+        $(function() {
+            $('#header').load('./components/header/header.html');
+            $('#footer').load('./components/footer/footer.html');
+        });
+    </script>
 </html>
