@@ -35,6 +35,7 @@
     <link rel="stylesheet" href="css/cadastro.css">
     <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="icon/open-iconic/font/css/open-iconic-bootstrap.min.css">
+
 </head>
 
 <body>
@@ -55,7 +56,11 @@
         <form action="">
             <div class="form-group">
                 <div class="input-group">
-
+                        <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <span class="oi oi-person icon"></span>
+                                </div>
+                            </div>
                     <input type="text" name="nome" id="" class="form-control" placeholder="Nome">
                 </div>
             </div>
@@ -69,6 +74,18 @@
                     <input type="text" name="userLgn" id="" class="form-control" placeholder="Login">
                 </div>
             </div>
+
+
+            <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <span class="oi oi-tablet icon"></span>
+                            </div>
+                        </div>
+                        <input type="text" name="telefone" id="telefone" class="form-control" placeholder="Telefone">
+                    </div>
+                </div>
             <div class="form-group">
                 <div class="input-group">
                     <div class="input-group-prepend">
@@ -102,8 +119,12 @@
                 </div>
             </div>
             <footer class="d-flex justify-content-between ">
-                <label for="dt_nasc">Data de Nascimento</label>
-                <input class="form-control" type="date" value="2000-01-01" id="example-date-input">
+                    <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <span class="oi oi-calendar icon"></span>
+                            </div>
+                        </div>
+                <input class="form-control" type="date" id="example-date-input">
 
             </footer>
 
