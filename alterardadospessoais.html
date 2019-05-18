@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Leilão de Quadrinhos</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- favicon block -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="./img/favicon/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="./img/favicon/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="./img/favicon/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="./img/favicon/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="./img/favicon/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="./img/favicon/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="./img/favicon/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="./img/favicon/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="./img/favicon/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="./img/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="./img/favicon/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="./img/favicon/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="./img/favicon/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="&nbsp;" />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="mstile-310x310.png" />
+    <!-- favicon block -->
+
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="icon/open-iconic/font/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/meus_produtos.css">
+    <link rel="stylesheet" href="components/grant-slider/grant_slider.css">
+    <link rel="stylesheet" href="components/header/header.css">
+    <link rel="stylesheet" href="components/footer/footer.css">
+    <link rel="stylesheet" href="components/user-icon/user_icon.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+</head>
+
+<body>
+
+
+    <div id="header"></div>
+    <section class="container-fluid mt-5 pt-3">
+        <div class="container">
+            <div class="row pt-5">
+                <div class="col-12 bg-dark">
+                    <h3 class="text-light py-3">Alterar meus dados</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 pt-2">
+                    <form action="" class="pt-3">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <span class="oi oi-person icon"></span>
+                                    </div>
+                                </div>
+                                <input type="text" name="nome" id="" class="form-control" value="Eduardo Augusto">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <span class="oi oi-tablet icon"></span>
+                                    </div>
+                                </div>
+                                <input class="form-control mr-sm-0" name="telefone" id="telefone" type="text"
+                                    value="(34)99790-7702">
+
+                            </div>
+                            <div class="d-flex justify-content-between pt-3">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <span class="oi oi-calendar icon"></span>
+                                    </div>
+                                </div>
+                                <input class="form-control" type="date" id="example-date-input">
+
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-7 pb-3 ">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <span><img src="img/placeholder.png" alt=""></span>
+                                        </div>
+                                    </div>
+                                    <input type="text" name="cidade" id="cidade" class="form-control"
+                                        value="Tupaciguara">
+                                </div>
+                            </div>
+                            <div class="col-5 text-left">
+                                <select class="custom-select" id="inputGroupSelect02">
+                                    <option value="estado">Estado...</option>
+                                    <option value="AC">Acre</option>
+                                    <option value="AL">Alagoas</option>
+                                    <option value="AP">Amapá</option>
+                                    <option value="AM">Amazonas</option>
+                                    <option value="BA">Bahia</option>
+                                    <option value="CE">Ceará</option>
+                                    <option value="DF">Distrito Federal</option>
+                                    <option value="ES">Espírito Santo</option>
+                                    <option value="GO">Goiás</option>
+                                    <option value="MA">Maranhão</option>
+                                    <option value="MT">Mato Grosso</option>
+                                    <option value="MS">Mato Grosso do Sul</option>
+                                    <option value="MG" selected>Minas Gerais</option>
+                                    <option value="PA">Pará</option>
+                                    <option value="PB">Paraíba</option>
+                                    <option value="PR">Paraná</option>
+                                    <option value="PE">Pernambuco</option>
+                                    <option value="PI">Piauí</option>
+                                    <option value="RJ">Rio de Janeiro</option>
+                                    <option value="RN">Rio Grande do Norte</option>
+                                    <option value="RS">Rio Grande do Sul</option>
+                                    <option value="RO">Rondônia</option>
+                                    <option value="RR">Roraima</option>
+                                    <option value="SC">Santa Catarina</option>
+                                    <option value="SP">São Paulo</option>
+                                    <option value="SE">Sergipe</option>
+                                    <option value="TO">Tocantins</option>
+                                </select>
+
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-12 col-md-7 pb-3 ">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <span class="oi oi-lock-locked icon"></span>
+                                        </div>
+                                    </div>
+                                    <input type="password" name="password" id="password" class="form-control"
+                                        placeholder="Senha">
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-5 text-left">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <span class="oi oi-lock-locked icon"></span>
+                                        </div>
+                                    </div>
+                                    <input type="ConfSenha" name="ConfSenha" id="password" class="form-control"
+                                        placeholder="Senha">
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row pt-3">
+                            <div class="col-6">
+                                <input type="reset" class="btn btn-danger btn-form-modal" value="Limpar">
+                            </div>
+                            <div class="col-6">
+                                <input type="button" class="btn btn-success btn-form-modal" value="Ativar">
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        </div>
+
+    </section>
+
+    <div id="footer"></div>
+</body>
+
+
+
+<script>
+    $(function () {
+        $('#header').load('./components/header/header.html');
+        $('#footer').load('./components/footer/footer.html');
+        $('#grant-slider').load('./components/grant-slider/grant_slider.html');
+        $('#favicon').load('./components/favicon/favicon.html');
+    });
+</script>
+
+</html>
