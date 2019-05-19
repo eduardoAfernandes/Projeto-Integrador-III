@@ -19,10 +19,9 @@ CREATE TABLE Produto (
 id_produto INT PRIMARY KEY auto_increment,
 editora VARCHAR (6),
 titulo VARCHAR(50), 
-categoria VARCHAR(10), -- TPB, MENSAL
+formato_do_quadrinho VARCHAR(10), -- TPB, MENSAL
 numero_paginas INT, 
 peso INT, 
-capa_tipo VARCHAR (5), -- HARD, SOFT
 capa_imagem VARCHAR(50), -- ENDEREÇO IMAGEM
 id_estado_produto INT, -- ATIVO, INATIVO, EMLEILAO, LEILOADO
 	FOREIGN KEY (id_estado_produto) REFERENCES Estado_produto(id_estado_produto),
@@ -106,11 +105,13 @@ VALUES
 ('espera'), -- id 3
 ('finalizado'); -- id 4
 
-INSERT INTO Produto(editora, titulo, categoria, numero_paginas, peso, capa_tipo, capa_imagem, id_estado_produto, id_usuario)
+INSERT INTO Produto(editora, titulo, formato_do_quadrinho, numero_paginas, peso, capa_imagem, id_estado_produto, id_usuario)
 VALUES
-('Marvel', 'Onslaught 1 - The awakening', 'TPB', 73, 150, 'SOFT', '/imagens/capas/user/1/1.jpg', 1, 1),
-('DC', 'Secret Origins - Featuring JLA', 'TPB', 65, 145, 'SOFT', '/imagens/capas/user/1/2.jpg', 1, 1);
+('Marvel', 'Onslaught 1 - The awakening', 'TPB', 73, 150, '/imagens/capas/user/1/1.jpg', 1, 1),
+('DC', 'Secret Origins - Featuring JLA', 'TPB', 65, 145, '/imagens/capas/user/1/2.jpg', 1, 1);
 
 INSERT INTO Leilao(data_inicio, duracao, valor_inicial, valor_atual, lance_padrao, id_estado_leilao, id_usuario, id_produto)
 VALUES
 ('2019-05-18', 5, 200, 200, 10, 1, 1, 1);
+
+DROP DATABASE leilao_quadrinhos;
