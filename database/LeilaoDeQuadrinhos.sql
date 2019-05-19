@@ -1,7 +1,7 @@
 CREATE DATABASE leilao_quadrinhos;
 USE leilao_quadrinhos;
 
-CREATE TABLE Conta (
+CREATE TABLE Usuario (
 id_usuario INT PRIMARY KEY auto_increment,
 nome VARCHAR(50), 
 email VARCHAR(50) UNIQUE, 
@@ -27,7 +27,7 @@ capa_imagem VARCHAR(50), -- ENDEREÇO IMAGEM
 id_estado_produto INT, -- ATIVO, INATIVO, EMLEILAO, LEILOADO
 	FOREIGN KEY (id_estado_produto) REFERENCES Estado_produto(id_estado_produto),
 id_usuario INT,
-	FOREIGN KEY (id_usuario) REFERENCES Conta(id_usuario)
+	FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario)
 );
 
 CREATE TABLE Escritor(
@@ -65,11 +65,11 @@ data_inicio DATE,
 duracao INT,
 valor_inicial NUMERIC(9,2), 
 valor_atual NUMERIC(9,2),
-lance_padrao NUMERIC(2,2), -- Bid padrão
+lance_padrao NUMERIC(4,2), -- Bid padrão
 id_estado_leilao INT, -- ATIVO, ESPERA, FINALIZADO, INATIVO
 	FOREIGN KEY (id_estado_leilao) REFERENCES Estado_leilao(id_estado_leilao),
 id_usuario INT,
-	FOREIGN KEY (id_usuario) REFERENCES Conta(id_usuario),
+	FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario),
 id_produto INT,
 	FOREIGN KEY (id_produto) REFERENCES Produto(id_produto)
 );
@@ -81,10 +81,10 @@ CREATE TABLE lance (
     id_leilao INT,
 		FOREIGN KEY (id_leilao) REFERENCES Leilao (id_leilao),
 	id_usuario INT,
-		FOREIGN KEY (id_usuario) REFERENCES Conta(id_usuario)
+		FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario)
 );
 
-INSERT INTO Conta(nome, email, senha, data_nascimento, ativo)
+INSERT INTO Usuario(nome, email, senha, data_nascimento, ativo)
 VALUES
 ('Carlos Gustavo de Lacerda Stein', 'cgletras@gmail.com', 'cg2468', '1978-11-16', '1'),
 ('Rafael Sotero', 'soterocra@gmail.com', 'sotero2468', '1994-07-16', '1'),
@@ -111,5 +111,6 @@ VALUES
 ('Marvel', 'Onslaught 1 - The awakening', 'TPB', 73, 150, 'SOFT', '/imagens/capas/user/1/1.jpg', 1, 1),
 ('DC', 'Secret Origins - Featuring JLA', 'TPB', 65, 145, 'SOFT', '/imagens/capas/user/1/2.jpg', 1, 1);
 
-RENAME TABLE contem_esc TO escritor_produto;
-RENAME TABLE contem_pers TO personagem_produto; 
+INSERT INTO Leilao(data_inicio, duracao, valor_inicial, valor_atual, lance_padrao, id_estado_leilao, id_usuario, id_produto)
+VALUES
+('2019-05-18', 5, 200, 200, 10, 1, 1, 1);
