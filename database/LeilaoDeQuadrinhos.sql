@@ -12,18 +12,18 @@ ativo BOOLEAN -- ATIVO ou INATIVO
 
 CREATE TABLE Estado_produto(
 	id_estado_produto INT PRIMARY KEY auto_increment,
-	estado VARCHAR (10) -- ATIVO
+	estado ENUM('ATIVO','INATIVO','EM_LEILAO','LEILOADO')
 );
 
 CREATE TABLE Produto (
 id_produto INT PRIMARY KEY auto_increment,
 editora VARCHAR (6),
 titulo VARCHAR(50), 
-formato_do_quadrinho VARCHAR(10), -- TPB, MENSAL
+formato_do_quadrinho ENUM('TPB', 'MENSAL'),
 numero_paginas INT, 
 peso INT, 
 capa_imagem VARCHAR(50), -- ENDEREÇO IMAGEM
-id_estado_produto INT, -- ATIVO, INATIVO, EMLEILAO, LEILOADO
+id_estado_produto INT,
 	FOREIGN KEY (id_estado_produto) REFERENCES Estado_produto(id_estado_produto),
 id_usuario INT,
 	FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario)
@@ -38,7 +38,8 @@ CREATE TABLE escritor_produto(
 	id_escritor INT,
 		FOREIGN KEY(id_escritor) REFERENCES Escritor(id_escritor),
     id_produto INT,
-		FOREIGN KEY(id_produto) REFERENCES Produto(id_produto)
+		FOREIGN KEY(id_produto) REFERENCES Produto(id_produto),
+    PRIMARY KEY (id_escritor, id_produto)
 );
 
 CREATE TABLE Personagem(
@@ -50,22 +51,23 @@ CREATE TABLE personagem_produto(
 	id_personagem INT,
 		FOREIGN KEY(id_personagem) REFERENCES Personagem(id_personagem),
     id_produto INT,
-		FOREIGN KEY(id_produto) REFERENCES Produto(id_produto)
+		FOREIGN KEY(id_produto) REFERENCES Produto(id_produto),
+	PRIMARY KEY(id_personagem, id_produto)
 );
 
 CREATE TABLE Estado_leilao(
 	id_estado_leilao INT PRIMARY KEY auto_increment,
-    estado VARCHAR (10)
+    estado ENUM('ATIVO','INATIVO', 'EM_ESPERA','CANCELADO','CONCLUIDO')
 );
 
 CREATE TABLE Leilao (
 id_leilao INT PRIMARY KEY auto_increment,
-data_inicio DATE, 
+data_inicio DATETIME, 
 duracao INT,
 valor_inicial NUMERIC(9,2), 
 valor_atual NUMERIC(9,2),
 lance_padrao NUMERIC(4,2), -- Bid padrão
-id_estado_leilao INT, -- ATIVO, ESPERA, FINALIZADO, INATIVO
+id_estado_leilao INT, 
 	FOREIGN KEY (id_estado_leilao) REFERENCES Estado_leilao(id_estado_leilao),
 id_usuario INT,
 	FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario),
@@ -75,8 +77,8 @@ id_produto INT,
 
 CREATE TABLE lance (
 	id_lance INT PRIMARY KEY auto_increment,
-    valor_lance NUMERIC (2,2),
-    data_lance DATE,
+    valor_lance NUMERIC (4,2),
+    data_lance DATETIME,
     id_leilao INT,
 		FOREIGN KEY (id_leilao) REFERENCES Leilao (id_leilao),
 	id_usuario INT,
@@ -93,25 +95,28 @@ VALUES
 
 INSERT INTO Estado_produto(estado)
 VALUES
-('ativo'), -- id 1
-('inativo'), -- id 2
-('em_leilao'), -- id 3
-('leiloado'); -- id 4
+('ATIVO'), -- id 1
+('INATIVO'), -- id 2
+('EM_LEILAO'), -- id 3
+('LEILOADO'); -- id 4
 
 INSERT INTO Estado_leilao(estado)
 VALUES
-('ativo'), -- id 1 
-('inativo'), -- id 2
-('espera'), -- id 3
-('finalizado'); -- id 4
+('ATIVO'), -- id 1 
+('INATIVO'), -- id 2
+('EM_ESPERA'), -- id 3
+('CONCLUIDO'), -- id 4
+('CANCELADO'); -- id 5
 
 INSERT INTO Produto(editora, titulo, formato_do_quadrinho, numero_paginas, peso, capa_imagem, id_estado_produto, id_usuario)
 VALUES
-('Marvel', 'Onslaught 1 - The awakening', 'TPB', 73, 150, '/imagens/capas/user/1/1.jpg', 1, 1),
-('DC', 'Secret Origins - Featuring JLA', 'TPB', 65, 145, '/imagens/capas/user/1/2.jpg', 1, 1);
+('Marvel', 'Onslaught 1 - The awakening', 'TPB', 150, 150, '/imagens/capas/user/1/1.jpg', 1, 1),
+('Outras', 'Spawn #70', 'MENSAL', 26, 50, '/imagens/capas/user/1/2.jpg', 1, 1),
+('Outras', 'Spawn #69', 'MENSAL', 26, 50, '/imagens/capas/user/1/3.jpg', 1, 1),
+('Outras', 'Spawn #68', 'MENSAL', 26, 50, '/imagens/capas/user/1/4.jpg', 1, 1),
+('DC', 'Secret Origins - Featuring JLA', 'TPB', 65, 145, '/imagens/capas/user/2/1.jpg', 1, 1);
 
 INSERT INTO Leilao(data_inicio, duracao, valor_inicial, valor_atual, lance_padrao, id_estado_leilao, id_usuario, id_produto)
 VALUES
-('2019-05-18', 5, 200, 200, 10, 1, 1, 1);
-
-DROP DATABASE leilao_quadrinhos;
+('2019-05-18', 5, 160, 200, 10, 1, 1, 1),
+('2019-05-18', 5, 80, 180, 10, 1, 2, 2);
