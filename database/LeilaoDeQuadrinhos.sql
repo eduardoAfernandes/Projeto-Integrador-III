@@ -66,7 +66,7 @@ data_inicio DATETIME,
 duracao INT,
 valor_inicial NUMERIC(9,2), 
 valor_atual NUMERIC(9,2),
-lance_padrao NUMERIC(4,2), -- Bid padrão
+lance_padrao NUMERIC(6,2), -- Bid padrão
 id_estado_leilao INT, 
 	FOREIGN KEY (id_estado_leilao) REFERENCES Estado_leilao(id_estado_leilao),
 id_usuario INT,
@@ -75,9 +75,9 @@ id_produto INT,
 	FOREIGN KEY (id_produto) REFERENCES Produto(id_produto)
 );
 
-CREATE TABLE lance (
+CREATE TABLE Lance (
 	id_lance INT PRIMARY KEY auto_increment,
-    valor_lance NUMERIC (4,2),
+    valor_lance NUMERIC (6,2),
     data_lance DATETIME,
     id_leilao INT,
 		FOREIGN KEY (id_leilao) REFERENCES Leilao (id_leilao),
@@ -120,3 +120,8 @@ INSERT INTO Leilao(data_inicio, duracao, valor_inicial, valor_atual, lance_padra
 VALUES
 ('2019-05-18', 5, 160, 200, 10, 1, 1, 1),
 ('2019-05-18', 5, 80, 180, 10, 1, 2, 2);
+
+INSERT INTO Lance (valor_lance, data_lance, id_leilao, id_usuario)
+VALUES
+(10, '2019-21-08', 1, 1);
+
