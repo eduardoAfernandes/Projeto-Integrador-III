@@ -1,6 +1,7 @@
 .cx-item{
     position: relative;
     border-radius: 5%;
+    width: 100%;
     
 }
 
@@ -26,4 +27,10 @@
 
 .cx-body:hover{
     transform:perspective(5)
+}
+
+@media only screen and (max-width: 1000px) {
+.cx-item{
+    margin-top: 15px;
+}
 }
