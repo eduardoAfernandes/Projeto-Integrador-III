@@ -174,81 +174,19 @@
     </section>
 
     <div id="footer"></div>
+    <div id="modal"></div>
 
 
 
 </body>
 
-<div class="modal fade" id="modalLogin" role="dialog">
-    <div class="modal-dialog">
 
-        <!-- Modal content-->
-        <div class="modal-content ">
-            <div class="modal-header bg-white ">
-                <h5 class="modal-title text-center">Efetuar Login</h5>
-
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-
-            </div>
-            <div class="modal-body bg-light">
-                <div class="container-fluid">
-                    <form>
-                        <div class="form-group">
-                            <label for="Username">Email</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">
-                                        <span class="oi oi-lock-locked icon"></span>
-                                    </div>
-                                </div>
-                                <input type="email" class="form-control" name="userLgn" id="" placeholder="Insira seu email">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Senha</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">
-                                        <span class="oi oi-account-login icon"></span>
-                                    </div>
-                                </div>
-                                <input type="password" class="form-control" name="userPwd" id="" placeholder="Insira sua senha">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-7 my-auto">
-                                <div class="custom-control custom-switch">
-                                    <input type="checkbox" class="custom-control-input" id="switch1">
-                                    <label class="custom-control-label" for="switch1">Lembrar de mim</label>
-                                </div>
-                            </div>
-                            <div class="col-5 ">
-                                <button type=submit " class=" btn btn-primary btn-form text-center ">Logar</button>
-
-                            </div>
-                        </div>
-
-                        <div class=" row pt-4 text-center ">
-                            <div class=" col ">
-                                <a href=" # ">Ainda não tenho conta</a>
-
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class=" modal-footer bg-white ">
-                <button type=" button " class=" btn btn-sm btn-danger " data-dismiss=" modal ">Fechar</button>
-            </div>
-        </div>
-
-    </div>
-</div>
 
 <script>
         $(function() {
             $('#header').load('./components/header/header.html');
             $('#footer').load('./components/footer/footer.html');
+            $('#modal').load('./components/modal-como-funciona/modal.html');
         });
     </script>
 </html>

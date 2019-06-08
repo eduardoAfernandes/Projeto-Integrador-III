@@ -21,6 +21,7 @@
     .logo-text {
         padding-left: 50px;
     }
+
 }
 
 @media (max-width: 768px) {
@@ -34,4 +35,8 @@
     .logo-text {
         text-align: center;
     }
+}
+
+.btn-buscar{
+
 }
