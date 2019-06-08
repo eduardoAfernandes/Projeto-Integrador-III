@@ -4,7 +4,7 @@ https://eduardoafernandes.github.io/Projeto-Integrador-III/
 Páginas necessárias: 
 
 - [ ] Inicial
-- [ ] Login
+- [x] Login
 - [ ] Cadastro
 - [ ] Como funciona
 - [ ] Anunciar
