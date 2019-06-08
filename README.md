@@ -5,7 +5,7 @@ Páginas necessárias:
 
 - [ ] Inicial
 - [x] Login
-- [ ] Cadastro
+- [x] Cadastro
 - [ ] Como funciona
 - [ ] Anunciar
 - [ ] Sobre
