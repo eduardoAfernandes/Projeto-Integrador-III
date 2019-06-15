@@ -66,10 +66,6 @@
                         Por favor, informe um nome de usuario válido.
                       </div>
 
-                      <div class="valid-feedback-user d-none col-12 pt-2 text-success" id="aviso-ok-nomeUsuario">
-                        Tudo ok..
-                    </div>
-
                 </div>
             </div>
 
@@ -82,7 +78,14 @@
                             <span class="oi oi-lock-locked icon"></span>
                         </div>
                     </div>
-                    <input type="text" name="userPwd" id="userPwd" class="form-control" placeholder="Senha">
+                    <input type="password" name="userPwd" id="userPwd" class="form-control" onblur="validaCampo('UserPwd')" placeholder="Senha">
+                    <div class="invalid-feedback-password d-none col-12 pt-2 text-danger" id="aviso-erro-password">
+                            Por favor, informe sua senha.
+                          </div>
+    
+                          <div class="valid-feedback-password d-none col-12 pt-2 text-success" id="aviso-ok-password">
+                            Tudo ok..
+                        </div>
                 </div>
             </div>
 
@@ -95,7 +98,7 @@
                 <div class="d-flex align-items-center">
                     <button type="button" class="btn btn-secondary mr-2"
                         onclick="window.open('cadastro.html', '_self')">Cadastrar</button>
-                    <button type="button" class="btn btn-primary" >Entrar</button>
+                    <button type="button" class="btn btn-primary" onclick="validaForm()">Entrar</button>
                 </div>
 
             </footer>

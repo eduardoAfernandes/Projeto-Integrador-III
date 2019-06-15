@@ -1,21 +1,49 @@
+let validacaoUsuario = false;
+let validacaoSenha = false;
+
+
 function validaCampo(id) {
     const nomeUsuario = document.getElementById('userLgn').value.trim();
     const password = document.getElementById('userPwd').value.trim();
 
     var regexSoLetras = somenteLetras(nomeUsuario);
-     alert(id);
 
-    if(id == 'userLgn'){
-        if(nomeUsuario == '' || regexSoLetras == false){
-            document.getElementById('aviso-erro-nomeUsuario').classList.replace('d-none','d-block');
+    if (id == 'userLgn') {
+        if (nomeUsuario == '' || regexSoLetras == false) {
+            document.getElementById('userLgn').style.border = "3px solid red";
+            document.getElementById('aviso-erro-nomeUsuario').classList.replace('d-none', 'd-block');
 
-        }
-        else if(nomeUsuario.length > 1 && regexSoLetras == true){
-            document.getElementById('aviso-ok-nomeUsuario').classList.replace('d-none','d-block');
+        } else if (nomeUsuario.length > 1 && regexSoLetras == true) {
+            document.getElementById('aviso-erro-nomeUsuario').classList.replace('d-block', 'd-none');
             document.getElementById('userLgn').style.border = "3px solid green";
+            validacaoUsuario = true;
+        }
+    } else if (id == 'UserPwd') {
+        if (password == '' || password.length < 8) {
+            document.getElementById('aviso-erro-password').classList.replace('d-none', 'd-block');
+            document.getElementById('userPwd').style.border = "3px solid red";
+
+        } else {
+            document.getElementById('userPwd').style.border = "3px solid green";
+            validacaoSenha = true;
+
         }
     }
 
+}
+
+
+function validaForm() {
+    if (!validacaoUsuario) {
+        document.getElementById('userLgn').style.border = "3px solid red";
+        document.getElementById('aviso-erro-nomeUsuario').classList.replace('d-none', 'd-block');
+    } else if (!validacaoSenha) {
+        document.getElementById('aviso-erro-password').classList.replace('d-none', 'd-block');
+        document.getElementById('userPwd').style.border = "3px solid red";
+    }
+    else{
+        window.open('index.html','_self'); 
+    }
 }
 
 function somenteLetras(palavra) {
@@ -28,4 +56,4 @@ function somenteLetras(palavra) {
         return true;
     }
 
-}
+}   
