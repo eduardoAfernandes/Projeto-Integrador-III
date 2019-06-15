@@ -21,6 +21,7 @@
     <link rel="icon" type="image/png" href="./img/favicon/favicon-16x16.png" sizes="16x16" />
     <link rel="icon" type="image/png" href="./img/favicon/favicon-128.png" sizes="128x128" />
     <link rel="stylesheet" href="css/index.css">
+    <script src="js/index.js"></script>
     <meta name="application-name" content="&nbsp;" />
     <meta name="msapplication-TileColor" content="#FFFFFF" />
     <meta name="msapplication-TileImage" content="mstile-144x144.png" />
@@ -44,14 +45,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="js/modernizr.custom.js"></script>
-    <script src="js/toucheffects.js"></script>
 
 
 
 </head>
 
-<body>
+<body onload="loadFunctions()">
 
     <div id="header">
 
@@ -154,7 +153,7 @@
                             </div>
                         </div>
                         <div class="cx-body">
-                            <img src="img/thanos.jpg" class="img-fluid" alt="img04">
+                            <img src="img/thanos.jpg" class="img-fluid" alt="img04" id="img-card">
 
                         </div>
                         <div class="cx-footer bg-dark">

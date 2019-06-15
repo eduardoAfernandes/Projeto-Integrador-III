@@ -4,6 +4,7 @@
     width: 100%;
     
     
+    
 }
 
 .cx-header{
@@ -37,6 +38,8 @@
 @media only screen and (max-width: 1000px) {
 .cx-item{
     margin-top: 15px;
+    width: 75%;
 }
+
 }
 
