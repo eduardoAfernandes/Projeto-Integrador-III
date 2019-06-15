@@ -20,6 +20,7 @@
     <link rel="icon" type="image/png" href="./img/favicon/favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="./img/favicon/favicon-16x16.png" sizes="16x16" />
     <link rel="icon" type="image/png" href="./img/favicon/favicon-128.png" sizes="128x128" />
+    <script src="js/login.js"></script>
     <meta name="application-name" content="&nbsp;" />
     <meta name="msapplication-TileColor" content="#FFFFFF" />
     <meta name="msapplication-TileImage" content="mstile-144x144.png" />
@@ -53,14 +54,22 @@
         </header>
 
         <form action="">
-            <div class="form-group">
+            <div class="form-group" id="caixaNomeUsuario">
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
                             <span class="oi oi-account-login icon"></span>
                         </div>
                     </div>
-                    <input type="text" name="userLgn" id="" class="form-control" placeholder="Usuário">
+                    <input type="text" name="userLgn" id="userLgn" class="form-control" onblur="validaCampo('userLgn')" placeholder="Usuário">
+                    <div class="invalid-feedback-user d-none col-12 pt-2 text-danger" id="aviso-erro-nomeUsuario">
+                        Por favor, informe um nome de usuario válido.
+                      </div>
+
+                      <div class="valid-feedback-user d-none col-12 pt-2 text-success" id="aviso-ok-nomeUsuario">
+                        Tudo ok..
+                    </div>
+
                 </div>
             </div>
 
@@ -73,7 +82,7 @@
                             <span class="oi oi-lock-locked icon"></span>
                         </div>
                     </div>
-                    <input type="text" name="userPwd" id="" class="form-control" placeholder="Senha">
+                    <input type="text" name="userPwd" id="userPwd" class="form-control" placeholder="Senha">
                 </div>
             </div>
 
@@ -86,7 +95,7 @@
                 <div class="d-flex align-items-center">
                     <button type="button" class="btn btn-secondary mr-2"
                         onclick="window.open('cadastro.html', '_self')">Cadastrar</button>
-                    <button type="submit" class="btn btn-primary">Entrar</button>
+                    <button type="button" class="btn btn-primary" >Entrar</button>
                 </div>
 
             </footer>
