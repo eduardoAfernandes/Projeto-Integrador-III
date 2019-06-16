@@ -30,7 +30,7 @@ function validaCampo(id) {
 
         } else if (nome.length > 1 && regexNome == true) {
             document.getElementById('aviso-erro-nome').classList.replace('d-block', 'd-none');
-            document.getElementById('nomeUser').style.border = "3px solid green";
+            document.getElementById('nomeUser').style.border = "3px solid lightgreen";
             validacaoNome = true;
         }
     } else if (id == 'email') {
@@ -39,7 +39,7 @@ function validaCampo(id) {
             document.getElementById('aviso-erro-email').classList.replace('d-none', 'd-block');
         } else {
             document.getElementById('aviso-erro-email').classList.replace('d-block', 'd-none');
-            document.getElementById('email').style.border = "3px solid green";
+            document.getElementById('email').style.border = "3px solid lightgreen";
             validacaoEmail = true;
         }
     } else if (id == 'cidade') {
@@ -48,7 +48,7 @@ function validaCampo(id) {
             document.getElementById('aviso-erro-cidade').classList.replace('d-none', 'd-block');
         } else {
             document.getElementById('aviso-erro-cidade').classList.replace('d-block', 'd-none');
-            document.getElementById('cidade').style.border = "3px solid green";
+            document.getElementById('cidade').style.border = "3px solid lightgreen";
             validacaoCidade = true;
         }
     } else if (id == 'selectEstado') {
@@ -56,7 +56,7 @@ function validaCampo(id) {
             document.getElementById('selectEstado').style.border = "3px solid red";
             document.getElementById('aviso-erro-estado').classList.replace('d-none', 'd-block');
         } else {
-            document.getElementById('selectEstado').style.border = "3px solid green";
+            document.getElementById('selectEstado').style.border = "3px solid lightgreen";
             document.getElementById('aviso-erro-estado').classList.replace('d-block', 'd-none');
             validacaoEstado = true;
 
@@ -67,7 +67,7 @@ function validaCampo(id) {
             document.getElementById('userPwd').style.border = "3px solid red";
         }else{
             document.getElementById('aviso-erro-password').classList.replace('d-block', 'd-none');
-            document.getElementById('userPwd').style.border = "3px solid green"; 
+            document.getElementById('userPwd').style.border = "3px solid lightgreen"; 
             validacaoPassword = true;
         }   
 
@@ -78,7 +78,7 @@ function validaCampo(id) {
          }        
         else{
             document.getElementById('aviso-erro-confPassword').classList.replace('d-block', 'd-none');
-            document.getElementById('confSenha').style.border = "3px solid green";
+            document.getElementById('confSenha').style.border = "3px solid lightgreen";
             validacaoConfPassword = true;
 
         }
@@ -89,7 +89,7 @@ function validaCampo(id) {
             document.getElementById('dtNasc').style.border = "3px solid red";
         }else{
             document.getElementById('aviso-erro-dtNasc').classList.replace('d-block', 'd-none');
-            document.getElementById('dtNasc').style.border = "3px solid green";
+            document.getElementById('dtNasc').style.border = "3px solid lightgreen";
             validacaoDtNascimento = true;
 
         }

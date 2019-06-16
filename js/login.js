@@ -24,7 +24,7 @@ function validaCampo(id) {
             document.getElementById('userPwd').style.border = "3px solid red";
 
         } else {
-            document.getElementById('userPwd').style.border = "3px solid green";
+            document.getElementById('userPwd').style.border = "3px solid lightgreen";
             validacaoSenha = true;
 
         }
