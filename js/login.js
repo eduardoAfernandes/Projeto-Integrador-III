@@ -40,9 +40,8 @@ function validaForm() {
     } else if (!validacaoSenha) {
         document.getElementById('aviso-erro-password').classList.replace('d-none', 'd-block');
         document.getElementById('userPwd').style.border = "3px solid red";
-    }
-    else{
-        window.open('index.html','_self'); 
+    } else {
+        window.open('index.html', '_self');
     }
 }
 
@@ -56,4 +55,4 @@ function somenteLetras(palavra) {
         return true;
     }
 
-}   
+}
