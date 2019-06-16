@@ -118,3 +118,32 @@ function validEmail(email) {
     }
 }
 
+function validaForm(){
+    if(!validacaoNome){
+        document.getElementById('nomeUser').style.border = "3px solid red";
+        document.getElementById('aviso-erro-nome').classList.replace('d-none', 'd-block');
+
+    }else if(!validacaoEmail){
+        document.getElementById('email').style.border = "3px solid red";
+        document.getElementById('aviso-erro-email').classList.replace('d-none', 'd-block');
+    }else if(!validacaoCidade){
+        document.getElementById('cidade').style.border = "3px solid red";
+        document.getElementById('aviso-erro-cidade').classList.replace('d-none', 'd-block');
+    }else if(!validacaoEstado){
+        document.getElementById('selectEstado').style.border = "3px solid red";
+        document.getElementById('aviso-erro-estado').classList.replace('d-none', 'd-block');
+    }else if(!validacaoPassword){
+        document.getElementById('aviso-erro-password').classList.replace('d-none', 'd-block');
+        document.getElementById('userPwd').style.border = "3px solid red"; 
+    }else if(!validacaoConfPassword){
+        document.getElementById('aviso-erro-confPassword').classList.replace('d-none', 'd-block');
+        document.getElementById('confSenha').style.border = "3px solid red";
+    }else if(!validacaoDtNascimento){
+        document.getElementById('aviso-erro-dtNasc').classList.replace('d-none', 'd-block');
+        document.getElementById('dtNasc').style.border = "3px solid red";
+    }
+    else{
+        document.getElementById('formCadastro').submit();
+    }
+}
+

@@ -41,7 +41,7 @@ function validaForm() {
         document.getElementById('aviso-erro-password').classList.replace('d-none', 'd-block');
         document.getElementById('userPwd').style.border = "3px solid red";
     } else {
-        window.open('index.html', '_self');
+        document.getElementById('formLogin').submit();
     }
 }
 

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Cadastr - Leilão de Quadrinhos</title>
+    <title>Cadastro - Leilão de Quadrinhos</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -53,7 +53,7 @@
             </a>
         </header>
 
-        <form action="" class="pt-3">
+        <form action="" class="pt-3" id="formCadastro" method="POST">
             <div class="form-group">
                 <div class="input-group">
                     <div class="input-group-prepend">
@@ -222,7 +222,7 @@
                             onclick="window.open('login.html', '_self')">Já tenho conta</button>
                     </div>
                     <div class="col-6 text-center">
-                        <button type="submit" class="btn btn-form btn-success">Cadastrar</button>
+                        <button type="button" onclick="validaForm()" class="btn btn-form btn-success">Cadastrar</button>
 
                     </div>
                 </div>
