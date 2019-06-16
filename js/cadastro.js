@@ -75,14 +75,7 @@ function validaCampo(id) {
         if (confPassword == '' || confPassword.length < 8) {
             document.getElementById('aviso-erro-confPassword').classList.replace('d-none', 'd-block');
             document.getElementById('confSenha').style.border = "3px solid red";
-         }
-         else if(confPassword != password){
-            document.getElementById('aviso-erro-confPassword').classList.replace('d-block', 'd-none');
-            document.getElementById('senhasNaoSaoIguais').classList.replace('d-none', 'd-block');
-            document.getElementById('confSenha').style.border = "3px solid red";
-            document.getElementById('confSenha').value = '';
-         }
-        
+         }        
         else{
             document.getElementById('aviso-erro-confPassword').classList.replace('d-block', 'd-none');
             document.getElementById('confSenha').style.border = "3px solid green";
