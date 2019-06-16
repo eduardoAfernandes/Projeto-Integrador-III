@@ -15,7 +15,7 @@ function validaCampo(id) {
 
         } else if (nomeUsuario.length > 1 && regexSoLetras == true) {
             document.getElementById('aviso-erro-nomeUsuario').classList.replace('d-block', 'd-none');
-            document.getElementById('userLgn').style.border = "3px solid green";
+            document.getElementById('userLgn').style.border = "3px solid lightgreen";
             validacaoUsuario = true;
         }
     } else if (id == 'UserPwd') {
