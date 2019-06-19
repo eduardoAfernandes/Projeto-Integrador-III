@@ -165,9 +165,9 @@
                             <span class="oi oi-lock-locked icon"></span>
                         </div>
                     </div>
-                    <input type="password" name="userPwd" id="userPwd" class="form-control" onblur="validaCampo('userPwd')" placeholder="Senha">
+                    <input type="password" name="userPwd" minlength="8" maxlength="8" id="userPwd" class="form-control" onblur="validaCampo('userPwd')" placeholder="Senha">
                     <div class="invalid-feedback  text-center d-none col-12 py-2 text-danger" id="aviso-erro-password">
-                            Por favor, informe uma senha de no mínimo 8 caracteres!!
+                            Por favor, informe uma senha de 8 caracteres!!
                         </div>
                 </div>
             </div>
@@ -178,7 +178,7 @@
                             <span class="oi oi-lock-locked icon"></span>
                         </div>
                     </div>
-                    <input type="password" name="confSenha" id="confSenha" onblur="validaCampo('confSenha')" class="form-control"
+                    <input type="password" name="confSenha" id="confSenha" minlength="8" maxlength="8" onblur="validaCampo('confSenha')" class="form-control"
                         placeholder="Confirme a senha">
                         <div class="invalid-feedback  text-center d-none col-12 py-2 text-danger" id="aviso-erro-confPassword">
                             Senhas não coincidem!!

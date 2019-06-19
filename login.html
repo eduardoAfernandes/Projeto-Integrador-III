@@ -64,7 +64,7 @@
                     <input type="text" name="userLgn" id="userLgn" class="form-control" onblur="validaCampo('userLgn')"
                         placeholder="Usuário">
                     <div class="invalid-feedback  text-center d-none col-12 pt-2 text-danger" id="aviso-erro-nomeUsuario">
-                        Por favor, informe um usuario válido.
+                        Por favor, informe seu usuário!!
                     </div>
 
                 </div>
@@ -79,10 +79,10 @@
                             <span class="oi oi-lock-locked icon"></span>
                         </div>
                     </div>
-                    <input type="password" name="userPwd" id="userPwd" class="form-control"
+                    <input type="password" minlength="8" maxlength="8" name="userPwd" id="userPwd" class="form-control"
                         onblur="validaCampo('UserPwd')" placeholder="Senha">
                     <div class="invalid-feedback text-center d-none col-12 pt-2 text-danger" id="aviso-erro-password">
-                        Por favor, informe sua senha.
+                        Senha incorreta!!
                     </div>
 
                     <div class="valid-feedback-password d-none col-12 pt-2 text-success" id="aviso-ok-password">

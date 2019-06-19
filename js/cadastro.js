@@ -7,17 +7,16 @@ let validacaoConfPassword = false;
 let validacaoDtNascimento = false;
 
 
+   
+
 function validaCampo(id) {
-    const nome = document.getElementById('nomeUser').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const cidade = document.getElementById('cidade').value.trim();
-    const estado = document.getElementById('selectEstado').value;
-    const password = document.getElementById('userPwd').value.trim();
-    const confPassword = document.getElementById('confSenha').value.trim();
-    const dtNascimento = document.getElementById('dtNasc').value;
-
-
-    console.log(dtNascimento);
+    let nome = document.getElementById('nomeUser').value.trim();
+    let email = document.getElementById('email').value.trim();
+    let cidade = document.getElementById('cidade').value.trim();
+    let estado = document.getElementById('selectEstado').value;
+    let password = document.getElementById('userPwd').value.trim();
+    let confPassword = document.getElementById('confSenha').value.trim();
+    let dtNascimento = document.getElementById('dtNasc').value;
 
 
     var regexNome = somenteLetras(nome);
@@ -143,7 +142,53 @@ function validaForm(){
         document.getElementById('dtNasc').style.border = "3px solid red";
     }
     else{
-        document.getElementById('formCadastro').submit();
+        register();
     }
 }
 
+function register(){
+    let nome = document.getElementById('nomeUser').value;
+    let email = document.getElementById('email').value;
+    let cidade = document.getElementById('cidade').value.trim();
+    let estado = document.getElementById('selectEstado').value;
+    let password = document.getElementById('userPwd').value;
+    let confPassword = document.getElementById('confSenha').value;
+
+ 
+
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "http://localhost:8080/webserver_leilao_war_exploded/controller/insertUser",
+        "method": "POST",
+        "headers": {
+          "content-type": "application/x-www-form-urlencoded",
+          "cache-control": "no-cache",
+        },
+        "data": {
+            "name": nome,
+            "status": "1",
+            "email": email,
+            "dateOfBirth": GetFormattedDate(),
+            "password": password
+        }
+      }
+
+      $.ajax(settings).done(function (response) {
+        console.log(response);
+      });
+    }
+
+    
+    function GetFormattedDate() {
+        let dtNascimento = document.getElementById('dtNasc').value;
+        var partes = dtNascimento.split("-");
+        let ano = partes[0];
+        let mes = partes[1];
+        let dia = partes[2];
+
+        let dateFormatted = dia+'/'+mes+'/'+ano;
+
+        return dateFormatted;
+
+    }
