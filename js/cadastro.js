@@ -175,7 +175,8 @@ function register(){
       }
 
       $.ajax(settings).done(function (response) {
-        console.log(response);
+        showResponse(response);
+        console.log(response)
       });
     }
 
@@ -190,5 +191,17 @@ function register(){
         let dateFormatted = dia+'/'+mes+'/'+ano;
 
         return dateFormatted;
+
+    }
+
+    function showResponse(resposta){
+        if(resposta == "Usuário cadastrado"){
+            alertify.alert('Leilão de Quadrinhos', 'Cadastro efetuado com sucesso...');            
+            setTimeout(function(){ window.open('index.html','_self'); }, 4000);
+        }else{
+            document.getElementById('email').style.border = "3px solid red";
+            document.getElementById('aviso-erro-email').classList.replace('d-none', 'd-block');
+            document.getElementById('aviso-erro-email').innerHTML = "Este email já esta cadastrado.";
+        }
 
     }

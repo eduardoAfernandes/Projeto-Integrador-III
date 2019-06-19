@@ -1,30 +1,30 @@
-let validacaoUsuario = false;
+let validacaoEmail = false;
 let validacaoSenha = false;
 
 
 function validaCampo(id) {
-    const nomeUsuario = document.getElementById('userLgn').value.trim();
-    const password = document.getElementById('userPwd').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value.trim();
 
-    var regexSoLetras = somenteLetras(nomeUsuario);
+    var regexEmail = validEmail(email);
 
-    if (id == 'userLgn') {
-        if (nomeUsuario == '' || regexSoLetras == false) {
-            document.getElementById('userLgn').style.border = "3px solid red";
-            document.getElementById('aviso-erro-nomeUsuario').classList.replace('d-none', 'd-block');
-
-        } else if (nomeUsuario.length > 1 && regexSoLetras == true) {
-            document.getElementById('aviso-erro-nomeUsuario').classList.replace('d-block', 'd-none');
-            document.getElementById('userLgn').style.border = "3px solid lightgreen";
-            validacaoUsuario = true;
+     if (id == 'email') {
+        if (!regexEmail) {
+            document.getElementById('email').style.border = "3px solid red";
+            document.getElementById('aviso-erro-email').classList.replace('d-none', 'd-block');
+        } else {
+            document.getElementById('aviso-erro-email').classList.replace('d-block', 'd-none');
+            document.getElementById('email').style.border = "3px solid lightgreen";
+            validacaoEmail = true;
         }
-    } else if (id == 'UserPwd') {
+    } else if (id == 'password') {
         if (password == '' || password.length < 8) {
             document.getElementById('aviso-erro-password').classList.replace('d-none', 'd-block');
-            document.getElementById('userPwd').style.border = "3px solid red";
+            document.getElementById('password').style.border = "3px solid red";
 
         } else {
-            document.getElementById('userPwd').style.border = "3px solid lightgreen";
+            document.getElementById('aviso-erro-password').classList.replace('d-block', 'd-none');
+            document.getElementById('password').style.border = "3px solid lightgreen";
             validacaoSenha = true;
 
         }
@@ -34,25 +34,57 @@ function validaCampo(id) {
 
 
 function validaForm() {
-    if (!validacaoUsuario) {
-        document.getElementById('userLgn').style.border = "3px solid red";
-        document.getElementById('aviso-erro-nomeUsuario').classList.replace('d-none', 'd-block');
+    if (!validacaoEmail) {
+        document.getElementById('email').style.border = "3px solid red";
+        document.getElementById('aviso-erro-email').classList.replace('d-none', 'd-block');
     } else if (!validacaoSenha) {
         document.getElementById('aviso-erro-password').classList.replace('d-none', 'd-block');
-        document.getElementById('userPwd').style.border = "3px solid red";
+        document.getElementById('password').style.border = "3px solid red";
     } else {
-        document.getElementById('formLogin').submit();
+        login();
     }
 }
 
-function somenteLetras(palavra) {
-    var filter_nome = /^([a-zA-Zà-úÀ-Ú]|\s+)+$/;
 
-    if (!filter_nome.test(palavra)) {
+function validEmail(email) {
+    const Padraoemail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (!Padraoemail.test(email)) {
         return false;
-    }
-    if (filter_nome.test(palavra)) {
+    } else {
         return true;
     }
+}
 
+function login(){
+    let email = document.getElementById('email').value;
+    let password = document.getElementById('password').value;
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "http://localhost:8080/webserver_leilao_war_exploded/controller/login",
+        "method": "POST",
+        "headers": {
+          "content-type": "application/x-www-form-urlencoded",
+          "cache-control": "no-cache",
+        },
+        "data": {          
+            "email": email,
+            "password": password
+        }
+      }
+
+      $.ajax(settings).done(function (response) {
+        showResponse(response)
+      });
+    }
+
+
+function showResponse(resposta){
+    if(resposta == 'Usuario ou senha incorretos'){
+        document.getElementById('aviso-erro-password').classList.replace('d-none', 'd-block');
+        document.getElementById('aviso-erro-password').innerHTML = 'Usuario ou senha incorretos';
+        document.getElementById('email').style.border = '3px solid red';
+        document.getElementById('password').style.border = '3px solid red';
+
+    }
 }

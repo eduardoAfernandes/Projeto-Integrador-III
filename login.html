@@ -50,7 +50,7 @@
                 </div>
                 <img class="img-fluid" src="img/logo_leilao_de_quadrinhos.png" alt="">
             </a>
-            <h2 class="text-center">Entre com seu <b>usuário</b> e <b>senha</b></h2>
+            <h2 class="text-center">Entre com seu <b>email</b> e <b>senha</b></h2>
         </header>
 
         <form action="" id="formLogin" method="POST">
@@ -61,10 +61,10 @@
                             <span class="oi oi-account-login icon"></span>
                         </div>
                     </div>
-                    <input type="text" name="userLgn" id="userLgn" class="form-control" onblur="validaCampo('userLgn')"
-                        placeholder="Usuário">
-                    <div class="invalid-feedback  text-center d-none col-12 pt-2 text-danger" id="aviso-erro-nomeUsuario">
-                        Por favor, informe seu usuário!!
+                    <input type="email" name="email" id="email" class="form-control" onblur="validaCampo('email')"
+                        placeholder="Email">
+                    <div class="invalid-feedback  text-center d-none col-12 pt-2 text-danger" id="aviso-erro-email">
+                        Por favor, informe seu email!!
                     </div>
 
                 </div>
@@ -79,15 +79,13 @@
                             <span class="oi oi-lock-locked icon"></span>
                         </div>
                     </div>
-                    <input type="password" minlength="8" maxlength="8" name="userPwd" id="userPwd" class="form-control"
-                        onblur="validaCampo('UserPwd')" placeholder="Senha">
+                    <input type="password" minlength="8" maxlength="8" name="userPwd" id="password" class="form-control"
+                        onblur="validaCampo('password')" placeholder="Senha">
                     <div class="invalid-feedback text-center d-none col-12 pt-2 text-danger" id="aviso-erro-password">
-                        Senha incorreta!!
+                        Informe sua senha de no mínimo 8 caracteres!!
                     </div>
 
-                    <div class="valid-feedback-password d-none col-12 pt-2 text-success" id="aviso-ok-password">
-                        Tudo ok..
-                    </div>
+                 
                 </div>
             </div>
 
