@@ -24,7 +24,7 @@ function showResponse(response) {
 
 function goHome(response) {
     console.log("Sem permissão.")
-    // window.location.replace("/");
+    window.location.replace("/");
 }
 
 session();
