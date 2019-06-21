@@ -11,3 +11,6 @@
 .font-leilao-de-quadrinhos {
     font-family: 'LeilaoDeQuadrinhos';
 }
+.btn:hover{
+    transform: scale(1.1);
+}
