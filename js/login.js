@@ -67,10 +67,13 @@ function login(){
           "content-type": "application/x-www-form-urlencoded",
           "cache-control": "no-cache",
         },
-        "data": {          
+        "data": {
             "email": email,
             "password": password
-        }
+        },
+        "xhrFields": {
+            "withCredentials": true
+          }
       }
 
       $.ajax(settings).done(function (response) {
