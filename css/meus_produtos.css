@@ -32,3 +32,11 @@
 tr td img{
     cursor: pointer;
 }
+
+span{
+    font-size: 18px;
+}
+label{
+    font-size: 16px;
+    font-weight: 800;
+}

@@ -127,7 +127,7 @@ function validaForm() {
         document.getElementById('selectEstado').style.border = "3px solid red";
         document.getElementById('aviso-erro-estado').classList.replace('d-none', 'd-block');
     } else if (!validacaoCidade) {
-        document.getElementById('cidade').style.border = "3px solid red";
+        document.getElementById('selectCidade').style.border = "3px solid red";
         document.getElementById('aviso-erro-cidade').classList.replace('d-none', 'd-block');
     } else if (!validacaoPassword) {
         document.getElementById('aviso-erro-password').classList.replace('d-none', 'd-block');
@@ -151,14 +151,6 @@ function register() {
     let password = document.getElementById('userPwd').value;
     let confPassword = document.getElementById('confSenha').value;
 
-    switch (estado) {
-        case value:
-
-            break;
-
-        default:
-            break;
-    }
 
 
     var settings = {
@@ -172,8 +164,9 @@ function register() {
         },
         "data": {
             "name": nome,
-            "status": "1",
             "email": email,
+            "state":estado,
+            "city": cidade,
             "dateOfBirth": GetFormattedDate(),
             "password": password
         }

@@ -36,14 +36,20 @@
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/meus_produtos.css">
-    <link rel="stylesheet" href="components/grant-slider/grant_slider.css">
     <link rel="stylesheet" href="components/header/header.css">
     <link rel="stylesheet" href="components/footer/footer.css">
     <link rel="stylesheet" href="components/user-icon/user_icon.css">
+    <script src="js/mascaras.js"></script>
+    <script src="js/meus-quadrinhos.js"> </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
 
 </head>
 
@@ -97,7 +103,7 @@
                                 <img class="img-fluid cp-quadrinho" style="height: 120px;" src="img/thanos.jpg" alt="">
                             </td>
                             <td class="pt-5 ">
-                                <p>Thanos</p>
+                                <h5>Thanos</h5>
                             </td>
                             <td class="pt-5">Ativo</td>
 
@@ -112,8 +118,8 @@
                                 <img class="img-fluid" style="height: 120px;" src="img/thanos.jpg" alt="">
                             </td>
                             <td class="pt-5 ">
-                                <p>Thanos</p>
-                            </td>
+                                    <h5>Thanos</h5>
+                                </td>
                             <td class="pt-5">Ativo</td>
 
                             <td class="pt-5"><img data-toggle="modal" data-target="#modalDadosQuadrinho"
@@ -127,8 +133,8 @@
                                 <img class="img-fluid" style="height: 120px;" src="img/thanos.jpg" alt="">
                             </td>
                             <td class="pt-5 ">
-                                <p>Thanos</p>
-                            </td>
+                                    <h5>Thanos</h5>
+                                </td>
                             <td class="pt-5">Ativo</td>
 
                             <td class="pt-5"><img data-toggle="modal" data-target="#modalDadosQuadrinho"
@@ -152,9 +158,9 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-dark text-light">
-                    <h5 class="modal-title" id="exampleModalLabel">Alterar dados do quadrinho</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                    <h4 class="modal-title" id="exampleModalLabel">Alterar dados do quadrinho</h4>
+                    <button type="button" class="close" data-dismiss="modal"">
+                            <span aria-hidden=" true" class="text-light pt-3">X</span>
                     </button>
                 </div>
                 <div class="modal-body">
@@ -172,23 +178,28 @@
                                         <div class="form-row">
                                             <div class="form-group col-12">
                                                 <label for="títuloQuadrinho">Título do Quadrinho</label>
-                                                <input type="text" class="form-control " id="títuloQuadrinho"
-                                                    placeholder="Insira o título do quadrinho">
-                                                <div class="invalid-feedback">
-                                                    Título inválido!
+                                                <input type="text" maxlength="50" class="form-control " id="títuloQuadrinho"
+                                                    placeholder="Insira o título do quadrinho" onblur="verifyInput(this.id)">
+                                                    <div class="invalid-feedback  text-center d-none col-12 py-2 text-danger"
+                                                    id="aviso-erro-titulo">
+                                                    Informe o título do quadrinho!!
                                                 </div>
+                            
                                             </div>
                                             <div class="form-group col-12">
                                                 <label for="editora">Editora</label>
-                                                <select class="custom-select" id="editora">
+                                                <select class="custom-select" id="editora" onblur="verifyInput(this.id)" >
                                                     <option value="editora" selected>Editora...</option>
-                                                    <option value="marvel">Marvel</option>
-                                                    <option value="dc">DC</option>
+                                                    <option value="Marvel">Marvel</option>
+                                                    <option value="Dc">DC</option>
+                                                    <option value="Outras">Outras</option>
+
 
                                                 </select>
-                                                <div class="invalid-feedback">
-                                                    Escolha a editora do quadrinho!
-                                                </div>
+                                                <div class="invalid-feedback  text-center d-none col-12 py-2 text-danger"
+                                                id="aviso-erro-editora">
+                                                Informe a editora do quadrinho!!
+                                            </div>
                                             </div>
                                         </div>
                                     </div>
@@ -201,53 +212,77 @@
 
                                 <div class="form-group col-12">
                                     <label for="categoria">Categoria</label>
-                                    <select class="custom-select " id="categoria">
+                                    <span type="button" style="float: right" class="bg-dark px-2 text-light mr-1"
+                                    data-toggle="tooltip" data-placement="bottom"
+                                    title="">
+                                    ?
+                                </span>
+                                    <select class="custom-select " id="categoria" onblur="verifyInput(this.id)" >
                                         <option value="categoria" selected>Categoria...</option>
                                         <option value="TPB">TPB</option>
                                         <option value="Mensal">Mensal</option>
                                     </select>
-                                    <div class="invalid-feedback">
-                                        Escolha a categoria do quadrinho!
-                                    </div>
+                                    <div class="invalid-feedback  text-center d-none col-12 py-2 text-danger"
+                                    id="aviso-erro-categoria">
+                                    Informe a categoria do quadrinho!!
+                                </div>
                                 </div>
 
                                 <div class="form-group col-12 ">
                                     <label for="numeroPags">Número de páginas</label>
-                                    <input type="number" name="" id="numeroPags" placeholder="Numero de páginas"
-                                        class="form-control">
-                                    <div class="invalid-feedback">
-                                        Número de paginas invalido!
+                                    <input type="text" name="" id="numeroPags" placeholder="0"
+                                        class="form-control" onblur="verifyInput(this.id)">
+                                        <div class="invalid-feedback  text-center d-none col-12 py-2 text-danger"
+                                        id="aviso-erro-paginas">
+                                        Informe o número de páginas do quadrinho!!
                                     </div>
                                 </div>
                                 <div class="form-group col-12">
-                                    <label for="pesoQuadrinho">Peso do quadrinho</label>
-                                    <input type="number" name="" placeholder="Insira o peso do quadrinho"
-                                        id="pesoQuadrinho" class="form-control ">
-                                    <div class="invalid-feedback">
-                                        Peso inválido!
+                                    <label for="pesoQuadrinho">Peso do quadrinho(em gramas)</label>
+                                    <span type="button" style="float: center;margin-left: 70px;" class="bg-dark px-2  text-light"
+                                    data-toggle="tooltip" data-placement="bottom"
+                                    title="Informe em gramas o peso do quadrinho...">
+                                    ?
+                                </span>
+                                    <div class="row">
+                                            <div class="col-10">
+                                                    <input type="text" id="pesoQuadrinho" placeholder="0"
+                                                    id="pesoQuadrinho" class="form-control" onblur="verifyInput(this.id)">
+                                               </div>
+                                               <div class="col-2 py-auto pt-1">           
+                                                gramas
+                                               </div>
                                     </div>
+                             
+                                    <div class="invalid-feedback  text-center d-none col-12 py-2 text-danger"
+                                    id="aviso-erro-peso">
+                                    Informe o peso(em gramas) do quadrinho!!
+                                </div>
                                 </div>
 
                                 <div class="form-group col-12">
                                     <label for="tipoCapa">Tipo de capa</label>
-                                    <select class="custom-select " id="tipoCapa">
+                                    <select class="custom-select " id="tipoCapa" onblur="verifyInput(this.id)">
                                         <option value="capa">Capa...</option>
                                         <option value="hard">Hard</option>
                                         <option value="soft">Soft</option>
                                     </select>
-                                    <div class="invalid-feedback">
-                                        Escolha o tipo de capa do quadrinho
-                                    </div>
+                                    <div class="invalid-feedback  text-center d-none col-12 py-2 text-danger"
+                                    id="aviso-erro-capa">
+                                    Informe o tipo de capa do quadrinho!!
+                                </div>
                                 </div>
 
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-6">
-                                <input type="reset" class="btn btn-danger btn-form-modal" value="Limpar">
+                            <div class="col-8">
+                                    <input type="button" class="btn btn-success btn-form-modal" value="Alterar" onclick="validForm()">
+
                             </div>
-                            <div class="col-6">
-                                <input type="button" class="btn btn-success btn-form-modal" value="Alterar">
+                            <div class="col-4">
+                                <input type="reset" class="btn btn-danger btn-form-modal" value="Limpar">
+
                             </div>
 
                         </div>
@@ -265,90 +300,107 @@
     <!-- Modal ativar leilao -->
     <div class="modal fade" id="modalLeilao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header bg-dark text-light">
-                    <h5 class="modal-title" id="exampleModalLabel">Dados leilao do quadrinho</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12 col-md-5">
-                                <div class="col-12 text-center pt-3">
-                                    <img class="img-fluid" width="125px" src="img/thanos.jpg" alt="">
-
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-7  text-left">
-                                <form id="formCadastroQuadrinho">
-                                    <div class="col-12 pt-3">
-                                        <div class="form-row">
-                                            <div class="form-group col-12">
-                                                <label for="títuloQuadrinho">Data inicio</label>
-                                                <input type="date" class="form-control " id="dt-inicio"
-                                                    placeholder="Insira o data de inicio do leilao">
-                                                <div class="invalid-feedback">
-                                                    Data de inicio inválida!
-                                                </div>
-                                            </div>
-                                            <div class="form-group col-12">
-                                                <label for="títuloQuadrinho">Duração</label>
-                                                <input type="text" class="form-control " id="duracao"
-                                                    placeholder="Insira a duração do leilao">
-                                                <div class="invalid-feedback">
-                                                    Duração inválida!
-                                                </div>
-                                            </div>
-
-
-                                        </div>
-                                    </div>
-                            </div>
-
-                        </div>
-
-
-                        <div class="row pt-4">
-                            <div class="col-12 col-md-6">
-                                <div class="form-group col-12">
-                                    <label for="títuloQuadrinho">Valor Inicial</label>
-                                    <input type="text" class="form-control " id="vlr-inicial"
-                                        placeholder="Valor inicial do leilao">
-                                    <div class="invalid-feedback">
-                                        Valor inical inválido!
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <div class="form-group col-12">
-                                    <label for="títuloQuadrinho">Valor Final</label>
-                                    <input type="text" class="form-control " id="vlr-final"
-                                        placeholder="Valor final do leilao">
-                                    <div class="invalid-feedback">
-                                        Valor final inválido!
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <div class="modal-dialog modal-dialog-centered" role="document" ">
+            <div class=" modal-content">
+            <div class="modal-header bg-dark text-light">
+                <h4 class="modal-title" id="exampleModalLabel">Dados leilao do quadrinho</h4>
+                <button type="button" class="close" data-dismiss="modal"">
+                        <span aria-hidden=" true" class="text-light pt-3">X</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
                     <div class="row">
-                        <div class="col-6">
-                            <input type="reset" class="btn btn-danger btn-form-modal" value="Limpar">
+                        <div class="col-12 col-md-5">
+                            <div class="col-12 text-center pt-3">
+                                <img class="img-fluid" width="125px" src="img/thanos.jpg" alt="">
+
+                            </div>
                         </div>
-                        <div class="col-6">
-                            <input type="button" class="btn btn-success btn-form-modal" value="Ativar">
+                        <div class="col-12 col-md-7  text-left">
+                            <form id="formCadastroQuadrinho">
+                                <div class="col-12 pt-3">
+                                    <div class="form-row">
+                                        <div class="form-group col-12">
+                                            <label for="títuloQuadrinho">Data inicio</label>
+                                            <input type="date" class="form-control " id="dt-inicio"
+                                                placeholder="Insira o data de inicio do leilao">
+                                            <div class="invalid-feedback">
+                                                Data de inicio inválida!
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-12">
+                                            <label for="títuloQuadrinho">Duração(em dias)</label>
+                                            <span type="button" style="float: right"
+                                                class="bg-dark px-2 text-light mr-1" data-toggle="tooltip"
+                                                data-placement="bottom"
+                                                title="Insira em dias o tempo de duração deste item...">
+                                                ?
+                                            </span>
+                                            <input type="text" class="form-control " id="duracao"
+                                                placeholder="0">
+                                            <div class="invalid-feedback">
+                                                Duração inválida!
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
                         </div>
 
                     </div>
+
+
+                    <div class="row pt-4">
+                        <div class="col-12 col-md-6">
+                            <div class="form-group col-12">
+                                <label for="títuloQuadrinho"> Valor Inicial(R$)</label>
+                                <span type="button" style="float: right" class="bg-dark px-2 text-light mr-1"
+                                    data-toggle="tooltip" data-placement="bottom"
+                                    title="Insira em reais o valor inicial deste item...">
+                                    ?
+                                </span>
+                                <input type="text" class="form-control " id="vlr-inicial" placeholder="R$ 0,00"
+                                    onKeyPress="return(moeda(this,'.',',',event))">
+                                <div class="invalid-feedback">
+                                    Valor inical inválido!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="form-group col-12">
+                                <label for="títuloQuadrinho">Lance Padrão(R$)</label>
+                                <span type="button" style="float: right" class="bg-dark px-2 text-light mr-1"
+                                    data-toggle="tooltip" data-placement="bottom"
+                                    title="Insira o padrão de lance para este item (Por exemplo: se você esolher 5, os usuários so irão dar lances de 5 reais!!)...">
+                                    ?
+                                </span>
+                                <input type="text" class="form-control " id="vlr-final" placeholder="R$ 0,00"
+                                    onKeyPress="return(moeda(this,'.',',',event))">
+                                <div class="invalid-feedback">
+                                    Valor final inválido!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="modal-footer bg-dark">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                <div class="row">
+                    <div class="col-8">
+                        <input type="button" class="btn btn-success btn-form-modal" value="Ativar">
+
+                    </div>
+                    <div class="col-4">
+                        <input type="reset" class="btn btn-danger btn-form-modal" value="Limpar">
+                    </div>
+
                 </div>
             </div>
+            <div class="modal-footer bg-dark">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            </div>
         </div>
+    </div>
     </div>
     <div id="modal"></div>
     <div id="footer"></div>

@@ -62,7 +62,7 @@ function login(){
         "async": true,
         "crossDomain": true,
         "url": "http://localhost:8080/webserver_leilao_war_exploded/controller/login",
-        "method": "POST",
+        "method": "OPTIONS",
         "headers": {
           "content-type": "application/x-www-form-urlencoded",
           "cache-control": "no-cache",
