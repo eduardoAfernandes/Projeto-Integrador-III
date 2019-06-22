@@ -41,6 +41,7 @@
     <link rel="stylesheet" href="components/user-icon/user_icon.css">
     <script src="js/mascaras.js"></script>
     <script src="js/meus-quadrinhos.js"> </script>
+    <script src="js/moment.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -324,9 +325,9 @@
                                         <div class="form-group col-12">
                                             <label for="títuloQuadrinho">Data inicio</label>
                                             <input type="date" class="form-control " id="dt-inicio"
-                                                placeholder="Insira o data de inicio do leilao">
-                                            <div class="invalid-feedback">
-                                                Data de inicio inválida!
+                                                placeholder="Insira o data de inicio do leilao" onblur="verifyInputModalLeilao(this.id)">
+                                                <div class="invalid-feedback text-center d-none col-12 pt-2 text-danger" id="aviso-erro-data">
+                                                    Data de inicio inválida!
                                             </div>
                                         </div>
                                         <div class="form-group col-12">
@@ -376,7 +377,7 @@
                                     title="Insira o padrão de lance para este item (Por exemplo: se você esolher 5, os usuários so irão dar lances de 5 reais!!)...">
                                     ?
                                 </span>
-                                <input type="text" class="form-control " id="vlr-final" placeholder="R$ 0,00"
+                                <input type="text" class="form-control " id="lancePadrao" placeholder="R$ 0,00"
                                     onKeyPress="return(moeda(this,'.',',',event))">
                                 <div class="invalid-feedback">
                                     Valor final inválido!
