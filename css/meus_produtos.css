@@ -36,10 +36,3 @@ tr td img{
 span{
     font-size: 18px;
 }
-label{
-    font-size: 16px;
-    font-weight: 800;
-}
-.btn:hover{
-    transform: scale(1.1);
-}

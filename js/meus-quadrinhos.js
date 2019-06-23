@@ -47,12 +47,8 @@ function verifyInput(id) {
             validacaoCategoria = true;
         }
     } else if (id == 'numeroPags') {
-        if (nrPagina <= 0) {
+        if (nrPagina <= 0 || !regexPags) {
             document.getElementById('numeroPags').style.border = "3px solid red";
-            document.getElementById('aviso-erro-paginas').classList.replace('d-none', 'd-block');
-        } else if (!regexPags) {
-            document.getElementById('numeroPags').style.border = "3px solid red";
-            document.getElementById('aviso-erro-paginas').innerHTML = "Quantidade de páginas inválida!!"
             document.getElementById('aviso-erro-paginas').classList.replace('d-none', 'd-block');
         } else {
             document.getElementById('numeroPags').style.border = "3px solid lightgreen";
@@ -133,6 +129,12 @@ function onlyNumber(value) {
 
 
 
+// Validacoes no modal de ativar leilao
+var validacaoDataInput = false;
+var validacaoDuracaoLeilao = false;
+var validacaoValorInicial = false;
+var validacaoLancePadrao = false;
+
 function verifyInputModalLeilao(id) {
     var dataInput = document.getElementById('dt-inicio').value;
     var duracaoLeilao = document.getElementById('duracao').value;
@@ -142,6 +144,7 @@ function verifyInputModalLeilao(id) {
     const now = moment();
     dataInicio = moment(dataInput);
     var validData = moment(dataInicio).isBefore(now);
+    var validDuracao = onlyNumber(duracaoLeilao);
 
 
     if (id == 'dt-inicio') {
@@ -152,10 +155,53 @@ function verifyInputModalLeilao(id) {
         } else if (!validData || (dataInicio.get("date") == now.get("date") && (dataInicio.get("month") + 1) == (now.get("month") + 1) && dataInicio.get("year") == now.get("year"))) {
             document.getElementById('dt-inicio').style.border = "3px solid lightgreen";
             document.getElementById('aviso-erro-data').classList.replace('d-block', 'd-none');
-
+            validacaoDataInput = true;
         }
 
+    }else if (id == 'duracao'){
+        if(!validDuracao){
+            document.getElementById('duracao').style.border = "3px solid red";
+            document.getElementById('aviso-erro-duracao').classList.replace('d-none', 'd-block');
+
+        }else{
+            document.getElementById('duracao').style.border = "3px solid lightgreen";
+            document.getElementById('aviso-erro-duracao').classList.replace('d-block', 'd-none');
+            validacaoDuracaoLeilao = true;
+        }
+    }else if(id == 'vlr-inicial'){
+        if(valorInicial == ''){
+            document.getElementById('vlr-inicial').style.border = "3px solid red";
+            document.getElementById('aviso-erro-vlrInicial').classList.replace('d-none','d-block');
+        }else{
+            document.getElementById('vlr-inicial').style.border = "3px solid lightgrenn";
+            document.getElementById('aviso-erro-vlrInicial').classList.replace('d-block','d-none');
+            validacaoValorInicial = true;
+        }
+    }else if(id == 'lancePadrao'){
+        if(lancePadrao == ''){
+            document.getElementById('lancePadrao').style.border = "3px solid red";
+            document.getElementById('aviso-erro-lancePadrao').classList.replace('d-none','d-block');
+        }else{
+            document.getElementById('lancePadrao').style.border = "3px solid lightgreen";
+            document.getElementById('aviso-erro-lancePadrao').classList.replace('d-block','d-none');
+            validacaoLancePadrao = true;
+        }
     }
+}
 
 
+function validFormII(){
+    if (!validacaoDataInput) {
+        document.getElementById('dt-inicio').style.border = "3px solid red";
+        document.getElementById('aviso-erro-data').classList.replace('d-none', 'd-block');
+    }else if (!validacaoDuracaoLeilao){
+        document.getElementById('duracao').style.border = "3px solid red";
+        document.getElementById('aviso-erro-duracao').classList.replace('d-none', 'd-block');
+    }else if(!validacaoValorInicial){
+        document.getElementById('vlr-inicial').style.border = "3px solid lightgrenn";
+        document.getElementById('aviso-erro-vlrInicial').classList.replace('d-block','d-none');
+    }else if(!validacaoLancePadrao){
+        document.getElementById('lancePadrao').style.border = "3px solid red";
+        document.getElementById('aviso-erro-lancePadrao').classList.replace('d-none','d-block');
+    }
 }
