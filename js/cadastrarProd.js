@@ -105,6 +105,7 @@ function validForm() {
         document.getElementById('aviso-erro-capaQuadrinho').classList.replace('d-none', 'd-block');
         document.getElementById('previewQuadrinho').style.border = "5px solid red";
     }
+
 }
 
 function showAlertify() {

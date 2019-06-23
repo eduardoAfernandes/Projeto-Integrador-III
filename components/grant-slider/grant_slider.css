@@ -16,6 +16,7 @@
 .carousel {
     padding-top: 3.5rem;
     min-height: 200px;
+    
 }
 
 @media (max-width: 768px) {

@@ -40,7 +40,7 @@ function validaCampo(id) {
             document.getElementById('email').style.border = "3px solid lightgreen";
             validacaoEmail = true;
         }
-    }  else if (id == 'selectEstado') {
+    } else if (id == 'selectEstado') {
         if (estado == 'estado') {
             document.getElementById('selectEstado').style.border = "3px solid red";
             document.getElementById('aviso-erro-estado').classList.replace('d-none', 'd-block');
@@ -49,17 +49,16 @@ function validaCampo(id) {
             document.getElementById('aviso-erro-estado').classList.replace('d-block', 'd-none');
             validacaoEstado = true;
         }
-    }else if (id == 'selectCidade') {
-            if (cidade == 'Cidade') {
-                document.getElementById('selectCidade').style.border = "3px solid red";
-                document.getElementById('aviso-erro-cidade').classList.replace('d-none', 'd-block');
-            } else {
-                document.getElementById('aviso-erro-cidade').classList.replace('d-block', 'd-none');
-                document.getElementById('selectCidade').style.border = "3px solid lightgreen";
-                validacaoCidade = true;
-            }
+    } else if (id == 'selectCidade') {
+        if (cidade == 'Cidade') {
+            document.getElementById('selectCidade').style.border = "3px solid red";
+            document.getElementById('aviso-erro-cidade').classList.replace('d-none', 'd-block');
+        } else {
+            document.getElementById('aviso-erro-cidade').classList.replace('d-block', 'd-none');
+            document.getElementById('selectCidade').style.border = "3px solid lightgreen";
+            validacaoCidade = true;
         }
-     else if (id == 'userPwd') {
+    } else if (id == 'userPwd') {
         if (password == '' || password.length < 8) {
             document.getElementById('aviso-erro-password').classList.replace('d-none', 'd-block');
             document.getElementById('userPwd').style.border = "3px solid red";
@@ -165,7 +164,7 @@ function register() {
         "data": {
             "name": nome,
             "email": email,
-            "state":estado,
+            "state": estado,
             "city": cidade,
             "dateOfBirth": GetFormattedDate(),
             "password": password
@@ -295,18 +294,17 @@ function apiCidades() {
     }
     console.log(codEstado);
 
-    fetch("http://servicodados.ibge.gov.br/api/v1/localidades/estados/"+codEstado+"/municipios")
-    .then(function(response){
-      return response.json();
-    })
-    .then(function(response){
-        let cidades = response;
-        cidades.forEach(function(item){
-           option = new Option(item.nome,item.nome);
-           document.getElementById('selectCidade').options[ document.getElementById('selectCidade').length] = option;
-           document.getElementById('selectCidade').disabled = false;
-        });
-      })
-    
-}
+    fetch("http://servicodados.ibge.gov.br/api/v1/localidades/estados/" + codEstado + "/municipios")
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (response) {
+            let cidades = response;
+            cidades.forEach(function (item) {
+                option = new Option(item.nome, item.nome);
+                document.getElementById('selectCidade').options[document.getElementById('selectCidade').length] = option;
+                document.getElementById('selectCidade').disabled = false;
+            });
+        })
 
+}
