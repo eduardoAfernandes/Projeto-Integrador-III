@@ -135,73 +135,90 @@ var validacaoDuracaoLeilao = false;
 var validacaoValorInicial = false;
 var validacaoLancePadrao = false;
 
+function ehIgual(diaAtual, formatDataInput) {
+
+    if (diaAtual == formatDataInput) {
+        return true;
+    } else {
+        return false
+    }
+}
+
 function verifyInputModalLeilao(id) {
     var dataInput = document.getElementById('dt-inicio').value;
     var duracaoLeilao = document.getElementById('duracao').value;
     var valorInicial = document.getElementById('vlr-inicial').value;
     var lancePadrao = document.getElementById('lancePadrao').value;
 
-    const now = moment();
-    dataInicio = moment(dataInput);
+    var now = moment();
+    var dataInicio = moment(dataInput);
+    dataInicio.startOf("date");
+    now.startOf("date");
+
     var validData = moment(dataInicio).isBefore(now);
     var validDuracao = onlyNumber(duracaoLeilao);
+    var diaAtual = now.get("date") + '-' + (now.get("month") + 1) + '-' + now.get("year");
+
+    var formatDataInput = dataInicio.get("date") + '-' + (dataInicio.get("month") + 1) + '-' + dataInicio.get("year");
+
+    var inicioEhHoje = ehIgual(diaAtual, formatDataInput);
 
 
     if (id == 'dt-inicio') {
-        if (dataInput == '') {
+        if (dataInput == '' | validData) {
             document.getElementById('dt-inicio').style.border = "3px solid red";
             document.getElementById('aviso-erro-data').classList.replace('d-none', 'd-block');
             document.getElementById('aviso-erro-data').innerHTML = "Informe a data de inicio do leilão!!"
-        } else if (!validData || (dataInicio.get("date") == now.get("date") && (dataInicio.get("month") + 1) == (now.get("month") + 1) && dataInicio.get("year") == now.get("year"))) {
+        } else if (!validData || inicioEhHoje) {
             document.getElementById('dt-inicio').style.border = "3px solid lightgreen";
             document.getElementById('aviso-erro-data').classList.replace('d-block', 'd-none');
             validacaoDataInput = true;
         }
 
-    }else if (id == 'duracao'){
-        if(!validDuracao){
+    } else if (id == 'duracao') {
+        if (!validDuracao) {
             document.getElementById('duracao').style.border = "3px solid red";
             document.getElementById('aviso-erro-duracao').classList.replace('d-none', 'd-block');
 
-        }else{
+        } else {
             document.getElementById('duracao').style.border = "3px solid lightgreen";
             document.getElementById('aviso-erro-duracao').classList.replace('d-block', 'd-none');
             validacaoDuracaoLeilao = true;
         }
-    }else if(id == 'vlr-inicial'){
-        if(valorInicial == ''){
+    } else if (id == 'vlr-inicial') {
+        if (valorInicial == '') {
             document.getElementById('vlr-inicial').style.border = "3px solid red";
-            document.getElementById('aviso-erro-vlrInicial').classList.replace('d-none','d-block');
-        }else{
+            document.getElementById('aviso-erro-vlrInicial').classList.replace('d-none', 'd-block');
+        } else {
             document.getElementById('vlr-inicial').style.border = "3px solid lightgrenn";
-            document.getElementById('aviso-erro-vlrInicial').classList.replace('d-block','d-none');
+            document.getElementById('aviso-erro-vlrInicial').classList.replace('d-block', 'd-none');
             validacaoValorInicial = true;
         }
-    }else if(id == 'lancePadrao'){
-        if(lancePadrao == ''){
+    } else if (id == 'lancePadrao') {
+        if (lancePadrao == '') {
             document.getElementById('lancePadrao').style.border = "3px solid red";
-            document.getElementById('aviso-erro-lancePadrao').classList.replace('d-none','d-block');
-        }else{
+            document.getElementById('aviso-erro-lancePadrao').classList.replace('d-none', 'd-block');
+        } else {
             document.getElementById('lancePadrao').style.border = "3px solid lightgreen";
-            document.getElementById('aviso-erro-lancePadrao').classList.replace('d-block','d-none');
+            document.getElementById('aviso-erro-lancePadrao').classList.replace('d-block', 'd-none');
             validacaoLancePadrao = true;
         }
     }
 }
 
 
-function validFormII(){
+function validFormII() {
     if (!validacaoDataInput) {
         document.getElementById('dt-inicio').style.border = "3px solid red";
         document.getElementById('aviso-erro-data').classList.replace('d-none', 'd-block');
-    }else if (!validacaoDuracaoLeilao){
+    } else if (!validacaoDuracaoLeilao) {
         document.getElementById('duracao').style.border = "3px solid red";
         document.getElementById('aviso-erro-duracao').classList.replace('d-none', 'd-block');
-    }else if(!validacaoValorInicial){
+    } else if (!validacaoValorInicial) {
         document.getElementById('vlr-inicial').style.border = "3px solid lightgrenn";
-        document.getElementById('aviso-erro-vlrInicial').classList.replace('d-block','d-none');
-    }else if(!validacaoLancePadrao){
+        document.getElementById('aviso-erro-vlrInicial').classList.replace('d-block', 'd-none');
+    } else if (!validacaoLancePadrao) {
         document.getElementById('lancePadrao').style.border = "3px solid red";
-        document.getElementById('aviso-erro-lancePadrao').classList.replace('d-none','d-block');
+        document.getElementById('aviso-erro-lancePadrao').classList.replace('d-none', 'd-block');
     }
 }
