@@ -4,7 +4,7 @@
 
 .logo-topo-index {
     top: -10px;
-    margin-left: 80px;
+    margin-left: 20px;
     width: 130px;
     position: fixed;
 }
@@ -14,7 +14,8 @@
 }
 
 .logo-text {
-    padding-left: 220px;
+    padding-left: 150px;
+    font-weight: 900;
 }
 
 @media (max-width: 576px) {
