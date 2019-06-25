@@ -18,6 +18,7 @@ function validaCampo(id) {
     let confPassword = document.getElementById('confSenha').value.trim();
     let dtNascimento = document.getElementById('dtNasc').value;
 
+    var age = Math.floor(moment(new Date()).diff(moment(dtNascimento),'years',true));
 
     var regexNome = somenteLetras(nome);
     var regexEmail = validEmail(email);
@@ -83,6 +84,10 @@ function validaCampo(id) {
         if (dtNascimento == '') {
             document.getElementById('aviso-erro-dtNasc').classList.replace('d-none', 'd-block');
             document.getElementById('dtNasc').style.border = "3px solid red";
+        }else if(age < 18){
+            document.getElementById('aviso-erro-dtNasc').classList.replace('d-none', 'd-block');
+            document.getElementById('dtNasc').style.border = "3px solid red";
+            document.getElementById('aviso-erro-dtNasc').innerHTML = "Você precisa ter mais de 18 anos para se cadastrar!!"
         } else {
             document.getElementById('aviso-erro-dtNasc').classList.replace('d-block', 'd-none');
             document.getElementById('dtNasc').style.border = "3px solid lightgreen";
@@ -155,11 +160,10 @@ function register() {
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://localhost:8080/webserver_leilao_war_exploded/controller/insertUser",
+        "url": "https://webserver-leilao.azurewebsites.net/webserver-leilao/controller/insertUser",
         "method": "POST",
         "headers": {
             "content-type": "application/x-www-form-urlencoded",
-            "cache-control": "no-cache",
         },
         "data": {
             "name": nome,

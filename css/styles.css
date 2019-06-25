@@ -72,3 +72,14 @@ p,h1,h2,h3,h4,h5,label,span,select,option,button,::placeholder,input,a,.btn,.nav
     transform: translateY(-15px);
   }
 }
+
+#tpTitulo,
+#tpEditora,
+#tpCategoria,
+#tpCategoriaTPB,
+#tpCategoriaMENSAL,
+#tpNPaginas,
+#tpPeso,
+#tpTipoCapa {
+    cursor: help;
+}

@@ -54,7 +54,7 @@
 
 </head>
 
-<body>
+<body onload="carregarTooltip()">
 
 
     <div id="header"></div>
@@ -81,7 +81,7 @@
                     </form>
                 </div>
                 <div class="col-12 col-md-4 my-auto text-center ">
-                    <a href="cadastrar_produto.html"><button class="btn btn-secondary btn-barra mb-2">Novo
+                    <a href="cadastrar-produto.html"><button class="btn btn-secondary btn-barra mb-2">Novo
                             quadrinho</button>
                     </a>
                 </div>
@@ -179,6 +179,8 @@
                                         <div class="form-row">
                                             <div class="form-group col-12">
                                                 <label for="títuloQuadrinho">Título do Quadrinho</label>
+                                                <span type="button" style="float: right" id="tpTitulo" class="bg-dark px-2 text-light mr-1" data-toggle="tooltip" data-placement="bottom">?</span>
+
                                                 <input type="text" maxlength="50" class="form-control "
                                                     id="títuloQuadrinho" placeholder="Insira o título do quadrinho"
                                                     onblur="verifyInput(this.id)">
@@ -190,6 +192,8 @@
                                             </div>
                                             <div class="form-group col-12">
                                                 <label for="editora">Editora</label>
+                                                <span type="button" style="float: right" id="tpEditora" class="bg-dark px-2 text-light mr-1" data-toggle="tooltip" data-placement="bottom">?</span>
+
                                                 <select class="custom-select" id="editora"
                                                     onblur="verifyInput(this.id)">
                                                     <option value="editora" selected>Editora...</option>
@@ -215,10 +219,7 @@
 
                                 <div class="form-group col-12">
                                     <label for="categoria">Categoria</label>
-                                    <span type="button" style="float: right" class="bg-dark px-2 text-light mr-1"
-                                        data-toggle="tooltip" data-placement="bottom" title="">
-                                        ?
-                                    </span>
+                                    <span type="button" style="float: right" id="tpCategoria" class="bg-dark px-2 text-light mr-1" data-toggle="tooltip" data-placement="bottom">?</span>
                                     <select class="custom-select " id="categoria" onblur="verifyInput(this.id)">
                                         <option value="categoria" selected>Categoria...</option>
                                         <option value="TPB">TPB</option>
@@ -232,6 +233,8 @@
 
                                 <div class="form-group col-12 ">
                                     <label for="numeroPags">Número de páginas</label>
+                                    <span type="button" style="float: right" id="tpNPaginas" class="bg-dark px-2 text-light mr-1" data-toggle="tooltip" data-placement="bottom">?</span>
+
                                     <input type="text" name="" id="numeroPags" placeholder="0" class="form-control"
                                         onblur="verifyInput(this.id)">
                                     <div class="invalid-feedback  text-center d-none col-12 py-2 text-danger"
@@ -241,7 +244,8 @@
                                 </div>
                                 <div class="form-group col-12">
                                     <label for="pesoQuadrinho">Peso do quadrinho(em gramas)</label>
-                                   
+                                    <span type="button" style="float: right" id="tpPeso" class="bg-dark px-2 text-light mr-1" data-toggle="tooltip" data-placement="bottom">?</span>
+
                                     <div class="row">
                                         <div class="col-10">
                                             <input type="text" id="pesoQuadrinho" placeholder="0" id="pesoQuadrinho"
@@ -260,6 +264,8 @@
 
                                 <div class="form-group col-12">
                                     <label for="tipoCapa">Tipo de capa</label>
+                                    <span type="button" style="float: right" id="tpTipoCapa" class="bg-dark px-2 text-light mr-1" data-toggle="tooltip" data-placement="bottom">?</span>
+
                                     <select class="custom-select " id="tipoCapa" onblur="verifyInput(this.id)">
                                         <option value="capa">Capa...</option>
                                         <option value="hard">Hard</option>
@@ -274,14 +280,16 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-8">
+                            <div class="col-6">
                                 <input type="button" class="btn btn-success btn-form-modal" value="Alterar"
                                     onclick="validForm()">
 
                             </div>
-                            <div class="col-4">
-                                <input type="reset" class="btn btn-danger btn-form-modal" value="Limpar">
-
+                            <div class="col-3">
+                                <input type="reset" class="btn btn-warning btn-form-modal" value="Limpar">
+                            </div>
+                            <div class="col-3">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                             </div>
 
                         </div>
@@ -290,7 +298,6 @@
                 </div>
                 </form>
                 <div class="modal-footer bg-dark">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                 </div>
             </div>
         </div>
@@ -302,7 +309,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document" ">
             <div class=" modal-content">
             <div class="modal-header bg-dark text-light">
-                <h4 class="modal-title" id="exampleModalLabel">Dados leilao do quadrinho</h4>
+                <h4 class="modal-title" id="exampleModalLabel">Criar leilão</h4>
                 <button type="button" class="close" data-dismiss="modal"">
                         <span aria-hidden=" true" class="text-light pt-3">X</span>
                 </button>
@@ -391,18 +398,20 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-8">
-                    <input type="button" class="btn btn-success btn-form-modal" value="Ativar" onclick="validFormII()">
+                <div class="col-6">
+                    <input type="button" class="btn btn-success btn-form-modal" value="Confirmar" onclick="validFormII()">
 
                 </div>
-                <div class="col-4">
-                    <input type="reset" class="btn btn-danger btn-form-modal" value="Limpar">
+                <div class="col-3">
+                    <input type="reset" class="btn btn-warning btn-form-modal" value="Limpar">
+                </div>
+                <div class="col-3">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                 </div>
 
             </div>
         </div>
         <div class="modal-footer bg-dark">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
         </div>
     </div>
     </div>
