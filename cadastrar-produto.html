@@ -32,8 +32,7 @@
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="icon/open-iconic/font/css/open-iconic-bootstrap.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="css/section.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="components/grant-slider/grant_slider.css">
@@ -46,9 +45,54 @@
     <script src="js/verify-session.js"></script>
     <script src="js/cadastrarProd.js"></script>
     <script src="js/alertify.min.js"></script>
+
+    <style>
+    
+        #tpTitulo,
+        #tpEditora,
+        #tpCategoria,
+        #tpCategoriaTPB,
+        #tpCategoriaMENSAL,
+        #tpNPaginas,
+        #tpPeso,
+        #tpTipoCapa {
+            cursor: help;
+        }
+    
+    </style>
+    
+    <script>
+    
+        var tooltips = {
+            "titulo": "O titulo representa o nome do quadrinho", 
+            "categoria": "A categoria do quadrinho define se ele é um TPB, ou seja, uma coleção ou se é um quadrinho de edição mensal. Passe o mouse sobre as opções para mais informações", 
+            "categoriaTPB": "TPB é uma coleção de quadrinhos reunidas em uma só encadernação. É uma historia completa", 
+            "categoriaMENSAL": "MENSAL quer dizer que esse quadrinho faz parte de uma publicação mensal, ou seja, tem um segmento de história", 
+            "pesoQuadrinho": "Neste campo você deve listar quantos GRAMAS pesam o seu quadrinho. Digite somente o numero sem informar a unidade", 
+            "editora": "Neste campo você deve selecionar qual a editora do seu quadrinho. Se não for Marvel ou DC, selecione OUTRAS", 
+            "numeroPaginas": "Aqui você deve listar o numero de páginas do seu quadrinho. Digite somente numeros",
+            "tipoCapa": " Neste campo você entre o tipo de campa, entre HARD e SOFT, ou seja, capa DURA OU MOLE", 
+            "tipoCapaMole": "SOFT é o tipo de capa MOLE", 
+            "tipoCapaDura": "HARD é o tipo de capa DURA"};        
+        
+        function carregarTooltip(){
+            document.getElementById('tpTitulo').title = tooltips.titulo;
+            document.getElementById('tpEditora').title = tooltips.editora;
+            document.getElementById('tpCategoria').title = tooltips.categoria;
+            document.getElementById('tpCategoriaTPB').title = tooltips.categoriaTPB;
+            document.getElementById('tpCategoriaMENSAL').title = tooltips.categoriaMENSAL;
+            document.getElementById('tpNPaginas').title = tooltips.numeroPaginas;
+            document.getElementById('tpPeso').title = tooltips.pesoQuadrinho;
+            document.getElementById('tpTipoCapa').title = tooltips.tipoCapa;
+            document.getElementById('tpTipoCapaDura').title = tooltips.tipoCapaDura;
+            document.getElementById('tpTipoCapaMole').title = tooltips.tipoCapaMole;
+        }
+        
+    
+    </script>
 </head>
 
-<body>
+<body onload="carregarTooltip()">
 
     <div id="header">
 
@@ -70,8 +114,7 @@
                             <div class="form-group col-12">
                                 <p class="text-center h5"><b>Capa do quadrinho</b></p>
                                 <div class="custom-file d-none">
-                                    <input type="file" class="custom-file-input" id="cpQuadrinho"
-                                        onchange="readURL(this);">
+                                    <input type="file" class="custom-file-input" id="cpQuadrinho" onchange="readURL(this);">
 
                                     <label class="custom-file-label" for="cpQuadrinho">Anexar foto</label>
                                 </div>
@@ -80,13 +123,8 @@
                                 </h5>
                             </div>
                             <div class="text-center my-auto ">
-                                <img src="img/add-image.png" class="previewQuadrinho" id="previewQuadrinho"
-                                    onclick="clickInputFile()" class="imgPreview">
+                                <img src="img/add-image.png" class="previewQuadrinho" id="previewQuadrinho" onclick="clickInputFile()" class="imgPreview">
                             </div>
-
-
-
-
 
                         </div>
                         <div class="col-12 col-md-12 col-lg-7 pt-3  caixa-inputs">
@@ -94,94 +132,85 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="títuloQuadrinho">Título do Quadrinho</label>
-                                        <input type="text" class="form-control " id="títuloQuadrinho"
-                                            placeholder="Insira o título do quadrinho" onblur="verifyInput(this.id)">
-                                        <div class="invalid-feedback  text-center d-none col-12 py-2 text-danger"
-                                            id="aviso-erro-titulo">
+                                        <span type="button" style="float: right" id="tpTitulo" class="bg-dark px-2 text-light mr-1" data-toggle="tooltip" data-placement="bottom">?</span>
+                                        <input type="text" class="form-control " id="títuloQuadrinho" placeholder="Insira o título do quadrinho" onblur="verifyInput(this.id)">
+                                        <div class="invalid-feedback  text-center d-none col-12 py-2 text-danger" id="aviso-erro-titulo">
                                             Informe o título do quadrinho!!
                                         </div>
 
                                     </div>
                                     <div class="form-group col-md-6 col-6">
                                         <label for="editora">Editora</label>
+                                        <span type="button" style="float: right" id="tpEditora" class="bg-dark px-2 text-light mr-1" data-toggle="tooltip" data-placement="bottom">?</span>
                                         <select class="custom-select" id="editora" onblur="verifyInput(this.id)">
                                             <option value="editora" selected>Editora...</option>
                                             <option value="marvel">Marvel</option>
                                             <option value="dc">DC</option>
 
                                         </select>
-                                        <div class="invalid-feedback  text-center d-none col-12 py-2 text-danger"
-                                            id="aviso-erro-editora">
+                                        <div class="invalid-feedback  text-center d-none col-12 py-2 text-danger" id="aviso-erro-editora">
                                             Informe a editora do quadrinho!!
                                         </div>
                                     </div>
 
                                     <div class="form-group col-6">
                                         <label for="categoria">Categoria</label>
-                                        <span type="button" style="float: right" class="bg-dark px-2 text-light mr-1"
-                                            data-toggle="tooltip" data-placement="bottom" title="TPB é uma coleção de quadrinhos reunidas em uma só encadernação. É uma historia completa&#013MENSAL quer dizer que esse quadrinho faz parte de uma publicação mensal, ou seja, tem um segmento de história">
-                                            ?
-                                        </span>
+                                        <span type="button" style="float: right" id="tpCategoria" class="bg-dark px-2 text-light mr-1" data-toggle="tooltip" data-placement="bottom">?</span>
                                         <select class="custom-select " id="categoria" onblur="verifyInput(this.id)">
                                             <option value="categoria" selected>Categoria...</option>
-                                            <option value="TPB" title="TPB é uma coleção de quadrinhos reunidas em uma só encadernação. É uma historia completa">TPB</option>
-                                            <option value="Mensal" title="MENSAL quer dizer que esse quadrinho faz parte de uma publicação mensal, ou seja, tem um segmento de história">Mensal</option>
+                                            <option value="TPB" id="tpCategoriaTPB">TPB</option>
+                                            <option value="MENSAL" id="tpCategoriaMENSAL">MENSAL</option>
                                         </select>
-                                        <div class="invalid-feedback  text-center d-none col-12 py-2 text-danger"
-                                            id="aviso-erro-categoria">
+                                        <div class="invalid-feedback  text-center d-none col-12 py-2 text-danger" id="aviso-erro-categoria">
                                             Informe a categoria do quadrinho!!
                                         </div>
                                     </div>
 
                                     <div class="form-group col-6 ">
                                         <label for="numeroPags">Número de páginas</label>
-                                        <input type="text" name="" id="numeroPags" placeholder="Numero de páginas"
-                                            class="form-control" onblur="verifyInput(this.id)">
-                                        <div class="invalid-feedback  text-center d-none col-12 py-2 text-danger"
-                                            id="aviso-erro-paginas">
+                                        <span type="button" style="float: right" id="tpNPaginas" class="bg-dark px-2 text-light mr-1" data-toggle="tooltip" data-placement="bottom">?</span>
+                                        <input type="text" name="" id="numeroPags" placeholder="Numero de páginas" class="form-control" onblur="verifyInput(this.id)">
+                                        <div class="invalid-feedback  text-center d-none col-12 py-2 text-danger" id="aviso-erro-paginas">
                                             Informe o número de páginas do quadrinho!!
                                         </div>
                                     </div>
                                     <div class="form-group col-6">
                                         <label for="pesoQuadrinho">Peso do quadrinho</label>
+                                        <span type="button" style="float: right" id="tpPeso" class="bg-dark px-2 text-light mr-1" data-toggle="tooltip" data-placement="bottom">?</span>
 
                                         <div class="row">
                                             <div class="col-8">
-                                                <input type="text" id="pesoQuadrinho" placeholder="0" id="pesoQuadrinho"
-                                                    class="form-control" onblur="verifyInput(this.id)">
+                                                <input type="text" id="pesoQuadrinho" placeholder="0" id="pesoQuadrinho" class="form-control" onblur="verifyInput(this.id)">
                                             </div>
                                             <div class="col-4 text-left  pt-1">
-                                                 <b>gramas</b>
+                                                <b>gramas</b>
                                             </div>
                                         </div>
 
-                                        <div class="invalid-feedback  text-center d-none col-12 py-2 text-danger"
-                                            id="aviso-erro-peso">
+                                        <div class="invalid-feedback  text-center d-none col-12 py-2 text-danger" id="aviso-erro-peso">
                                             Informe o peso(em gramas) do quadrinho!!
                                         </div>
                                     </div>
 
                                     <div class="form-group col-12 col-md-6">
                                         <label for="tipoCapa">Tipo de capa</label>
+                                        <span type="button" style="float: right" id="tpTipoCapa" class="bg-dark px-2 text-light mr-1" data-toggle="tooltip" data-placement="bottom">?</span>
                                         <select class="custom-select " id="tipoCapa" onblur="verifyInput(this.id)">
                                             <option value="capa">Capa...</option>
-                                            <option value="hard">Hard</option>
-                                            <option value="soft">Soft</option>
+                                            <option value="hard" id="tpTipoCapaDura">Hard</option>
+                                            <option value="soft" id="tpTipoCapaMole">Soft</option>
                                         </select>
-                                        <div class="invalid-feedback  text-center d-none col-12 py-2 text-danger"
-                                            id="aviso-erro-capa">
+                                        <div class="invalid-feedback  text-center d-none col-12 py-2 text-danger" id="aviso-erro-capa">
                                             Informe o tipo de capa do quadrinho!!
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row pt-3">
                                     <div class="col-8  my-auto ">
-                                        <input type="button" class="btn btn-success" style="width: 100%"
-                                            value="Cadastrar" onclick="validForm()">
+                                        <input type="button" class="btn btn-success" style="width: 100%" value="Cadastrar" onclick="validForm()">
                                     </div>
                                     <div class="col-4 my-auto text-center">
-                                        <input type="reset" class="btn btn-danger btn-form-modal" style="width: 100%"
-                                            value="Limpar">
+                                        <input type="reset" class="btn btn-danger btn-form-modal" style="width: 100%" value="Limpar">
                                     </div>
                                 </div>
                         </div>
@@ -202,11 +231,12 @@
 
 
 <script>
-    $(function () {
+    $(function() {
         $('#header').load('./components/header/header.html');
         $('#footer').load('./components/footer/footer.html');
         $('#modal').load('./components/modal-como-funciona/modal.html');
     });
+
 </script>
 
 </html>
