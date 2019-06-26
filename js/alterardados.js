@@ -100,3 +100,135 @@ function apiCidades() {
       })
     
 }
+
+function populateInputs(){
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "http://localhost:8080/webserver_leilao_war_exploded/controller/find-user-by-id",
+        "method": "GET",
+        "headers": {
+            "content-type": "application/x-www-form-urlencoded",
+            "cache-control": "no-cache",
+        },
+        "xhrFields": {
+            "withCredentials": true
+          }
+    }
+
+    $.ajax(settings)
+    .done(function (response) {
+        return response.data
+    })
+    .done(function (response) {
+        document.getElementById('nome').value = response.data.name;
+        document.getElementById('selectEstado').value = response.data.state;
+        option = new Option(response.data.city, response.data.city);
+        document.getElementById('selectCidade').options[document.getElementById('selectCidade').length] = option;
+        document.getElementById('selectCidade').value = response.data.city;
+    })
+}
+
+let validacaoNome = false;
+let validacaoEstado = false;
+let validacaoCidade = false;
+
+function validaCampo(id){
+    let nome = document.getElementById('nome').value
+    let estado = document.getElementById('selectEstado').value
+    let cidade = document.getElementById('selectCidade').value
+    let password = document.getElementById('password').value;
+    let Confpassword = document.getElementById('confPassword').value;
+
+
+    let regexNome = somenteLetras(nome);
+
+    if (id == 'nome') {
+        if(!regexNome){
+            document.getElementById('nome').style.border = "3px solid red";
+            document.getElementById('aviso-erro-nome').classList.replace('d-none','d-block');
+        }else{
+            document.getElementById('nome').style.border = "3px solid lightgreen";
+            document.getElementById('aviso-erro-nome').classList.replace('d-block', 'd-none');
+
+        }
+        
+    } else if(id == 'selectEstado') {
+        if(estado == 'estado'){
+            document.getElementById('selectEstado').style.border = "3px solid red";
+            document.getElementById('aviso-erro-estado').classList.replace('d-none','d-block');
+
+        }else{
+            document.getElementById('selectEstado').style.border = "3px solid lightgreen";
+            document.getElementById('aviso-erro-estado').classList.replace('d-block', 'd-none');
+
+        }
+    }else if(id == 'selectCidade'){
+        if(cidade == 'cidade'){
+            document.getElementById('selectCidade').style.border = "3px solid red";
+            document.getElementById('aviso-erro-cidade').classList.replace('d-none','d-block');
+
+        }else{
+            document.getElementById('selectCidade').style.border = "3px solid lightgreen";
+            document.getElementById('aviso-erro-cidade').classList.replace('d-block', 'd-none');
+
+        }
+    }
+}
+    
+    
+    function validaForm() {
+        let nome = document.getElementById('nome').value
+        let estado = document.getElementById('selectEstado').value
+        let cidade = document.getElementById('selectCidade').value
+        let password = document.getElementById('password').value;
+        let Confpassword = document.getElementById('confPassword').value;
+        let regexNome = somenteLetras(nome);
+    
+        if (!regexNome) {
+            document.getElementById('nome').style.border = "3px solid red";
+            document.getElementById('aviso-erro-nome').classList.replace('d-none', 'd-block');
+        } else {
+            document.getElementById('nome').style.border = "3px solid lightgreen";
+
+            validacaoNome = true;
+        }
+    
+        if (estado == 'estado') {
+            document.getElementById('selectEstado').style.border = "3px solid red";
+            document.getElementById('aviso-erro-estado').classList.replace('d-none', 'd-block');
+    
+        } else {
+            document.getElementById('selectEstado').style.border = "3px solid lightgreen";
+
+            validacaoEstado = true;
+        }
+        if (cidade == 'cidade') {
+            document.getElementById('selectCidade').style.border = "3px solid red";
+            document.getElementById('aviso-erro-cidade').classList.replace('d-none', 'd-block');
+    
+        } else {
+            document.getElementById('selectCidade').style.border = "3px solid lightgreen";
+
+            validacaoCidade = true;
+        }
+    
+        if(validacaoNome && validacaoEstado && validacaoCidade){
+            if(window.confirm("Confirmar alterações")){
+                alert("Atualiza")
+            }
+        }
+    }
+    
+    
+function somenteLetras(palavra) {
+    const filter_nome = /^([a-zA-Zà-úÀ-Ú]|\s+)+$/;
+
+    if (!filter_nome.test(palavra)) {
+        return false;
+    }
+    if (filter_nome.test(palavra)) {
+        return true;
+    }
+
+}

@@ -69,7 +69,7 @@
                     <form action="">
                         <div class="form-group">
                             <div class="input-group">
-                                <input type="search" name="src-prod" id=""   class="form-control"
+                                <input type="search" name="src-prod" id="" class="form-control"
                                     placeholder="Nome do quadrinho..." aria-label="Search">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
@@ -100,9 +100,21 @@
                         </tr>
                     </thead>
                     <tbody id="tabela"></tbody>
-
                     </tbody>
                 </table>
+                <div id="tabelaVazia" class="row col-12 d-none">
+                    <div class="col-6">
+                        <h5 class="text-center py-3">
+                            Você ainda não tem quadrinhos cadastrados em nosso site!!
+                        </h5>
+                    </div>
+
+                    <div class="col-6">
+                            <a href="cadastrar-produto.html"><button class="btn btn-secondary btn-barra my-3 ">Cadastrar
+                                    quadrinho</button>
+                            </a>
+                        </div>
+                </div>
             </div>
         </div>
 
@@ -133,7 +145,9 @@
                                         <div class="form-row">
                                             <div class="form-group col-12">
                                                 <label for="títuloQuadrinho">Título do Quadrinho</label>
-                                                <span type="button" style="float: right" id="tpTitulo" class="bg-dark px-2 text-light mr-1" data-toggle="tooltip" data-placement="bottom">?</span>
+                                                <span type="button" style="float: right" id="tpTitulo"
+                                                    class="bg-dark px-2 text-light mr-1" data-toggle="tooltip"
+                                                    data-placement="bottom">?</span>
 
                                                 <input type="text" maxlength="50" class="form-control "
                                                     id="títuloQuadrinho" placeholder="Insira o título do quadrinho"
@@ -146,7 +160,9 @@
                                             </div>
                                             <div class="form-group col-12">
                                                 <label for="editora">Editora</label>
-                                                <span type="button" style="float: right" id="tpEditora" class="bg-dark px-2 text-light mr-1" data-toggle="tooltip" data-placement="bottom">?</span>
+                                                <span type="button" style="float: right" id="tpEditora"
+                                                    class="bg-dark px-2 text-light mr-1" data-toggle="tooltip"
+                                                    data-placement="bottom">?</span>
 
                                                 <select class="custom-select" id="editora"
                                                     onblur="verifyInput(this.id)">
@@ -173,7 +189,9 @@
 
                                 <div class="form-group col-12">
                                     <label for="categoria">Categoria</label>
-                                    <span type="button" style="float: right" id="tpCategoria" class="bg-dark px-2 text-light mr-1" data-toggle="tooltip" data-placement="bottom">?</span>
+                                    <span type="button" style="float: right" id="tpCategoria"
+                                        class="bg-dark px-2 text-light mr-1" data-toggle="tooltip"
+                                        data-placement="bottom">?</span>
                                     <select class="custom-select " id="categoria" onblur="verifyInput(this.id)">
                                         <option value="categoria" selected>Categoria...</option>
                                         <option value="TPB">TPB</option>
@@ -187,7 +205,9 @@
 
                                 <div class="form-group col-12 ">
                                     <label for="numeroPags">Número de páginas</label>
-                                    <span type="button" style="float: right" id="tpNPaginas" class="bg-dark px-2 text-light mr-1" data-toggle="tooltip" data-placement="bottom">?</span>
+                                    <span type="button" style="float: right" id="tpNPaginas"
+                                        class="bg-dark px-2 text-light mr-1" data-toggle="tooltip"
+                                        data-placement="bottom">?</span>
 
                                     <input type="text" name="" id="numeroPags" placeholder="0" class="form-control"
                                         onblur="verifyInput(this.id)">
@@ -198,7 +218,9 @@
                                 </div>
                                 <div class="form-group col-12">
                                     <label for="pesoQuadrinho">Peso do quadrinho(em gramas)</label>
-                                    <span type="button" style="float: right" id="tpPeso" class="bg-dark px-2 text-light mr-1" data-toggle="tooltip" data-placement="bottom">?</span>
+                                    <span type="button" style="float: right" id="tpPeso"
+                                        class="bg-dark px-2 text-light mr-1" data-toggle="tooltip"
+                                        data-placement="bottom">?</span>
 
                                     <div class="row">
                                         <div class="col-10">
@@ -206,7 +228,7 @@
                                                 class="form-control" onblur="verifyInput(this.id)">
                                         </div>
                                         <div class="col-2 py-auto pt-1">
-                                            <b>   gramas</b>
+                                            <b> gramas</b>
                                         </div>
                                     </div>
 
@@ -218,7 +240,9 @@
 
                                 <div class="form-group col-12">
                                     <label for="tipoCapa">Tipo de capa</label>
-                                    <span type="button" style="float: right" id="tpTipoCapa" class="bg-dark px-2 text-light mr-1" data-toggle="tooltip" data-placement="bottom">?</span>
+                                    <span type="button" style="float: right" id="tpTipoCapa"
+                                        class="bg-dark px-2 text-light mr-1" data-toggle="tooltip"
+                                        data-placement="bottom">?</span>
 
                                     <select class="custom-select " id="tipoCapa" onblur="verifyInput(this.id)">
                                         <option value="capa">Capa...</option>
@@ -292,7 +316,8 @@
                                             </div>
                                         </div>
                                         <div class="form-group col-12">
-                                            <label for="títuloQuadrinho" style="letter-spacing: 0px;">Duração(em dias)</label>
+                                            <label for="títuloQuadrinho" style="letter-spacing: 0px;">Duração(em
+                                                dias)</label>
                                             <span type="button" style="float: right"
                                                 class="bg-dark px-2 text-light mr-1" data-toggle="tooltip"
                                                 data-placement="bottom"
@@ -318,7 +343,8 @@
                     <div class="row pt-4">
                         <div class="col-12 col-md-6">
                             <div class="form-group col-12">
-                                <label for="títuloQuadrinho" style="font-size: 19px;letter-spacing: 0px;"> Valor Inicial(R$)</label>
+                                <label for="títuloQuadrinho" style="font-size: 19px;letter-spacing: 0px;"> Valor
+                                    Inicial(R$)</label>
                                 <span type="button" style="float: right" class="bg-dark px-2 text-light mr-1"
                                     data-toggle="tooltip" data-placement="bottom"
                                     title="Insira em reais o valor inicial deste item...">
@@ -327,47 +353,50 @@
                                 <input type="text" class="form-control " id="vlr-inicial" placeholder="R$ 0,00"
                                     onKeyPress="return(moeda(this,'.',',',event))"
                                     onblur="verifyInputModalLeilao(this.id)">
-                                    <div class=" invalid-feedback text-center d-none col-12 pt-2 text-danger"
-                                    id="aviso-erro-vlrInicial">
-                                     Informe o valor inicial deste leilão!!
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <div class="form-group col-12">
-                            <label for="títuloQuadrinho" style="font-size: 19px;letter-spacing: 0px;"> Lance Padrão(R$)</label>
-                            <span type="button" style="float: right" class="bg-dark px-2 text-light"
-                                data-toggle="tooltip" data-placement="bottom"
-                                title="Insira o padrão de lance para este item (Por exemplo: se você esolher 5, os usuários so irão dar lances de 5 reais!!)...">
-                                ?
-                            </span>
-                            <input type="text" class="form-control " id="lancePadrao" placeholder="R$ 0,00"
-                                onKeyPress="return(moeda(this,'.',',',event))" onblur="verifyInputModalLeilao(this.id)">
                                 <div class=" invalid-feedback text-center d-none col-12 pt-2 text-danger"
-                                id="aviso-erro-lancePadrao">
-                                Informe o valor de lance padrão para este leilão!!
+                                    id="aviso-erro-vlrInicial">
+                                    Informe o valor inicial deste leilão!!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="form-group col-12">
+                                <label for="títuloQuadrinho" style="font-size: 19px;letter-spacing: 0px;"> Lance
+                                    Padrão(R$)</label>
+                                <span type="button" style="float: right" class="bg-dark px-2 text-light"
+                                    data-toggle="tooltip" data-placement="bottom"
+                                    title="Insira o padrão de lance para este item (Por exemplo: se você esolher 5, os usuários so irão dar lances de 5 reais!!)...">
+                                    ?
+                                </span>
+                                <input type="text" class="form-control " id="lancePadrao" placeholder="R$ 0,00"
+                                    onKeyPress="return(moeda(this,'.',',',event))"
+                                    onblur="verifyInputModalLeilao(this.id)">
+                                <div class=" invalid-feedback text-center d-none col-12 pt-2 text-danger"
+                                    id="aviso-erro-lancePadrao">
+                                    Informe o valor de lance padrão para este leilão!!
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-6">
-                    <input type="button" class="btn btn-success btn-form-modal" value="Confirmar" onclick="validFormII()">
+                <div class="row">
+                    <div class="col-6">
+                        <input type="button" class="btn btn-success btn-form-modal" value="Confirmar"
+                            onclick="validFormII()">
+
+                    </div>
+                    <div class="col-3">
+                        <input type="reset" class="btn btn-warning btn-form-modal" value="Limpar">
+                    </div>
+                    <div class="col-3">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                    </div>
 
                 </div>
-                <div class="col-3">
-                    <input type="reset" class="btn btn-warning btn-form-modal" value="Limpar">
-                </div>
-                <div class="col-3">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                </div>
-
+            </div>
+            <div class="modal-footer bg-dark">
             </div>
         </div>
-        <div class="modal-footer bg-dark">
-        </div>
-    </div>
     </div>
     </div>
     <div id="modal"></div>

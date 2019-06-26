@@ -47,7 +47,7 @@
 
 </head>
 
-<body>
+<body onload="populateInputs()">
 
 
     <div id="header"></div>
@@ -63,15 +63,19 @@
                     <form action="" class="pt-3">
                         <div class="form-group">
                             <div class="input-group">
-                                <div class="input-group-prepend" onclick="(function(){document.getElementById('nome').focus()})()">
+                                <div class="input-group-prepend" onclick="(function(){document.getElementById('nome').focus()})()" >
                                     <div class="input-group-text">
                                         <span class="oi oi-person icon"></span>
                                     </div>
                                 </div>
-                                <input type="text" name="nome" maxlength="50" id="nome" class="form-control" value="Eduardo Augusto">
+                                <input type="text" name="nome" maxlength="50" id="nome" class="form-control" onblur="validaCampo(this.id)">
+                                <div class="invalid-feedback  text-left d-none col-12 py-2 text-danger"
+                                id="aviso-erro-nome">
+                                Por favor, informe seu nome!!
+                            </div>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <div class="input-group">
                                 <div class="input-group-prepend" onclick="(function(){document.getElementById('telefone').focus()})()">
                                     <div class="input-group-text">
@@ -91,7 +95,7 @@
                                 <input class="form-control" type="date" id="dt-nascimento">
 
                             </div>
-                        </div>
+                        </div> -->
                         <div class="form-row">
                                 <div class="col-5 text-left">
                                 
@@ -102,7 +106,7 @@
                                                     </div>
                                                 </div>
                                                 <select class="custom-select" id="selectEstado" name="selectEstado" onchange="apiCidades()"
-                                                    onblur="validaCampo('selectEstado')" onchange="apiCidades()"">
+                                                    onblur="validaCampo(this.id)" onchange="apiCidades()"">
                                                     <option value="estado" selected>Estado...</option>
                                                     <option value="Acre">Acre</option>
                                                     <option value="Alagoas">Alagoas</option>
@@ -132,7 +136,7 @@
                                                     <option value="Sergipe">Sergipe</option>
                                                     <option value="Tocantins">Tocantins</option>
                                                 </select>
-                                                <div class="invalid-feedback  text-center d-none col-12 py-2 text-danger"
+                                                <div class="invalid-feedback  text-left d-none col-12 py-2 text-danger"
                                                     id="aviso-erro-estado">
                                                     Por favor, informe o seu estado!!
                                                 </div>
@@ -146,10 +150,14 @@
                                             <span class="oi oi-location"></span>
                                         </div>
                                     </div>
-                                    <select class="custom-select" id="selectCidade" name="selectCidade" disabled onblur="validaCampo('selectCidade')">
-                                            <option value="Cidade">Cidade...</option>
+                                    <select class="custom-select" id="selectCidade" name="selectCidade"  onblur="validaCampo(this.id)">
+                                            <option value="cidade">Cidade...</option>
                 
                                         </select>
+                                        <div class="invalid-feedback  text-left d-none col-12 py-2 text-danger"
+                                        id="aviso-erro-cidade">
+                                        Por favor, informe seu cidade!!
+                                    </div>
                                 </div>
                             </div>
                           
@@ -178,7 +186,11 @@
                                         </div>
                                     </div>
                                     <input type="password" name="password" id="password" class="form-control"
-                                        placeholder="Senha Atual">
+                                        placeholder="Senha Atual" onblur="validaCampo(this.id)">
+                                        <div class="invalid-feedback  text-left d-none col-12 py-2 text-danger"
+                                        id="aviso-erro-password">
+                                        Senha incorreta!!
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-7 text-left">
@@ -189,14 +201,14 @@
                                         </div>
                                     </div>
                                     <input type="ConfSenha" name="ConfSenha" id="confPassword" class="form-control"
-                                        placeholder="Nova senha">
+                                        placeholder="Nova senha" onblur="validaCampo(this.id)">
                                 </div>
 
                             </div>
                         </div>
                         <div class="row pt-3">
                             <div class="col-9">
-                                    <input type="button" class="btn btn-success btn-form-modal" value="Atualizar Dados">
+                                    <input type="button" class="btn btn-success btn-form-modal" value="Atualizar Dados" onclick="validaForm()">
                             </div>
                             <div class="col-3">
                                     <input type="reset" class="btn btn-danger btn-form-modal" value="Limpar">

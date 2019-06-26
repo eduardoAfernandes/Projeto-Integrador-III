@@ -35,6 +35,9 @@ function loadDados() {
 
         }
 
+    })
+    .fail(function (response) {
+        document.getElementById('tabelaVazia').classList.replace('d-none','d-block');
     });
 }
 
