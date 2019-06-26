@@ -58,11 +58,10 @@ function validEmail(email) {
 function login(){
     let email = document.getElementById('email').value;
     let password = document.getElementById('password').value;
-    console.log(email,password)
     var settings = {
         "async": true,
-        "crossDomain": true,
-        "url": "https://webserver-leilao.azurewebsites.net/webserver-leilao/controller/public/login",
+        "crossDomain": true,        
+        "url": "http://localhost:8080/webserver_leilao_war_exploded/controller/login",
         "method": "POST",
         "headers": {
           "content-type": "application/x-www-form-urlencoded",
@@ -79,7 +78,7 @@ function login(){
 
       $.ajax(settings).done(function (response) {
         showResponse(response)
-        console.log(response)
+        console.log(response.data)
       });
     }
 
