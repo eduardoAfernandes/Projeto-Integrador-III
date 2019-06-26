@@ -18,7 +18,6 @@ function loadDados() {
     })
     .done(function (response) {
         console.log(response.data)
-        console.log(response.data.length)
         for(i=0;i<=response.data.length;i++ ){
             console.log('ID do Produto: '+response.data[i].productID)
             console.log('Numero de Paginas '+response.data[i].pagesNumber)
@@ -26,7 +25,13 @@ function loadDados() {
             console.log('Editora: '+ response.data[i].publisher)
             console.log('Titulo: '+ response.data[i].title)
             console.log('Status: '+ response.data[i].productStatus.status)
-            console.log('Formato: '+ response.data[i].comicFormat   )
+            console.log('Formato: '+ response.data[i].comicFormat)
+            console.log('--------------------------------------')
+                $("#tabela").append("<tr>"+"<td>"+"<img class='img-fluid cp-quadrinho' style='height: 120px;' src="+response.data[i].coverImage+"</td>"+
+            "<td><h5>"+response.data[i].title+"</h5></td>"+"<td>"+response.data[i].productStatus.status+"</td>"
+            +"<td>"+"<img "+"data-toggle='modal' data-target='#modalDadosQuadrinho' "
+            +"src='img/edit.png'"+"</td>"
+            +"<td>"+"<img src='img/auction.png' data-toggle='modal' data-target='#modalLeilao'"+""+"</td>"+"</tr>");
 
         }
 
@@ -34,3 +39,4 @@ function loadDados() {
 }
 
 loadDados();
+
