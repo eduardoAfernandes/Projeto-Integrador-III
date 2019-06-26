@@ -41,3 +41,7 @@ a:hover{
 .login-form .rigth {
     justify-content: flex-end;
 }
+
+.caixa-login-incorrect{
+border: 1px solid red;
+}

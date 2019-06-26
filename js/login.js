@@ -43,7 +43,13 @@ function validaForm() {
     } else {
         login();
     }
+
 }
+
+
+
+
+
 
 
 function validEmail(email) {
@@ -76,19 +82,17 @@ function login(){
           }
       }
 
-      $.ajax(settings).done(function (response) {
-        showResponse(response)
-        console.log(response.data)
-      });
+      $.ajax(settings)
+      .done(function (response) {goHome(response)})
+      .fail(function(response){showResponse()});
     }
 
 
-function showResponse(resposta){
-    if(resposta == 'Usuario ou senha incorretos'){
-        document.getElementById('aviso-erro-password').classList.replace('d-none', 'd-block');
-        document.getElementById('aviso-erro-password').innerHTML = 'Usuario ou senha incorretos';
-        document.getElementById('email').style.border = '3px solid red';
-        document.getElementById('password').style.border = '3px solid red';
+function showResponse(){
+    document.getElementById('caixa-login-incorrect').classList.replace('d-none','d-block');
+}
 
-    }
+function goHome(response) {
+    console.log("Logado")
+    window.open('index.html','_self');
 }

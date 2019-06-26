@@ -251,3 +251,4 @@ function validFormII() {
         document.getElementById('aviso-erro-lancePadrao').classList.replace('d-none', 'd-block');
     }
 }
+

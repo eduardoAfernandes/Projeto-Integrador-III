@@ -42,7 +42,7 @@
     <script src="js/mascaras.js"></script>
     <script src="js/meus-quadrinhos.js"> </script>
     <script src="js/moment.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="js/jquery-3.4.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
@@ -51,11 +51,12 @@
             $('[data-toggle="tooltip"]').tooltip()
         })
     </script>
+    <script src="js/populateMyComicBooks.js"></script>
 
 </head>
 
 <body onload="carregarTooltip()">
-
+    <button onclick="loadDados()">teste</button>
 
     <div id="header"></div>
     <section class="container-fluid pt-5">
@@ -98,7 +99,7 @@
 
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="dados">
                         <tr class="text-center">
                             <td scope="row">
                                 <img class="img-fluid cp-quadrinho" style="height: 120px;" src="img/thanos.jpg" alt="">
@@ -338,7 +339,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group col-12">
-                                            <label for="títuloQuadrinho">Duração(em dias)</label>
+                                            <label for="títuloQuadrinho" style="letter-spacing: 0px;">Duração(em dias)</label>
                                             <span type="button" style="float: right"
                                                 class="bg-dark px-2 text-light mr-1" data-toggle="tooltip"
                                                 data-placement="bottom"
@@ -364,7 +365,7 @@
                     <div class="row pt-4">
                         <div class="col-12 col-md-6">
                             <div class="form-group col-12">
-                                <label for="títuloQuadrinho" style="font-size: 19px;"> Valor Inicial(R$)</label>
+                                <label for="títuloQuadrinho" style="font-size: 19px;letter-spacing: 0px;"> Valor Inicial(R$)</label>
                                 <span type="button" style="float: right" class="bg-dark px-2 text-light mr-1"
                                     data-toggle="tooltip" data-placement="bottom"
                                     title="Insira em reais o valor inicial deste item...">
@@ -381,8 +382,8 @@
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="form-group col-12">
-                            <label for="títuloQuadrinho" style="font-size: 19px;"> Lance Padrão(R$)</label>
-                            <span type="button" style="float: right" class="bg-dark px-2 text-light mr-1"
+                            <label for="títuloQuadrinho" style="font-size: 19px;letter-spacing: 0px;"> Lance Padrão(R$)</label>
+                            <span type="button" style="float: right" class="bg-dark px-2 text-light"
                                 data-toggle="tooltip" data-placement="bottom"
                                 title="Insira o padrão de lance para este item (Por exemplo: se você esolher 5, os usuários so irão dar lances de 5 reais!!)...">
                                 ?

@@ -36,7 +36,6 @@
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/login.css">
-    <link rel="stylesheet" href="css/padraoBotao.css">
     <link rel="stylesheet" href="icon/open-iconic/font/css/open-iconic-bootstrap.min.css">
 </head>
 
@@ -53,9 +52,17 @@
                 <img class="img-fluid" src="img/logo_leilao_de_quadrinhos.png" alt="">
             </a>
             <h2 class="text-center">Entre com seu <b>EMAIL</b> e <b>SENHA</b> para fazer o <b>LOGIN</b></h2>
+          <div class="row pb-3">
+              <div class="col-12">
+                  <div class="caixa-login-incorrect text-center d-none" id="caixa-login-incorrect">
+                    <dl class="row pt-0 text-danger pt-3">
+                        <dt class="col-auto"> Ops... Senha ou email incorretos, verifique seus dados e tente novamente!!
+                  </div>
+              </div>
+          </div>
         </header>
 
-        <form action="" id="formLogin" method="POST">
+        <form  id="formLogin" method="POST">
             <div class="form-group" id="caixaNomeUsuario">
                 <div class="input-group">
                     <div class="input-group-prepend" onclick="(function(){document.getElementById('email').focus()})()" >

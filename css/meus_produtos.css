@@ -13,7 +13,9 @@
 .td-ativar {
     width: 10%;
 }
-
+th{
+    font-size: 18px;
+}
 .td-status {
     width: 10%;
 }
