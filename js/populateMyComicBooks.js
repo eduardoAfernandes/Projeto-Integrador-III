@@ -17,29 +17,31 @@ function loadDados() {
         return response
     })
     .done(function (response) {
-        console.log(response.data)
-        for(i=0;i<=response.data.length;i++ ){
-            console.log('ID do Produto: '+response.data[i].productID)
-            console.log('Numero de Paginas '+response.data[i].pagesNumber)
-            console.log('Peso '+response.data[i].weight)
-            console.log('Editora: '+ response.data[i].publisher)
-            console.log('Titulo: '+ response.data[i].title)
-            console.log('Status: '+ response.data[i].productStatus.status)
-            console.log('Formato: '+ response.data[i].comicFormat)
-            console.log('--------------------------------------')
-                $("#tabela").append("<tr>"+"<td>"+"<img class='img-fluid cp-quadrinho' style='height: 120px;' src="+response.data[i].coverImage+"</td>"+
-            "<td><h5>"+response.data[i].title+"</h5></td>"+"<td>"+response.data[i].productStatus.status+"</td>"
-            +"<td>"+"<img "+"data-toggle='modal' data-target='#modalDadosQuadrinho' "
-            +"src='img/edit.png'"+"</td>"
-            +"<td>"+"<img src='img/auction.png' data-toggle='modal' data-target='#modalLeilao'"+""+"</td>"+"</tr>");
+        $('#divCarregando').fadeOut('slow');
+        localStorage.setItem('find-products-by-user',JSON.stringify(response));
+            for(i=0;i<=response.data.length;i++ ){
+                console.log('ID do Produto: '+response.data[i].productID)
+                console.log('Numero de Paginas '+response.data[i].pagesNumber)
+                console.log('Peso '+response.data[i].weight)
+                console.log('Editora: '+ response.data[i].publisher)
+                console.log('Titulo: '+ response.data[i].title)
+                console.log('Status: '+ response.data[i].productStatus.status)
+                console.log('Formato: '+ response.data[i].comicFormat)
+                console.log('--------------------------------------')
+                    $("#tabela").append("<tr>"+"<td>"+"<img class='img-fluid cp-quadrinho' style='height: 120px;' src="+response.data[i].coverImage+"</td>"+
+                "<td><h5>"+response.data[i].title+"</h5></td>"+"<td>"+response.data[i].productStatus.status+"<input type='hidden'  value='"+response.data[i].productID+"'>"+"</td>"
+                +"<td>"+"<img class='btnModalProduto'"+"data-toggle='modal' data-id='"+ response.data[i].productID +"' data-target='#modalDadosQuadrinho' "
+                +"src='img/edit.png'"+"</td>"
+                +"<td>"+"<img src='img/auction.png' data-toggle='modal' data-target='#modalLeilao'"+""+"</td>"+"</tr>");
 
-        }
-
+            }
+          return response 
     })
-    .fail(function (response) {
-        document.getElementById('tabelaVazia').classList.replace('d-none','d-block');
-    });
+
+  
+  
 }
 
 loadDados();
+
 

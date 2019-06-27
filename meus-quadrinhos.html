@@ -50,6 +50,23 @@
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         })
+        
+        $(document).on("click", ".btnModalProduto", function () {
+            var myProductID = $(this).data('id');
+            var product = JSON.parse(localStorage.getItem('find-products-by-user')).data.filter((product) =>{
+                 return product.productID === myProductID; 
+            } )[0]
+            $(".modal-body #títuloQuadrinho").val(product.title);
+            $(".modal-body #editora").val(product.publisher);
+            $(".modal-body #categoria").val(product.comicFormat);
+            $(".modal-body #numeroPags").val(product.pagesNumber);
+            $(".modal-body #pesoQuadrinho").val(product.weight);
+        });
+        $( "#tabela" ).ready(function() {
+            $('#tabelaVazia').hide()
+
+});
+      
     </script>
     <script src="js/populateMyComicBooks.js"></script>
 
@@ -102,7 +119,18 @@
                     <tbody id="tabela"></tbody>
                     </tbody>
                 </table>
-                <div id="tabelaVazia" class="row col-12 d-none">
+            </div>
+                <div id="divCarregando" class="progresso"> 
+                    <div class="row ">
+                            <div class="col-12 text-center">
+                                <h4>Carregando quadrinhos...</h5>
+                                </div>
+                        <div class="col-12 text-center">
+                            <img src="img/Spinner-1s-200px.gif" alt="" srcset="">
+                        </div>
+                    </div>
+                </div>
+                <div id="tabelaVazia" class="row col-12">
                     <div class="col-6">
                         <h5 class="text-center py-3">
                             Você ainda não tem quadrinhos cadastrados em nosso site!!
@@ -110,10 +138,11 @@
                     </div>
 
                     <div class="col-6">
-                            <a href="cadastrar-produto.html"><button class="btn btn-secondary btn-barra my-3 ">Cadastrar
-                                    quadrinho</button>
-                            </a>
-                        </div>
+                        <a href="cadastrar-produto.html"><button class="btn btn-secondary btn-barra my-3 ">Cadastrar
+                                quadrinho</button>
+                        </a>
+                    </div>
+                    <input type="hidden">
                 </div>
             </div>
         </div>
@@ -168,7 +197,7 @@
                                                     onblur="verifyInput(this.id)">
                                                     <option value="editora" selected>Editora...</option>
                                                     <option value="Marvel">Marvel</option>
-                                                    <option value="Dc">DC</option>
+                                                    <option value="DC">DC</option>
                                                     <option value="Outras">Outras</option>
 
 
@@ -195,7 +224,7 @@
                                     <select class="custom-select " id="categoria" onblur="verifyInput(this.id)">
                                         <option value="categoria" selected>Categoria...</option>
                                         <option value="TPB">TPB</option>
-                                        <option value="Mensal">Mensal</option>
+                                        <option value="MENSAL">Mensal</option>
                                     </select>
                                     <div class="invalid-feedback  text-center d-none col-12 py-2 text-danger"
                                         id="aviso-erro-categoria">
@@ -284,11 +313,11 @@
     <!-- Modal ativar leilao -->
     <div class="modal fade" id="modalLeilao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document" ">
+        <div class="modal-dialog modal-dialog-centered" role="document">
             <div class=" modal-content">
             <div class="modal-header bg-dark text-light">
                 <h4 class="modal-title" id="exampleModalLabel">Criar leilão</h4>
-                <button type="button" class="close" data-dismiss="modal"">
+                <button type="button" class="close" data-dismiss="modal">
                         <span aria-hidden=" true" class="text-light pt-3">X</span>
                 </button>
             </div>

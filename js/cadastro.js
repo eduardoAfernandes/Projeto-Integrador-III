@@ -304,6 +304,7 @@ function apiCidades() {
         })
         .then(function (response) {
             let cidades = response;
+            console.log(response)
             cidades.forEach(function (item) {
                 option = new Option(item.nome, item.nome);
                 document.getElementById('selectCidade').options[document.getElementById('selectCidade').length] = option;

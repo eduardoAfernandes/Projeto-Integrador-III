@@ -118,9 +118,11 @@ function populateInputs(){
 
     $.ajax(settings)
     .done(function (response) {
-        return response.data
+        return response.data;
     })
     .done(function (response) {
+        console.log(response.data);
+
         document.getElementById('nome').value = response.data.name;
         document.getElementById('selectEstado').value = response.data.state;
         option = new Option(response.data.city, response.data.city);

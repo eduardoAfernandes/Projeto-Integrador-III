@@ -60,21 +60,56 @@
             </div>
             <div class="row">
                 <div class="col-12 pt-2">
+              
                     <form action="" class="pt-3">
                         <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-prepend" onclick="(function(){document.getElementById('nome').focus()})()" >
-                                    <div class="input-group-text">
-                                        <span class="oi oi-person icon"></span>
+                                <div class="input-group">
+                                        <div class="input-group-prepend" onclick="(function(){document.getElementById('nome').focus()})()" >
+                                            <div class="input-group-text">
+                                                <span class="oi oi-person icon"></span>
+                                            </div>
+                                        </div>
+                                        <input type="text" name="nome" maxlength="50" id="nome" class="form-control" onblur="validaCampo(this.id)">
+                                        <div class="invalid-feedback  text-left d-none col-12 py-2 text-danger"
+                                        id="aviso-erro-nome">
+                                        Por favor, informe seu nome!!
                                     </div>
-                                </div>
-                                <input type="text" name="nome" maxlength="50" id="nome" class="form-control" onblur="validaCampo(this.id)">
-                                <div class="invalid-feedback  text-left d-none col-12 py-2 text-danger"
-                                id="aviso-erro-nome">
-                                Por favor, informe seu nome!!
-                            </div>
-                            </div>
+                                    </div>
                         </div>
+                        <div class="form-row">                        
+                                <div class="col-12 col-md-6  mt-3 mt-md-0 ">
+                                        <div class="input-group">
+                                                <div class="input-group-prepend" onclick="(function(){document.getElementById('email').focus()})()">
+                                                    <div class="input-group-text">
+                                                        <span class="oi oi-account-login icon"></span>
+                                                    </div>
+                                                </div>
+                                                <input type="text" name="email" maxlength="50" id="email" class="form-control" onblur="validaCampo('email')"
+                                                    placeholder="Email">
+                                                <div class="invalid-feedback  text-center d-none col-12 pt-2 text-danger" id="aviso-erro-email">
+                                                    Por favor, informe um email válido!!
+                                                </div>
+                                            </div>
+                                </div>
+                                <div class="col-12 col-md-6  mt-3 mt-md-0 ">
+                                        <div class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            <span class="oi oi-calendar icon"></span>
+                                                        </div>
+                                                    </div>
+                                                    <input type="date" name="dtNasc" id="dtNasc" class="form-control" onblur="validaCampo('dtNasc')">
+                                                    <div class="invalid-feedback  text-center d-none col-12 py-2 text-danger" id="aviso-erro-dtNasc">
+                                                        Por favor, informe sua data de nascimento!!
+                                                    </div>
+                                
+                                
+                                                </div>
+                                            </div>
+                                </div>
+                
+                            </div>
                         <!-- <div class="form-group">
                             <div class="input-group">
                                 <div class="input-group-prepend" onclick="(function(){document.getElementById('telefone').focus()})()">
@@ -97,7 +132,7 @@
                             </div>
                         </div> -->
                         <div class="form-row">
-                                <div class="col-5 text-left">
+                                <div class="col-6 text-left">
                                 
                                         <div class="input-group">
                                                 <div class="input-group-prepend" onclick="(function(){document.getElementById('selectEstado').focus()})()">
@@ -109,7 +144,6 @@
                                                     onblur="validaCampo(this.id)" onchange="apiCidades()"">
                                                     <option value="estado" selected>Estado...</option>
                                                     <option value="Acre">Acre</option>
-                                                    <option value="Alagoas">Alagoas</option>
                                                     <option value="Amapá">Amapá</option>
                                                     <option value="Amazonas">Amazonas</option>
                                                     <option value="Bahia">Bahia</option>
@@ -123,6 +157,7 @@
                                                     <option value="Minas Gerais">Minas Gerais</option>
                                                     <option value="Pará">Pará</option>
                                                     <option value="Paraíba">Paraíba</option>
+                                                    <option value="Alagoas">Alagoas</option>
                                                     <option value="Paraná">Paraná</option>
                                                     <option value="Pernambuco">Pernambuco</option>
                                                     <option value="Piauí">Piauí</option>
@@ -143,7 +178,7 @@
                         
                                             </div>
                                     </div>
-                            <div class="col-7 pb-3 ">
+                            <div class="col-6 pb-3 ">
                                 <div class="input-group">
                                     <div class="input-group-prepend" onclick="(function(){document.getElementById('cidade').focus()})()">
                                         <div class="input-group-text">
