@@ -45,6 +45,7 @@
     <script src="js/jquery-3.4.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="js/jquery.quicksearch.js"></script>
 
     <script>
         $(function () {
@@ -62,8 +63,18 @@
             $(".modal-body #numeroPags").val(product.pagesNumber);
             $(".modal-body #pesoQuadrinho").val(product.weight);
         });
-        $( "#tabela" ).ready(function() {
-            $('#tabelaVazia').hide()
+        $( document ).ready(function() {
+            $('#tableData').hide();
+
+            $(document).ready(function(){
+  $("#src-prod").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#tabela tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+            
 
 });
       
@@ -76,8 +87,18 @@
     <button onclick="loadDados()">teste</button>
 
     <div id="header"></div>
-    <section class="container-fluid pt-5">
-        <div class="container bg-light">
+    <section class="container-fluid pt-5" style="height: auto;">
+        <div id="divCarregando" class="progresso py-4"> 
+            <div class="row ">
+                    <div class="col-12 text-center">
+                        <h4>Carregando quadrinhos...</h5>
+                        </div>
+                <div class="col-12 text-center">
+                    <img src="img/Spinner-1s-200px.gif" alt="" srcset="">
+                </div>
+            </div>
+        </div>
+        <div class="container bg-light"  id="tableData">
             <div class="row mt-5 bg-dark py-auto ">
                 <div class="col-6 col-md-3  py-4 text-left ">
                     <h4 class="text-light">MEUS QUADRINHOS</h4>
@@ -86,14 +107,14 @@
                     <form action="">
                         <div class="form-group">
                             <div class="input-group">
-                                <input type="search" name="src-prod" id="" class="form-control"
+                                <input type="search" name="src-prod" id="src-prod" class="form-control"
                                     placeholder="Nome do quadrinho..." aria-label="Search">
-                                <div class="input-group-prepend">
+                                <!-- <div class="input-group-prepend">
                                     <div class="input-group-text">
                                         <span class="oi oi-magnifying-glass icon"></span>
                                     </div>
 
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </form>
@@ -105,7 +126,7 @@
                 </div>
             </div>
             <div class="row">
-                <table class="table table-hover  table-striped" style="width: 100%">
+                <table class="table table-hover  table-striped"  id ="tabelaDados" style="width: 100%">
                     <thead class="bg-dark text-light">
                         <tr class="text-center">
                             <th scope="col" class="td-img">Capa</th>
@@ -116,34 +137,12 @@
 
                         </tr>
                     </thead>
-                    <tbody id="tabela"></tbody>
+                    <tbody  id="tabela"></tbody>
                     </tbody>
                 </table>
             </div>
-                <div id="divCarregando" class="progresso"> 
-                    <div class="row ">
-                            <div class="col-12 text-center">
-                                <h4>Carregando quadrinhos...</h5>
-                                </div>
-                        <div class="col-12 text-center">
-                            <img src="img/Spinner-1s-200px.gif" alt="" srcset="">
-                        </div>
-                    </div>
-                </div>
-                <div id="tabelaVazia" class="row col-12">
-                    <div class="col-6">
-                        <h5 class="text-center py-3">
-                            Você ainda não tem quadrinhos cadastrados em nosso site!!
-                        </h5>
-                    </div>
-
-                    <div class="col-6">
-                        <a href="cadastrar-produto.html"><button class="btn btn-secondary btn-barra my-3 ">Cadastrar
-                                quadrinho</button>
-                        </a>
-                    </div>
-                    <input type="hidden">
-                </div>
+              
+              
             </div>
         </div>
 

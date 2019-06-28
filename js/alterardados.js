@@ -124,6 +124,8 @@ function populateInputs(){
         console.log(response.data);
 
         document.getElementById('nome').value = response.data.name;
+        document.getElementById('email').value = response.data.email;
+
         document.getElementById('selectEstado').value = response.data.state;
         option = new Option(response.data.city, response.data.city);
         document.getElementById('selectCidade').options[document.getElementById('selectCidade').length] = option;

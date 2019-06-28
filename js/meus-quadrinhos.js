@@ -134,7 +134,7 @@ function validForm() {
 }
 
 function validTitle(palavra) {
-    const filter_nome = /^([a-zA-Zà-úÀ-Ú]|\s+)+$/;
+    const filter_nome = /[a-zA-Z]{1,}\w{0,}$/;
 
     if (!filter_nome.test(palavra)) {
         return false;

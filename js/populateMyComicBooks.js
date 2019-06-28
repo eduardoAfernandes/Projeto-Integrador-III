@@ -19,6 +19,8 @@ function loadDados() {
     .done(function (response) {
         $('#divCarregando').fadeOut('slow');
         localStorage.setItem('find-products-by-user',JSON.stringify(response));
+        $('#tableData').show()
+
             for(i=0;i<=response.data.length;i++ ){
                 console.log('ID do Produto: '+response.data[i].productID)
                 console.log('Numero de Paginas '+response.data[i].pagesNumber)
@@ -35,7 +37,6 @@ function loadDados() {
                 +"<td>"+"<img src='img/auction.png' data-toggle='modal' data-target='#modalLeilao'"+""+"</td>"+"</tr>");
 
             }
-          return response 
     })
 
   
