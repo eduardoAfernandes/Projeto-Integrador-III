@@ -1,18 +1,19 @@
 // Tooltips
 
 var tooltips = {
-    "titulo": "O titulo representa o nome do quadrinho", 
-    "categoria": "A categoria do quadrinho define se ele é um TPB, ou seja, uma coleção ou se é um quadrinho de edição mensal. Passe o mouse sobre as opções para mais informações", 
-    "categoriaTPB": "TPB é uma coleção de quadrinhos reunidas em uma só encadernação. É uma historia completa", 
-    "categoriaMENSAL": "MENSAL quer dizer que esse quadrinho faz parte de uma publicação mensal, ou seja, tem um segmento de história", 
-    "pesoQuadrinho": "Neste campo você deve listar quantos GRAMAS pesam o seu quadrinho. Digite somente o numero sem informar a unidade", 
-    "editora": "Neste campo você deve selecionar qual a editora do seu quadrinho. Se não for Marvel ou DC, selecione OUTRAS", 
+    "titulo": "O titulo representa o nome do quadrinho",
+    "categoria": "A categoria do quadrinho define se ele é um TPB, ou seja, uma coleção ou se é um quadrinho de edição mensal. Passe o mouse sobre as opções para mais informações",
+    "categoriaTPB": "TPB é uma coleção de quadrinhos reunidas em uma só encadernação. É uma historia completa",
+    "categoriaMENSAL": "MENSAL quer dizer que esse quadrinho faz parte de uma publicação mensal, ou seja, tem um segmento de história",
+    "pesoQuadrinho": "Neste campo você deve listar quantos GRAMAS pesam o seu quadrinho. Digite somente o numero sem informar a unidade",
+    "editora": "Neste campo você deve selecionar qual a editora do seu quadrinho. Se não for Marvel ou DC, selecione OUTRAS",
     "numeroPaginas": "Aqui você deve listar o numero de páginas do seu quadrinho. Digite somente numeros",
-    "tipoCapa": " Neste campo você entre o tipo de campa, entre HARD e SOFT, ou seja, capa DURA OU MOLE", 
-    "tipoCapaMole": "SOFT é o tipo de capa MOLE", 
-    "tipoCapaDura": "HARD é o tipo de capa DURA"};        
+    "tipoCapa": " Neste campo você entre o tipo de campa, entre HARD e SOFT, ou seja, capa DURA OU MOLE",
+    "tipoCapaMole": "SOFT é o tipo de capa MOLE",
+    "tipoCapaDura": "HARD é o tipo de capa DURA"
+};
 
-function carregarTooltip(){
+function carregarTooltip() {
     document.getElementById('tpTitulo').title = tooltips.titulo;
     document.getElementById('tpEditora').title = tooltips.editora;
     document.getElementById('tpCategoria').title = tooltips.categoria;
@@ -110,31 +111,115 @@ function verifyInput(id) {
     }
 }
 
+let validacaoTitulo2 = false;
+let validacaoEditora2 = false;
+let validacaoCategoria2 = false;
+let validacaoNrPagina2 = false;
+let validacaoPeso2 = false;
+let validacaoTipoCapa2 = false;
 
 function validForm() {
-    if (!validacaoTitulo) {
+    let titulo = document.getElementById('títuloQuadrinho').value;
+    let editora = document.getElementById('editora').value;
+    let categoria = document.getElementById('categoria').value;
+    let nrPagina = document.getElementById('numeroPags').value;
+    let peso = document.getElementById('pesoQuadrinho').value;
+    let tipoCapa = document.getElementById('tipoCapa').value;
+
+
+    var regexTitle = validTitle(titulo);
+    var regexPags = onlyNumber(nrPagina);
+    var regexPeso = onlyNumber(peso);
+    if (!regexTitle) {
+        document.getElementById('títuloQuadrinho').focus();
         document.getElementById('títuloQuadrinho').style.border = "3px solid red";
         document.getElementById('aviso-erro-titulo').classList.replace('d-none', 'd-block');
-    } else if (!validacaoEditora) {
+    } else if (editora == 'editora') {
+        document.getElementById('editora').focus();
         document.getElementById('editora').style.border = "3px solid red";
         document.getElementById('aviso-erro-editora').classList.replace('d-none', 'd-block');
-    } else if (!validacaoCategoria) {
+    } else if (categoria == 'categoria') {
+        document.getElementById('categoria').focus();
         document.getElementById('categoria').style.border = "3px solid red";
         document.getElementById('aviso-erro-categoria').classList.replace('d-none', 'd-block');
-    } else if (!validacaoNrPagina) {
+    } else if (nrPagina <= 0 || !regexPags) {
+        document.getElementById('numeroPags').focus();
         document.getElementById('numeroPags').style.border = "3px solid red";
         document.getElementById('aviso-erro-paginas').classList.replace('d-none', 'd-block');
-    } else if (!validacaoPeso) {
+    } else if (peso <= 0 || !regexPeso) {
+        document.getElementById('pesoQuadrinho').focus();
         document.getElementById('pesoQuadrinho').style.border = "3px solid red";
         document.getElementById('aviso-erro-peso').classList.replace('d-none', 'd-block');
-    } else if (!validacaoTipoCapa) {
+        document.getElementById('aviso-erro-peso').innerHTML = "Peso inválido!!"
+    } else if (tipoCapa == 'capa') {
         document.getElementById('tipoCapa').style.border = "3px solid red";
         document.getElementById('aviso-erro-capa').classList.replace('d-none', 'd-block');
+    } else {
+        if(window.confirm('Confirma a alteração de dados deste quadrinho?')){
+        atualizarDadosQuadrinho();  
+        }
     }
 }
 
+function atualizarDadosQuadrinho() {
+    let titulo = document.getElementById('títuloQuadrinho').value;
+    let editora = document.getElementById('editora').value;
+    let categoria = document.getElementById('categoria').value;
+    let nrPagina = document.getElementById('numeroPags').value;
+    let peso = document.getElementById('pesoQuadrinho').value;
+    // let tipoCapa = document.getElementById('tipoCapa').value;
+
+    let idStatusProduct = document.getElementById('idProductStatus').value;
+    let idProduct = document.getElementById('idProduct').value;
+
+    
+
+
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "http://localhost:8080/webserver_leilao_war_exploded/controller/update-product",
+        "method": "POST",
+        "headers": {
+            "content-type": "application/x-www-form-urlencoded",
+            "cache-control": "no-cache",
+        },
+        "data": {
+            "publishingCompany": editora,
+            "title": titulo,
+            "format": categoria,
+            "pagesNumber": nrPagina,
+            "weight": peso,
+            "statusID": idStatusProduct,
+            "productID": idProduct
+        },
+        "xhrFields": {
+            "withCredentials": true
+        }
+    }
+
+    $.ajax(settings)
+        .done(function (response) {
+            alertSuccess(response)
+        })
+        .fail(function (response) {
+            showResponse()
+        });
+}
+
+function showResponse() {
+    alert("Ocorreu um erro ao atualizar os dados deste quadrinho!!")
+}
+
+function alertSuccess(response) {
+    document.getElementById('btnFechaModalDadosQuadrinho').click();
+    alert("Quadrinho atualizado com sucesso!!")
+    window.location.reload();
+
+}
+
 function validTitle(palavra) {
-    const filter_nome = /[a-zA-Z]{1,}\w{0,}$/;
+    const filter_nome = /[a-zA-Zá-úà-ùÀ-Ù0-9]{1,}\w{0,}$/;
 
     if (!filter_nome.test(palavra)) {
         return false;
@@ -158,7 +243,7 @@ function onlyNumber(value) {
 
 
 
-// Validacoes no modal de ativar leilao
+// Funcoes do modal de ativar leilao
 var validacaoDataInput = false;
 var validacaoDuracaoLeilao = false;
 var validacaoValorInicial = false;
@@ -249,6 +334,75 @@ function validFormII() {
     } else if (!validacaoLancePadrao) {
         document.getElementById('lancePadrao').style.border = "3px solid red";
         document.getElementById('aviso-erro-lancePadrao').classList.replace('d-none', 'd-block');
+    } else {
+        if (window.confirm('Confirma a ativação deste leilão')) {
+            enviarDadosLeilao();
+        }
     }
 }
 
+function enviarDadosLeilao() {
+    var dataInput = document.getElementById('dt-inicio').value;
+    var duracaoLeilao = document.getElementById('duracao').value;
+    var valorInicial = document.getElementById('vlr-inicial').value;
+    var lancePadrao = document.getElementById('lancePadrao').value;
+    var idProduct = document.getElementById('idProduct').value;
+    var initialValueFormatted = GetFormattedValue(valorInicial);
+    var baseBidFormatted = GetFormattedValue(lancePadrao);
+
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "http://localhost:8080/webserver_leilao_war_exploded/controller/insert-new-auction",
+        "method": "POST",
+        "headers": {
+            "content-type": "application/x-www-form-urlencoded",
+            "cache-control": "no-cache",
+        },
+        "data": {
+            "productID": idProduct,
+            "duration": duracaoLeilao,
+            "initialDate": GetFormattedDate(),
+            "initialValue": initialValueFormatted,
+            "baseBid": baseBidFormatted
+        },
+        "xhrFields": {
+            "withCredentials": true
+        }
+    }
+
+    $.ajax(settings)
+        .done(function (response) {
+            alertSuccessAtivacao(response)
+        })
+        .fail(function (response) {
+            showResponseAtivacao()
+        });
+}
+
+function showResponseAtivacao() {
+    alert("Ocorreu um erro ao ativar o leilão!!")
+}
+
+function alertSuccessAtivacao(response) {
+    document.getElementById('btnFechaModalAtivaLeilao').click();
+    alert("Leilão cadastrado!!")
+
+}
+
+function GetFormattedDate() {
+    var dataInput = document.getElementById('dt-inicio').value;
+    var partes = dataInput.split("-");
+    let ano = partes[0];
+    let mes = partes[1];
+    let dia = partes[2];
+
+    let dateFormatted = dia + '/' + mes + '/' + ano;
+
+    return dateFormatted;
+
+}
+
+function GetFormattedValue(valor) {
+    return valor.replace(',', '.');
+}

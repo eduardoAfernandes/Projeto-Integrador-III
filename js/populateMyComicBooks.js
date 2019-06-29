@@ -22,19 +22,33 @@ function loadDados() {
         $('#tableData').show()
 
             for(i=0;i<=response.data.length;i++ ){
-                console.log('ID do Produto: '+response.data[i].productID)
-                console.log('Numero de Paginas '+response.data[i].pagesNumber)
-                console.log('Peso '+response.data[i].weight)
-                console.log('Editora: '+ response.data[i].publisher)
-                console.log('Titulo: '+ response.data[i].title)
-                console.log('Status: '+ response.data[i].productStatus.status)
-                console.log('Formato: '+ response.data[i].comicFormat)
-                console.log('--------------------------------------')
-                    $("#tabela").append("<tr>"+"<td>"+"<img class='img-fluid cp-quadrinho' style='height: 120px;' src="+response.data[i].coverImage+"</td>"+
-                "<td><h5>"+response.data[i].title+"</h5></td>"+"<td>"+response.data[i].productStatus.status+"<input type='hidden'  value='"+response.data[i].productID+"'>"+"</td>"
-                +"<td>"+"<img class='btnModalProduto'"+"data-toggle='modal' data-id='"+ response.data[i].productID +"' data-target='#modalDadosQuadrinho' "
-                +"src='img/edit.png'"+"</td>"
-                +"<td>"+"<img src='img/auction.png' data-toggle='modal' data-target='#modalLeilao'"+""+"</td>"+"</tr>");
+                // console.log('ID do Produto: '+response.data[i].productID)
+                // console.log('Numero de Paginas '+response.data[i].pagesNumber)
+                // console.log('Peso '+response.data[i].weight)
+                // console.log('Editora: '+ response.data[i].publisher)
+                // console.log('Titulo: '+ response.data[i].title)
+                // console.log('Status: '+ response.data[i].productStatus.status)
+                // console.log('Formato: '+ response.data[i].comicFormat)
+                // console.log('--------------------------------------')
+                if(response.data[i].productStatus.productStatusID == '3'){
+                    console.log(response.data[i].productStatus.productStatusID)
+                       $("#tabela").append("<tr>"+"<td>"+"<img class='img-fluid cp-quadrinho' style='height: 120px;' src="+response.data[i].coverImage+"</td>"+
+                    "<td><h5>"+response.data[i].title+"</h5></td>"+"<td>"+response.data[i].productStatus.status+"<input type='hidden'  value='"+response.data[i].productID+"'>"+"</td>"
+                    +"<td>"+"<img class='btnModalProduto'"+"data-toggle='modal' data-id='"+ response.data[i].productID +"' data-target='#modalDadosQuadrinho' "
+                    +"src='img/edit.png'"+"<input type='hidden'id='productID'  value='"+response.data[i].productID+"'>"+"</td>"+
+                    "<td>"+'Em implementação'+"</tr>");
+                    
+                }else{
+                       $("#tabela").append("<tr>"+"<td>"+"<img class='img-fluid cp-quadrinho' style='height: 120px;' src="+response.data[i].coverImage+"</td>"+
+                    "<td><h5>"+response.data[i].title+"</h5></td>"+"<td>"+response.data[i].productStatus.status+"<input type='hidden'  value='"+response.data[i].productID+"'>"+"</td>"
+                    +"<td>"+"<img class='btnModalProduto'"+"data-toggle='modal' data-id='"+ response.data[i].productID +"' data-target='#modalDadosQuadrinho' "
+                    +"src='img/edit.png'"+"<input type='hidden'id='productID'  value='"+response.data[i].productID+"'>"+"</td>"+
+                    "<td>"+"<img class='btnModalAtivar'"+"data-toggle='modal' data-id='"+ response.data[i].productID +"' data-target='#modalLeilao' "
+                    +"src='img/auction.png'"+
+                    "</tr>");
+                }
+
+                 
 
             }
     })
