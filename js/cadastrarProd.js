@@ -131,10 +131,14 @@ function validForm() {
     } else if (!validacaoTipoCapa) {
         document.getElementById('tipoCapa').style.border = "3px solid red";
         document.getElementById('aviso-erro-capa').classList.replace('d-none', 'd-block');
-    }else if(cpQuadrinho == ''){
-        document.getElementById('aviso-erro-capaQuadrinho').classList.replace('d-none', 'd-block');
-        document.getElementById('previewQuadrinho').style.border = "5px solid red";
+    }else{
+        enviarDadosQuadrinho();
     }
+    
+    // else if(cpQuadrinho == ''){
+    //     document.getElementById('aviso-erro-capaQuadrinho').classList.replace('d-none', 'd-block');
+    //     document.getElementById('previewQuadrinho').style.border = "5px solid red";
+    // }
 
 }
 
@@ -143,26 +147,26 @@ function showAlertify() {
 
 }
 
-function readURL(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function(e) {
-            $('#previewQuadrinho')
-                .attr('src', e.target.result)
-                .width(250)
-                .height(250);
-        };
-        reader.readAsDataURL(input.files[0]);
-    }
-}
+// function readURL(input) {
+//     if (input.files && input.files[0]) {
+//         var reader = new FileReader();
+//         reader.onload = function(e) {
+//             $('#previewQuadrinho')
+//                 .attr('src', e.target.result)
+//                 .width(250)
+//                 .height(250);
+//         };
+//         reader.readAsDataURL(input.files[0]);
+//     }
+// }
 
 
-function clickInputFile() {
-    document.getElementById('cpQuadrinho').click();
-}
+// function clickInputFile() {
+//     document.getElementById('cpQuadrinho').click();
+// }
 
 function validTitle(palavra) {
-    const filter_nome = /^([a-zA-Zà-úÀ-Ú]|\s+)+$/;
+    const filter_nome = /[a-zA-Zá-úà-ùÀ-Ù0-9]{1,}\w{0,}$/;
 
     if (!filter_nome.test(palavra)) {
         return false;
@@ -181,4 +185,48 @@ function onlyNumber(value) {
     if (filter_number.test(value)) {
         return true;
     }
+}
+
+function enviarDadosQuadrinho() {
+    let titulo = document.getElementById('títuloQuadrinho').value;
+    let editora = document.getElementById('editora').value;
+    let categoria = document.getElementById('categoria').value;
+    let nrPagina = document.getElementById('numeroPags').value;
+    let peso = document.getElementById('pesoQuadrinho').value;
+    let tipoCapa = document.getElementById('tipoCapa').value;
+    // let tipoCapa = document.getElementById('tipoCapa').value;
+
+    
+
+        console.log(titulo + ' '+editora+' '+categoria+' '+ nrPagina + ' '+' '+peso )
+
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "http://localhost:8080/webserver_leilao_war_exploded/controller/insert-product",
+        "method": "POST",
+        "headers": {
+            "content-type": "application/x-www-form-urlencoded",
+            "cache-control": "no-cache",
+        },
+        "data": {
+            "publishingCompany": editora,
+            "title": titulo,
+            "format": categoria,
+            "pagesNumber": nrPagina,
+            "weight": peso,
+        },
+        "xhrFields": {
+            "withCredentials": true
+        }
+    }
+
+    $.ajax(settings)
+        .done(function (response) {
+            alert('Quadrinho cadastrado com sucesso!');
+            window.location.reload();
+        })
+        .fail(function (response) {
+            alert('Ocorreu um erro ao cadastrar o quadrinho!')
+        });
 }
