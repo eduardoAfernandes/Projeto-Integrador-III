@@ -155,8 +155,8 @@ function validForm() {
         document.getElementById('tipoCapa').style.border = "3px solid red";
         document.getElementById('aviso-erro-capa').classList.replace('d-none', 'd-block');
     } else {
-        if(window.confirm('Confirma a alteração de dados deste quadrinho?')){
-        atualizarDadosQuadrinho();  
+        if (window.confirm('Confirma a alteração de dados deste quadrinho?')) {
+            atualizarDadosQuadrinho();
         }
     }
 }
@@ -172,7 +172,7 @@ function atualizarDadosQuadrinho() {
     let idStatusProduct = document.getElementById('idProductStatus').value;
     let idProduct = document.getElementById('idProduct').value;
 
-    
+
 
 
     var settings = {
@@ -406,3 +406,38 @@ function GetFormattedDate() {
 function GetFormattedValue(valor) {
     return valor.replace(',', '.');
 }
+
+function ChangeStatusToActive() {
+    var idProduct = document.getElementById('idProduct').value;
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "http://localhost:8080/webserver_leilao_war_exploded/controller/change-product-status",
+        "method": "POST",
+        "headers": {
+            "content-type": "application/x-www-form-urlencoded",
+            "cache-control": "no-cache",
+        },
+        "data": {
+            "productID": idProduct,
+            "productStateID": "1"
+        },
+        "xhrFields": {
+            "withCredentials": true
+        }
+    }
+
+    if(window.confirm("Deseja alterar o status deste produto para Ativo?")){
+        $.ajax(settings)
+        .done(function (response) {
+            alert("Status alterado com sucesso!!")
+            window.location.reload();
+        })
+        .fail(function (response) {
+            alert('Ocorreu um erro ao alterar o status deste produto!!')
+        });
+    }
+
+
+
+    }
