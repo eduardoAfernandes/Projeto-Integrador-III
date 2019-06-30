@@ -32,22 +32,21 @@ function loadDados() {
                 // console.log('--------------------------------------')
                 if (response.data[i].productStatus.productStatusID == '3') {
                     $("#tabela").append("<tr>" + 
-                    "<td>" + " Imagem "+ "</td>" +
-                        "<td><h5>" + response.data[i].title + "</h5></td>" + "<td>" + response.data[i].productStatus.status + "<input type='hidden'  value='" + response.data[i].productID + "'>" + "</td>" +
-                        "<td>" + "<img class='btnModalProduto'" + "data-toggle='modal' data-id='" + response.data[i].productID + "' data-target='#modalDadosQuadrinho' " +
-                        "src='img/edit.png'" + "<input type='hidden'id='productID'  value='" + response.data[i].productID + "'>" + "</td>" +
-                        "<td>" + 'Em implementação' + "</tr>");
+                    "<td>" + "Imagem" + "</td>" +
+                    "<td><h5>" + response.data[i].title + "</h5></td>" + "<td>" + response.data[i].productStatus.status + "<input type='hidden'  value='" + response.data[i].productID + "'>" + "</td>" +
+                    "<td>" + "<img class='btnModalProduto' src='img/edit.png' onclick='mostraAvisoProdutoEmLeilao()'" +"</td>" +
+                    "<td>" + "<input type='hidden'id='productID'  value='" + response.data[i].productID + "'>" +"<img class='btnModalGerenciarLeilao'"  + "data-toggle='modal' data-id='" + response.data[i].productID + "' data-target='#modalGerenciaLeilao' " +
+                    "src='img/auction.png'" +"<input type='hidden'id='productID'  value='" + response.data[i].productID + "'>" +
+                    "</tr>");
                 } else if (response.data[i].productStatus.productStatusID == 4) {
                     $("#tabela").append("<tr>" + 
                         "<td>" + "Imagem" + "</td>" +
-                        "<td><h5>" + response.data[i].title + "</h5></td>" + "<td>" + response.data[i].productStatus.status + "<input type='hidden'  value='" + response.data[i].productID + "'>" + "</td>" +
-                        "<td>" + "<img class='btnModalProduto'" + "data-toggle='modal' data-id='" + response.data[i].productID + "' data-target='#modalDadosQuadrinho' " +
-                        "src='img/edit.png'" + "<input type='hidden'id='productID'  value='" + response.data[i].productID + "'>" + "</td>" +
+                        "<td><h5>" + response.data[i].title + "</h5></td>" + "<td>" + response.data[i].productStatus.status +"<td>"+"<p class='text-danger'> Leiloado </p>"+ "</td>"+ "</td>" +
                         "<td>" + "<p class='text-success'>Produto Leiloado</p>" + "</tr>");
                 }else if (response.data[i].productStatus.productStatusID == 2) {
                     $("#tabela").append("<tr>" + 
                     "<td>" + "Imagem" + "</td>" +
-                    "<td><h5>" + response.data[i].title + "</h5></td>" + "<td>" + response.data[i].productStatus.status + "<input type='hidden'  value='" + response.data[i].productID + "'>" + "</td>" +
+                    "<td><h5>" + response.data[i].title + "</h5></td>" + "<td><p class='text-danger'>" + response.data[i].productStatus.status + "</p><input type='hidden'  value='" + response.data[i].productID + "'>" + "</td>" +
                     "<td>" + "<img class='btnModalProduto'" + "data-toggle='modal' data-id='" + response.data[i].productID + "' data-target='#modalDadosQuadrinho' " +
                     "src='img/edit.png'" + "<input type='hidden'id='productID'  value='" + response.data[i].productID + "'>" + "</td>" +
                     "<td>" + "<img class='btnModalAtivar'"  + "data-toggle='modal' data-id='" + response.data[i].productID + "' data-target='#modalAviso' " +
@@ -61,7 +60,7 @@ function loadDados() {
                         "<td><h5>" + response.data[i].title + "</h5></td>" + "<td>" + response.data[i].productStatus.status + "<input type='hidden'  value='" + response.data[i].productID + "'>" + "</td>" +
                         "<td>" + "<img class='btnModalProduto'" + "data-toggle='modal' data-id='" + response.data[i].productID + "' data-target='#modalDadosQuadrinho' " +
                         "src='img/edit.png'" + "<input type='hidden'id='productID'  value='" + response.data[i].productID + "'>" + "</td>" +
-                        "<td>" + "<img class='btnModalChangeToActivate'" + "data-toggle='modal' data-id='" + response.data[i].productID + "' data-target='#modalLeilao' " +
+                        "<td>" + "<img class='btnModalChangeToActivate'"  + "data-toggle='modal' data-id='" + response.data[i].productID + "' data-target='#modalLeilao' " +
                         "src='img/auction.png'" +
                         "</tr>");
                 }

@@ -373,7 +373,8 @@ function enviarDadosLeilao() {
 
     $.ajax(settings)
         .done(function (response) {
-            alertSuccessAtivacao(response)
+            alertSuccessAtivacao(response);
+            window.location.reload()
         })
         .fail(function (response) {
             showResponseAtivacao()
@@ -387,7 +388,7 @@ function showResponseAtivacao() {
 function alertSuccessAtivacao(response) {
     document.getElementById('btnFechaModalAtivaLeilao').click();
     alert("Leilão cadastrado!!")
-
+    window.location.reload();
 }
 
 function GetFormattedDate() {
@@ -427,17 +428,53 @@ function ChangeStatusToActive() {
         }
     }
 
-    if(window.confirm("Deseja alterar o status deste produto para Ativo?")){
+    if (window.confirm("Deseja alterar o status deste produto para Ativo?")) {
         $.ajax(settings)
-        .done(function (response) {
-            alert("Status alterado com sucesso!!")
-            window.location.reload();
-        })
-        .fail(function (response) {
-            alert('Ocorreu um erro ao alterar o status deste produto!!')
-        });
+            .done(function (response) {
+                alert("Status alterado com sucesso!!")
+                window.location.reload();
+            })
+            .fail(function (response) {
+                alert('Ocorreu um erro ao alterar o status deste produto!!')
+            });
     }
 
 
 
+}
+
+function mostraFormEditarLeilao(){
+    document.getElementById('gerenciarLeilao').classList.replace('d-none','d-block');
+}
+
+function mostraAvisoProdutoEmLeilao(){
+    alert('Não é possível alterar dados de quadrinhos que estejam em leilão!!')
+}
+
+function cancelarLeilao(){
+    var idLeilao =document.getElementById('idLeilao').value;
+
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "http://localhost:8080/webserver_leilao_war_exploded/controller/delete-auction-by-id",
+            "method": "POST",
+            "headers": {
+              "Content-Type": "application/x-www-form-urlencoded",
+              "cache-control": "no-cache",
+            },
+            "data": {
+            "auctionID": idLeilao
+            }, 
+            "xhrFields": {
+                "withCredentials": true
+            }
+          }
+          if(window.confirm("Confirmar cancelamento deste leilão?")){
+
+          $.ajax(settings).done(function (response) {
+              alert("Leilão excluído com sucesso!")
+              window.location.reload()
+          });
     }
+}
