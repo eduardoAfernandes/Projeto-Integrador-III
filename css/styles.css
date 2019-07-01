@@ -1,0 +1,88 @@
+@font-face {
+  font-family: "LeilaoDeQuadrinhos";
+  src: url("//db.onlinewebfonts.com/t/fea8a931fd3f37ee4bc5e4c503ad6c9d.eot");
+  src: url("//db.onlinewebfonts.com/t/fea8a931fd3f37ee4bc5e4c503ad6c9d.eot?#iefix") format("embedded-opentype"),
+    url("//db.onlinewebfonts.com/t/fea8a931fd3f37ee4bc5e4c503ad6c9d.woff2") format("woff2"),
+    url("//db.onlinewebfonts.com/t/fea8a931fd3f37ee4bc5e4c503ad6c9d.woff") format("woff"),
+    url("//db.onlinewebfonts.com/t/fea8a931fd3f37ee4bc5e4c503ad6c9d.ttf") format("truetype"),
+    url("//db.onlinewebfonts.com/t/fea8a931fd3f37ee4bc5e4c503ad6c9d.svg#Gill Sans") format("svg");
+}
+
+.font-leilao-de-quadrinhos {
+  font-family: 'LeilaoDeQuadrinhos';
+}
+
+
+.btn {
+  font-weight: 900;
+    transition: 0.5s;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+label {
+  font-size: 21px;
+  font-weight: 800;
+}
+
+dt{
+  font-size: 18px;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+.arrow {
+  text-align: center;
+  margin: 8% 0;
+}
+
+p,h1,h2,h3,h4,h5,label,span,select,option,button,::placeholder,input,a,.btn,.nav-link,dl,dt,b,dd,th,td{
+  font-family: 'LeilaoDeQuadrinhos';
+
+}
+.bounce {
+  -moz-animation: bounce 2s infinite;
+  -webkit-animation: bounce 2s infinite;
+  animation: bounce 2s infinite;
+}
+.input-group-prepend{
+  cursor: pointer;
+}
+
+@keyframes bounce {
+
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+
+  40% {
+    transform: translateY(-30px);
+  }
+
+  60% {
+    transform: translateY(-15px);
+  }
+}
+
+#tpTitulo,
+#tpEditora,
+#tpCategoria,
+#tpCategoriaTPB,
+#tpCategoriaMENSAL,
+#tpNPaginas,
+#tpPeso,
+#tpTipoCapa {
+    cursor: help;
+}
+body{
+  letter-spacing: 1.5px;
+}

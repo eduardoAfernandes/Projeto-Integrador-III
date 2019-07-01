@@ -1,0 +1,47 @@
+body {
+    min-height: 100vh;
+    background-color: #CCC;
+    background-image: url('https://source.unsplash.com/1920x1080/?comic books,marvel,dc,hulk,iron_man,batman,hero');
+    background-size: auto auto;
+    
+}
+
+.login-form {
+    /* margin-top: 50vh; */
+    /* transform: translateY(-70%); */
+    min-height: 100vh;
+    max-height: 150vh;
+    background-color: rgba(0, 0, 0, .9);
+    padding: 20px 30px;
+    color: white;
+}
+
+.login-form h1 {
+    margin: 0 0 5px;
+}
+
+.login-form h2 {
+    margin: 0 0 30px;
+    font-size: 21px;
+}
+a{
+    letter-spacing: 1px;
+}
+a:hover{
+    color: white;
+}
+.login-form .icon {
+    min-width: 16px;
+    max-width: 16px;
+}
+::placeholder{
+    font-size: 18px;
+}
+
+.login-form .rigth {
+    justify-content: flex-end;
+}
+
+.caixa-login-incorrect{
+border: 1px solid red;
+}

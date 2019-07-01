@@ -1,0 +1,10 @@
+.btn-form{
+    width: 100%;
+}
+
+.input-group-prepend{
+    cursor: pointer;
+}
+select,option{
+font-size: 18px;
+}

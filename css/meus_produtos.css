@@ -1,0 +1,40 @@
+.td-img {
+    width: 10%;
+}
+
+.td-titulo {
+    width: 30%;
+}
+
+.td-dados {
+    width: 10%;
+}
+
+.td-ativar {
+    width: 10%;
+}
+th{
+    font-size: 18px;
+}
+.td-status {
+    width: 10%;
+}
+.btn-form-modal,
+.btn-barra{
+    width: 100%;
+}
+
+@media (max-width: 768px) 
+{
+    .td-img {
+        width: 50%;
+    }
+    
+}
+tr td img{
+    cursor: pointer;
+}
+
+span{
+    font-size: 18px;
+}

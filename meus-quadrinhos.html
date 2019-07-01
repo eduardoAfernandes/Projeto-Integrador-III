@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Leilão de Quadrinhos</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- favicon block -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="./img/favicon/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="./img/favicon/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="./img/favicon/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="./img/favicon/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="./img/favicon/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="./img/favicon/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="./img/favicon/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="./img/favicon/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="./img/favicon/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="./img/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="./img/favicon/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="./img/favicon/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="./img/favicon/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="&nbsp;" />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="mstile-310x310.png" />
+    <!-- favicon block -->
+
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="icon/open-iconic/font/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/meus_produtos.css">
+    <link rel="stylesheet" href="components/header/header.css">
+    <link rel="stylesheet" href="components/footer/footer.css">
+    <link rel="stylesheet" href="components/user-icon/user_icon.css">
+    <script src="js/mascaras.js"></script>
+    <script src="js/meus-quadrinhos.js"> </script>
+    <script src="js/moment.js"></script>
+    <script src="js/alertify.min.js"></script>
+    <script src="js/jquery-3.4.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="js/jquery.quicksearch.js"></script>
+
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+
+        $(document).on("click", ".btnModalProduto", function () {
+            var myProductID = $(this).data('id');
+
+            var product = JSON.parse(localStorage.getItem('find-products-by-user')).data.filter((product) => {
+                return product.productID === myProductID;
+            })[0]
+
+            document.getElementById('idProductStatus').value = product.productStatus.productStatusID;
+            document.getElementById('idProduct').value = product.productID;
+
+            $(".modal-body #títuloQuadrinho").val(product.title);
+            $(".modal-body #editora").val(product.publisher);
+            $(".modal-body #categoria").val(product.comicFormat);
+            $(".modal-body #numeroPags").val(product.pagesNumber);
+            $(".modal-body #pesoQuadrinho").val(product.weight);
+        });
+
+        $(document).on("click", ".btnModalAtivar", function () {
+            var myProductID = $(this).data('id');
+            document.getElementById('idProduct').value = myProductID;
+
+            var product = JSON.parse(localStorage.getItem('find-products-by-user')).data.filter((product) => {
+                return product.productID === myProductID;
+            })[0]
+        });
+
+        $(document).on("click", ".btnModalChangeToActivate", function () {
+            var myProductID = $(this).data('id');
+            document.getElementById('idProduct').value = myProductID;
+
+            var product = JSON.parse(localStorage.getItem('find-products-by-user')).data.filter((product) => {
+                return product.productID === myProductID;
+            })[0]
+        });
+
+        $(document).on("click", ".btnModalGerenciarLeilao", function () {
+            $('#botoesGerLeilao').hide();
+          
+
+
+        var myProductID = $(this).data('id');
+
+            var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://webserver-leilao.azurewebsites.net/webserver-leilao/controller/find-all-auctions-by-user",
+        "method": "GET",
+        "headers": {
+            "content-type": "application/x-www-form-urlencoded",
+            "cache-control": "no-cache",
+        },
+        "xhrFields": {
+            "withCredentials": true
+        }
+    }
+
+    $.ajax(settings).done(function (response) {
+        $('#botoesGerLeilao').show();
+
+        return response
+        
+    })
+    .done(function (response) {
+        $('#carregandoDadosModal').fadeOut('slow');
+        
+        localStorage.setItem('find-all-auctions-by-user', JSON.stringify(response));
+        for( i=0 ; i< response.data.length;i++){
+            if(response.data[i].product.productID == myProductID){ 
+           
+                console.log(response.data[i].currentValue +  ' '+ response.data[i].initialValue);
+                document.getElementById('idLeilao').value=response.data[i].auctionID;
+                $(".modal-body #duracao").val(response.data[i].duration);
+                $(".modal-body #vlr-inicial").val(response.data[i].initialValue);
+                $(".modal-body #lancePadrao").val(response.data[i].defaultBid);
+
+                
+
+            }
+          
+        }
+
+       
+    })
+    .done(function (response) {
+
+       
+    })
+          
+        });
+        //    
+        $(document).ready(function () {
+            $('#tableData').hide();
+
+            $(document).ready(function () {
+                $("#src-prod").on("keyup", function () {
+                    var value = $(this).val().toLowerCase();
+                    $("#tabela tr").filter(function () {
+                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                    });
+                });
+            });
+
+
+        });
+    </script>
+    <script src="js/populateMyComicBooks.js"></script>
+
+</head>
+
+<body onload="carregarTooltip()">
+
+    <div id="header"></div>
+    <section class="container-fluid pt-5" style="height: auto;">
+        <div id="divCarregando" class="progresso py-4">
+            <div class="row ">
+                <div class="col-12 text-center">
+                    <h4>Carregando quadrinhos...</h5>
+                </div>
+                <div class="col-12 text-center">
+                    <img src="img/Spinner-1s-200px.gif" alt="" srcset="">
+                </div>
+            </div>
+        </div>
+        <div class="container bg-light" id="tableData">
+            <div class="row mt-5 bg-dark py-auto ">
+                <div class="col-6 col-md-3  py-4 text-left ">
+                    <h4 class="text-light">MEUS QUADRINHOS</h4>
+                </div>
+                <div class="col-6 col-md-5 my-auto pt-2">
+                    <form action="">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="search" name="src-prod" id="src-prod" class="form-control"
+                                    placeholder="Nome do quadrinho..." aria-label="Search">
+                                <!-- <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <span class="oi oi-magnifying-glass icon"></span>
+                                    </div>
+
+                                </div> -->
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-12 col-md-4 my-auto text-center ">
+                    <a href="cadastrar-produto.html"><button class="btn btn-secondary btn-barra mb-2">Novo
+                            quadrinho</button>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <table class="table table-hover  table-striped" id="tabelaDados" style="width: 100%">
+                    <thead class="bg-dark text-light">
+                        <tr class="text-center">
+                            <th scope="col" class="td-img">Capa</th>
+                            <th scope="col" class="td-titulo">Titulo</th>
+                            <th scope="col" class="td-status">Status</th>
+                            <th scope="col" class="td-dados">Alterar Dados</th>
+                            <th scope="col" class="td-ativar">Ativar Leilao</th>
+
+                        </tr>
+                    </thead>
+                    <tbody id="tabela"></tbody>
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+        </div>
+
+    </section>
+    <!-- Modal Alterar Dados Quadrinho -->
+    <div class="modal fade" id="modalDadosQuadrinho" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-dark text-light">
+                    <h4 class="modal-title" id="exampleModalLabel">Alterar dados do quadrinho</h4>
+                    <button type="button" id="btnFechaModalDadosQuadrinho" class="close" data-dismiss="modal"">
+                            <span aria-hidden=" true" class="text-light pt-3">X</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 col-md-4">
+                                <div class="col-12 text-center pt-3">
+                                    <img class="img-fluid" width="125px" src="img/thanos.jpg" alt="">
+
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-8">
+                                <form id="formCadastroQuadrinho">
+                                    <input type="hidden" id="idProduct">
+                                    <input type="hidden" id="idProductStatus">
+
+                                    <div class="col-12">
+                                        <div class="form-row">
+                                            <div class="form-group col-12">
+                                                <label for="títuloQuadrinho">Título do Quadrinho</label>
+                                                <span type="button" style="float: right" id="tpTitulo"
+                                                    class="bg-dark px-2 text-light mr-1" data-toggle="tooltip"
+                                                    data-placement="bottom">?</span>
+
+                                                <input type="text" maxlength="50" class="form-control "
+                                                    id="títuloQuadrinho" placeholder="Insira o título do quadrinho"
+                                                    onblur="verifyInput(this.id)">
+                                                <div class="invalid-feedback  text-center d-none col-12 py-2 text-danger"
+                                                    id="aviso-erro-titulo">
+                                                    Informe o título do quadrinho!!
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <label for="editora">Editora</label>
+                                                <span type="button" style="float: right" id="tpEditora"
+                                                    class="bg-dark px-2 text-light mr-1" data-toggle="tooltip"
+                                                    data-placement="bottom">?</span>
+
+                                                <select class="custom-select" id="editora"
+                                                    onblur="verifyInput(this.id)">
+                                                    <option value="editora" selected>Editora...</option>
+                                                    <option value="Marvel">Marvel</option>
+                                                    <option value="DC">DC</option>
+                                                    <option value="Outras">Outras</option>
+
+
+                                                </select>
+                                                <div class="invalid-feedback  text-center d-none col-12 py-2 text-danger"
+                                                    id="aviso-erro-editora">
+                                                    Informe a editora do quadrinho!!
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+
+                                <div class="form-group col-12">
+                                    <label for="categoria">Categoria</label>
+                                    <span type="button" style="float: right" id="tpCategoria"
+                                        class="bg-dark px-2 text-light mr-1" data-toggle="tooltip"
+                                        data-placement="bottom">?</span>
+                                    <select class="custom-select " id="categoria" onblur="verifyInput(this.id)">
+                                        <option value="categoria" selected>Categoria...</option>
+                                        <option value="TPB">TPB</option>
+                                        <option value="MENSAL">Mensal</option>
+                                    </select>
+                                    <div class="invalid-feedback  text-center d-none col-12 py-2 text-danger"
+                                        id="aviso-erro-categoria">
+                                        Informe a categoria do quadrinho!!
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-12 ">
+                                    <label for="numeroPags">Número de páginas</label>
+                                    <span type="button" style="float: right" id="tpNPaginas"
+                                        class="bg-dark px-2 text-light mr-1" data-toggle="tooltip"
+                                        data-placement="bottom">?</span>
+
+                                    <input type="text" name="" id="numeroPags" placeholder="0" class="form-control"
+                                        onblur="verifyInput(this.id)">
+                                    <div class="invalid-feedback  text-center d-none col-12 py-2 text-danger"
+                                        id="aviso-erro-paginas">
+                                        Informe o número de páginas do quadrinho!!
+                                    </div>
+                                </div>
+                                <div class="form-group col-12">
+                                    <label for="pesoQuadrinho">Peso do quadrinho(em gramas)</label>
+                                    <span type="button" style="float: right" id="tpPeso"
+                                        class="bg-dark px-2 text-light mr-1" data-toggle="tooltip"
+                                        data-placement="bottom">?</span>
+
+                                    <div class="row">
+                                        <div class="col-10">
+                                            <input type="text" id="pesoQuadrinho" placeholder="0" id="pesoQuadrinho"
+                                                class="form-control" onblur="verifyInput(this.id)">
+                                        </div>
+                                        <div class="col-2 py-auto pt-1">
+                                            <b> gramas</b>
+                                        </div>
+                                    </div>
+
+                                    <div class="invalid-feedback  text-center d-none col-12 py-2 text-danger"
+                                        id="aviso-erro-peso">
+                                        Informe o peso(em gramas) do quadrinho!!
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-12">
+                                    <label for="tipoCapa">Tipo de capa</label>
+                                    <span type="button" style="float: right" id="tpTipoCapa"
+                                        class="bg-dark px-2 text-light mr-1" data-toggle="tooltip"
+                                        data-placement="bottom">?</span>
+
+                                    <select class="custom-select " id="tipoCapa" onblur="verifyInput(this.id)">
+                                        <option value="capa">Capa...</option>
+                                        <option value="hard">Hard</option>
+                                        <option value="soft">Soft</option>
+                                    </select>
+                                    <div class="invalid-feedback  text-center d-none col-12 py-2 text-danger"
+                                        id="aviso-erro-capa">
+                                        Informe o tipo de capa do quadrinho!!
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <input type="button" class="btn btn-success btn-form-modal" value="Alterar"
+                                    onclick="validForm()">
+
+                            </div>
+                            <div class="col-3">
+                                <input type="reset" class="btn btn-warning btn-form-modal" value="Limpar">
+                            </div>
+                            <div class="col-3">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                </form>
+                <div class="modal-footer bg-dark">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal ativar leilao -->
+    <div class="modal fade" id="modalLeilao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class=" modal-content">
+                <div class="modal-header bg-dark text-light">
+                    <h4 class="modal-title" id="exampleModalLabel">Criar leilão <span id="titleQuadrinho"></span></h4>
+                    <button type="button" id="btnFechaModalAtivaLeilao" class="close" data-dismiss="modal">
+                        <span aria-hidden=" true" class="text-light pt-3">X</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12 col-md-5">
+                                <div class="col-12 text-center pt-3">
+                                    <img class="img-fluid" width="125px" src="img/thanos.jpg" alt="">
+
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-7  text-left">
+                                <form id="formCadastroQuadrinho">
+                                    <input type="hidden" id="idProduct">
+                                    <div class="col-12 pt-3">
+                                        <div class="form-row">
+                                            <div class="form-group col-12">
+                                                <label for="títuloQuadrinho">Data inicio</label>
+                                                <input type="date" class="form-control " id="dt-inicio"
+                                                    placeholder="Insira o data de inicio do leilao"
+                                                    onblur="verifyInputModalLeilao(this.id)">
+                                                <div class="invalid-feedback text-center d-none col-12 pt-2 text-danger"
+                                                    id="aviso-erro-data">
+                                                    Data de inicio inválida!
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <label for="títuloQuadrinho" style="letter-spacing: 0px;">Duração(em
+                                                    dias)</label>
+                                                <span type="button" style="float: right"
+                                                    class="bg-dark px-2 text-light mr-1" data-toggle="tooltip"
+                                                    data-placement="bottom"
+                                                    title="Insira em dias o tempo de duração deste item...">
+                                                    ?
+                                                </span>
+                                                <input type="text" class="form-control " id="duracao" placeholder="0"
+                                                    onblur="verifyInputModalLeilao(this.id)">
+                                                <div class="invalid-feedback text-center d-none col-12 pt-2 text-danger"
+                                                    id="aviso-erro-duracao">
+                                                    Informe em dias o tempo de duração deste quadrinho!!
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="row pt-4">
+                            <div class="col-12 col-md-6">
+                                <div class="form-group col-12">
+                                    <label for="títuloQuadrinho" style="font-size: 19px;letter-spacing: 0px;"> Valor
+                                        Inicial(R$)</label>
+                                    <span type="button" style="float: right" class="bg-dark px-2 text-light mr-1"
+                                        data-toggle="tooltip" data-placement="bottom"
+                                        title="Insira em reais o valor inicial deste item...">
+                                        ?
+                                    </span>
+                                    <input type="text" class="form-control " id="vlr-inicial" placeholder="R$ 0,00"
+                                        onKeyPress="return(moeda(this,'.',',',event))"
+                                        onblur="verifyInputModalLeilao(this.id)">
+                                    <div class=" invalid-feedback text-center d-none col-12 pt-2 text-danger"
+                                        id="aviso-erro-vlrInicial">
+                                        Informe o valor inicial deste leilão!!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="form-group col-12">
+                                    <label for="títuloQuadrinho" style="font-size: 19px;letter-spacing: 0px;"> Lance
+                                        Padrão(R$)</label>
+                                    <span type="button" style="float: right" class="bg-dark px-2 text-light"
+                                        data-toggle="tooltip" data-placement="bottom"
+                                        title="Insira o padrão de lance para este item (Por exemplo: se você esolher 5, os usuários so irão dar lances de 5 reais!!)...">
+                                        ?
+                                    </span>
+                                    <input type="text" class="form-control " id="lancePadrao" placeholder="R$ 0,00"
+                                        onKeyPress="return(moeda(this,'.',',',event))"
+                                        onblur="verifyInputModalLeilao(this.id)">
+                                    <div class=" invalid-feedback text-center d-none col-12 pt-2 text-danger"
+                                        id="aviso-erro-lancePadrao">
+                                        Informe o valor de lance padrão para este leilão!!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <input type="button" id="btnAtivarLeilao" class="btn btn-success btn-form-modal"
+                                value="Confirmar" onclick="validFormII()">
+
+                        </div>
+                        <div class="col-3">
+                            <input type="reset" class="btn btn-warning btn-form-modal" value="Limpar">
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer bg-dark">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Aviso -->
+    <div class="modal fade" id="modalAviso" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class=" modal-content">
+                <div class="modal-header bg-dark text-light">
+                    <h4 class="modal-title" id="exampleModalLabel">Criar leilão <span id="titleQuadrinho"></span></h4>
+                    <button type="button" id="btnFechaModalAtivaLeilao" class="close" data-dismiss="modal">
+                        <span aria-hidden=" true" class="text-light pt-3">X</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12">
+                                <input type="hidden" id="idProduct">
+
+                                <h3>
+                                    Este produto está inativo, para ativar um leilão para este produto mude o status do
+                                    produto para ativo!
+                                </h3>
+                            </div>
+
+
+                        </div>
+
+
+
+                    </div>
+                    <div class="row">
+                        <div class="col-12 text-center py-3">
+                            <button type="button" class="btn btn-info" style="width: 100%"
+                                onclick="ChangeStatusToActive()">Mudar status </button>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer bg-dark">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Cancelar Leilao -->
+    <div class="modal fade" id="modalGerenciaLeilao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class=" modal-content">
+                <div class="modal-header bg-dark text-light">
+                    <h4 class="modal-title" id="exampleModalLabel">Cancelar leilão <span id="titleQuadrinho"></span>
+                    </h4>
+                    <button type="button" onclick="(function(){
+                      window.location.reload();
+                        })()" id="btnFechaModalAtivaLeilao" class="close" data-dismiss="modal">
+                        <span aria-hidden=" true" class="text-light pt-3">X</span>
+                    </button>
+                </div>
+                <div class="modal-body container-fluid">
+                    <input type="hidden" id="idLeilao">
+                    <div class="row border-bottom pb-3" id="botoesGerLeilao" >
+                        <input type="hidden" id="idProduct">
+                          
+                                <div class="col-4" >
+                                        <button type="button" class="btn btn-info" style="width: 100%">
+                                            Dados do Leilão
+                                        </button>
+                                    </div>
+                                    <div class="col-4">
+                                        <button type="button" class="btn btn-danger" onclick="cancelarLeilao()" style="width: 100%">
+                                            Cancelar Leilão
+                                        </button>
+                                    </div>
+                                    <div class="col-4" ">
+                                        <button type="button" class="btn btn-success" style="width: 100%"  onclick="mostraFormEditarLeilao()">
+                                            Editar Leilão
+                                        </button>
+                                    </div>
+             
+
+
+                    </div>
+
+                    <div id="dadosLeilao">
+
+
+                    </div>
+
+                    <div id="gerenciarLeilao" class="d-none">
+  <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12 col-md-5">
+                                <div class="col-12 text-center pt-3">
+                                    <img class="img-fluid" width="125px" src="img/thanos.jpg" alt="">
+
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-7  text-left">
+                                <form >
+                                    <input type="hidden" id="idProduct">
+                                    <div class="col-12 pt-3">
+                                        <div class="form-row">
+                                            <div class="form-group col-12">
+                                                <label for="títuloQuadrinho">Data inicio</label>
+                                                <input type="date" class="form-control " id="dt-inicio"
+                                                    placeholder="Insira o data de inicio do leilao"
+                                                    onblur="verifyInputModalLeilao(this.id)">
+                                                <div class="invalid-feedback text-center d-none col-12 pt-2 text-danger"
+                                                    id="aviso-erro-data">
+                                                    Data de inicio inválida!
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <label for="títuloQuadrinho" style="letter-spacing: 0px;">Duração(em
+                                                    dias)</label>
+                                                <span type="button" style="float: right"
+                                                    class="bg-dark px-2 text-light mr-1" data-toggle="tooltip"
+                                                    data-placement="bottom"
+                                                    title="Insira em dias o tempo de duração deste item...">
+                                                    ?
+                                                </span>
+                                                <input type="text" class="form-control " id="duracao" placeholder="0"
+                                                    onblur="verifyInputModalLeilao(this.id)">
+                                                <div class="invalid-feedback text-center d-none col-12 pt-2 text-danger"
+                                                    id="aviso-erro-duracao">
+                                                    Informe em dias o tempo de duração deste quadrinho!!
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="row pt-4">
+                            <div class="col-12 col-md-6">
+                                <div class="form-group col-12">
+                                    <label for="títuloQuadrinho" style="font-size: 19px;letter-spacing: 0px;"> Valor
+                                        Inicial(R$)</label>
+                                    <span type="button" style="float: right" class="bg-dark px-2 text-light mr-1"
+                                        data-toggle="tooltip" data-placement="bottom"
+                                        title="Insira em reais o valor inicial deste item...">
+                                        ?
+                                    </span>
+                                    <input type="text" class="form-control " id="vlr-inicial" placeholder="R$ 0,00"
+                                        onKeyPress="return(moeda(this,'.',',',event))"
+                                        onblur="verifyInputModalLeilao(this.id)">
+                                    <div class=" invalid-feedback text-center d-none col-12 pt-2 text-danger"
+                                        id="aviso-erro-vlrInicial">
+                                        Informe o valor inicial deste leilão!!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="form-group col-12">
+                                    <label for="títuloQuadrinho" style="font-size: 19px;letter-spacing: 0px;"> Lance
+                                        Padrão(R$)</label>
+                                    <span type="button" style="float: right" class="bg-dark px-2 text-light"
+                                        data-toggle="tooltip" data-placement="bottom"
+                                        title="Insira o padrão de lance para este item (Por exemplo: se você esolher 5, os usuários so irão dar lances de 5 reais!!)...">
+                                        ?
+                                    </span>
+                                    <input type="text" class="form-control " id="lancePadrao" placeholder="R$ 0,00"
+                                        onKeyPress="return(moeda(this,'.',',',event))"
+                                        onblur="verifyInputModalLeilao(this.id)">
+                                    <div class=" invalid-feedback text-center d-none col-12 pt-2 text-danger"
+                                        id="aviso-erro-lancePadrao">
+                                        Informe o valor de lance padrão para este leilão!!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-9">
+                            <input type="button" id="btnAtivarLeilao" class="btn btn-success btn-form-modal"
+                                value="Confirmar" onclick="validFormII()">
+
+                        </div>
+                        <div class="col-3">
+                            <input type="reset" class="btn btn-warning btn-form-modal" value="Limpar">
+                        </div>
+                       
+
+                    </div>
+                    </div>
+
+                    <div id="cancelarLeilao">
+
+                    </div>
+
+                    <div id="carregandoDadosModal">
+                            <div class="row pt-2">
+                                    <div class="col-12 text-center">
+                                        <h4>Carregando dados do quadrinho...</h5>
+                                    </div>
+                                    <div class="col-12 text-center">
+                                        <img src="img/Spinner-1s-200px.gif" alt="" srcset="">
+                                    </div>
+                                </div>
+                    </div>
+
+
+
+                  
+                </div>
+                <div class="modal-footer bg-dark">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal"></div>
+    <div id="footer"></div>
+</body>
+
+
+
+<script>
+    $(function () {
+        $('#header').load('./components/header/header.html');
+        $('#footer').load('./components/footer/footer.html');
+        $('#modal').load('./components/modal-como-funciona/modal.html');
+        $('#favicon').load('./components/favicon/favicon.html');
+    });
+</script>
+
+</html>

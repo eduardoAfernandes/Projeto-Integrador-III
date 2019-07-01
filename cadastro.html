@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Cadastro - Leilão de Quadrinhos</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- favicon block -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="./img/favicon/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="./img/favicon/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="./img/favicon/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="./img/favicon/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="./img/favicon/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="./img/favicon/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="./img/favicon/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="./img/favicon/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="./img/favicon/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="./img/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="./img/favicon/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="./img/favicon/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="./img/favicon/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="&nbsp;" />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="mstile-310x310.png" />
+    <!-- favicon block -->
+
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/cadastro.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/padraoBotao.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <link rel="stylesheet" href="icon/open-iconic/font/css/open-iconic-bootstrap.min.css">
+    <script src="js/cadastro.js"></script>
+    <script src="js/moment.js"></script>
+
+
+    <!-- JavaScript -->
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/alertify.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/css/alertify.min.css" />
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/css/themes/default.min.css" />
+    <!-- Semantic UI theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/css/themes/semantic.min.css" />
+    <!-- Bootstrap theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/css/themes/bootstrap.min.css" />
+
+    <!-- 
+    RTL version
+-->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/css/alertify.rtl.min.css" />
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/css/themes/default.rtl.min.css" />
+    <!-- Semantic UI theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/css/themes/semantic.rtl.min.css" />
+    <!-- Bootstrap theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/css/themes/bootstrap.rtl.min.css" />
+
+</head>
+
+<body>
+
+    <!-- add mx-auto to centralize -->
+    <div class="login-form col-xs-10 col-sm-6 col-md-4 col-md-offset-4">
+        <header>
+            <a href="/">
+                <div class="float-right btn btn-outline-light border-0">
+                    <img class="img-fluid" style="width: 30px" src="img/back.png" alt="">
+                    <span>Voltar</span>
+                </div>
+                <img class="img-fluid" src="img/logo_leilao_de_quadrinhos.png" alt="">
+            </a>
+            <h2 class="text-center pt-2">Informe os dados abaixo para efetuar seu cadastro!</h2>
+        </header>
+
+        <form action="" class="pt-3" id="formCadastro" method="POST">
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend" onclick="(function(){document.getElementById('nomeUser').focus()})()">
+                        <div class="input-group-text">
+                            <span class="oi oi-person icon"></span>
+                        </div>
+                    </div>
+                    <input type="text" name="nomeUser" maxlength="50" id="nomeUser" class="form-control"
+                        onblur="validaCampo('nomeUser')" placeholder="Nome Completo">
+                    <div class="invalid-feedback text-center d-none col-12 pt-2 text-danger" id="aviso-erro-nome">
+                        Por favor, informe seu nome!!
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <span class="oi oi-account-login icon"></span>
+                        </div>
+                    </div>
+                    <input type="text" name="userLgn" id="" class="form-control" placeholder="Login">
+                </div> 
+            </div> -->
+
+
+            <!-- <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <span class="oi oi-tablet icon"></span>
+                        </div>
+                    </div>
+                    <input class="form-control mr-sm-0" name="telefone" id="telefone" type="text"
+                    placeholder="Telefone">
+                    
+                </div>
+            </div> -->
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend" onclick="(function(){document.getElementById('email').focus()})()">
+                        <div class="input-group-text">
+                            <span class="oi oi-account-login icon"></span>
+                        </div>
+                    </div>
+                    <input type="text" name="email" maxlength="50" id="email" class="form-control" onblur="validaCampo('email')"
+                        placeholder="Email">
+                    <div class="invalid-feedback  text-center d-none col-12 pt-2 text-danger" id="aviso-erro-email">
+                        Por favor, informe um email válido!!
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-12 col-md-5 text-left">
+                    <div class="input-group">
+                        <div class="input-group-prepend" onclick="(function(){document.getElementById('selectEstado').focus()})()">
+                            <div class="input-group-text">
+                                <span class="oi oi-location"></span>
+                            </div>
+                        </div>
+                        <select class="custom-select" id="selectEstado" name="selectEstado" onchange="apiCidades()"
+                            onblur="validaCampo('selectEstado')">
+                            <option value="estado">Estado...</option>
+                            <option value="Acre">Acre</option>
+                            <option value="Alagoas">Alagoas</option>
+                            <option value="Amapá">Amapá</option>
+                            <option value="Amazonas">Amazonas</option>
+                            <option value="Bahia">Bahia</option>
+                            <option value="Ceará">Ceará</option>
+                            <option value="Distrito Federal">Distrito Federal</option>
+                            <option value="Espírito Santo">Espírito Santo</option>
+                            <option value="Goiás">Goiás</option>
+                            <option value="Maranhão">Maranhão</option>
+                            <option value="Mato Grosso">Mato Grosso</option>
+                            <option value="Mato Grosso do Sul">Mato Grosso do Sul</option>
+                            <option value="Minas Gerais">Minas Gerais</option>
+                            <option value="Pará">Pará</option>
+                            <option value="Paraíba">Paraíba</option>
+                            <option value="Paraná">Paraná</option>
+                            <option value="Pernambuco">Pernambuco</option>
+                            <option value="Piauí">Piauí</option>
+                            <option value="Rio de Janeiro">Rio de Janeiro</option>
+                            <option value="Rio Grande do Norte">Rio Grande do Norte</option>
+                            <option value="Rio Grande do Sul">Rio Grande do Sul</option>
+                            <option value="Rondônia">Rondônia</option>
+                            <option value="Roraima">Roraima</option>
+                            <option value="Santa Catarina">Santa Catarina</option>
+                            <option value="São Paulo">São Paulo</option>
+                            <option value="Sergipe">Sergipe</option>
+                            <option value="Tocantins">Tocantins</option>
+                        </select>
+                        <div class="invalid-feedback  text-center d-none col-12 py-2 text-danger"
+                            id="aviso-erro-estado">
+                            Por favor, informe o seu estado!!
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-12 col-md-7 pb-3 mt-3 mt-md-0 ">
+                    <div class="input-group">
+                        <div class="input-group-prepend" onclick="(function(){document.getElementById('selectCidade').focus()})()">
+                            <div class="input-group-text">
+                                <span class="oi oi-location"></span>
+                            </div>
+                        </div>
+                        <select class="custom-select" id="selectCidade" name="selectCidade" disabled onblur="validaCampo('selectCidade')">
+                            <option value="Cidade">Cidade...</option>
+
+                        </select>
+                        <div class="invalid-feedback  text-center d-none col-12 pt-2 text-danger"
+                            id="aviso-erro-cidade">
+                            Por favor, informe o nome de sua cidade!!
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend" onclick="(function(){document.getElementById('userPwd').focus()})()">
+                        <div class="input-group-text">
+                            <span class="oi oi-lock-locked icon"></span>
+                        </div>
+                    </div>
+                    <input type="password" name="userPwd" minlength="8" maxlength="20" id="userPwd" class="form-control"
+                        onblur="validaCampo('userPwd')" placeholder="Senha">
+                    <div class="invalid-feedback  text-center d-none col-12 py-2 text-danger" id="aviso-erro-password">
+                        Por favor, informe uma senha de no minimo 8 caracteres!!
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend" onclick="(function(){document.getElementById('confSenha').focus()})()" >
+                        <div class="input-group-text">
+                            <span class="oi oi-lock-locked icon" ></span>
+                        </div>
+                    </div>
+                    <input type="password" name="confSenha" id="confSenha" minlength="8" maxlength="20"
+                        onblur="validaCampo('confSenha')" class="form-control" placeholder="Confirme a senha">
+                    <div class="invalid-feedback  text-center d-none col-12 py-2 text-danger"
+                        id="aviso-erro-confPassword">
+                        Senhas não coincidem!!
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="birthday">Data de nascimento:</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <span class="oi oi-calendar icon"></span>
+                        </div>
+                    </div>
+                    <input type="date" name="dtNasc" id="dtNasc" class="form-control" onblur="validaCampo('dtNasc')">
+                    <div class="invalid-feedback  text-center d-none col-12 py-2 text-danger" id="aviso-erro-dtNasc">
+                        Por favor, informe sua data de nascimento!!
+                    </div>
+
+
+                </div>
+            </div>
+
+            <!-- <footer class="d-flex justify-content-between ">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <span class="oi oi-calendar icon"></span>
+                    </div>
+                </div>
+                <input class="form-control" type="date" id="example-date-input">
+
+            </footer> -->
+
+            <footer>
+                <div class="row pt-3 ">
+                    <div class="col-7 text-center my-auto ">
+                            <button type="button" onclick="validaForm()" class="btn btn-form btn-success">Cadastrar</button>
+                
+                    </div>
+                    <div class="col-5 text-center">
+                            <button type="button" class="btn btn-form btn-secondary"
+                            onclick="window.open('login.html', '_self')">Já tenho conta</button>
+                    </div>
+                </div>
+
+            </footer>
+        </form>
+    </div>
+    <script src="js/jquery-3.4.0.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>
