@@ -178,7 +178,7 @@ function atualizarDadosQuadrinho() {
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://localhost:8080/webserver_leilao_war_exploded/controller/update-product",
+        "url": "https://webserver-leilao.azurewebsites.net/webserver-leilao/controller/update-product",
         "method": "POST",
         "headers": {
             "content-type": "application/x-www-form-urlencoded",
@@ -353,7 +353,7 @@ function enviarDadosLeilao() {
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://localhost:8080/webserver_leilao_war_exploded/controller/insert-new-auction",
+        "url": "https://webserver-leilao.azurewebsites.net/webserver-leilao/controller/insert-new-auction",
         "method": "POST",
         "headers": {
             "content-type": "application/x-www-form-urlencoded",
@@ -413,7 +413,7 @@ function ChangeStatusToActive() {
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://localhost:8080/webserver_leilao_war_exploded/controller/change-product-status",
+        "url": "https://webserver-leilao.azurewebsites.net/webserver-leilao/controller/change-product-status",
         "method": "POST",
         "headers": {
             "content-type": "application/x-www-form-urlencoded",
@@ -457,7 +457,7 @@ function cancelarLeilao(){
         var settings = {
             "async": true,
             "crossDomain": true,
-            "url": "http://localhost:8080/webserver_leilao_war_exploded/controller/delete-auction-by-id",
+            "url": "https://webserver-leilao.azurewebsites.net/webserver-leilao/controller/delete-auction-by-id",
             "method": "POST",
             "headers": {
               "Content-Type": "application/x-www-form-urlencoded",

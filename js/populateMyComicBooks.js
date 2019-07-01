@@ -2,7 +2,7 @@ function loadDados() {
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://localhost:8080/webserver_leilao_war_exploded/controller/find-products-by-user",
+        "url": "https://webserver-leilao.azurewebsites.net/webserver-leilao/controller/find-products-by-user",
         "method": "GET",
         "headers": {
             "content-type": "application/x-www-form-urlencoded",
