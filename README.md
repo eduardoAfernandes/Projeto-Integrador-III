@@ -8,7 +8,7 @@ Páginas necessárias:
 - [x] Cadastro
 - [ ] Como funciona
 - [ ] Anunciar
-- [ ] Sobre
+- [x] Sobre
 - [ ] Leilão
 - [ ] Meus Quadrinhos
 - [ ] Cadastrar quadrinho
