@@ -33,6 +33,7 @@ function loadDados() {
                 let defaultBid = response.data[i].defaultBid;
                 let auctionStatus = response.data[i].auctionStatus.status;
                 let coverImage = response.data[i].product.coverImage;
+                let timeToFinalize = duration > 1 ? duration + ' dias' : duration + ' dia';
 
                 let statusIcon = "<span class='oi oi-circle-check py-2' style='color: lightgreen'></span>";
                 if (duration == 0) statusIcon = "<span class='oi oi-circle-x py-2' style='color: lightred'></span>";
@@ -44,7 +45,7 @@ function loadDados() {
                             <div class='row'>
                                 <div class='col-9 text-center '>
                                     <h5 class='py-1'>
-                                        Finaliza em 5 dias
+                                        Finaliza em ${timeToFinalize}
                                     </h5>
                                 </div>
                                 <div class='col-3'>
