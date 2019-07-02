@@ -29,7 +29,7 @@ function loadDados() {
                 let duration = response.data[i].duration;
                 let initialDate = response.data[i].initialDate;
                 let initialValue = response.data[i].initialValue;
-                let currentValue = response.data[i].currentValue;
+                let currentValue = formatValueToFloat(response.data[i].currentValue);
                 let defaultBid = response.data[i].defaultBid;
                 let auctionStatus = response.data[i].auctionStatus.status;
                 let coverImage = response.data[i].product.coverImage;
@@ -104,5 +104,14 @@ function formatDate(timestamp) {
     alert(year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds);
 }
 
-
+function formatValueToFloat(value) {
+    value = new String(value);
+    if (value.indexOf('.') != -1) {
+        value.replace('.', ',');
+    } else {
+        value = value + ',00'
+    }
+    value = 'R$ ' + value;
+    return value;
+}
 loadDados();
