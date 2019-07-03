@@ -34,7 +34,7 @@ function loadDados() {
                 // console.log('--------------------------------------')
                 if (response.data[i].productStatus.productStatusID == '3') {
                     $("#tabela").append("<tr>" + 
-                    "<td class='text-center'>" + "Imagem" + "</td>" +
+                    "<td class='text-center'><img src='" + response.data[i].coverImage + "' alt='' height='100'></img></td>" +
                     "<td><h5 class='text-center'>" + response.data[i].title + "</h5></td>" + "<td class='text-center'>" + response.data[i].productStatus.status + "<input type='hidden'  value='" + response.data[i].productID + "'>" + "</td>" +
                     "<td class='text-center'>" + "<img class='btnModalProduto' src='img/edit.png' onclick='mostraAvisoProdutoEmLeilao()'" +"</td>" +
                     "<td class='text-center'>" + "<input type='hidden'id='productID'  value='" + response.data[i].productID + "'>" +"<img class='btnModalGerenciarLeilao'"  + "data-toggle='modal' data-id='" + response.data[i].productID + "' data-target='#modalGerenciaLeilao' " +
@@ -42,14 +42,14 @@ function loadDados() {
                     "</tr>");
                 } else if (response.data[i].productStatus.productStatusID == 4) {
                     $("#tabela").append("<tr>" + 
-                        "<td class='text-center'>" + "Imagem" + "</td>" +
+                    "<td class='text-center'><img src='" + response.data[i].coverImage + "' alt='' height='100'></img></td>" +
                         "<td class='text-center'><h5 class='text-center'>" + response.data[i].title + "</h5></td>" + "<td class='text-center'>" + response.data[i].productStatus.status +"<td>"+"<p class='text-danger'> Leiloado </p>"+ "</td>"+ "</td>" +
                         "<td class='text-center'>" + "<p class='text-success'>Produto Leiloado</p>" + "</td>" +
                         "<td class='text-center'>" + "<img src='img/delete.png' onclick='confirmaExclusao()'" +"</td>" 
                         +"</tr>");
                 }else if (response.data[i].productStatus.productStatusID == 2) {
                     $("#tabela").append("<tr>" + 
-                    "<td class='text-center'>" + "Imagem" + "</td>" +
+                    "<td class='text-center'><img src='" + response.data[i].coverImage + "' alt='' height='100'></img></td>" +
                     "<td class='text-center'><h5 class='text-center'>" + response.data[i].title + "</h5></td>" + "<td class='text-center'><p class='text-danger'>" + response.data[i].productStatus.status + "</p><input type='hidden'  value='" + response.data[i].productID + "'>" + "</td>" +
                     "<td class='text-center'>" + "<img class='btnModalProduto'" + "data-toggle='modal' data-id='" + response.data[i].productID + "' data-target='#modalDadosQuadrinho' " +
                     "src='img/edit.png'" + "<input type='hidden'id='productID'  value='" + response.data[i].productID + "'>" + "</td>" +
@@ -60,7 +60,7 @@ function loadDados() {
                 
                 else {
                     $("#tabela").append("<tr>" + 
-                    "<td>" + "Imagem"+ "</td>" +
+                    "<td class='text-center'><img src='" + response.data[i].coverImage + "' alt='' height='100'></img></td>" +
                         "<td><h5>" + response.data[i].title + "</h5></td>" + "<td>" + response.data[i].productStatus.status + "<input type='hidden'  value='" + response.data[i].productID + "'>" + "</td>" +
                         "<td>" + "<img class='btnModalProduto'" + "data-toggle='modal' data-id='" + response.data[i].productID + "' data-target='#modalDadosQuadrinho' " +
                         "src='img/edit.png'" + "<input type='hidden'id='productID'  value='" + response.data[i].productID + "'>" + "</td>" +
