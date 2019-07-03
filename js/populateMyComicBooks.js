@@ -80,15 +80,23 @@ function loadDados() {
 function changetableParticipations(){
 document.getElementById('tableData').style.display = 'none';
     document.getElementById('tabelaParticipations').style.display = 'block';
-
+    document.getElementById('option-table-participations').style.borderTopRightRadius = '25%';
+    document.getElementById('option-table-participations').style.boxShadow = '3px 3px black';
+    document.getElementById('option-meus-quadrinhos').style.borderTopLeftRadius = '0%';
+    document.getElementById('option-meus-quadrinhos').style.boxShadow = '0px 0px black';
  
 }
 
 function changetableQuadrinhos(){
     document.getElementById('tableData').style.display = 'block';
     document.getElementById('tabelaParticipations').style.display = 'none';
+    document.getElementById('option-table-participations').style.borderTopRightRadius = '0%';
+    document.getElementById('option-meus-quadrinhos').style.boxShadow = '3px 3px black';
+    document.getElementById('option-table-participations').style.boxShadow = '0px 0px black';
+    document.getElementById('option-meus-quadrinhos').style.borderTopLeftRadius = '25%';
 
 }
+
 
 
 loadDados();
