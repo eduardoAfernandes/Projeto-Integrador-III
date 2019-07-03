@@ -1,18 +1,19 @@
 // Tooltips
 
 var tooltips = {
-    "titulo": "O titulo representa o nome do quadrinho", 
-    "categoria": "A categoria do quadrinho define se ele é um TPB, ou seja, uma coleção ou se é um quadrinho de edição mensal. Passe o mouse sobre as opções para mais informações", 
-    "categoriaTPB": "TPB é uma coleção de quadrinhos reunidas em uma só encadernação. É uma historia completa", 
-    "categoriaMENSAL": "MENSAL quer dizer que esse quadrinho faz parte de uma publicação mensal, ou seja, tem um segmento de história", 
-    "pesoQuadrinho": "Neste campo você deve listar quantos GRAMAS pesam o seu quadrinho. Digite somente o numero sem informar a unidade", 
-    "editora": "Neste campo você deve selecionar qual a editora do seu quadrinho. Se não for Marvel ou DC, selecione OUTRAS", 
+    "titulo": "O titulo representa o nome do quadrinho",
+    "categoria": "A categoria do quadrinho define se ele é um TPB, ou seja, uma coleção ou se é um quadrinho de edição mensal. Passe o mouse sobre as opções para mais informações",
+    "categoriaTPB": "TPB é uma coleção de quadrinhos reunidas em uma só encadernação. É uma historia completa",
+    "categoriaMENSAL": "MENSAL quer dizer que esse quadrinho faz parte de uma publicação mensal, ou seja, tem um segmento de história",
+    "pesoQuadrinho": "Neste campo você deve listar quantos GRAMAS pesam o seu quadrinho. Digite somente o numero sem informar a unidade",
+    "editora": "Neste campo você deve selecionar qual a editora do seu quadrinho. Se não for Marvel ou DC, selecione OUTRAS",
     "numeroPaginas": "Aqui você deve listar o numero de páginas do seu quadrinho. Digite somente numeros",
-    "tipoCapa": " Neste campo você entre o tipo de campa, entre HARD e SOFT, ou seja, capa DURA OU MOLE", 
-    "tipoCapaMole": "SOFT é o tipo de capa MOLE", 
-    "tipoCapaDura": "HARD é o tipo de capa DURA"};        
+    "tipoCapa": " Neste campo você entre o tipo de campa, entre HARD e SOFT, ou seja, capa DURA OU MOLE",
+    "tipoCapaMole": "SOFT é o tipo de capa MOLE",
+    "tipoCapaDura": "HARD é o tipo de capa DURA"
+};
 
-function carregarTooltip(){
+function carregarTooltip() {
     document.getElementById('tpTitulo').title = tooltips.titulo;
     document.getElementById('tpEditora').title = tooltips.editora;
     document.getElementById('tpCategoria').title = tooltips.categoria;
@@ -82,7 +83,7 @@ function verifyInput(id) {
         if (nrPagina <= 0 || !regexPags) {
             document.getElementById('numeroPags').style.border = "3px solid red";
             document.getElementById('aviso-erro-paginas').classList.replace('d-none', 'd-block');
-        }  else {
+        } else {
             document.getElementById('numeroPags').style.border = "3px solid lightgreen";
             document.getElementById('aviso-erro-paginas').classList.replace('d-block', 'd-none');
             validacaoNrPagina = true;
@@ -131,10 +132,10 @@ function validForm() {
     } else if (!validacaoTipoCapa) {
         document.getElementById('tipoCapa').style.border = "3px solid red";
         document.getElementById('aviso-erro-capa').classList.replace('d-none', 'd-block');
-    }else{
+    } else {
         enviarDadosQuadrinho();
     }
-    
+
     // else if(cpQuadrinho == ''){
     //     document.getElementById('aviso-erro-capaQuadrinho').classList.replace('d-none', 'd-block');
     //     document.getElementById('previewQuadrinho').style.border = "5px solid red";
@@ -143,7 +144,7 @@ function validForm() {
 }
 
 function showAlertify() {
-    alertify.success("Quadrinho cadastrado com sucesso!!"); 
+    alertify.success("Quadrinho cadastrado com sucesso!!");
 
 }
 
@@ -161,9 +162,9 @@ function showAlertify() {
 // }
 
 
-// function clickInputFile() {
-//     document.getElementById('cpQuadrinho').click();
-// }
+function clickInputFile() {
+    document.getElementById('cpQuadrinho').click();
+}
 
 function validTitle(palavra) {
     const filter_nome = /[a-zA-Zá-úà-ùÀ-Ù0-9]{1,}\w{0,}$/;
@@ -196,9 +197,7 @@ function enviarDadosQuadrinho() {
     let tipoCapa = document.getElementById('tipoCapa').value;
     // let tipoCapa = document.getElementById('tipoCapa').value;
 
-    
-
-        console.log(titulo + ' '+editora+' '+categoria+' '+ nrPagina + ' '+' '+peso )
+    console.log(titulo + ' ' + editora + ' ' + categoria + ' ' + nrPagina + ' ' + ' ' + peso);
 
     var settings = {
         "async": true,
@@ -215,6 +214,7 @@ function enviarDadosQuadrinho() {
             "format": categoria,
             "pagesNumber": nrPagina,
             "weight": peso,
+            "file": 
         },
         "xhrFields": {
             "withCredentials": true
