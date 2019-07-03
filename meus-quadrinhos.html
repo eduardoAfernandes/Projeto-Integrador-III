@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
-    <title>Leilão de Quadrinhos</title>
+    <title>Meus Quadrinhos | Leilão de Quadrinhos</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -145,6 +145,8 @@
         //    
         $(document).ready(function () {
             $('#tableData').hide();
+            $('#optionsTables').hide();
+            
 
             $(document).ready(function () {
                 $("#src-prod").on("keyup", function () {
@@ -176,12 +178,23 @@
                 </div>
             </div>
         </div>
-        <div class="container bg-light" id="tableData">
-            <div class="row mt-5 bg-dark py-auto ">
-                <div class="col-6 col-md-3  py-4 text-left ">
-                    <h4 class="text-light">MEUS QUADRINHOS</h4>
+
+        <div class="container" style="margin-top: 5%" id="optionsTables">
+            <div class="row border-bottom pt-3">
+                <div class="col-6 bg-dark py-4 pb-3" id="table-meus-quadrinhos" onclick="changetableQuadrinhos()" >
+                     <h4 class="text-light text-center">Meus Quadrinhos</h4>
                 </div>
-                <div class="col-6 col-md-5 my-auto pt-2">
+                <div class="col-6 bg-dark py-4 pb-3 border-left" id="option-table-participations" onclick="changetableParticipations()">
+                        <h4 class="text-light text-center">
+                            Estou participando
+                        </h4>
+                   </div>
+            </div>
+
+        </div>
+        <div class="container bg-light" id="tableData">
+            <div class="row  bg-dark py-auto ">
+                <div class="col-12 col-md-6 pt-3 my-auto pt-2">
                     <form action="">
                         <div class="form-group">
                             <div class="input-group">
@@ -197,14 +210,20 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-12 col-md-4 my-auto text-center ">
+                <div class="col-12 col-md-6 pt-2 my-auto text-center ">
                     <a href="cadastrar-produto.html"><button class="btn btn-secondary btn-barra mb-2">Novo
                             quadrinho</button>
                     </a>
                 </div>
+
+                <div class="col-12 col-md-6 pt-2 my-auto text-center ">
+                       <p class="text-info d-block d-md-none">
+                                Arraste para direita para mais informações! <span class="oi oi-arrow-right"></span>
+                       </p>
+                    </div>
             </div>
             <div class="row">
-                <table class="table table-hover  table-striped" id="tabelaDados" style="width: 100%">
+                <table class="table table-hover table-responsive  table-striped" id="tabelaDados" style="width: 100%">
                     <thead class="bg-dark text-light">
                         <tr class="text-center">
                             <th scope="col" class="td-img">Capa</th>
@@ -212,6 +231,7 @@
                             <th scope="col" class="td-status">Status</th>
                             <th scope="col" class="td-dados">Alterar Dados</th>
                             <th scope="col" class="td-ativar">Ativar Leilao</th>
+                            <th scope="col" class="td-ativar">Excluir Leilao</th>
 
                         </tr>
                     </thead>
@@ -220,9 +240,27 @@
                 </table>
             </div>
 
+            
+            
 
         </div>
         </div>
+        <div class="container bg-light" id="tabelaParticipations" style="display: none;"> 
+                <div class="row  bg-dark py-auto ">
+                        <table class="table table-hover table-responsive table-striped" style="width: 100%">
+                                <thead class="bg-dark text-light">
+                                    <tr class="text-center">
+                                        <th scope="col" class="td-img">Capa</th>
+                                        <th scope="col" class="td-titulo">Titulo</th>
+                                        <th scope="col" class="td-status">Meu Lance</th>
+                                        <th scope="col" class="td-dados">Valor Atual</th>
+            
+                                    </tr>
+                                </thead>
+                                <tbody id="tabelaParticipationsDados"></tbody>
+                            </table>
+                </div>
+                </div>
 
     </section>
     <!-- Modal Alterar Dados Quadrinho -->
@@ -689,7 +727,7 @@
 
                     <div id="carregandoDadosModal">
                             <div class="row pt-2">
-                                    <div class="col-12 text-center">
+                                    <div class="col-12  text-center">
                                         <h4>Carregando dados do quadrinho...</h5>
                                     </div>
                                     <div class="col-12 text-center">

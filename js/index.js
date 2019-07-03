@@ -39,7 +39,7 @@ function loadDados() {
                 if (duration == 0) statusIcon = "<span class='oi oi-circle-x py-2' style='color: lightred'></span>";
 
                 $("#sub-sectionProdutos").append(
-                `<div class='col-12 col-md-6 col-lg-3 pb-5 pb-md-0 text-center ml-5 ml-md-0'>
+                `<div class='col-12 col-md-6 col-lg-3 text-center py-4'>
                     <div class='cx-item text-light'>
                         <div class='cx-header'>
                             <div class='row'>
@@ -63,7 +63,7 @@ function loadDados() {
                                         <div class='col-12 text-center'>
                                             <dl class='mt-2'>
                                                 <dt class='ml-3'> V. Atual:</dt>
-                                                <dt class='ml-3'> ${currentValue}</dt>
+                                                <dt class='ml-3' style='font-size:15px'> ${currentValue}</dt>
                                             </dl>
                                         </div>
                                     </div>

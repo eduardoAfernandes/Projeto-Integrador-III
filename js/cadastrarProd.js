@@ -211,7 +211,7 @@ function enviarDadosQuadrinho() {
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "https://f29fc86d.ngrok.io/webserver_leilao_war_exploded/controller/insert-product",
+        "url": "https://webserver-leilao.azurewebsites.net/webserver-leilao/controller/insert-product",
         "method": "POST",
         "cache": false,
         "processData": false,
