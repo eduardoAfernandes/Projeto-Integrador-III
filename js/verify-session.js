@@ -22,7 +22,13 @@ function showResponse(response) {
     console.log(response.user);
     if ($('#statusUser'.length)) {
         $('#statusUser').html(response.user.name);
-        $("#userIconStatus").toggleClass('loggedOut loggedIn');
+        $("#userIconStatus").toggleClass('loggedOut loggedIn').prop("onclick", null).off("click");
+        $('#userBoxStatus').append(
+            `<div class="dropdown-menu">
+                <a class="dropdown-item" href="../../meus-quadrinhos.html">Gerenciar meus leilões</a>
+                <a class="dropdown-item" href="../../alterar-dados-usuario.html">Alterar meus dados</a>
+            </div>`
+        )
     }
 }
 
