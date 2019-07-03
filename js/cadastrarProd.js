@@ -34,7 +34,7 @@ let validacaoEditora = false;
 let validacaoCategoria = false;
 let validacaoNrPagina = false;
 let validacaoPeso = false;
-let validacaoTipoCapa = false;
+let validacaoTipoCapa = true;
 let validacaoCapa = false;
 
 function verifyInput(id) {
@@ -43,7 +43,7 @@ function verifyInput(id) {
     let categoria = document.getElementById('categoria').value;
     let nrPagina = document.getElementById('numeroPags').value;
     let peso = document.getElementById('pesoQuadrinho').value;
-    let tipoCapa = document.getElementById('tipoCapa').value;
+//    let tipoCapa = document.getElementById('tipoCapa').value;
     let cpQuadrinho = document.getElementById('cpQuadrinho').value;
 
     var regexTitle = validTitle(titulo);
@@ -130,8 +130,8 @@ function validForm() {
         document.getElementById('pesoQuadrinho').style.border = "3px solid red";
         document.getElementById('aviso-erro-peso').classList.replace('d-none', 'd-block');
     } else if (!validacaoTipoCapa) {
-        document.getElementById('tipoCapa').style.border = "3px solid red";
-        document.getElementById('aviso-erro-capa').classList.replace('d-none', 'd-block');
+//        document.getElementById('tipoCapa').style.border = "3px solid red";
+//        document.getElementById('aviso-erro-capa').classList.replace('d-none', 'd-block');
     } else {
         enviarDadosQuadrinho();
     }
@@ -148,18 +148,18 @@ function showAlertify() {
 
 }
 
-// function readURL(input) {
-//     if (input.files && input.files[0]) {
-//         var reader = new FileReader();
-//         reader.onload = function(e) {
-//             $('#previewQuadrinho')
-//                 .attr('src', e.target.result)
-//                 .width(250)
-//                 .height(250);
-//         };
-//         reader.readAsDataURL(input.files[0]);
-//     }
-// }
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            $('#previewQuadrinho')
+                .attr('src', e.target.result)
+                .width(250)
+                .height(300);
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
 
 
 function clickInputFile() {
@@ -189,33 +189,34 @@ function onlyNumber(value) {
 }
 
 function enviarDadosQuadrinho() {
-    let titulo = document.getElementById('títuloQuadrinho').value;
-    let editora = document.getElementById('editora').value;
-    let categoria = document.getElementById('categoria').value;
-    let nrPagina = document.getElementById('numeroPags').value;
-    let peso = document.getElementById('pesoQuadrinho').value;
-    let tipoCapa = document.getElementById('tipoCapa').value;
-    // let tipoCapa = document.getElementById('tipoCapa').value;
 
-    console.log(titulo + ' ' + editora + ' ' + categoria + ' ' + nrPagina + ' ' + ' ' + peso);
+    var formdata = new FormData();
+    formdata.append('publishingCompany', document.getElementById('editora').value);
+    formdata.append('title', document.getElementById('títuloQuadrinho').value);
+    formdata.append('format', document.getElementById('categoria').value);
+    formdata.append('pagesNumber', document.getElementById('numeroPags').value);
+    formdata.append('weight', document.getElementById('pesoQuadrinho').value);
+    formdata.append('file', document.getElementById('cpQuadrinho').files[0]);
+    
+    // let titulo = document.getElementById('títuloQuadrinho').value;
+    // let editora = document.getElementById('editora').value;
+    // let categoria = document.getElementById('categoria').value;
+    // let nrPagina = document.getElementById('numeroPags').value;
+    // let peso = document.getElementById('pesoQuadrinho').value;
+    // // let tipoCapa = document.getElementById('tipoCapa').value;
+    // let file = document.getElementById('cpQuadrinho').files[0];
+
+//    console.log(titulo + ' ' + editora + ' ' + categoria + ' ' + nrPagina + ' ' + ' ' + peso);
 
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "https://webserver-leilao.azurewebsites.net/webserver-leilao/controller/insert-product",
+        "url": "https://f29fc86d.ngrok.io/webserver_leilao_war_exploded/controller/insert-product",
         "method": "POST",
-        "headers": {
-            "content-type": "application/x-www-form-urlencoded",
-            "cache-control": "no-cache",
-        },
-        "data": {
-            "publishingCompany": editora,
-            "title": titulo,
-            "format": categoria,
-            "pagesNumber": nrPagina,
-            "weight": peso,
-            "file": 
-        },
+        "cache": false,
+        "processData": false,
+        "contentType": false,
+        "data": formdata,
         "xhrFields": {
             "withCredentials": true
         }
