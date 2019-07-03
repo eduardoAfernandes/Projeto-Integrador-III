@@ -473,7 +473,7 @@ function cancelarLeilao(){
           if(window.confirm("Confirmar cancelamento deste leilão?")){
 
           $.ajax(settings).done(function (response) {
-              alert("Leilão excluído com sucesso!")
+              alert("Leilão cancelado com sucesso!")
               window.location.reload()
           });
     }
