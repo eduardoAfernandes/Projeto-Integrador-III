@@ -20,11 +20,16 @@ function session() {
 
 function showResponse(response) {
     console.log(response.user);
+    if ($('#statusUser'.length)) {
+        $('#statusUser').html(response.user.name);
+        $("#userIconStatus").toggleClass('loggedOut loggedIn');
+    }
 }
 
 function goHome(response) {
-    console.log("Sem permissão.")
-    window.location.replace("/");
+    if (window.location.pathname != '/') {
+        window.location.replace("/");        
+    }
 }
 
 session();
