@@ -54,7 +54,7 @@ function loadDados() {
                             </div>
                         </div>
                         <div class='cx-body'>
-                            <img src='img/thanos.jpg' class='img-fluid' alt='img04' id='img-card'>
+                            <img src='${coverImage}' class='img-fluid' alt='img04' id='img-card'>
                         </div>
                         <div class='cx-footer bg-dark'>
                             <div class='row'>
