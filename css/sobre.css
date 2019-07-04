@@ -1,17 +1,32 @@
-.h1-sobre{
+.h1-sobre {
     background-image: url(../img/logo-min.png);
     background-repeat: no-repeat;
     background-size: 60px;
     background-position: 330px;
 }
 
+.quemSomos {
+    text-align: justify;
+    font-size: 19px;
+}
+
+img {
+    transition: 0.6s;
+    filter: contrast(130%);
+}
+
+img:hover {
+    transform: scale(1.06);
+    filter: contrast(140%) drop-shadow(3px 3px 3px #909090)
+}
+
 @media only screen and (max-width: 768px) {
-    .img-iftm{
+    .img-iftm {
         margin-bottom: 25px;
     }
-    }
-    
-.linkGit{
+}
+
+.linkGit {
     background-image: url(../img/github.png );
     background-repeat: no-repeat;
     background-size: 100%;

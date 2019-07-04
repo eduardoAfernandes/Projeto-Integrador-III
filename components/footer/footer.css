@@ -1,0 +1,8 @@
+footer h5 {
+    text-shadow: 2px 2px 3px black;
+}
+
+footer p {
+    text-shadow: 2px 2px 3px black;
+    text-align: justify;
+}
