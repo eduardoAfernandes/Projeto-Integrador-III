@@ -129,17 +129,14 @@ function validForm() {
     } else if (!validacaoPeso) {
         document.getElementById('pesoQuadrinho').style.border = "3px solid red";
         document.getElementById('aviso-erro-peso').classList.replace('d-none', 'd-block');
-    } else if (!validacaoTipoCapa) {
-//        document.getElementById('tipoCapa').style.border = "3px solid red";
-//        document.getElementById('aviso-erro-capa').classList.replace('d-none', 'd-block');
+    }else if(cpQuadrinho == ''){
+        document.getElementById('aviso-erro-capaQuadrinho').classList.replace('d-none', 'd-block');
+        document.getElementById('previewQuadrinho').style.border = "5px solid red";
     } else {
         enviarDadosQuadrinho();
     }
 
-    // else if(cpQuadrinho == ''){
-    //     document.getElementById('aviso-erro-capaQuadrinho').classList.replace('d-none', 'd-block');
-    //     document.getElementById('previewQuadrinho').style.border = "5px solid red";
-    // }
+     
 
 }
 

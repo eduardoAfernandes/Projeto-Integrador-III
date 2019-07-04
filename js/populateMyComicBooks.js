@@ -164,6 +164,7 @@ function populateTableParticipations(){
             "<td class='text-center'>" + 'R$ ' + response.data[i].bidValue +"</td>"+
             "<td class='text-center'>" + 'R$ ' + response.data[i].auction.currentValue +"</td>"+
             "<td class='text-center'>"  + response.data[i].auction.auctionStatus.status +"</td>"+
+            +"<td>"+     +"</td>"+
             "</tr>");
         }
     });

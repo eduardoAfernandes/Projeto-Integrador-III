@@ -62,6 +62,7 @@
 
             document.getElementById('idProductStatus').value = product.productStatus.productStatusID;
             document.getElementById('idProduct').value = product.productID;
+            document.getElementById('capa').src = product.coverImage;
 
             $(".modal-body #títuloQuadrinho").val(product.title);
             $(".modal-body #editora").val(product.publisher);
@@ -117,16 +118,16 @@
     })
     .done(function (response) {
         $('#carregandoDadosModal').fadeOut('slow');
+        console.log(response.data);
         
         localStorage.setItem('find-all-auctions-by-user', JSON.stringify(response));
         for( i=0 ; i< response.data.length;i++){
             if(response.data[i].product.productID == myProductID){ 
-           
-                console.log(response.data[i].currentValue +  ' '+ response.data[i].initialValue);
                 document.getElementById('idLeilao').value=response.data[i].auctionID;
                 $(".modal-body #duracao").val(response.data[i].duration);
                 $(".modal-body #vlr-inicial").val(response.data[i].initialValue);
                 $(".modal-body #lancePadrao").val(response.data[i].defaultBid);
+                $(".modal-body #dt-inicio").val(response.data[i].initialDate);
 
                 
 
@@ -174,7 +175,7 @@
 <body class="deactivate" onload="loadData()">
 
     <div id="header"></div>
-    <section class="container-fluid pt-5" style="height: auto;">
+    <section class="container-fluid pt-5 caixa-loading" style="height: auto;">
         <div id="divCarregando" class="progresso py-4">
             <div class="row ">
                 <div class="col-12 text-center">
@@ -291,13 +292,13 @@
                 <div class="modal-body">
                     <div class="container">
                         <div class="row">
-                            <div class="col-12 col-md-4">
+                            <div class="col-12 ">
                                 <div class="col-12 text-center pt-3">
-                                    <img class="img-fluid" width="125px" src="img/thanos.jpg" alt="">
+                                    <img class="img-fluid py-2" id="capa" width="175px"  alt="">
 
                                 </div>
                             </div>
-                            <div class="col-12 col-md-8">
+                            <div class="col-12">
                                 <form id="formCadastroQuadrinho">
                                     <input type="hidden" id="idProduct">
                                     <input type="hidden" id="idProductStatus">

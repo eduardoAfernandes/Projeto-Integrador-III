@@ -97,7 +97,6 @@ function validForm() {
     let categoria = document.getElementById('categoria').value;
     let nrPagina = document.getElementById('numeroPags').value;
     let peso = document.getElementById('pesoQuadrinho').value;
-    let tipoCapa = document.getElementById('tipoCapa').value;
 
 
     var regexTitle = validTitle(titulo);
@@ -124,10 +123,7 @@ function validForm() {
         document.getElementById('pesoQuadrinho').style.border = "3px solid red";
         document.getElementById('aviso-erro-peso').classList.replace('d-none', 'd-block');
         document.getElementById('aviso-erro-peso').innerHTML = "Peso inválido!!"
-    } else if (tipoCapa == 'capa') {
-        document.getElementById('tipoCapa').style.border = "3px solid red";
-        document.getElementById('aviso-erro-capa').classList.replace('d-none', 'd-block');
-    } else {
+    }  else {
         if (window.confirm('Confirma a alteração de dados deste quadrinho?')) {
             atualizarDadosQuadrinho();
         }
@@ -140,7 +136,6 @@ function atualizarDadosQuadrinho() {
     let categoria = document.getElementById('categoria').value;
     let nrPagina = document.getElementById('numeroPags').value;
     let peso = document.getElementById('pesoQuadrinho').value;
-    // let tipoCapa = document.getElementById('tipoCapa').value;
 
     let idStatusProduct = document.getElementById('idProductStatus').value;
     let idProduct = document.getElementById('idProduct').value;
@@ -173,7 +168,12 @@ function atualizarDadosQuadrinho() {
 
     $.ajax(settings)
         .done(function (response) {
-            alertSuccess(response)
+            console.log(response)
+            if(response.data == 'Product not updated'){
+                alert("Não é possível atualizar os dados de quadrinhos com status inativo")
+            }else{
+                alert("Produto atualizado com sucesso!")
+            }
         })
         .fail(function (response) {
             showResponse()
@@ -484,4 +484,18 @@ function deleteProduct(){
       .fail(function (response) {
         alert("Ocorreu um erro ao excluir o produto!")
       });
+}
+
+
+function formatDate(timestamp) {
+    var date = new Date(timestamp);
+
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var day = date.getDate();
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    var seconds = date.getSeconds();
+
+    return year + "-" + month + "-" + day;
 }
