@@ -21,9 +21,9 @@ function carregarTooltip() {
     document.getElementById('tpCategoriaMENSAL').title = tooltips.categoriaMENSAL;
     document.getElementById('tpNPaginas').title = tooltips.numeroPaginas;
     document.getElementById('tpPeso').title = tooltips.pesoQuadrinho;
-    document.getElementById('tpTipoCapa').title = tooltips.tipoCapa;
-    document.getElementById('tpTipoCapaDura').title = tooltips.tipoCapaDura;
-    document.getElementById('tpTipoCapaMole').title = tooltips.tipoCapaMole;
+    // document.getElementById('tpTipoCapa').title = tooltips.tipoCapa;
+    // document.getElementById('tpTipoCapaDura').title = tooltips.tipoCapaDura;
+    // document.getElementById('tpTipoCapaMole').title = tooltips.tipoCapaMole;
 }
 
 // -------------------------------------------------------------------------------------//

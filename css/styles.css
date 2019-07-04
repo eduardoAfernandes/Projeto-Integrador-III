@@ -86,3 +86,7 @@ p,h1,h2,h3,h4,h5,label,span,select,option,button,::placeholder,input,a,.btn,.nav
 body{
   letter-spacing: 1.5px;
 }
+
+.deactivate {
+  display: none;
+}
