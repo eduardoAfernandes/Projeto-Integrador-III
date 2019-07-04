@@ -1,7 +1,23 @@
 .td-img {
     width: 20%;
 }
+.td-img-participations{
+    width: 20%;
+}
+.td-titulo-participations{
+    width: 20%;
+}
+.td-lance-participations{
+    width: 20%;
 
+}
+.td-vlr-atual-participations{
+    width: 20%;
+}
+.td-status-participations{
+    width: 20%;
+  
+}
 .td-titulo {
     width: 20%;
 }

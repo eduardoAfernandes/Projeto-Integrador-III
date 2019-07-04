@@ -171,7 +171,7 @@
 
 </head>
 
-<body onload="carregarTooltip()">
+<body onload="loadData()">
 
     <div id="header"></div>
     <section class="container-fluid pt-5" style="height: auto;">
@@ -188,18 +188,18 @@
 
         <div class="container" style="margin-top: 5%" id="optionsTables">
             <div class="row border-bottom pt-3">
-                <div class="col-6 bg-dark py-4 pb-3" id="option-table-meus-quadrinhos" onclick="changetableQuadrinhos()" >
+                <div class="col-6  py-4 pb-3" style="background-color: #343a40" id="option-table-meus-quadrinhos" onclick="changetableQuadrinhos()" >
                      <h4 class="text-light text-center">Meus Quadrinhos</h4>
                      <div class="col-12 text-info text-center" style="display: none" id="textoTableQuadrinhos">
-                         Clique aqui para ver seus quadrinhos cadastrados!
+                         Quadrinhos cadastrados!
                      </div>
                 </div>
                 <div class="col-6 bg-dark py-4 pb-3 border-left" id="option-table-participations" onclick="changetableParticipations()">
                         <h4 class="text-light text-center">
-                            Estou participando
+                            Lances Efetuados
                         </h4>
                         <div class="col-12 text-info text-center" id="textoTableParticipations">
-                            Clique aqui para ver os leilões que voce está participando!
+                            Leilões que voce participa!
                         </div>
                    </div>
             </div>
@@ -244,7 +244,7 @@
                             <th scope="col" class="td-status">Status</th>
                             <th scope="col" class="td-dados">Alterar Dados</th>
                             <th scope="col" class="td-ativar">Ativar Leilao</th>
-                            <th scope="col" class="td-ativar">Excluir Leilao</th>
+                            <th scope="col" class="td-ativar">Excluir Produto</th>
 
                         </tr>
                     </thead>
@@ -259,18 +259,19 @@
         </div>
         </div>
         <div class="container bg-light" id="tabelaParticipations" style="display: none;"> 
-                <div class="row  bg-dark py-auto ">
-                        <table class="table table-hover table-responsive table-striped" style="width: 100%">
+                <div class="row  py-auto ">
+                        <table class="table table-hover table-responsive table-striped" id="DataMyParticipations"style="width: 100%">
                                 <thead class="bg-dark text-light">
                                     <tr class="text-center">
-                                        <th scope="col" class="td-img">Capa</th>
-                                        <th scope="col" class="td-titulo">Titulo</th>
-                                        <th scope="col" class="td-status">Meu Lance</th>
-                                        <th scope="col" class="td-dados">Valor Atual</th>
+                                        <th scope="col" class="td-img-participations">Capa</th>
+                                        <th scope="col" class="td-titulo-participations">Titulo</th>
+                                        <th scope="col" class="td-lance-participations">Meu Lance</th>
+                                        <th scope="col" class="td-vlr-atual-participations">Valor Atual</th>
+                                        <th scope="col" class="td-status-participations">Status</th>
             
                                     </tr>
                                 </thead>
-                                <tbody id="tabelaParticipationsDados"></tbody>
+                                <tbody class="bg-light" id="tabelaParticipationsDados"></tbody>
                             </table>
                 </div>
                 </div>
@@ -788,7 +789,7 @@
                 </div>
                 <div class="row">
                     <div class="col-7 text-center py-3">
-                        <button type="button" class="btn btn-success" style="width: 100%">Excluir </button>
+                        <button type="button" class="btn btn-success" onclick="deleteProduct()" style="width: 100%">Excluir </button>
                     </div>
 
                     <div class="col-5 text-center py-3">
