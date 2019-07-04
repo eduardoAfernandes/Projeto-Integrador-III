@@ -30,6 +30,7 @@ function showResponse(response) {
     if ($('#statusUser'.length)) {
         $('#statusUser').html(response.user.name);
         $("#userIconStatus").removeClass('loggedOut').addClass('loggedIn').prop("onclick", null).off("click");
+        $("#statusUser").css('cursor', 'text').prop("onclick", null).off("click");
         $('#userBoxStatus').append(
             `<div class="dropdown-menu">
                 <a class="dropdown-item" href="../../meus-quadrinhos.html">Gerenciar meus leilões</a>
