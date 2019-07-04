@@ -1,18 +1,19 @@
 // Tooltips
 
 var tooltips = {
-    "titulo": "O titulo representa o nome do quadrinho", 
-    "categoria": "A categoria do quadrinho define se ele é um TPB, ou seja, uma coleção ou se é um quadrinho de edição mensal. Passe o mouse sobre as opções para mais informações", 
-    "categoriaTPB": "TPB é uma coleção de quadrinhos reunidas em uma só encadernação. É uma historia completa", 
-    "categoriaMENSAL": "MENSAL quer dizer que esse quadrinho faz parte de uma publicação mensal, ou seja, tem um segmento de história", 
-    "pesoQuadrinho": "Neste campo você deve listar quantos GRAMAS pesam o seu quadrinho. Digite somente o numero sem informar a unidade", 
-    "editora": "Neste campo você deve selecionar qual a editora do seu quadrinho. Se não for Marvel ou DC, selecione OUTRAS", 
+    "titulo": "O titulo representa o nome do quadrinho",
+    "categoria": "A categoria do quadrinho define se ele é um TPB, ou seja, uma coleção ou se é um quadrinho de edição mensal. Passe o mouse sobre as opções para mais informações",
+    "categoriaTPB": "TPB é uma coleção de quadrinhos reunidas em uma só encadernação. É uma historia completa",
+    "categoriaMENSAL": "MENSAL quer dizer que esse quadrinho faz parte de uma publicação mensal, ou seja, tem um segmento de história",
+    "pesoQuadrinho": "Neste campo você deve listar quantos GRAMAS pesam o seu quadrinho. Digite somente o numero sem informar a unidade",
+    "editora": "Neste campo você deve selecionar qual a editora do seu quadrinho. Se não for Marvel ou DC, selecione OUTRAS",
     "numeroPaginas": "Aqui você deve listar o numero de páginas do seu quadrinho. Digite somente numeros",
-    "tipoCapa": " Neste campo você entre o tipo de campa, entre HARD e SOFT, ou seja, capa DURA OU MOLE", 
-    "tipoCapaMole": "SOFT é o tipo de capa MOLE", 
-    "tipoCapaDura": "HARD é o tipo de capa DURA"};        
+    "tipoCapa": " Neste campo você entre o tipo de campa, entre HARD e SOFT, ou seja, capa DURA OU MOLE",
+    "tipoCapaMole": "SOFT é o tipo de capa MOLE",
+    "tipoCapaDura": "HARD é o tipo de capa DURA"
+};
 
-function carregarTooltip(){
+function carregarTooltip() {
     document.getElementById('tpTitulo').title = tooltips.titulo;
     document.getElementById('tpEditora').title = tooltips.editora;
     document.getElementById('tpCategoria').title = tooltips.categoria;
@@ -20,9 +21,9 @@ function carregarTooltip(){
     document.getElementById('tpCategoriaMENSAL').title = tooltips.categoriaMENSAL;
     document.getElementById('tpNPaginas').title = tooltips.numeroPaginas;
     document.getElementById('tpPeso').title = tooltips.pesoQuadrinho;
-    document.getElementById('tpTipoCapa').title = tooltips.tipoCapa;
-    document.getElementById('tpTipoCapaDura').title = tooltips.tipoCapaDura;
-    document.getElementById('tpTipoCapaMole').title = tooltips.tipoCapaMole;
+    // document.getElementById('tpTipoCapa').title = tooltips.tipoCapa;
+    // document.getElementById('tpTipoCapaDura').title = tooltips.tipoCapaDura;
+    // document.getElementById('tpTipoCapaMole').title = tooltips.tipoCapaMole;
 }
 
 // -------------------------------------------------------------------------------------//
@@ -33,7 +34,7 @@ let validacaoEditora = false;
 let validacaoCategoria = false;
 let validacaoNrPagina = false;
 let validacaoPeso = false;
-let validacaoTipoCapa = false;
+let validacaoTipoCapa = true;
 let validacaoCapa = false;
 
 function verifyInput(id) {
@@ -42,7 +43,7 @@ function verifyInput(id) {
     let categoria = document.getElementById('categoria').value;
     let nrPagina = document.getElementById('numeroPags').value;
     let peso = document.getElementById('pesoQuadrinho').value;
-    let tipoCapa = document.getElementById('tipoCapa').value;
+//    let tipoCapa = document.getElementById('tipoCapa').value;
     let cpQuadrinho = document.getElementById('cpQuadrinho').value;
 
     var regexTitle = validTitle(titulo);
@@ -82,7 +83,7 @@ function verifyInput(id) {
         if (nrPagina <= 0 || !regexPags) {
             document.getElementById('numeroPags').style.border = "3px solid red";
             document.getElementById('aviso-erro-paginas').classList.replace('d-none', 'd-block');
-        }  else {
+        } else {
             document.getElementById('numeroPags').style.border = "3px solid lightgreen";
             document.getElementById('aviso-erro-paginas').classList.replace('d-block', 'd-none');
             validacaoNrPagina = true;
@@ -129,12 +130,12 @@ function validForm() {
         document.getElementById('pesoQuadrinho').style.border = "3px solid red";
         document.getElementById('aviso-erro-peso').classList.replace('d-none', 'd-block');
     } else if (!validacaoTipoCapa) {
-        document.getElementById('tipoCapa').style.border = "3px solid red";
-        document.getElementById('aviso-erro-capa').classList.replace('d-none', 'd-block');
-    }else{
+//        document.getElementById('tipoCapa').style.border = "3px solid red";
+//        document.getElementById('aviso-erro-capa').classList.replace('d-none', 'd-block');
+    } else {
         enviarDadosQuadrinho();
     }
-    
+
     // else if(cpQuadrinho == ''){
     //     document.getElementById('aviso-erro-capaQuadrinho').classList.replace('d-none', 'd-block');
     //     document.getElementById('previewQuadrinho').style.border = "5px solid red";
@@ -143,27 +144,27 @@ function validForm() {
 }
 
 function showAlertify() {
-    alertify.success("Quadrinho cadastrado com sucesso!!"); 
+    alertify.success("Quadrinho cadastrado com sucesso!!");
 
 }
 
-// function readURL(input) {
-//     if (input.files && input.files[0]) {
-//         var reader = new FileReader();
-//         reader.onload = function(e) {
-//             $('#previewQuadrinho')
-//                 .attr('src', e.target.result)
-//                 .width(250)
-//                 .height(250);
-//         };
-//         reader.readAsDataURL(input.files[0]);
-//     }
-// }
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            $('#previewQuadrinho')
+                .attr('src', e.target.result)
+                .width(250)
+                .height(300);
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
 
 
-// function clickInputFile() {
-//     document.getElementById('cpQuadrinho').click();
-// }
+function clickInputFile() {
+    document.getElementById('cpQuadrinho').click();
+}
 
 function validTitle(palavra) {
     const filter_nome = /[a-zA-Zá-úà-ùÀ-Ù0-9]{1,}\w{0,}$/;
@@ -188,34 +189,34 @@ function onlyNumber(value) {
 }
 
 function enviarDadosQuadrinho() {
-    let titulo = document.getElementById('títuloQuadrinho').value;
-    let editora = document.getElementById('editora').value;
-    let categoria = document.getElementById('categoria').value;
-    let nrPagina = document.getElementById('numeroPags').value;
-    let peso = document.getElementById('pesoQuadrinho').value;
-    let tipoCapa = document.getElementById('tipoCapa').value;
-    // let tipoCapa = document.getElementById('tipoCapa').value;
 
+    var formdata = new FormData();
+    formdata.append('publishingCompany', document.getElementById('editora').value);
+    formdata.append('title', document.getElementById('títuloQuadrinho').value);
+    formdata.append('format', document.getElementById('categoria').value);
+    formdata.append('pagesNumber', document.getElementById('numeroPags').value);
+    formdata.append('weight', document.getElementById('pesoQuadrinho').value);
+    formdata.append('file', document.getElementById('cpQuadrinho').files[0]);
     
+    // let titulo = document.getElementById('títuloQuadrinho').value;
+    // let editora = document.getElementById('editora').value;
+    // let categoria = document.getElementById('categoria').value;
+    // let nrPagina = document.getElementById('numeroPags').value;
+    // let peso = document.getElementById('pesoQuadrinho').value;
+    // // let tipoCapa = document.getElementById('tipoCapa').value;
+    // let file = document.getElementById('cpQuadrinho').files[0];
 
-        console.log(titulo + ' '+editora+' '+categoria+' '+ nrPagina + ' '+' '+peso )
+//    console.log(titulo + ' ' + editora + ' ' + categoria + ' ' + nrPagina + ' ' + ' ' + peso);
 
     var settings = {
         "async": true,
         "crossDomain": true,
         "url": "https://webserver-leilao.azurewebsites.net/webserver-leilao/controller/insert-product",
         "method": "POST",
-        "headers": {
-            "content-type": "application/x-www-form-urlencoded",
-            "cache-control": "no-cache",
-        },
-        "data": {
-            "publishingCompany": editora,
-            "title": titulo,
-            "format": categoria,
-            "pagesNumber": nrPagina,
-            "weight": peso,
-        },
+        "cache": false,
+        "processData": false,
+        "contentType": false,
+        "data": formdata,
         "xhrFields": {
             "withCredentials": true
         }

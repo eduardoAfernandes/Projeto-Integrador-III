@@ -1,23 +1,39 @@
 .td-img {
-    width: 10%;
+    width: 20%;
 }
+.td-img-participations{
+    width: 20%;
+}
+.td-titulo-participations{
+    width: 20%;
+}
+.td-lance-participations{
+    width: 20%;
 
+}
+.td-vlr-atual-participations{
+    width: 20%;
+}
+.td-status-participations{
+    width: 20%;
+  
+}
 .td-titulo {
-    width: 30%;
+    width: 20%;
 }
 
 .td-dados {
-    width: 10%;
+    width: 5%;
 }
 
 .td-ativar {
-    width: 10%;
+    width: 5%;
 }
 th{
     font-size: 18px;
 }
 .td-status {
-    width: 10%;
+    width: 5%;
 }
 .btn-form-modal,
 .btn-barra{

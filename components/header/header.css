@@ -18,9 +18,20 @@
     font-weight: 900;
 }
 
+.cursorPointer {
+    cursor: pointer !important;
+}
+
+.cursorText {
+    cursor: text;
+}
+
 @media (max-width: 576px) {
     .logo-text {
         padding-left: 50px;
+    }
+    .h1-logo{
+        font-size: 20px;
     }
 
 }

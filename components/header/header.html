@@ -5,43 +5,32 @@
                 <span class="navbar-toggler-icon"></span>
               </button>
                 <a class="navbar-brand font-leilao-de-quadrinhos logo-text pr-3 pr-md-0" href="../../index.html">
-                    <h1 style="font-size: 25px;" class="my-auto">
+                    <h1 style="font-size: 25px;" class="my-auto h1-logo">
                         Leilão de Quadrinhos
                     </h1>              </a>
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" href="#">Categorias<span class="sr-only">(current)</span></a>
+                        </li> -->
+                        <li class="nav-item cursorPointer">
+                            <a class="nav-link" data-toggle="modal" data-target="#exampleModalCenter" accesskey="C">Como funciona</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="modal" data-target="#exampleModalCenter">Como funciona</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../../cadastrar-produto.html">Anunciar</a>
+                            <a class="nav-link" href="../../cadastrar-produto.html" accesskey="A">Anunciar</a>
                         </li>
                     </ul>
-                    <form class="form-inline">
-                        <div class="form-row">
-                            <div class="col-12 col-md-8 ">
-                                    <input class="form-control mr-sm-0" type="search" placeholder="Nome do quadrinho..." aria-label="Search">
-            
-                            </div>
-                            <div class="col-12 col-md-4  text-left">
-                        <button class="btn btn-outline-success my-2 my-sm-0 " type="submit">Procurar</button>
-                            </div>
-                        </div>
-                    </form>
+                    <a style="display: none" href="login.html" accesskey="L"></a>
+                    <span id="statusUser" style="color: white; cursor: pointer;" onclick="window.open('login.html', '_self')">Entrar</span>
                     <div id="user_icon"></div>
                 </div>
             </nav>
                 
 </div>
 
-
-
-
 <script>
     $(function() {
         $('#user_icon').load('./components/user-icon/user_icon.html');
     });
 </script>
+<script src="js/verify-session.js"></script>

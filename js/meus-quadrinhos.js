@@ -1,30 +1,3 @@
-// Tooltips
-
-var tooltips = {
-    "titulo": "O titulo representa o nome do quadrinho",
-    "categoria": "A categoria do quadrinho define se ele é um TPB, ou seja, uma coleção ou se é um quadrinho de edição mensal. Passe o mouse sobre as opções para mais informações",
-    "categoriaTPB": "TPB é uma coleção de quadrinhos reunidas em uma só encadernação. É uma historia completa",
-    "categoriaMENSAL": "MENSAL quer dizer que esse quadrinho faz parte de uma publicação mensal, ou seja, tem um segmento de história",
-    "pesoQuadrinho": "Neste campo você deve listar quantos GRAMAS pesam o seu quadrinho. Digite somente o numero sem informar a unidade",
-    "editora": "Neste campo você deve selecionar qual a editora do seu quadrinho. Se não for Marvel ou DC, selecione OUTRAS",
-    "numeroPaginas": "Aqui você deve listar o numero de páginas do seu quadrinho. Digite somente numeros",
-    "tipoCapa": " Neste campo você entre o tipo de campa, entre HARD e SOFT, ou seja, capa DURA OU MOLE",
-    "tipoCapaMole": "SOFT é o tipo de capa MOLE",
-    "tipoCapaDura": "HARD é o tipo de capa DURA"
-};
-
-function carregarTooltip() {
-    document.getElementById('tpTitulo').title = tooltips.titulo;
-    document.getElementById('tpEditora').title = tooltips.editora;
-    document.getElementById('tpCategoria').title = tooltips.categoria;
-    document.getElementById('tpCategoriaTPB').title = tooltips.categoriaTPB;
-    document.getElementById('tpCategoriaMENSAL').title = tooltips.categoriaMENSAL;
-    document.getElementById('tpNPaginas').title = tooltips.numeroPaginas;
-    document.getElementById('tpPeso').title = tooltips.pesoQuadrinho;
-    document.getElementById('tpTipoCapa').title = tooltips.tipoCapa;
-    document.getElementById('tpTipoCapaDura').title = tooltips.tipoCapaDura;
-    document.getElementById('tpTipoCapaMole').title = tooltips.tipoCapaMole;
-}
 
 // -------------------------------------------------------------------------------------//
 
@@ -473,8 +446,42 @@ function cancelarLeilao(){
           if(window.confirm("Confirmar cancelamento deste leilão?")){
 
           $.ajax(settings).done(function (response) {
-              alert("Leilão excluído com sucesso!")
-              window.location.reload()
+              console.log(response.data)
+                if(response.data == 'You cannot delete an auction with bids'){
+                    alert("Não é permitido cancelar leilões que já tenham sofrido lances!")
+                }else{
+                    alert("Leilão cancelado com sucesso!")
+                }
           });
     }
+}
+
+function deleteProduct(){
+    var idProduct = document.getElementById('idProduct').value;
+
+
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://webserver-leilao.azurewebsites.net/webserver-leilao/controller/delete-product",
+        "method": "POST",
+        "headers": {
+          "Content-Type": "application/x-www-form-urlencoded",
+          "cache-control": "no-cache",
+        },
+        "data": {
+        "productID": idProduct
+        }, 
+        "xhrFields": {
+            "withCredentials": true
+        }
+      }
+
+      $.ajax(settings).done(function (response) {
+          alert("Produto excluido com sucesso!")
+          window.location.reload();
+        })
+      .fail(function (response) {
+        alert("Ocorreu um erro ao excluir o produto!")
+      });
 }

@@ -1,9 +1,24 @@
+var step = 4;
+var limit = step;
+var offset = 0;
+var endOfList = false;
+
+$(window).scroll(function () {
+    // End of the document reached?
+    if ($(document).height() - $(this).height() == $(this).scrollTop()) {
+        if (!endOfList) {
+            $('#divCarregando').fadeIn('slow');
+            loadDados();
+        }
+    }
+});
+
 function loadDados() {
-    console.log("Testesss")
+
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "https://webserver-leilao.azurewebsites.net/webserver-leilao/controller/public/find-all-auctions",
+        "url": `https://webserver-leilao.azurewebsites.net/webserver-leilao/controller/public/find-all-auction-paginate?limit=${limit}&offset=${offset}`,
         "method": "GET",
         "headers": {
             "content-type": "application/x-www-form-urlencoded",
@@ -18,10 +33,17 @@ function loadDados() {
             return response
         })
         .done(function (response) {
+
+            offset = offset + step;
+
             $('#divCarregando').fadeOut('slow');
             localStorage.setItem('find-all-auctions', JSON.stringify(response));
             
-            
+            if (response.data.length === 0) {
+                endOfList = true;
+                $('#divFimLista').fadeIn('slow');
+            }
+
             console.log(response);
             for (i = 0; i < response.data.length; i++) {
 
@@ -39,39 +61,39 @@ function loadDados() {
                 if (duration == 0) statusIcon = "<span class='oi oi-circle-x py-2' style='color: lightred'></span>";
 
                 $("#sub-sectionProdutos").append(
-                `<div class='col-12 col-md-6 col-lg-3 pb-5 pb-md-0 text-center ml-5 ml-md-0'>
+                    `<div class='col-12 col-md-6 col-lg-3 text-center py-4'>
                     <div class='cx-item text-light'>
-                        <div class='cx-header'>
-                            <div class='row'>
-                                <div class='col-9 text-center '>
-                                    <h5 class='py-1'>
-                                        Finaliza em ${timeToFinalize}
-                                    </h5>
-                                </div>
-                                <div class='col-3'>
-                                    ${statusIcon}
-                                </div>
-                            </div>
-                        </div>
-                        <div class='cx-body'>
-                            <img src='img/thanos.jpg' class='img-fluid' alt='img04' id='img-card'>
-                        </div>
-                        <div class='cx-footer bg-dark'>
-                            <div class='row'>
-                                <div class='col-6 text-center'>
-                                    <div class='row'>
-                                        <div class='col-12 text-center'>
-                                            <dl class='mt-2'>
-                                                <dt class='ml-3'> V. Atual:</dt>
-                                                <dt class='ml-3'> ${currentValue}</dt>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class='col-6'>
-                                    <button type='button' class='btn btn-dar-lance btn-primary'>
-                                        Dar Lance
-                                        <span class='badge badge-light'>+5</span>
+                    <div class='cx-header'>
+                    <div class='row'>
+                    <div class='col-9 text-center '>
+                    <h5 class='py-1'>
+                    Finaliza em ${timeToFinalize}
+                    </h5>
+                    </div>
+                    <div class='col-3'>
+                    ${statusIcon}
+                    </div>
+                    </div>
+                    </div>
+                    <div class='cx-body'>
+                    <img src='${coverImage}' class='img-fluid' alt='Imagem da capa do quadrinho ${name}' id='img-card'>
+                    </div>
+                    <div class='cx-footer bg-dark'>
+                    <div class='row'>
+                    <div class='col-6 text-center'>
+                    <div class='row'>
+                    <div class='col-12 text-center'>
+                    <dl class='mt-2'>
+                    <dt class='ml-3'> V. Atual:</dt>
+                    <dt class='ml-3' style='font-size:15px'> ${currentValue}</dt>
+                    </dl>
+                    </div>
+                    </div>
+                    </div>
+                    <div class='col-6'>
+                    <button type='button' class='btn btn-dar-lance btn-primary'>
+                    Dar Lance
+                                        <span class='badge badge-light'>+${defaultBid}</span>
                                     </button>
                                 </div>
                                 <div class='row border-top caixa-link-detalhes text-center '>
@@ -88,8 +110,7 @@ function loadDados() {
                 </div>`
                 );
             }
-        }
-    )
+        })
 }
 
 function formatDate(timestamp) {
