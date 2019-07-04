@@ -43,7 +43,7 @@ function showResponse(response) {
 
 function goHome(response) {
     if (window.location.pathname != '/') {
-        window.location.replace("/");        
+        window.location.replace("/login.html");        
     }
 }
 
