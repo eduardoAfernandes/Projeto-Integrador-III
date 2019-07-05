@@ -93,7 +93,7 @@ function loadDados() {
                     </div>
                     </div>
                     <div class='col-6'>
-                    <button type='button' class='btn btn-dar-lance btn-primary' data-toggle='modal' data-target='#modalBid'>
+                    <button type='button' class='btn btn-dar-lance btn-primary' data-toggle='modal' data-target='#modalBid' data-id="${auctionID}">
                     Dar Lance
                                         <span class='badge badge-light'>+${defaultBid}</span>
                                     </button>
