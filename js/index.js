@@ -4,13 +4,15 @@ var offset = 0;
 var endOfList = false;
 
 $(window).scroll(function () {
-    // End of the document reached?
-    if ($(document).height() - $(this).height() == $(this).scrollTop()) {
+    var scrollHeight = $(document).height();
+    var scrollPosition = $(window).height() + $(window).scrollTop();
+    if( scrollHeight - scrollPosition < 20 ) {
         if (!endOfList) {
             $('#divCarregando').fadeIn('slow');
             loadDados();
         }
     }
+
 });
 
 function loadDados() {
