@@ -31,12 +31,12 @@ function loadDados() {
         }
     }
 
+    offset = offset + step;
+
     $.ajax(settings).done(function (response) {
             return response
         })
         .done(function (response) {
-
-            offset = offset + step;
 
             $('#divCarregando').fadeOut('slow');
             localStorage.setItem('find-all-auctions', JSON.stringify(response));
