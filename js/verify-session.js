@@ -22,7 +22,7 @@ function session() {
 
     $.ajax(settings)
         .done(function (response) {showResponse(response)})
-        .fail(function (response) {goHome(response)});
+        .fail(function (response) {goLogin(response)});
 }
 
 function showResponse(response) {
@@ -42,8 +42,10 @@ function showResponse(response) {
     }
 }
 
-function goHome(response) {
-    if (window.location.pathname != '/') {
+function goLogin(response) {
+    var thisPage = window.location.pathname;
+    
+    if (thisPage != '/' && thisPage != '/login.html') {
         window.location.replace("/login.html");        
     }
 }
