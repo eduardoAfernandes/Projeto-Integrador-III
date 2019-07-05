@@ -417,7 +417,9 @@ function ChangeStatusToActive() {
 }
 
 function mostraFormEditarLeilao(){
+    document.getElementById('changeStatusAuction').classList.replace('d-block','d-none');
     document.getElementById('gerenciarLeilao').classList.replace('d-none','d-block');
+
 }
 
 function mostraAvisoProdutoEmLeilao(){
@@ -450,7 +452,8 @@ function cancelarLeilao(){
                 if(response.data == 'You cannot delete an auction with bids'){
                     alert("Não é permitido cancelar leilões que já tenham sofrido lances!")
                 }else{
-                    alert("Leilão cancelado com sucesso!")
+                    alert("Leilão cancelado com sucesso!");
+                    window.location.reload();
                 }
           });
     }
@@ -498,4 +501,115 @@ function formatDate(timestamp) {
     var seconds = date.getSeconds();
 
     return year + "-" + month + "-" + day;
+}
+function changeStatusAuction(){
+    document.getElementById('changeStatusAuction').classList.replace('d-none','d-block');
+    document.getElementById('gerenciarLeilao').classList.replace('d-block','d-none');
+    let idAuction = document.getElementById('idLeilao').value;
+    let statusAuction = document.getElementById('statusAuction').value;
+    let idStatusAuction = document.getElementById('idStatusAuction').value;
+    document.getElementById('statusProduto').innerHTML = "Status do leilão: " + document.getElementById('statusAuction').value;
+    
+    if(statusAuction == 'ATIVO' ){
+        document.getElementById('btnChangeToHold').classList.replace('d-none','d-block');
+        document.getElementById('btnChangeToInactive').classList.replace('d-none','d-block');
+    }else if(statusAuction == 'INATIVO'){
+        document.getElementById('btnChangeToHold').classList.replace('d-none','d-block');
+        document.getElementById('btnChangeToActive').classList.replace('d-none','d-block');
+    }else if(statusAuction == 'EM_ESPERA'){
+        document.getElementById('btnChangeToInactive').classList.replace('d-none','d-block');
+        document.getElementById('btnChangeToActive').classList.replace('d-none','d-block');
+    }
+
+}
+
+function changeStatusAuctionToOnHold(){
+    let idAuction = document.getElementById('idLeilao').value;
+
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://webserver-leilao.azurewebsites.net/webserver-leilao/controller/change-auction-status",
+        "method": "POST",
+        "headers": {
+          "Content-Type": "application/x-www-form-urlencoded",
+          "cache-control": "no-cache",
+        },
+        "data": {
+          "auctionID": idAuction,
+          "auctionStatusID": "3"
+        }, "xhrFields": {
+            "withCredentials": true
+        }
+      }
+if(window,confirm('Colocar o leilão em espera?')){
+        $.ajax(settings).done(function (response) {
+            alert('Status alterado com sucesso!');
+            window.location.reload();
+        })
+        .fail(function (response) {
+            alert('Ocorreu um erro ao alterar o status do produto!')
+         });
+        }
+}
+
+
+function changeStatusAuctionToActive(){
+    let idAuction = document.getElementById('idLeilao').value;
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://webserver-leilao.azurewebsites.net/webserver-leilao/controller/change-auction-status",
+        "method": "POST",
+        "headers": {
+          "Content-Type": "application/x-www-form-urlencoded",
+          "cache-control": "no-cache",
+        },
+        "data": {
+          "auctionID": idAuction,
+          "auctionStatusID": "1"
+        }
+        , "xhrFields": {
+            "withCredentials": true
+        }
+      }
+if(window.confirm('Mudar o status deste leilão para ativo?')){
+        $.ajax(settings).done(function (response) {
+            alert('Status alterado com sucesso!');
+            window.location.reload();
+                })
+        .fail(function (response) {
+            alert('Ocorreu um erro ao alterar o status do produto!')
+         });
+        }
+}
+
+function changeStatusAuctionToInactive(){
+    let idAuction = document.getElementById('idLeilao').value;
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://webserver-leilao.azurewebsites.net/webserver-leilao/controller/change-auction-status",
+        "method": "POST",
+        "headers": {
+          "Content-Type": "application/x-www-form-urlencoded",
+          "cache-control": "no-cache",
+        },
+        "data": {
+          "auctionID": idAuction,
+          "auctionStatusID": "2"
+        }
+        , "xhrFields": {
+            "withCredentials": true
+        }
+      }
+if(window.confirm('Mudar o status deste leilão para inativo?')){
+        $.ajax(settings).done(function (response) {
+            alert('Status alterado com sucesso!');
+            window.location.reload();
+                })
+        .fail(function (response) {
+            alert('Ocorreu um erro ao alterar o status do produto!')
+         });
+        }
 }
