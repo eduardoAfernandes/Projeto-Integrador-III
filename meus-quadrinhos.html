@@ -87,6 +87,8 @@
             var product = JSON.parse(localStorage.getItem('find-products-by-user')).data.filter((product) => {
                 return product.productID === myProductID;
             })[0]
+            console.log(product);
+            document.getElementById('cpQuadrinho').src = product.coverImage;
         });
 
         $(document).on("click", ".btnModalGerenciarLeilao", function () {
@@ -437,7 +439,7 @@
                         <div class="row">
                             <div class="col-12 col-md-5">
                                 <div class="col-12 text-center pt-3">
-                                    <img class="img-fluid" width="125px" src="img/thanos.jpg" alt="">
+                                    <img class="img-fluid" id="cpQuadrinho" width="125px"  alt="">
 
                                 </div>
                             </div>

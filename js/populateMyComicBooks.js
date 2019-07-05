@@ -158,7 +158,6 @@ function populateTableParticipations(){
         return response      
     })
     .done(function (response) {
-        console.log(response)
         localStorage.setItem('find-bids-by-user', JSON.stringify(response));
         for (i = 0; i <= response.data.length; i++) {
             $("#tabelaParticipationsDados").append(          

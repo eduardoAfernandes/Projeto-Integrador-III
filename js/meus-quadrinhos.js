@@ -231,6 +231,7 @@ function ehIgual(diaAtual, formatDataInput) {
     }
 }
 
+
 function verifyInputModalLeilao(id) {
     var dataInput = document.getElementById('dt-inicio').value;
     var duracaoLeilao = document.getElementById('duracao').value;
