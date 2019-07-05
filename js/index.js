@@ -20,7 +20,7 @@ function loadDados() {
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": `https://webserver-leilao.azurewebsites.net/webserver-leilao/controller/public/find-all-auction-paginate?limit=${limit}&offset=${offset}`,
+        "url": `https://webserver-leilao.azurewebsites.net/webserver-leilao/controller/public/find-all-auction-paginate?limit=${limit}&offset=${offset}&columnToOrderBy=data_inicio&directionToOrderBy=asc&titleToSearch&publishingCompanys=`,
         "method": "GET",
         "headers": {
             "content-type": "application/x-www-form-urlencoded",
@@ -138,4 +138,17 @@ function formatValueToFloat(value) {
     value = 'R$ ' + value;
     return value;
 }
+
+function search() {
+    $('#sub-sectionProdutos').html('');
+
+}
+
+
+
+
+
+
+
+
 loadDados();
