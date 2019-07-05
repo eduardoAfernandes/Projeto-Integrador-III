@@ -65,6 +65,8 @@
     <h1 class="deactivate">Leilão de Quadrinhos</h1>
 
     <div id="grant-slider"></div>
+    <div id="modal-bid"></div>
+
 
     <section class="container-fluid pt-3">
         <div class="row">
@@ -175,12 +177,12 @@
                 </div>
             </div>
             <div id="divFimLista" style="display: none" class="py-4">
-                    <div class="row ">
-                        <div class="col-12 text-center">
-                            <p>Fim da lista</p>
-                        </div>
+                <div class="row ">
+                    <div class="col-12 text-center">
+                        <p>Fim da lista</p>
                     </div>
                 </div>
+            </div>
     </section>
     </div>
 
@@ -199,6 +201,7 @@
         $('#footer').load('./components/footer/footer.html');
         $('#grant-slider').load('./components/grant-slider/grant_slider.html');
         $('#favicon').load('./components/favicon/favicon.html');
+        $('#modal-bid').load('./components/modal-bid/modal-bid.html');
     });
 </script>
 
