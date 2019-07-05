@@ -78,7 +78,7 @@ function loadDados() {
                     </div>
                     </div>
                     <div class='cx-body'>
-                    <img src='${coverImage}' class='img-fluid' alt='Imagem da capa do quadrinho ${name}' id='img-card'>
+                    <img src='${coverImage}' class='img-fluid' style='width: 255px; min-width: 255px; height: 396px; min-height: 396px' alt='Imagem da capa do quadrinho ${name}' id='img-card${i}'>
                     </div>
                     <div class='cx-footer bg-dark'>
                     <div class='row'>
