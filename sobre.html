@@ -170,7 +170,9 @@
 <script>
     $(function () {
 
-        $('#header').load('./components/header/header.html');
+        $('#header').load('./components/header/header.html', function() {
+            $("#headerSobre").addClass('active');
+        });   
         $('#modal').load('./components/modal-como-funciona/modal.html');
         $('#footer').load('./components/footer/footer.html');
         $('#favicon').load('./components/favicon/favicon.html');

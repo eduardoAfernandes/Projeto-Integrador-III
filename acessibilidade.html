@@ -216,15 +216,16 @@
 
 <div id="footer"></div>
 
-<script src="js/toucheffects.js"></script>
-
 <script>
     $(function () {
 
-        $('#header').load('./components/header/header.html');
+        $('#header').load('./components/header/header.html', function() {
+            $("#headerAcessibilidade").addClass('active');
+        });
         $('#modal').load('./components/modal-como-funciona/modal.html');
         $('#footer').load('./components/footer/footer.html');
         $('#favicon').load('./components/favicon/favicon.html');
+        
     });
 </script>
 

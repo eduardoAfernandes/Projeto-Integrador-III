@@ -6,7 +6,7 @@ var endOfList = false;
 $(window).scroll(function () {
     var scrollHeight = $(document).height();
     var scrollPosition = $(window).height() + $(window).scrollTop();
-    if( scrollHeight - scrollPosition < 20 ) {
+    if (scrollHeight - scrollPosition < 20) {
         if (!endOfList) {
             $('#divCarregando').fadeIn('slow');
             loadDados();
@@ -40,7 +40,7 @@ function loadDados() {
 
             $('#divCarregando').fadeOut('slow');
             localStorage.setItem('find-all-auctions', JSON.stringify(response));
-            
+
             if (response.data.length === 0) {
                 endOfList = true;
                 $('#divFimLista').fadeIn('slow');
@@ -137,6 +137,33 @@ function formatValueToFloat(value) {
     }
     value = 'R$ ' + value;
     return value;
+}
+
+function searchOk() {
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": true,
+        "onclick": null,
+        "showDuration": "3000",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+
+    toastr["success"]("Filtro realizado. Verifique a listagem dos quadrinhos ao lado.", "Mensagem");
+
+    $('html, body').animate({
+        scrollTop: $( $('#sectionSearch') ).offset().top
+    }, 500);
+
 }
 
 function search() {

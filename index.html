@@ -45,6 +45,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <script src="js/index.js"></script>
     <script src="components/modal-bid/modal-bid.js"></script>
     <script src="js/verify-session.js"></script>
@@ -68,7 +70,7 @@
     <div id="grant-slider"></div>
     <div id="modal-bid"></div>
 
-
+    <a href="#" onclick="searchOk()">Verwijder</a>
     <section class="container-fluid pt-3">
         <div class="row">
             <div class="col-12">
@@ -99,6 +101,7 @@
                                 </span>
                             </button>
                         </div>
+                        <span id="sectionSearch"></span>
 
                         <div class="collapse navbar-collapse justify-content-center" id="collapsibleFilter">
                             <div class="row container-fluid pt-3 ">
