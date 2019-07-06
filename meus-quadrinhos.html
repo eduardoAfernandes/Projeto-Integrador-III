@@ -60,10 +60,10 @@
                 return product.productID === myProductID;
             })[0]
 
+            document.getElementById('imagem').value = product.coverImage;
             document.getElementById('idProductStatus').value = product.productStatus.productStatusID;
             document.getElementById('idProduct').value = product.productID;
             document.getElementById('previewQuadrinho').src = product.coverImage;
-
             $(".modal-body #títuloQuadrinho").val(product.title);
             $(".modal-body #editora").val(product.publisher);
             $(".modal-body #categoria").val(product.comicFormat);

@@ -31,7 +31,7 @@ function loadDados() {
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "https://webserver-leilao.azurewebsites.net/webserver-leilao/controller/find-products-by-user",
+        "url": "https://b648e929.ngrok.io/webserver_leilao_war_exploded/controller/find-products-by-user",
         "method": "GET",
         "headers": {
             "content-type": "application/x-www-form-urlencoded",
@@ -141,7 +141,7 @@ function populateTableParticipations(){
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "https://webserver-leilao.azurewebsites.net/webserver-leilao/controller/find-bid-by-user",
+        "url": "https://b648e929.ngrok.io/webserver_leilao_war_exploded/controller/find-bid-by-user",
         "method": "GET",
         "headers": {
             "content-type": "application/x-www-form-urlencoded",

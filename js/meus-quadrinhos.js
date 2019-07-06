@@ -121,16 +121,24 @@ function validForm() {
 }
 
 function atualizarDadosQuadrinho() {
+    var updateImage;
     var formdata = new FormData();
+
+    if(document.getElementById('imagem').value != document.getElementById('cpQuadrinho').value && document.getElementById('cpQuadrinho').value != '' ){
+        updateImage = true;
+    }else{
+        updateImage = false;
+    }
+
     formdata.append('publishingCompany', document.getElementById('editora').value);
     formdata.append('title', document.getElementById('títuloQuadrinho').value);
     formdata.append('format', document.getElementById('categoria').value);
     formdata.append('pagesNumber', document.getElementById('numeroPags').value);
     formdata.append('weight', document.getElementById('pesoQuadrinho').value);
     formdata.append('file', document.getElementById('cpQuadrinho').files[0]);
-    let updateImage = true;
     formdata.append('updateImage',updateImage);
-  
+    formdata.append('productID',document.getElementById('idProduct').value)
+    formdata.append('statusID',document.getElementById('idProductStatus').value);
 
     var settings = {
         "async": true,

@@ -67,7 +67,7 @@ function login(){
     var settings = {
         "async": true,
         "crossDomain": true,        
-        "url": "https://webserver-leilao.azurewebsites.net/webserver-leilao/controller/login",
+        "url": "https://b648e929.ngrok.io/webserver_leilao_war_exploded/controller/login",
         "method": "POST",
         "headers": {
           "content-type": "application/x-www-form-urlencoded",
