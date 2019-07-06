@@ -1,0 +1,46 @@
+  <!-- Modal Delect Product -->
+  <div class="modal fade" id="modalExcluiProduto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class=" modal-content">
+          <div class="modal-header bg-dark text-light">
+              <h4 class="modal-title text-center" id="exampleModalLabel">Confirmar exclusão do produto <span
+                      id="titleQuadrinho"></span></h4>
+              <button type="button" id="btnFechaModalAtivaLeilao" class="close" data-dismiss="modal">
+                  <span aria-hidden=" true" class="text-light pt-3">X</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              <div class="container-fluid">
+                  <div class="row">
+                      <div class="col-12">
+                          <input type="hidden" id="idProduct">
+
+                          <h3 id="titleProduct">
+                          </h3>
+                      </div>
+
+
+                  </div>
+
+
+
+              </div>
+              <div class="row">
+                  <div class="col-7 text-center py-3">
+                      <button type="button" class="btn btn-success" onclick="deleteProduct()"
+                          style="width: 100%">Excluir </button>
+                  </div>
+
+                  <div class="col-5 text-center py-3">
+                      <button type="button" class="btn btn-danger" data-dismiss="modal"
+                          style="width: 100%">Cancelar </button>
+                  </div>
+
+              </div>
+          </div>
+          <div class="modal-footer bg-dark">
+          </div>
+      </div>
+  </div>
+</div>

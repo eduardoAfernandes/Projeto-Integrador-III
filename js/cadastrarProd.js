@@ -134,7 +134,6 @@ function validForm() {
         document.getElementById('previewQuadrinho').style.border = "5px solid red";
     } else {
         $('#modalCarregando').modal('show');
-
         enviarDadosQuadrinho();
     }
 

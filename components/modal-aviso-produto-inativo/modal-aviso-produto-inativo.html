@@ -1,0 +1,42 @@
+    <!-- Modal Aviso -->
+    <div class="modal fade" id="modalAviso" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class=" modal-content">
+                <div class="modal-header bg-dark text-light">
+                    <h4 class="modal-title" id="exampleModalLabel">Criar leilão <span id="titleQuadrinho"></span></h4>
+                    <button type="button" id="btnFechaModalAtivaLeilao" class="close" data-dismiss="modal">
+                        <span aria-hidden=" true" class="text-light pt-3">X</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12">
+                                <input type="hidden" id="idProduct">
+
+                                <h3>
+                                    Este produto está inativo, para ativar um leilão para este produto mude o status do
+                                    produto para ativo!
+                                </h3>
+                            </div>
+
+
+                        </div>
+
+
+
+                    </div>
+                    <div class="row">
+                        <div class="col-12 text-center py-3">
+                            <button type="button" class="btn btn-info" style="width: 100%"
+                                onclick="ChangeStatusToActive()">Mudar status </button>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer bg-dark">
+                </div>
+            </div>
+        </div>
+    </div>
