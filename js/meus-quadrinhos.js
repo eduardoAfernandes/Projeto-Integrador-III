@@ -128,14 +128,14 @@ function atualizarDadosQuadrinho() {
     formdata.append('pagesNumber', document.getElementById('numeroPags').value);
     formdata.append('weight', document.getElementById('pesoQuadrinho').value);
     formdata.append('file', document.getElementById('cpQuadrinho').files[0]);
+    let updateImage = true;
+    formdata.append('updateImage',updateImage);
   
-
-
 
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "https://webserver-leilao.azurewebsites.net/webserver-leilao/controller/update-product",
+        "url": "https://b648e929.ngrok.io/webserver_leilao_war_exploded/controller/update-product",
         "method": "POST",
         "cache": false,
         "processData": false,
@@ -286,7 +286,10 @@ function validFormII() {
         document.getElementById('aviso-erro-lancePadrao').classList.replace('d-none', 'd-block');
     } else {
         if (window.confirm('Confirma a ativação deste leilão')) {
+            $('#modalCadastrandoLeilao').modal('show');
+            $('#modalLeilao').modal('hide');
             enviarDadosLeilao();
+            
         }
     }
 }
@@ -336,8 +339,9 @@ function showResponseAtivacao() {
 }
 
 function alertSuccessAtivacao(response) {
-    document.getElementById('btnFechaModalAtivaLeilao').click();
-    alert("Leilão cadastrado!!")
+    $('#modalCadastrandoLeilao').modal('hide');
+    $('#modalLeilao').modal('hide');   
+ alert("Leilão cadastrado!!")
     window.location.reload();
 }
 
