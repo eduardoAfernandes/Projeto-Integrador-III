@@ -45,16 +45,21 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
- 
+
 </head>
 
 <body>
 
-    <div id="header">
-
-    </div>
-    <section class="container-fluid pt-5">
-        <div class="container  mt-5 bg-light">
+    <div id="header"></div>
+    <nav aria-label="breadcrumb" style="margin-top: 110px;">
+        <ol class="breadcrumb bg-dark" style="border-radius: 0px">
+            <span style="color: lightgray; padding-right: 20px">Você está em: </span>
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item active text-light font-italic" aria-current="page">Sobre</li>
+        </ol>
+    </nav>
+    <section class="container-fluid pt-2">
+        <div class="container bg-light">
             <div class="row bg-dark text-light">
                 <div class="col-5 text-right py-auto">
                     <img src="img/logo-min.png" width="80px;" alt="">
@@ -66,12 +71,19 @@
 
             <div class="row pt-5">
                 <div class="col-12 col-lg-8 ">
-                    <p class="quemSomos">Este projeto é o resultado da disciplina Projeto integrador 3 do curso de Tenologias e Sistemas para a Internet
-                    ministrada na IFTM Campus Uberlândia centro. Nelas buscamos utilizar os conteúdos ministrados nas disciplinas vigentes no terceiro periodo de modo a colocar em prática as teorias estudadas. Desta forma não só praticamos o que aprendemos mas começamos temos experiencia de trabalho em grupo e desenvolvimento de uma projeto em equipe.
-                    Estamos sempre abertos a sugestões e nossos contatos estão listados abaixo. Sinta-se a vontade para nos dar um oi e compartilhar conosco o que achou do nosso projeto!<br><br>Obrigado por nôs visitar!</p>
+                    <p class="quemSomos">Este projeto é o resultado da disciplina Projeto integrador 3 do curso de
+                        Tenologias e Sistemas para a Internet
+                        ministrada na IFTM Campus Uberlândia centro. Nelas buscamos utilizar os conteúdos ministrados
+                        nas disciplinas vigentes no terceiro periodo de modo a colocar em prática as teorias estudadas.
+                        Desta forma não só praticamos o que aprendemos mas começamos temos experiencia de trabalho em
+                        grupo e desenvolvimento de uma projeto em equipe.
+                        Estamos sempre abertos a sugestões e nossos contatos estão listados abaixo. Sinta-se a vontade
+                        para nos dar um oi e compartilhar conosco o que achou do nosso projeto!<br><br>Obrigado por nôs
+                        visitar!</p>
                 </div>
                 <div class="col-12 col-lg-4 text-left pt-1">
-                    <img src="img/logoIF.png" class="img-fluid img-iftm" alt="" style="cursor: pointer" onclick="window.open('http:\/\/iftm.edu.br/', '_blank')">
+                    <img src="img/logoIF.png" class="img-fluid img-iftm" alt="" style="cursor: pointer"
+                        onclick="window.open('http:\/\/iftm.edu.br/', '_blank')">
                 </div>
             </div>
 
@@ -87,72 +99,74 @@
 
             <div class="row pt-2 ">
                 <div class="col-12 col-lg-3 border mb-3 mb-md-0">
-                        <div class="row ">
-                            <div class="col-12 text-center ">
-                                <img src="img/fotoEduardo.jpg"  class="rounded-circle img-fluid py-3" width="75%" alt="">
-                            </div>
-                            <div class="col-12 text-center">
-                                <h5>Eduardo Augusto </h5>
-                                </div>
+                    <div class="row ">
+                        <div class="col-12 text-center ">
+                            <img src="img/fotoEduardo.jpg" class="rounded-circle img-fluid py-3" width="75%" alt="">
                         </div>
+                        <div class="col-12 text-center">
+                            <h5>Eduardo Augusto </h5>
+                        </div>
+                    </div>
 
-                        <div class="row">
-                            <div class="col-12 text-center pb-3 ">
-                                 <img src="img/github.png"  width="24px">
-                                 <img src="img/linkedin.png"  width="24px" >
-                            </div>
+                    <div class="row">
+                        <div class="col-12 text-center pb-3 ">
+                            <img src="img/github.png" width="24px">
+                            <img src="img/linkedin.png" width="24px">
                         </div>
+                    </div>
                 </div>
                 <div class="col-12 col-lg-3 border mb-3 mb-md-0">
-                        <div class="row ">
-                            <div class="col-12 text-center ">
-                                <img src="img/tiago.jpeg"  class="rounded-circle img-fluid py-3" width="75%" alt="">
-                            </div>
-                            <div class="col-12 text-center">
-                                <h5>Tiago Nunes</h5>
-                                </div>
+                    <div class="row ">
+                        <div class="col-12 text-center ">
+                            <img src="img/tiago.jpeg" class="rounded-circle img-fluid py-3" width="75%" alt="">
                         </div>
+                        <div class="col-12 text-center">
+                            <h5>Tiago Nunes</h5>
+                        </div>
+                    </div>
 
-                        <div class="row">
-                            <div class="col-12 text-center pb-3 ">
-                                 <img src="img/github.png"  width="24px">
-                                 <img src="img/linkedin.png"  width="24px">
-                            </div>
+                    <div class="row">
+                        <div class="col-12 text-center pb-3 ">
+                            <img src="img/github.png" width="24px">
+                            <img src="img/linkedin.png" width="24px">
                         </div>
-                </div>      <div class="col-12 col-lg-3 border mb-3 mb-md-0">
-                        <div class="row ">
-                            <div class="col-12 text-center ">
-                                <img src="img/sotero.jpeg"  class="rounded-circle img-fluid py-3" width="75%" alt="">
-                            </div>
-                            <div class="col-12 text-center">
-                                <h5>Rafael Sotero</h5>
-                                </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-12 text-center pb-3 ">
-                                 <img src="img/github.png"  width="24px">
-                                 <img src="img/linkedin.png"  width="24px">
-                            </div>
-                        </div>
-                </div>      <div class="col-12 col-lg-3 border mb-3 mb-md-0">
-                        <div class="row ">
-                            <div class="col-12 text-center ">
-                                <img src="img/cg.jpeg"  class="rounded-circle img-fluid py-3" width="75%" alt="">
-                            </div>
-                            <div class="col-12 text-center">
-                                <h5>Carlos Gustavo</h5>
-                                </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-12 text-center pb-3 ">
-                                 <img src="img/github.png"  width="24px">
-                                 <img src="img/linkedin.png"  width="24px">
-                            </div>
-                        </div>
+                    </div>
                 </div>
-                
+                <div class="col-12 col-lg-3 border mb-3 mb-md-0">
+                    <div class="row ">
+                        <div class="col-12 text-center ">
+                            <img src="img/sotero.jpeg" class="rounded-circle img-fluid py-3" width="75%" alt="">
+                        </div>
+                        <div class="col-12 text-center">
+                            <h5>Rafael Sotero</h5>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 text-center pb-3 ">
+                            <img src="img/github.png" width="24px">
+                            <img src="img/linkedin.png" width="24px">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-3 border mb-3 mb-md-0">
+                    <div class="row ">
+                        <div class="col-12 text-center ">
+                            <img src="img/cg.jpeg" class="rounded-circle img-fluid py-3" width="75%" alt="">
+                        </div>
+                        <div class="col-12 text-center">
+                            <h5>Carlos Gustavo</h5>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 text-center pb-3 ">
+                            <img src="img/github.png" width="24px">
+                            <img src="img/linkedin.png" width="24px">
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
         </div>
@@ -170,9 +184,9 @@
 <script>
     $(function () {
 
-        $('#header').load('./components/header/header.html', function() {
+        $('#header').load('./components/header/header.html', function () {
             $("#headerSobre").addClass('active');
-        });   
+        });
         $('#modal').load('./components/modal-como-funciona/modal.html');
         $('#footer').load('./components/footer/footer.html');
         $('#favicon').load('./components/favicon/favicon.html');
