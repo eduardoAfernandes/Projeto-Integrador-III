@@ -28,10 +28,10 @@
 
 @media (max-width: 576px) {
     .logo-text {
-        padding-left: 50px;
+        padding-left: 0px;
     }
     .h1-logo{
-        font-size: 20px;
+        font-size: 12px;
     }
 
 }
