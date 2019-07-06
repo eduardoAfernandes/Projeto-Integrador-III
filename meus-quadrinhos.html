@@ -62,7 +62,7 @@
 
             document.getElementById('idProductStatus').value = product.productStatus.productStatusID;
             document.getElementById('idProduct').value = product.productID;
-            document.getElementById('capa').src = product.coverImage;
+            document.getElementById('previewQuadrinho').src = product.coverImage;
 
             $(".modal-body #títuloQuadrinho").val(product.title);
             $(".modal-body #editora").val(product.publisher);
@@ -88,7 +88,7 @@
                 return product.productID === myProductID;
             })[0]
             console.log(product);
-            document.getElementById('cpQuadrinho').src = product.coverImage;
+            document.getElementById('capaQuadrinho').src = product.coverImage;
         });
 
         $(document).on("click", ".btnModalGerenciarLeilao", function () {
@@ -239,7 +239,7 @@
                             <th scope="col" class="td-titulo">Titulo</th>
                             <th scope="col" class="td-status">Status</th>
                             <th scope="col" class="td-dados">Alterar Dados</th>
-                            <th scope="col" class="td-ativar">Ativar Leilao</th>
+                            <th scope="col" class="td-ativar">Gerenciar Leilao</th>
                             <th scope="col" class="td-ativar">Excluir Produto</th>
 
                         </tr>
@@ -290,8 +290,22 @@
                         <div class="row">
                             <div class="col-12 ">
                                 <div class="col-12 text-center pt-3">
-                                    <img class="img-fluid py-2" id="capa" width="175px" alt="">
-
+                                    <div class="col-12">
+                                        <div class="form-group col-12">
+                                            <p class="text-center h4"><b>Capa do quadrinho</b></p>
+                                            <div class="custom-file d-none">
+                                                <input type="file" name="file" class="custom-file-input" id="cpQuadrinho" onchange="readURL(this);">
+            
+                                                <label class="custom-file-label" for="cpQuadrinho">Anexar foto</label>
+                                            </div>
+                                            <h5 class="text-center d-none col-12 py-2 text-danger" id="aviso-erro-capaQuadrinho">
+                                                Anexe uma foto do quadrinho!!
+                                            </h5>
+                                        </div>
+                                        <div class="text-center my-auto pb-3 ">
+                                            <img src="img/add-image.png" class="previewQuadrinho" style="width: 200px" id="previewQuadrinho" onclick="clickInputFile()" class="imgPreview">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-12">
@@ -439,7 +453,7 @@
                         <div class="row">
                             <div class="col-12 col-md-5">
                                 <div class="col-12 text-center pt-3">
-                                    <img class="img-fluid" id="cpQuadrinho" width="125px"  alt="">
+                                    <img class="img-fluid" id="capaQuadrinho" width="125px"  alt="">
 
                                 </div>
                             </div>

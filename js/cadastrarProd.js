@@ -133,6 +133,8 @@ function validForm() {
         document.getElementById('aviso-erro-capaQuadrinho').classList.replace('d-none', 'd-block');
         document.getElementById('previewQuadrinho').style.border = "5px solid red";
     } else {
+        $('#modalCarregando').modal('show');
+
         enviarDadosQuadrinho();
     }
 
@@ -222,6 +224,7 @@ function enviarDadosQuadrinho() {
     $.ajax(settings)
         .done(function (response) {
             alert('Quadrinho cadastrado com sucesso!');
+            $('#modalCarregando').modal('show');
             window.location.reload();
         })
         .fail(function (response) {

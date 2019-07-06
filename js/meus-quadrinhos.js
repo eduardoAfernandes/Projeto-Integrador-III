@@ -14,7 +14,6 @@ function verifyInput(id) {
     let categoria = document.getElementById('categoria').value;
     let nrPagina = document.getElementById('numeroPags').value;
     let peso = document.getElementById('pesoQuadrinho').value;
-    let tipoCapa = document.getElementById('tipoCapa').value;
 
 
     var regexTitle = validTitle(titulo);
@@ -72,15 +71,6 @@ function verifyInput(id) {
             document.getElementById('aviso-erro-peso').classList.replace('d-block', 'd-none');
             validacaoPeso = true;
         }
-    } else if (id == 'tipoCapa') {
-        if (tipoCapa == 'capa') {
-            document.getElementById('tipoCapa').style.border = "3px solid red";
-            document.getElementById('aviso-erro-capa').classList.replace('d-none', 'd-block');
-        } else {
-            document.getElementById('tipoCapa').style.border = "3px solid lightgreen";
-            document.getElementById('aviso-erro-capa').classList.replace('d-block', 'd-none');
-            validacaoTipoCapa = true;
-        }
     }
 }
 
@@ -131,15 +121,14 @@ function validForm() {
 }
 
 function atualizarDadosQuadrinho() {
-    let titulo = document.getElementById('títuloQuadrinho').value;
-    let editora = document.getElementById('editora').value;
-    let categoria = document.getElementById('categoria').value;
-    let nrPagina = document.getElementById('numeroPags').value;
-    let peso = document.getElementById('pesoQuadrinho').value;
-
-    let idStatusProduct = document.getElementById('idProductStatus').value;
-    let idProduct = document.getElementById('idProduct').value;
-
+    var formdata = new FormData();
+    formdata.append('publishingCompany', document.getElementById('editora').value);
+    formdata.append('title', document.getElementById('títuloQuadrinho').value);
+    formdata.append('format', document.getElementById('categoria').value);
+    formdata.append('pagesNumber', document.getElementById('numeroPags').value);
+    formdata.append('weight', document.getElementById('pesoQuadrinho').value);
+    formdata.append('file', document.getElementById('cpQuadrinho').files[0]);
+  
 
 
 
@@ -148,19 +137,10 @@ function atualizarDadosQuadrinho() {
         "crossDomain": true,
         "url": "https://webserver-leilao.azurewebsites.net/webserver-leilao/controller/update-product",
         "method": "POST",
-        "headers": {
-            "content-type": "application/x-www-form-urlencoded",
-            "cache-control": "no-cache",
-        },
-        "data": {
-            "publishingCompany": editora,
-            "title": titulo,
-            "format": categoria,
-            "pagesNumber": nrPagina,
-            "weight": peso,
-            "statusID": idStatusProduct,
-            "productID": idProduct
-        },
+        "cache": false,
+        "processData": false,
+        "contentType": false,
+        "data": formdata,
         "xhrFields": {
             "withCredentials": true
         }
@@ -176,13 +156,10 @@ function atualizarDadosQuadrinho() {
             }
         })
         .fail(function (response) {
-            showResponse()
+            alert("Ocorreu um erro ao atualizar os dados deste quadrinho!!")
         });
 }
 
-function showResponse() {
-    alert("Ocorreu um erro ao atualizar os dados deste quadrinho!!")
-}
 
 function alertSuccess(response) {
     document.getElementById('btnFechaModalDadosQuadrinho').click();
@@ -230,7 +207,6 @@ function ehIgual(diaAtual, formatDataInput) {
         return false
     }
 }
-
 
 function verifyInputModalLeilao(id) {
     var dataInput = document.getElementById('dt-inicio').value;
@@ -613,4 +589,21 @@ if(window.confirm('Mudar o status deste leilão para inativo?')){
             alert('Ocorreu um erro ao alterar o status do produto!')
          });
         }
+}
+
+
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            $('#previewQuadrinho')
+                .attr('src', e.target.result)
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+
+function clickInputFile() {
+    document.getElementById('cpQuadrinho').click();
 }
