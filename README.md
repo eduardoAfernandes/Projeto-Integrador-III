@@ -6,10 +6,10 @@ Páginas necessárias:
 - [ ] Inicial
 - [x] Login
 - [x] Cadastro
-- [ ] Como funciona
-- [ ] Anunciar
+- [x] Como funciona
+- [x] Anunciar
 - [x] Sobre
 - [ ] Leilão
 - [ ] Meus Quadrinhos
-- [ ] Cadastrar quadrinho
-- [ ] Busca
+- [x] Cadastrar quadrinho
+- [x] Busca
