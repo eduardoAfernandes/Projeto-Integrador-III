@@ -259,3 +259,28 @@ function quadrinhoCadastradoSucesso(){
         window.location.reload();
     })
 }
+
+function quadrinhoCadastradoErro(){
+    Swal.fire({
+        type: 'error',
+        title: 'Oops...',
+        text: 'Ocorreu um erro ao cadastrar o quadrinho!!',
+        showConfirmButton: true
+    })
+}
+
+function confirmCadastroQuadrinho(){
+    Swal.fire({
+        title: 'Confirmar cadastro do quadrinho?',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sim, alterar!',
+        cancelButtonText: 'Cancelar!'
+    }).then((result) => {
+        if (result.value) {
+            $('#modalCarregando').modal('show');
+            enviarDadosQuadrinho();        }
+    })
+}

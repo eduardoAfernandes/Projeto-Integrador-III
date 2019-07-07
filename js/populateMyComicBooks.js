@@ -116,8 +116,8 @@ document.getElementById('tableData').style.display = 'none';
     document.getElementById('option-table-meus-quadrinhos').style.boxShadow = '0px 0px black';
     document.getElementById('textoTableQuadrinhos').style.display = 'block';
     document.getElementById('textoTableParticipations').style.display = 'none';
-    document.getElementById('option-table-participations').style.opacity = "0.5";
-    document.getElementById('option-table-meus-quadrinhos').style.opacity = "1";
+    document.getElementById('option-table-participations').style.opacity = "1";
+    document.getElementById('option-table-meus-quadrinhos').style.opacity = "0.5";
 
 
     
@@ -129,8 +129,8 @@ function changetableQuadrinhos(){
     document.getElementById('tabelaParticipations').style.display = 'none';
     document.getElementById('option-table-participations').style.borderTopRightRadius = '0%';
     document.getElementById('option-table-participations').style.boxShadow = "0px 0px black";
-    document.getElementById('option-table-meus-quadrinhos').style.opacity = "0.5"    
-    document.getElementById('option-table-participations').style.opacity = "1";;
+    document.getElementById('option-table-meus-quadrinhos').style.opacity = "1"    
+    document.getElementById('option-table-participations').style.opacity = "0.5";;
     document.getElementById('option-table-meus-quadrinhos').style.boxShadow = '5px 5px black';
     document.getElementById('textoTableQuadrinhos').style.display = 'none';
     document.getElementById('textoTableParticipations').style.display = 'block';

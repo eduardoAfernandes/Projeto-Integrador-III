@@ -133,18 +133,13 @@ function validForm() {
         document.getElementById('aviso-erro-capaQuadrinho').classList.replace('d-none', 'd-block');
         document.getElementById('previewQuadrinho').style.border = "5px solid red";
     } else {
-        $('#modalCarregando').modal('show');
-        enviarDadosQuadrinho();
+        confirmCadastroQuadrinho();
     }
 
      
 
 }
 
-function showAlertify() {
-    alertify.success("Quadrinho cadastrado com sucesso!!");
-
-}
 
 function readURL(input) {
     if (input.files && input.files[0]) {
@@ -187,7 +182,7 @@ function onlyNumber(value) {
 }
 
 function enviarDadosQuadrinho() {
-
+    let updateImage = true;
     var formdata = new FormData();
     formdata.append('publishingCompany', document.getElementById('editora').value);
     formdata.append('title', document.getElementById('títuloQuadrinho').value);
@@ -195,6 +190,7 @@ function enviarDadosQuadrinho() {
     formdata.append('pagesNumber', document.getElementById('numeroPags').value);
     formdata.append('weight', document.getElementById('pesoQuadrinho').value);
     formdata.append('file', document.getElementById('cpQuadrinho').files[0]);
+    formdata.append('updateImage',updateImage)
     
     // let titulo = document.getElementById('títuloQuadrinho').value;
     // let editora = document.getElementById('editora').value;
@@ -227,6 +223,7 @@ function enviarDadosQuadrinho() {
 
         })
         .fail(function (response) {
-            alert('Ocorreu um erro ao cadastrar o quadrinho!')
+            $('#modalCarregando').modal('hide');
+            quadrinhoCadastradoErro();
         });
 }

@@ -178,8 +178,8 @@ function validTitle(palavra) {
     }
     if (filter_nome.test(palavra)) {
         return true;
+        
     }
-
 }
 
 function onlyNumber(value) {
