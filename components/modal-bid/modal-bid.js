@@ -26,11 +26,19 @@ $(document).on("click", ".link-detalhes", function () {
 });
 
 $(document).on("click", "#btnConfirmBid", function () {
-    $(".swal2-confirm").html("testando");
+    refreshValue();
+});
+
+
+function refreshValue() {
+    $('.swal2-confirm').prop('disabled', true).html("Aguarde...");
+    // let auctionID = 11;
+    let auctionID = localStorage.getItem("auctionContext");
+
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": `https://webserver-leilao.azurewebsites.net/webserver-leilao/controller/public/find-auction-by-id?auctionID=${auctionID}`,
+        "url": `https://webserver-leilao.azurewebsites.net/webserver-leilao/controller/public/find-bid-by-auction?auctionID=${auctionID}`,
         "method": "GET",
         "headers": {
             "content-type": "application/x-www-form-urlencoded",
@@ -42,10 +50,21 @@ $(document).on("click", "#btnConfirmBid", function () {
     }
 
     $.ajax(settings).done(function (response) {
-            return response
-        })
-});
+        console.log(response);
 
+        let bidValue = '';
+        if (response.data.length > 0) {
+            bidValue = formatValueToFloat(response.data[0].auction.currentValue + response.data[0].auction.defaultBid);
+            if ($('.swal2-confirm').length > 0) {
+                $('.swal2-confirm').prop('disabled', false).html(`Efetuar lance: ${bidValue}`);
+                setTimeout(refreshValue, 2000);
+            }
+        } else {
+            loadSpecificAuction(auctionID);
+        }
+
+    })
+}
 
 function loadSpecificAuction(auctionID) {
     $('#modal-bid-title').html('');
@@ -76,6 +95,12 @@ function loadSpecificAuction(auctionID) {
     }
 
     $.ajax(settings).done(function (response) {
+
+            if ($('.swal2-confirm').length > 0) {
+                $('.swal2-confirm').prop('disabled', false).html(`Efetuar lance: ${formatValueToFloat(response.data.currentValue + response.data.defaultBid)}`);
+                setTimeout(refreshValue, 2000);
+            }
+
             return response
         })
         .done(function (response) {
@@ -258,7 +283,7 @@ function loadSpecificAuction(auctionID) {
 
 
 function confirmBid(auctionID, productTitle) {
-
+    localStorage.setItem("auctionContext", auctionID);
     if (localStorage.getItem("logged") == "true") {
         Swal.fire({
             title: `Confirmar lance no quadrinho <br><br> "${productTitle}"?`,
@@ -288,4 +313,15 @@ function confirmBid(auctionID, productTitle) {
             }
         })
     }
+}
+
+function formatValueToFloat(value) {
+    value = new String(value);
+    if (value.indexOf('.') != -1) {
+        value.replace('.', ',');
+    } else {
+        value = value + ',00'
+    }
+    value = 'R$ ' + value;
+    return value;
 }
