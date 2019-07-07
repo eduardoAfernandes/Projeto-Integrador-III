@@ -184,10 +184,6 @@ function loadSpecificAuction(auctionID) {
                 <td>${auctionStatus}</td>
                 </tr>
                 <tr>
-                <td class="bg-info text-light">Título</td>
-                <td>${productTitle}</td>
-                </tr>
-                <tr>
                 <td class="bg-info text-light">Nº Páginas</td>
                 <td>${productPagesNumber}</td>
                 </tr>
