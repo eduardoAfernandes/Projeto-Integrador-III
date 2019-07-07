@@ -213,6 +213,7 @@ function searchNotOk() {
 }
 
 function search() {
+    $('#divFimLista').fadeOut('slow');
     offset = 0;
     isSearch = true;
     endOfList = false;
@@ -225,6 +226,7 @@ function search() {
 }
 
 function searchClear() {
+    $('#divFimLista').fadeOut('slow');
     offset = 0;
     isSearch = true;
     endOfList = false;
