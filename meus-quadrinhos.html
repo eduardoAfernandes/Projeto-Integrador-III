@@ -95,8 +95,6 @@
         $(document).on("click", ".btnModalGerenciarLeilao", function () {
             $('#botoesGerLeilao').hide();
             $('gerenciarLeilao').hide();
-
-
             var myProductID = $(this).data('id');
 
             var settings = {
@@ -115,15 +113,13 @@
 
             $.ajax(settings).done(function (response) {
                     $('#botoesGerLeilao').show();
+                    document.getElementById('conteudo').classList.replace('d-none','d-block');
 
                     return response
 
                 })
                 .done(function (response) {
-                    $('#carregandoDadosModal').fadeOut('slow');
-                    $('#gerenciarLeilao').show();
                     console.log(response.data);
-
                     localStorage.setItem('find-all-auctions-by-user', JSON.stringify(response));
                     for (i = 0; i < response.data.length; i++) {
                         if (response.data[i].product.productID == myProductID) {
@@ -134,11 +130,15 @@
                                 .auctionStatus.auctionStatusID;
                             document.getElementById('imgModalEditLeilao').src = response.data[i].product
                                 .coverImage;
+                                document.getElementById('dataLeilao').value = response.data[i].initialDate;
+
                             $(".modal-body #duracao").val(response.data[i].duration);
                             $(".modal-body #vlr-inicial").val(response.data[i].initialValue);
                             $(".modal-body #lancePadrao").val(response.data[i].defaultBid);
                         }
                     }
+                    formatDate(document.getElementById('dataLeilao').value);
+
                 })
         });
         //    
@@ -315,7 +315,6 @@
             './components/modal-alterar-dados-produto/modal-alterar-dados-produto.html')
             $('#modal-cadastrando-leilao').load('./components/modal-cadastrando-leilao/modal-cadastrando-leilao.html');
             $('#alterando-dados').load('./components/modal-atualizando-dados/modal-atualizando-dados.html');
-
 
     });
 </script>

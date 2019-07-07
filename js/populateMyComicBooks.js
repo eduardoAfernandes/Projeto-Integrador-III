@@ -46,7 +46,7 @@ function loadDados() {
             return response
         })
         .done(function (response) {
-            $('#divCarregando').fadeOut('slow');
+            $('#divCarregando').hide();
             localStorage.setItem('find-products-by-user', JSON.stringify(response));
             $('#tableData').show()
             $('#optionsTables').show();
