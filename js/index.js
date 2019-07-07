@@ -69,7 +69,7 @@ function loadDados() {
                 let initialDate = response.data[i].initialDate;
                 let initialValue = response.data[i].initialValue;
                 let currentValue = formatValueToFloat(response.data[i].currentValue);
-                let defaultBid = response.data[i].defaultBid;
+                let defaultBid = formatValueToFloat(response.data[i].defaultBid);
                 let auctionStatus = response.data[i].auctionStatus.status;
                 let coverImage = response.data[i].product.coverImage;
                 let timeToFinalize = duration > 1 ? duration + ' dias' : duration + ' dia';

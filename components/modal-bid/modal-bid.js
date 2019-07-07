@@ -53,18 +53,25 @@ function loadSpecificAuction(auctionID) {
             localStorage.setItem('find-auction-by-id', JSON.stringify(response));
 
             let auctionID = response.data.auctionID;
-            let productTitle = response.data.product.title;
-            let duration = response.data.duration;
             let initialDate = response.data.initialDate;
+            let duration = response.data.duration;
             let initialValue = response.data.initialValue;
             let currentValue = formatValueToFloat(response.data.currentValue);
-            let defaultBid = response.data.defaultBid;
+            let defaultBid = formatValueToFloat(response.data.defaultBid);
             let auctionStatus = response.data.auctionStatus.status;
             let coverImage = response.data.product.coverImage;
             let timeToFinalize = duration > 1 ? duration + ' dias' : duration + ' dia';
-
             let statusIcon = "<span class='oi oi-circle-check py-2' style='color: lightgreen'></span>";
             if (duration == 0) statusIcon = "<span class='oi oi-circle-x py-2' style='color: lightred'></span>";
+            let productTitle = response.data.product.title;
+            let productPagesNumber = response.data.product.pagesNumber;
+            let productWeight = response.data.product.weight;
+            let productPublisher = response.data.product.publisher;
+            let productComicFormat = response.data.product.comicFormat;
+            let productStatus = response.data.product.productStatus.status;
+            let originCity = response.data.product.user.city;
+            let originUF = response.data.product.user.state;
+            let originUserName = response.data.product.user.name;
 
             $('#modal-bid-title').html(productTitle);
 
@@ -153,16 +160,64 @@ function loadSpecificAuction(auctionID) {
           <table class="table table-sm">
             <tbody>
                 <tr>
-                <td class="bg-info text-light">Mark</td>
-                <td>Otto</td>
+                <td class="bg-info text-light">Data inicial</td>
+                <td>${initialDate.split("-")[2]+"/"+initialDate.split("-")[1]+"/"+initialDate.split("-")[0]}</td>
                 </tr>
                 <tr>
-                <td class="bg-info text-light">Jacob</td>
-                <td>Thornton</td>
+                <td class="bg-info text-light">Finaliza em</td>
+                <td>${duration} dia(s)</td>
                 </tr>
                 <tr>
-                <td class="bg-info text-light">Jacob</td>
-                <td>Thornton</td>
+                <td class="bg-info text-light">Valor inicial</td>
+                <td>${initialValue}</td>
+                </tr>
+                <tr>
+                <td class="bg-info text-light">Valor atual</td>
+                <td>${currentValue}</td>
+                </tr>
+                <tr>
+                <td class="bg-info text-light">Lance padrão</td>
+                <td>${defaultBid}</td>
+                </tr>
+                <tr>
+                <td class="bg-info text-light">Status leilão</td>
+                <td>${auctionStatus}</td>
+                </tr>
+                <tr>
+                <td class="bg-info text-light">Título</td>
+                <td>${productTitle}</td>
+                </tr>
+                <tr>
+                <td class="bg-info text-light">Nº Páginas</td>
+                <td>${productPagesNumber}</td>
+                </tr>
+                <tr>
+                <td class="bg-info text-light">Peso</td>
+                <td>${productWeight}</td>
+                </tr>
+                <tr>
+                <td class="bg-info text-light">Editora</td>
+                <td>${productPublisher}</td>
+                </tr>
+                <tr>
+                <td class="bg-info text-light">Formato</td>
+                <td>${productComicFormat}</td>
+                </tr>
+                <tr>
+                <td class="bg-info text-light">Status produto</td>
+                <td>${productStatus}</td>
+                </tr>
+                <tr>
+                <td class="bg-info text-light">Cidade</td>
+                <td>${originCity}</td>
+                </tr>
+                <tr>
+                <td class="bg-info text-light">UF</td>
+                <td>${originUF}</td>
+                </tr>
+                <tr>
+                <td class="bg-info text-light">Dono</td>
+                <td>${originUserName.split(" ")[0]}</td>
                 </tr>
             </tbody>
             </table>
