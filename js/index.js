@@ -31,6 +31,7 @@ $(window).scroll(function () {
 });
 
 function loadDados() {
+    $('#divCarregando').fadeIn('slow');
 
     var settings = {
         "async": true,
@@ -54,6 +55,8 @@ function loadDados() {
         .done(function (response) {
 
             $('#divCarregando').fadeOut('slow');
+            $('#loadMoreProducts').fadeIn('slow');
+
             localStorage.setItem('find-all-auctions', JSON.stringify(response));
 
             if (response.data.length === 0 || response.data.length < step) {
@@ -110,7 +113,7 @@ function loadDados() {
                     </div>
                     </div>
                     <div class='col-6'>
-                    <button type='button' class='btn btn-dar-lance btn-primary' onclick="confirmBid(${auctionID}, '${productTitle}')">
+                    <button id="btnConfirmBid" type='button' class='btn btn-dar-lance btn-primary' onclick="confirmBid(${auctionID}, '${productTitle}')">
                     Dar Lance
                                         <span class='badge badge-light'>+${defaultBid}</span>
                                     </button>
@@ -216,6 +219,7 @@ function searchNotOk() {
 
 function search() {
     $('#divFimLista').fadeOut('slow');
+
     offset = 0;
     isSearch = true;
     endOfList = false;
@@ -229,6 +233,7 @@ function search() {
 
 function searchClear() {
     $('#divFimLista').fadeOut('slow');
+    $('#loadMoreProducts').fadeIn('slow');
     offset = 0;
     isSearch = true;
     endOfList = false;

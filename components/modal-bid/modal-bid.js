@@ -12,7 +12,38 @@ $(document).on("click", ".link-detalhes", function () {
     loadSpecificAuction(auctionID);
     // $("#modal-bid-title").html( auction.product.title );
 
+    let modalBidIsShow = false;
 
+    setTimeout(function () {
+        modalBidIsShow = ($("#modalBidd").data('bs.modal') || {})._isShown;
+    }, 2000);
+
+    console.log(modalBidIsShow)
+    while (modalBidIsShow) {
+        console.log("Entrou...");
+    }
+
+});
+
+$(document).on("click", "#btnConfirmBid", function () {
+    $(".swal2-confirm").html("testando");
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": `https://webserver-leilao.azurewebsites.net/webserver-leilao/controller/public/find-auction-by-id?auctionID=${auctionID}`,
+        "method": "GET",
+        "headers": {
+            "content-type": "application/x-www-form-urlencoded",
+            "cache-control": "no-cache",
+        },
+        "xhrFields": {
+            "withCredentials": true
+        }
+    }
+
+    $.ajax(settings).done(function (response) {
+            return response
+        })
 });
 
 
@@ -239,7 +270,7 @@ function confirmBid(auctionID, productTitle) {
             cancelButtonText: 'Cancelar!'
         }).then((result) => {
             if (result.value) {
-                
+
             }
         })
     } else {
