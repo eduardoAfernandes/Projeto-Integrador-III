@@ -1,4 +1,4 @@
-$(document).on("click", ".btn-dar-lance", function () {
+$(document).on("click", ".link-detalhes", function () {
     var auctionID = $(this).data('id');
 
     // console.log(auctionID);
@@ -107,7 +107,7 @@ function loadSpecificAuction(auctionID) {
               </div>
               </div>
               <div class='col-6'>
-              <button type='button' class='btn btn-dar-lance btn-primary' onclick="confirmBid()">
+              <button type='button' class='btn btn-dar-lance btn-primary' onclick="confirmBid(${auctionID}, '${productTitle}')">
               Dar Lance
                                   <span class='badge badge-light'>+${defaultBid}</span>
                               </button>
@@ -226,20 +226,35 @@ function loadSpecificAuction(auctionID) {
 }
 
 
-function confirmBid() {
+function confirmBid(auctionID, productTitle) {
 
-    
-    Swal.fire({
-        title: 'Colocar o leilão em espera?',
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Sim!',
-        cancelButtonText: 'Cancelar!'
-    }).then((result) => {
-        if (result.value) {
-            changeStatusAuctionToOnHold();
-        }
-    })
+    if (localStorage.getItem("logged") == "true") {
+        Swal.fire({
+            title: `Confirmar lance no quadrinho <br><br> "${productTitle}"?`,
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sim. Valor: R$ 2.312,00',
+            cancelButtonText: 'Cancelar!'
+        }).then((result) => {
+            if (result.value) {
+                
+            }
+        })
+    } else {
+        Swal.fire({
+            title: `Você precisa fazer o login para dar lances, deseja ir até a página de login?`,
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sim!',
+            cancelButtonText: 'Cancelar!'
+        }).then((result) => {
+            if (result.value) {
+                window.open("/login.html", "_self");
+            }
+        })
+    }
 }

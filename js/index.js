@@ -74,6 +74,7 @@ function loadDados() {
                 let auctionStatus = response.data[i].auctionStatus.status;
                 let coverImage = response.data[i].product.coverImage;
                 let timeToFinalize = duration > 1 ? duration + ' dias' : duration + ' dia';
+                let productTitle = response.data[i].product.title;
 
                 let statusIcon = "<span class='oi oi-circle-check py-2' style='color: lightgreen'></span>";
                 if (duration == 0) statusIcon = "<span class='oi oi-circle-x py-2' style='color: lightred'></span>";
@@ -109,15 +110,15 @@ function loadDados() {
                     </div>
                     </div>
                     <div class='col-6'>
-                    <button type='button' class='btn btn-dar-lance btn-primary' data-toggle='modal' data-target='#modalBid' data-id="${auctionID}">
+                    <button type='button' class='btn btn-dar-lance btn-primary' onclick="confirmBid(${auctionID}, '${productTitle}')">
                     Dar Lance
                                         <span class='badge badge-light'>+${defaultBid}</span>
                                     </button>
                                 </div>
                                 <div class='row border-top caixa-link-detalhes text-center '>
                                     <div class='col-12 bg-dark'>
-                                        <a href='#' class='link-detalhes'>Ver mais detalhes</a>
-                                        <span class='oi oi-arrow-circle-right ml-1'></span>
+                                        <a href='#' class='link-detalhes' data-toggle='modal' data-target='#modalBid' data-id="${auctionID}">Ver mais detalhes<span class='oi oi-arrow-circle-right ml-1'></span></a>
+                                        
                                     </div>        
                                 </div>
                             
