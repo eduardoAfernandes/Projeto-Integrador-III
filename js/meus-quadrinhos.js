@@ -114,7 +114,7 @@ function validForm() {
         document.getElementById('aviso-erro-peso').innerHTML = "Peso inválido!!"
     } else {
         confirmAtualizacaoProduto();
-        }
+    }
 }
 
 function atualizarDadosQuadrinho() {
@@ -178,7 +178,7 @@ function validTitle(palavra) {
     }
     if (filter_nome.test(palavra)) {
         return true;
-        
+
     }
 }
 
@@ -276,22 +276,39 @@ function verifyInputModalLeilao(id) {
 
 
 function validFormII() {
-    if (!validacaoDataInput) {
+    var dataInput = document.getElementById('dt-inicio').value;
+    var duracaoLeilao = document.getElementById('duracao').value;
+    var valorInicial = document.getElementById('vlr-inicial').value;
+    var lancePadrao = document.getElementById('lancePadrao').value;
+
+    var now = moment();
+    var dataInicio = moment(dataInput);
+    dataInicio.startOf("date");
+    now.startOf("date");
+
+    var validData = moment(dataInicio).isBefore(now);
+    var validDuracao = onlyNumber(duracaoLeilao);
+    var diaAtual = now.get("date") + '-' + (now.get("month") + 1) + '-' + now.get("year");
+
+    var formatDataInput = dataInicio.get("date") + '-' + (dataInicio.get("month") + 1) + '-' + dataInicio.get("year");
+
+    var inicioEhHoje = ehIgual(diaAtual, formatDataInput);
+    if (dataInput == '' | validData) {
         document.getElementById('dt-inicio').style.border = "3px solid red";
         document.getElementById('aviso-erro-data').classList.replace('d-none', 'd-block');
-    } else if (!validacaoDuracaoLeilao) {
+        document.getElementById('aviso-erro-data').innerHTML = "Informe a data de inicio do leilão!!"
+
+    } else if (!validDuracao) {
         document.getElementById('duracao').style.border = "3px solid red";
         document.getElementById('aviso-erro-duracao').classList.replace('d-none', 'd-block');
-    } else if (!validacaoValorInicial) {
-        document.getElementById('vlr-inicial').style.border = "3px solid lightgrenn";
-        document.getElementById('aviso-erro-vlrInicial').classList.replace('d-block', 'd-none');
-    } else if (!validacaoLancePadrao) {
+    } else if (valorInicial == '') {
+        document.getElementById('vlr-inicial').style.border = "3px solid red";
+        document.getElementById('aviso-erro-vlrInicial').classList.replace('d-none', 'd-block');
+    } else if (lancePadrao == '') {
         document.getElementById('lancePadrao').style.border = "3px solid red";
         document.getElementById('aviso-erro-lancePadrao').classList.replace('d-none', 'd-block');
     } else {
         confirmAtivacaoLeilao();
-
-        
     }
 }
 
@@ -378,14 +395,14 @@ function ChangeStatusToActive() {
         }
     }
 
-        $.ajax(settings)
-            .done(function (response) {
-                statusAlteradStatusProdutoSuccesso();
-            })
-            .fail(function (response) {
-                statusAlteradStatusProdutoErro();
-            });
-    
+    $.ajax(settings)
+        .done(function (response) {
+            statusAlteradStatusProdutoSuccesso();
+        })
+        .fail(function (response) {
+            statusAlteradStatusProdutoErro();
+        });
+
 
 
 
@@ -394,7 +411,13 @@ function ChangeStatusToActive() {
 function mostraFormEditarLeilao() {
     document.getElementById('changeStatusAuction').classList.replace('d-block', 'd-none');
     document.getElementById('gerenciarLeilao').classList.replace('d-none', 'd-block');
+    document.getElementById('dadosLeilao').classList.replace('d-block','d-none');
+}
 
+function mostraDadosLeilao(){
+    document.getElementById('changeStatusAuction').classList.replace('d-block', 'd-none');
+    document.getElementById('gerenciarLeilao').classList.replace('d-block', 'd-none');
+    document.getElementById('dadosLeilao').classList.replace('d-none','d-block');
 }
 
 function mostraAvisoProdutoEmLeilao() {
@@ -421,15 +444,15 @@ function cancelarLeilao() {
         }
     }
 
-        $.ajax(settings).done(function (response) {
-            console.log(response.data)
-            if (response.data == 'You cannot delete an auction with bids') {
-                alertCancelarLeilaoComLances();
-            } else {
-                alertLeilaoCanceladoSucesso();
-            }
-        });
-    
+    $.ajax(settings).done(function (response) {
+        console.log(response.data)
+        if (response.data == 'You cannot delete an auction with bids') {
+            alertCancelarLeilaoComLances();
+        } else {
+            alertLeilaoCanceladoSucesso();
+        }
+    });
+
 }
 
 function deleteProduct() {
@@ -478,6 +501,8 @@ function formatDate(timestamp) {
 function changeStatusAuction() {
     document.getElementById('changeStatusAuction').classList.replace('d-none', 'd-block');
     document.getElementById('gerenciarLeilao').classList.replace('d-block', 'd-none');
+    document.getElementById('dadosLeilao').classList.replace('d-block','d-none');
+
     let idAuction = document.getElementById('idLeilao').value;
     let statusAuction = document.getElementById('statusAuction').value;
     let idStatusAuction = document.getElementById('idStatusAuction').value;
@@ -516,13 +541,13 @@ function changeStatusAuctionToOnHold() {
             "withCredentials": true
         }
     }
-        $.ajax(settings).done(function (response) {
-                alteracaoStatusLeilaoSucesso()
-            })
-            .fail(function (response) {
-                alteracaoStatusLeilaoErro();
-            });
-    
+    $.ajax(settings).done(function (response) {
+            alteracaoStatusLeilaoSucesso()
+        })
+        .fail(function (response) {
+            alteracaoStatusLeilaoErro();
+        });
+
 }
 
 
@@ -545,13 +570,13 @@ function changeStatusAuctionToActive() {
             "withCredentials": true
         }
     }
-        $.ajax(settings).done(function (response) {
-                alteracaoStatusLeilaoSucesso()
-            })
-            .fail(function (response) {
-                alteracaoStatusLeilaoErro();
-            });
-    
+    $.ajax(settings).done(function (response) {
+            alteracaoStatusLeilaoSucesso()
+        })
+        .fail(function (response) {
+            alteracaoStatusLeilaoErro();
+        });
+
 }
 
 function changeStatusAuctionToInactive() {
@@ -573,13 +598,13 @@ function changeStatusAuctionToInactive() {
             "withCredentials": true
         }
     }
-        $.ajax(settings).done(function (response) {
-                alteracaoStatusLeilaoSucesso()
-            })
-            .fail(function (response) {
-                alteracaoStatusLeilaoErro();
-            });
-    
+    $.ajax(settings).done(function (response) {
+            alteracaoStatusLeilaoSucesso()
+        })
+        .fail(function (response) {
+            alteracaoStatusLeilaoErro();
+        });
+
 }
 
 

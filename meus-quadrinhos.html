@@ -131,10 +131,16 @@
                             document.getElementById('imgModalEditLeilao').src = response.data[i].product
                                 .coverImage;
                                 document.getElementById('dataLeilao').value = response.data[i].initialDate;
+                                document.getElementById('tituloQuadrinho').innerHTML = response.data[i].product.title;
+                                document.getElementById('duracaoQuadrinho').innerHTML = "Duração: " + response.data[i].duration + " dias" ;
+                                document.getElementById('vlrInicial').innerHTML = "Valor Inicial: R$ "+ response.data[i].initialValue;
+                                document.getElementById('vlrAtual').innerHTML = "Valor Atual: R$ "+ response.data[i].currentValue;
+                                document.getElementById('lncPadrao').innerHTML = "Lance Padrão: R$ "+ response.data[i].defaultBid;
 
                             $(".modal-body #duracao").val(response.data[i].duration);
                             $(".modal-body #vlr-inicial").val(response.data[i].initialValue);
                             $(".modal-body #lancePadrao").val(response.data[i].defaultBid);
+
                         }
                     }
                     formatDate(document.getElementById('dataLeilao').value);
