@@ -122,7 +122,7 @@ function loadSpecificAuction(auctionID) {
           
           <table class="table table-sm">
             <thead>
-                <tr class="bg-dark">
+                <tr class="bg-info text-light">
                 <th scope="col">#</th>
                 <th scope="col">Nome</th>
                 <th scope="col">Valor</th>
@@ -140,13 +140,32 @@ function loadSpecificAuction(auctionID) {
                 <td>Thornton</td>
                 </tr>
                 <tr>
-                <th scope="row">2</th>
+                <th scope="row">3</th>
                 <td>Jacob</td>
                 <td>Thornton</td>
                 </tr>
             </tbody>
             </table>
-       
+            <div class="text-center bg-dark text-light">
+            <p>Todos os detalhes</p>
+          </div>       
+          
+          <table class="table table-sm">
+            <tbody>
+                <tr>
+                <td class="bg-info text-light">Mark</td>
+                <td>Otto</td>
+                </tr>
+                <tr>
+                <td class="bg-info text-light">Jacob</td>
+                <td>Thornton</td>
+                </tr>
+                <tr>
+                <td class="bg-info text-light">Jacob</td>
+                <td>Thornton</td>
+                </tr>
+            </tbody>
+            </table>
               `
             )
 
