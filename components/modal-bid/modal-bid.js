@@ -1,3 +1,14 @@
+let timeToRetry = 3000;
+
+// $("body").keypress(function (event) {
+//     // event.preventDefault();
+//     console.log("opaaa")
+//     if (event.key.toLowerCase() === 'esc'.toLowerCase()) {
+//         $(".swal2-cancel").click();
+//     }
+// });
+
+
 $(document).on("click", ".link-detalhes", function () {
     var auctionID = $(this).data('id');
 
@@ -31,7 +42,7 @@ $(document).on("click", "#btnConfirmBid", function () {
 
 
 function refreshValue() {
-    $('.swal2-confirm').prop('disabled', true).html("Aguarde...");
+    $('.swal2-confirm').prop('disabled', true).html("Carregando. Aguarde...");
     // let auctionID = 11;
     let auctionID = localStorage.getItem("auctionContext");
 
@@ -57,7 +68,7 @@ function refreshValue() {
             bidValue = formatValueToFloat(response.data[0].auction.currentValue + response.data[0].auction.defaultBid);
             if ($('.swal2-confirm').length > 0) {
                 $('.swal2-confirm').prop('disabled', false).html(`Efetuar lance: ${bidValue}`);
-                setTimeout(refreshValue, 2000);
+                setTimeout(refreshValue, timeToRetry);
             }
         } else {
             loadSpecificAuction(auctionID);
@@ -66,19 +77,21 @@ function refreshValue() {
     })
 }
 
-function loadSpecificAuction(auctionID) {
-    $('#modal-bid-title').html('');
-    $('#modal-bid-body').html('').append(`<div id="divCarregandoBid" class="progresso py-4">
-        <div class="row ">
-            <div class="col-12 text-center">
-                <p style="font-size: 15px">Carregando</p>
+function loadSpecificAuction(auctionID, auto) {
+    if (!auto) {
+        $('#modal-bid-title').html('');
+        $('#modal-bid-body').html('').append(`<div id="divCarregandoBid" class="progresso py-4">
+            <div class="row ">
+                <div class="col-12 text-center">
+                    <p style="font-size: 15px">Carregando</p>
+                </div>
+                <div class="col-12 text-center">
+                    <img src="img/Spinner-1s-200px.gif" alt="" srcset="" width="30px">
+                </div>
             </div>
-            <div class="col-12 text-center">
-                <img src="img/Spinner-1s-200px.gif" alt="" srcset="" width="30px">
-            </div>
-        </div>
-    </div>`)
-    $('#divCarregandoBid').fadeIn('slow');
+        </div>`)
+        $('#divCarregandoBid').fadeIn('slow');
+    }
 
     var settings = {
         "async": true,
@@ -98,7 +111,7 @@ function loadSpecificAuction(auctionID) {
 
             if ($('.swal2-confirm').length > 0) {
                 $('.swal2-confirm').prop('disabled', false).html(`Efetuar lance: ${formatValueToFloat(response.data.currentValue + response.data.defaultBid)}`);
-                setTimeout(refreshValue, 2000);
+                setTimeout(refreshValue, timeToRetry);
             }
 
             return response
@@ -108,31 +121,33 @@ function loadSpecificAuction(auctionID) {
             $('#divCarregandoBid').fadeOut('slow');
             localStorage.setItem('find-auction-by-id', JSON.stringify(response));
 
-            let auctionID = response.data.auctionID;
-            let initialDate = response.data.initialDate;
-            let duration = response.data.duration;
-            let initialValue = response.data.initialValue;
-            let currentValue = formatValueToFloat(response.data.currentValue);
-            let defaultBid = formatValueToFloat(response.data.defaultBid);
-            let auctionStatus = response.data.auctionStatus.status;
-            let coverImage = response.data.product.coverImage;
-            let timeToFinalize = duration > 1 ? duration + ' dias' : duration + ' dia';
-            let statusIcon = "<span class='oi oi-circle-check py-2' style='color: lightgreen'></span>";
-            if (duration == 0) statusIcon = "<span class='oi oi-circle-x py-2' style='color: lightred'></span>";
-            let productTitle = response.data.product.title;
-            let productPagesNumber = response.data.product.pagesNumber;
-            let productWeight = response.data.product.weight;
-            let productPublisher = response.data.product.publisher;
-            let productComicFormat = response.data.product.comicFormat;
-            let productStatus = response.data.product.productStatus.status;
-            let originCity = response.data.product.user.city;
-            let originUF = response.data.product.user.state;
-            let originUserName = response.data.product.user.name;
+            if ($('#modalBid').hasClass('show')) {
 
-            $('#modal-bid-title').html(productTitle);
+                let auctionID = response.data.auctionID;
+                let initialDate = response.data.initialDate;
+                let duration = response.data.duration;
+                let initialValue = response.data.initialValue;
+                let currentValue = formatValueToFloat(response.data.currentValue);
+                let defaultBid = formatValueToFloat(response.data.defaultBid);
+                let auctionStatus = response.data.auctionStatus.status;
+                let coverImage = response.data.product.coverImage;
+                let timeToFinalize = duration > 1 ? duration + ' dias' : duration + ' dia';
+                let statusIcon = "<span class='oi oi-circle-check py-2' style='color: lightgreen'></span>";
+                if (duration == 0) statusIcon = "<span class='oi oi-circle-x py-2' style='color: lightred'></span>";
+                let productTitle = response.data.product.title;
+                let productPagesNumber = response.data.product.pagesNumber;
+                let productWeight = response.data.product.weight;
+                let productPublisher = response.data.product.publisher;
+                let productComicFormat = response.data.product.comicFormat;
+                let productStatus = response.data.product.productStatus.status;
+                let originCity = response.data.product.user.city;
+                let originUF = response.data.product.user.state;
+                let originUserName = response.data.product.user.name;
 
-            $('#modal-bid-body').html('').append(
-                `          
+                $('#modal-bid-title').html(productTitle);
+
+                $('#modal-bid-body').html('').append(
+                    `          
               <div class='col-12 col-md-12 col-lg-12 text-center py-4;' style='margin: 15px 30px 35px 0px; width: 255px; min-width: 255px; max-width: 255px; height: 396px; min-height: 396px; max-height: 396px;'>
                     <div class='cx-item text-light' style='width: 255px; min-width: 255px; max-width: 255px; height: 396px; min-height: 396px; max-height: 396px;'>
                     <div class='cx-header'>
@@ -274,10 +289,23 @@ function loadSpecificAuction(auctionID) {
             </tbody>
             </table>
               `
-            )
+                )
+
+                setTimeout(function () {
+                    loadSpecificAuction(auctionID, true);
+                }, 5000);
+            }
 
 
         })
+        .fail(function (response) {
+            if ($('.swal2-confirm').length > 0) {
+                setTimeout(refreshValue, timeToRetry);
+            } else {
+                loadSpecificAuction(auctionID);
+            }
+        });
+
 
 }
 
@@ -291,11 +319,34 @@ function confirmBid(auctionID, productTitle) {
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Sim. Valor: R$ 2.312,00',
+            confirmButtonText: '',
             cancelButtonText: 'Cancelar!'
         }).then((result) => {
             if (result.value) {
 
+                var settings = {
+                    "async": true,
+                    "crossDomain": true,
+                    "url": `https://webserver-leilao.azurewebsites.net/webserver-leilao/controller/insert-bid`,
+                    "method": "POST",
+                    "headers": {
+                        "content-type": "application/x-www-form-urlencoded",
+                        "cache-control": "no-cache",
+                    },
+                    "xhrFields": {
+                        "withCredentials": true
+                    },
+                    "data": {
+                        "auctionID": auctionID
+                    }
+                }
+
+                $.ajax(settings).done(function (response) {
+                    loadSpecificAuction(auctionID);
+                    if ($('#modalBid').length) {
+                        $('#modalBid').modal('show');
+                    }
+                })
             }
         })
     } else {
