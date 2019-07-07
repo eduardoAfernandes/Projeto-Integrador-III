@@ -34,7 +34,7 @@
                         </div>
 
                         <div class="col-3">
-                                <button type="button" class="btn btn-danger" onclick="cancelarLeilao()"
+                                <button type="button" class="btn btn-danger" onclick="confirmaCancelamentoLeilao()"
                                     style="width: 100%">
                                     Cancelar Leilão
                                 </button>
@@ -166,17 +166,17 @@
 
                         <div class="row  text-center container mt-2" >
                             <div class="col-6 d-none" id="btnChangeToInactive">
-                                <input type="button" value="Inativo" class="btn-danger py-1" onclick="changeStatusAuctionToInactive()" style="width: 100%" >
+                                <input type="button" value="Inativo" class="btn-danger py-1" onclick="confirmaLeilaoToStatusInactive()" style="width: 100%" >
                              
                             </div>
 
                             <div class="col-6 d-none" id="btnChangeToHold">
-                                <input type="button" class="btn-warning py-1 text-light" value="Em espera" onclick="changeStatusAuctionToOnHold()" style="width: 100%">
+                                <input type="button" class="btn-warning py-1 text-light" value="Em espera" onclick="confirmColocarLeilaoEmEspera()" style="width: 100%">
                                
                             </div>
 
                             <div class="col-6 d-none" id="btnChangeToActive" >
-                                <input type="button" class="btn-success py-1" value="Ativo" style="width: 100%" onclick="changeStatusAuctionToActive()">  
+                                <input type="button" class="btn-success py-1" value="Ativo" style="width: 100%" onclick="confirmaLeilaoToStatusActive()">  
                               
                             </div>
                         </div>

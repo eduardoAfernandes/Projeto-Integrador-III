@@ -222,9 +222,9 @@ function enviarDadosQuadrinho() {
 
     $.ajax(settings)
         .done(function (response) {
-            alert('Quadrinho cadastrado com sucesso!');
-            $('#modalCarregando').modal('show');
-            window.location.reload();
+         $('#modalCarregando').modal('show');
+         quadrinhoCadastradoSucesso();
+
         })
         .fail(function (response) {
             alert('Ocorreu um erro ao cadastrar o quadrinho!')

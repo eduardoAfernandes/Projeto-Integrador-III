@@ -47,7 +47,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="js/jquery.quicksearch.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    <script src="js/alerts.js"></script>
     <script>
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
@@ -285,6 +286,8 @@
         <div id="modal-delect-product"></div>
         <div id="modal"></div>
         <div id="footer"></div>
+        <div id="modal-aviso-produto-inativo"></div>
+        <div id="alterando-dados"></div>
 </body>
 
 
@@ -297,12 +300,13 @@
         $('#favicon').load('./components/favicon/favicon.html');
         $('#modal-delect-product').load('./components/modal-delect-product/modal-delect-product.html');
         $('#modal-gerencia-leilao').load('./components/modal-gerencia-leilao/modal-gerencia-leilao.html')
-        $('#modal-aviso-produto-inativo').load(
-            './components/modal-aviso-produto-inativo/modal-aviso-produto-inativo.html')
+        $('#modal-aviso-produto-inativo').load('./components/modal-aviso-produto-inativo/modal-aviso-produto-inativo.html')
         $('#ativar-leilao').load('./components/modal-ativar-leilao/modal-ativar-leilao.html')
         $('#alterar-dados-produto').load(
             './components/modal-alterar-dados-produto/modal-alterar-dados-produto.html')
             $('#modal-cadastrando-leilao').load('./components/modal-cadastrando-leilao/modal-cadastrando-leilao.html');
+            $('#alterando-dados').load('./components/modal-atualizando-dados/modal-atualizando-dados.html');
+
 
     });
 </script>

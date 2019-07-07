@@ -1,4 +1,3 @@
-
 // -------------------------------------------------------------------------------------//
 
 let validacaoTitulo = false;
@@ -113,20 +112,18 @@ function validForm() {
         document.getElementById('pesoQuadrinho').style.border = "3px solid red";
         document.getElementById('aviso-erro-peso').classList.replace('d-none', 'd-block');
         document.getElementById('aviso-erro-peso').innerHTML = "Peso inválido!!"
-    }  else {
-        if (window.confirm('Confirma a alteração de dados deste quadrinho?')) {
-            atualizarDadosQuadrinho();
+    } else {
+        confirmAtualizacaoProduto();
         }
-    }
 }
 
 function atualizarDadosQuadrinho() {
     var updateImage;
     var formdata = new FormData();
 
-    if(document.getElementById('imagem').value != document.getElementById('cpQuadrinho').value && document.getElementById('cpQuadrinho').value != '' ){
+    if (document.getElementById('imagem').value != document.getElementById('cpQuadrinho').value && document.getElementById('cpQuadrinho').value != '') {
         updateImage = true;
-    }else{
+    } else {
         updateImage = false;
     }
 
@@ -136,14 +133,18 @@ function atualizarDadosQuadrinho() {
     formdata.append('pagesNumber', document.getElementById('numeroPags').value);
     formdata.append('weight', document.getElementById('pesoQuadrinho').value);
     formdata.append('file', document.getElementById('cpQuadrinho').files[0]);
-    formdata.append('updateImage',updateImage);
-    formdata.append('productID',document.getElementById('idProduct').value)
-    formdata.append('statusID',document.getElementById('idProductStatus').value);
+    formdata.append('updateImage', updateImage);
+    formdata.append('productID', document.getElementById('idProduct').value)
+    formdata.append('statusID', document.getElementById('idProductStatus').value);
+    $('#modalCarregando').modal('show');
+    $('#modalDadosQuadrinho').modal('hide');
+
+
 
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "https://b648e929.ngrok.io/webserver_leilao_war_exploded/controller/update-product",
+        "url": "https://webserver-leilao.azurewebsites.net/webserver-leilao/controller/update-product",
         "method": "POST",
         "cache": false,
         "processData": false,
@@ -156,25 +157,18 @@ function atualizarDadosQuadrinho() {
 
     $.ajax(settings)
         .done(function (response) {
-            console.log(response)
-            if(response.data == 'Product not updated'){
-                alert("Não é possível atualizar os dados de quadrinhos com status inativo")
-            }else{
-                alert("Produto atualizado com sucesso!")
-            }
+            $('#modalCarregando').modal('hide');
+
+            produtoAtualizadoSucesso();
+
         })
         .fail(function (response) {
-            alert("Ocorreu um erro ao atualizar os dados deste quadrinho!!")
+            erroAtualizaçãoProduto();
         });
 }
 
 
-function alertSuccess(response) {
-    document.getElementById('btnFechaModalDadosQuadrinho').click();
-    alert("Quadrinho atualizado com sucesso!!")
-    window.location.reload();
 
-}
 
 function validTitle(palavra) {
     const filter_nome = /[a-zA-Zá-úà-ùÀ-Ù0-9]{1,}\w{0,}$/;
@@ -293,12 +287,9 @@ function validFormII() {
         document.getElementById('lancePadrao').style.border = "3px solid red";
         document.getElementById('aviso-erro-lancePadrao').classList.replace('d-none', 'd-block');
     } else {
-        if (window.confirm('Confirma a ativação deste leilão')) {
-            $('#modalCadastrandoLeilao').modal('show');
-            $('#modalLeilao').modal('hide');
-            enviarDadosLeilao();
-            
-        }
+        confirmAtivacaoLeilao();
+
+        
     }
 }
 
@@ -335,22 +326,17 @@ function enviarDadosLeilao() {
     $.ajax(settings)
         .done(function (response) {
             alertSuccessAtivacao(response);
-            window.location.reload()
         })
         .fail(function (response) {
-            showResponseAtivacao()
+            erroAtivaçãoLeilao()
         });
 }
 
-function showResponseAtivacao() {
-    alert("Ocorreu um erro ao ativar o leilão!!")
-}
 
 function alertSuccessAtivacao(response) {
     $('#modalCadastrandoLeilao').modal('hide');
-    $('#modalLeilao').modal('hide');   
- alert("Leilão cadastrado!!")
-    window.location.reload();
+    $('#modalLeilao').modal('hide');
+    AtivaçãoLeilao();
 }
 
 function GetFormattedDate() {
@@ -390,65 +376,61 @@ function ChangeStatusToActive() {
         }
     }
 
-    if (window.confirm("Deseja alterar o status deste produto para Ativo?")) {
         $.ajax(settings)
             .done(function (response) {
-                alert("Status alterado com sucesso!!")
-                window.location.reload();
+                statusAlteradStatusProdutoSuccesso();
             })
             .fail(function (response) {
-                alert('Ocorreu um erro ao alterar o status deste produto!!')
+                statusAlteradStatusProdutoErro();
             });
-    }
+    
 
 
 
 }
 
-function mostraFormEditarLeilao(){
-    document.getElementById('changeStatusAuction').classList.replace('d-block','d-none');
-    document.getElementById('gerenciarLeilao').classList.replace('d-none','d-block');
+function mostraFormEditarLeilao() {
+    document.getElementById('changeStatusAuction').classList.replace('d-block', 'd-none');
+    document.getElementById('gerenciarLeilao').classList.replace('d-none', 'd-block');
 
 }
 
-function mostraAvisoProdutoEmLeilao(){
-    alert('Não é possível alterar dados de quadrinhos que estejam em leilão!!')
+function mostraAvisoProdutoEmLeilao() {
+    avisoProdutoEmLeilao();
 }
 
-function cancelarLeilao(){
-    var idLeilao =document.getElementById('idLeilao').value;
+function cancelarLeilao() {
+    var idLeilao = document.getElementById('idLeilao').value;
 
-        var settings = {
-            "async": true,
-            "crossDomain": true,
-            "url": "https://webserver-leilao.azurewebsites.net/webserver-leilao/controller/delete-auction-by-id",
-            "method": "POST",
-            "headers": {
-              "Content-Type": "application/x-www-form-urlencoded",
-              "cache-control": "no-cache",
-            },
-            "data": {
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://webserver-leilao.azurewebsites.net/webserver-leilao/controller/delete-auction-by-id",
+        "method": "POST",
+        "headers": {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "cache-control": "no-cache",
+        },
+        "data": {
             "auctionID": idLeilao
-            }, 
-            "xhrFields": {
-                "withCredentials": true
-            }
-          }
-          if(window.confirm("Confirmar cancelamento deste leilão?")){
-
-          $.ajax(settings).done(function (response) {
-              console.log(response.data)
-                if(response.data == 'You cannot delete an auction with bids'){
-                    alert("Não é permitido cancelar leilões que já tenham sofrido lances!")
-                }else{
-                    alert("Leilão cancelado com sucesso!");
-                    window.location.reload();
-                }
-          });
+        },
+        "xhrFields": {
+            "withCredentials": true
+        }
     }
+
+        $.ajax(settings).done(function (response) {
+            console.log(response.data)
+            if (response.data == 'You cannot delete an auction with bids') {
+                alertCancelarLeilaoComLances();
+            } else {
+                alertLeilaoCanceladoSucesso();
+            }
+        });
+    
 }
 
-function deleteProduct(){
+function deleteProduct() {
     var idProduct = document.getElementById('idProduct').value;
 
 
@@ -458,24 +440,23 @@ function deleteProduct(){
         "url": "https://webserver-leilao.azurewebsites.net/webserver-leilao/controller/delete-product",
         "method": "POST",
         "headers": {
-          "Content-Type": "application/x-www-form-urlencoded",
-          "cache-control": "no-cache",
+            "Content-Type": "application/x-www-form-urlencoded",
+            "cache-control": "no-cache",
         },
         "data": {
-        "productID": idProduct
-        }, 
+            "productID": idProduct
+        },
         "xhrFields": {
             "withCredentials": true
         }
-      }
+    }
 
-      $.ajax(settings).done(function (response) {
-          alert("Produto excluido com sucesso!")
-          window.location.reload();
+    $.ajax(settings).done(function (response) {
+            sucessoInativarProduto();
         })
-      .fail(function (response) {
-        alert("Ocorreu um erro ao excluir o produto!")
-      });
+        .fail(function (response) {
+            erroInativarProduto();
+        });
 }
 
 
@@ -491,28 +472,29 @@ function formatDate(timestamp) {
 
     return year + "-" + month + "-" + day;
 }
-function changeStatusAuction(){
-    document.getElementById('changeStatusAuction').classList.replace('d-none','d-block');
-    document.getElementById('gerenciarLeilao').classList.replace('d-block','d-none');
+
+function changeStatusAuction() {
+    document.getElementById('changeStatusAuction').classList.replace('d-none', 'd-block');
+    document.getElementById('gerenciarLeilao').classList.replace('d-block', 'd-none');
     let idAuction = document.getElementById('idLeilao').value;
     let statusAuction = document.getElementById('statusAuction').value;
     let idStatusAuction = document.getElementById('idStatusAuction').value;
     document.getElementById('statusProduto').innerHTML = "Status do leilão: " + document.getElementById('statusAuction').value;
-    
-    if(statusAuction == 'ATIVO' ){
-        document.getElementById('btnChangeToHold').classList.replace('d-none','d-block');
-        document.getElementById('btnChangeToInactive').classList.replace('d-none','d-block');
-    }else if(statusAuction == 'INATIVO'){
-        document.getElementById('btnChangeToHold').classList.replace('d-none','d-block');
-        document.getElementById('btnChangeToActive').classList.replace('d-none','d-block');
-    }else if(statusAuction == 'EM_ESPERA'){
-        document.getElementById('btnChangeToInactive').classList.replace('d-none','d-block');
-        document.getElementById('btnChangeToActive').classList.replace('d-none','d-block');
+
+    if (statusAuction == 'ATIVO') {
+        document.getElementById('btnChangeToHold').classList.replace('d-none', 'd-block');
+        document.getElementById('btnChangeToInactive').classList.replace('d-none', 'd-block');
+    } else if (statusAuction == 'INATIVO') {
+        document.getElementById('btnChangeToHold').classList.replace('d-none', 'd-block');
+        document.getElementById('btnChangeToActive').classList.replace('d-none', 'd-block');
+    } else if (statusAuction == 'EM_ESPERA') {
+        document.getElementById('btnChangeToInactive').classList.replace('d-none', 'd-block');
+        document.getElementById('btnChangeToActive').classList.replace('d-none', 'd-block');
     }
 
 }
 
-function changeStatusAuctionToOnHold(){
+function changeStatusAuctionToOnHold() {
     let idAuction = document.getElementById('idLeilao').value;
 
     var settings = {
@@ -521,29 +503,28 @@ function changeStatusAuctionToOnHold(){
         "url": "https://webserver-leilao.azurewebsites.net/webserver-leilao/controller/change-auction-status",
         "method": "POST",
         "headers": {
-          "Content-Type": "application/x-www-form-urlencoded",
-          "cache-control": "no-cache",
+            "Content-Type": "application/x-www-form-urlencoded",
+            "cache-control": "no-cache",
         },
         "data": {
-          "auctionID": idAuction,
-          "auctionStatusID": "3"
-        }, "xhrFields": {
+            "auctionID": idAuction,
+            "auctionStatusID": "3"
+        },
+        "xhrFields": {
             "withCredentials": true
         }
-      }
-if(window,confirm('Colocar o leilão em espera?')){
+    }
         $.ajax(settings).done(function (response) {
-            alert('Status alterado com sucesso!');
-            window.location.reload();
-        })
-        .fail(function (response) {
-            alert('Ocorreu um erro ao alterar o status do produto!')
-         });
-        }
+                alteracaoStatusLeilaoSucesso()
+            })
+            .fail(function (response) {
+                alteracaoStatusLeilaoErro();
+            });
+    
 }
 
 
-function changeStatusAuctionToActive(){
+function changeStatusAuctionToActive() {
     let idAuction = document.getElementById('idLeilao').value;
     var settings = {
         "async": true,
@@ -551,29 +532,27 @@ function changeStatusAuctionToActive(){
         "url": "https://webserver-leilao.azurewebsites.net/webserver-leilao/controller/change-auction-status",
         "method": "POST",
         "headers": {
-          "Content-Type": "application/x-www-form-urlencoded",
-          "cache-control": "no-cache",
+            "Content-Type": "application/x-www-form-urlencoded",
+            "cache-control": "no-cache",
         },
         "data": {
-          "auctionID": idAuction,
-          "auctionStatusID": "1"
-        }
-        , "xhrFields": {
+            "auctionID": idAuction,
+            "auctionStatusID": "1"
+        },
+        "xhrFields": {
             "withCredentials": true
         }
-      }
-if(window.confirm('Mudar o status deste leilão para ativo?')){
+    }
         $.ajax(settings).done(function (response) {
-            alert('Status alterado com sucesso!');
-            window.location.reload();
-                })
-        .fail(function (response) {
-            alert('Ocorreu um erro ao alterar o status do produto!')
-         });
-        }
+                alteracaoStatusLeilaoSucesso()
+            })
+            .fail(function (response) {
+                alteracaoStatusLeilaoErro();
+            });
+    
 }
 
-function changeStatusAuctionToInactive(){
+function changeStatusAuctionToInactive() {
     let idAuction = document.getElementById('idLeilao').value;
     var settings = {
         "async": true,
@@ -581,33 +560,31 @@ function changeStatusAuctionToInactive(){
         "url": "https://webserver-leilao.azurewebsites.net/webserver-leilao/controller/change-auction-status",
         "method": "POST",
         "headers": {
-          "Content-Type": "application/x-www-form-urlencoded",
-          "cache-control": "no-cache",
+            "Content-Type": "application/x-www-form-urlencoded",
+            "cache-control": "no-cache",
         },
         "data": {
-          "auctionID": idAuction,
-          "auctionStatusID": "2"
-        }
-        , "xhrFields": {
+            "auctionID": idAuction,
+            "auctionStatusID": "2"
+        },
+        "xhrFields": {
             "withCredentials": true
         }
-      }
-if(window.confirm('Mudar o status deste leilão para inativo?')){
+    }
         $.ajax(settings).done(function (response) {
-            alert('Status alterado com sucesso!');
-            window.location.reload();
-                })
-        .fail(function (response) {
-            alert('Ocorreu um erro ao alterar o status do produto!')
-         });
-        }
+                alteracaoStatusLeilaoSucesso()
+            })
+            .fail(function (response) {
+                alteracaoStatusLeilaoErro();
+            });
+    
 }
 
 
 function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
-        reader.onload = function(e) {
+        reader.onload = function (e) {
             $('#previewQuadrinho')
                 .attr('src', e.target.result)
         };

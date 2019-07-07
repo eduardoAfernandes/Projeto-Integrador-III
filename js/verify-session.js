@@ -1,6 +1,6 @@
 function session() {
 
-    var url = 'https://b648e929.ngrok.io/webserver_leilao_war_exploded/controller/session';
+    var url = 'https://webserver-leilao.azurewebsites.net/webserver-leilao/controller/session';
 
     if (window.location.pathname == '/login.html') {
         url = url + '?invalidate=true'
