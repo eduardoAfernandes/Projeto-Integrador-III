@@ -21,7 +21,7 @@ $(function () {
 $(window).scroll(function () {
     var scrollHeight = $(document).height();
     var scrollPosition = $(window).height() + $(window).scrollTop();
-    if (scrollHeight - scrollPosition < 20) {
+    if (scrollHeight - scrollPosition < 10) {
         if (!endOfList) {
             $('#divCarregando').fadeIn('slow');
             loadDados();
@@ -59,6 +59,7 @@ function loadDados() {
             if (response.data.length === 0) {
                 endOfList = true;
                 $('#divFimLista').fadeIn('slow');
+                $('#loadMoreProducts').fadeOut('slow');
             }
 
             console.log(response);
