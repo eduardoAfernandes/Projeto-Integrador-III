@@ -39,6 +39,8 @@ function showResponse(response) {
             </div>`
         )
         $('body').removeClass('deactivate');
+        localStorage.setItem("logged", "true");
+
     }
 }
 
@@ -48,6 +50,8 @@ function goLogin(response) {
     if (thisPage != '/index.html' && thisPage != '/' && thisPage != '/login.html' && thisPage != '/acessibilidade.html' && thisPage != '/sobre.html' && thisPage != '/cadastro.html') {
         window.location.replace("/login.html");        
     }
+
+    localStorage.setItem("logged", "false");
 }
 
 session();

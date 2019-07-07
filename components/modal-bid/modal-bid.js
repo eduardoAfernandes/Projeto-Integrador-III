@@ -15,7 +15,7 @@ $(document).on("click", ".btn-dar-lance", function () {
 
 });
 
-   
+
 function loadSpecificAuction(auctionID) {
     $('#modal-bid-title').html('');
     $('#modal-bid-body').html('').append(`<div id="divCarregandoBid" class="progresso py-4">
@@ -107,7 +107,7 @@ function loadSpecificAuction(auctionID) {
               </div>
               </div>
               <div class='col-6'>
-              <button type='button' class='btn btn-dar-lance btn-primary'>
+              <button type='button' class='btn btn-dar-lance btn-primary' onclick="confirmBid()">
               Dar Lance
                                   <span class='badge badge-light'>+${defaultBid}</span>
                               </button>
@@ -220,7 +220,26 @@ function loadSpecificAuction(auctionID) {
               `
             )
 
-            
+
         })
 
-    }
+}
+
+
+function confirmBid() {
+
+    
+    Swal.fire({
+        title: 'Colocar o leilão em espera?',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sim!',
+        cancelButtonText: 'Cancelar!'
+    }).then((result) => {
+        if (result.value) {
+            changeStatusAuctionToOnHold();
+        }
+    })
+}
