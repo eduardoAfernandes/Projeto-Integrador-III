@@ -2,6 +2,21 @@ var step = 4;
 var limit = step;
 var offset = 0;
 var endOfList = false;
+var columnToOrderBy = 'data_inicio';
+var directionToOrderBy = 'desc';
+var titleToSearch = '';
+var publishingCompanys = '';
+var isSearch = false;
+
+$(function () {
+    loadDados();
+    $("#titleToSearch").keypress(function (event) {
+        // event.preventDefault();
+        if (event.key.toLowerCase() === 'enter'.toLowerCase()) {
+            search();
+        }
+    });
+})
 
 $(window).scroll(function () {
     var scrollHeight = $(document).height();
@@ -20,7 +35,7 @@ function loadDados() {
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": `https://webserver-leilao.azurewebsites.net/webserver-leilao/controller/public/find-all-auction-paginate?limit=${limit}&offset=${offset}&columnToOrderBy=data_inicio&directionToOrderBy=asc&titleToSearch&publishingCompanys=`,
+        "url": `https://webserver-leilao.azurewebsites.net/webserver-leilao/controller/public/find-all-auction-paginate?limit=${limit}&offset=${offset}&columnToOrderBy=${columnToOrderBy}&directionToOrderBy=${directionToOrderBy}&titleToSearch=${titleToSearch}&publishingCompanys=${publishingCompanys}`,
         "method": "GET",
         "headers": {
             "content-type": "application/x-www-form-urlencoded",
@@ -112,8 +127,12 @@ function loadDados() {
                 </div>`
                 );
             }
+            if (isSearch && response.data.length > 0) searchOk();
+            else if (isSearch) searchNotOk();
+            isSearch = false;
         })
-}
+
+    }
 
 function formatDate(timestamp) {
     var date = new Date(timestamp);
@@ -161,21 +180,62 @@ function searchOk() {
     toastr["success"]("Filtro realizado. Verifique a listagem dos quadrinhos ao lado.", "Mensagem");
 
     $('html, body').animate({
-        scrollTop: $( $('#sectionSearch') ).offset().top
+        scrollTop: $($('#sectionSearch')).offset().top
+    }, 500);
+
+}
+
+function searchNotOk() {
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": true,
+        "onclick": null,
+        "showDuration": "3000",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+
+    toastr["error"]("Não foram encontrados resultados pra sua pesquisa.", "Mensagem");
+
+    $('html, body').animate({
+        scrollTop: $($('#sectionSearch')).offset().top
     }, 500);
 
 }
 
 function search() {
+    offset = 0;
+    isSearch = true;
+    endOfList = false;
     $('#sub-sectionProdutos').html('');
-
+    columnToOrderBy = $('#columnToOrderBy').val().split("|")[0];
+    directionToOrderBy = $('#columnToOrderBy').val().split("|")[1];
+    titleToSearch = $('#titleToSearch').val();
+    publishingCompanys = $('#publishingCompanys').val();
+    loadDados();
 }
 
+function searchClear() {
+    offset = 0;
+    isSearch = true;
+    endOfList = false;
+    $('#sub-sectionProdutos').html('');
+    $('#columnToOrderBy').val('data_inicio|desc').change();
+    $('#titleToSearch').val('').change();
+    $('#publishingCompanys').val('Todas').change();
+    columnToOrderBy = $('#columnToOrderBy').val().split("|")[0];
+    directionToOrderBy = $('#columnToOrderBy').val().split("|")[1];
+    titleToSearch = $('#titleToSearch').val();
+    publishingCompanys = $('#publishingCompanys').val();
+    loadDados();
+}
 
-
-
-
-
-
-
-loadDados();
