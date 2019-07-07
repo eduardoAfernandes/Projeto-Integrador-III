@@ -178,8 +178,8 @@ function validTitle(palavra) {
     }
     if (filter_nome.test(palavra)) {
         return true;
+        
     }
-
 }
 
 function onlyNumber(value) {
@@ -235,9 +235,11 @@ function verifyInputModalLeilao(id) {
             document.getElementById('dt-inicio').style.border = "3px solid red";
             document.getElementById('aviso-erro-data').classList.replace('d-none', 'd-block');
             document.getElementById('aviso-erro-data').innerHTML = "Informe a data de inicio do leilão!!"
+
         } else if (!validData || inicioEhHoje) {
             document.getElementById('dt-inicio').style.border = "3px solid lightgreen";
             document.getElementById('aviso-erro-data').classList.replace('d-block', 'd-none');
+            console.log(dataInput)
             validacaoDataInput = true;
         }
 
