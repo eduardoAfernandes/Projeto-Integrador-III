@@ -45,7 +45,7 @@ function showResponse(response) {
 function goLogin(response) {
     var thisPage = window.location.pathname;
     
-    if (thisPage != '/index.html' && thisPage != '/' && thisPage != '/login.html' && thisPage != '/acessibilidade.html' && thisPage != '/sobre.html') {
+    if (thisPage != '/index.html' && thisPage != '/' && thisPage != '/login.html' && thisPage != '/acessibilidade.html' && thisPage != '/sobre.html' && thisPage != '/cadastro.html') {
         window.location.replace("/login.html");        
     }
 }
