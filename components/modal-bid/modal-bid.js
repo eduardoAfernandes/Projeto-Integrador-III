@@ -115,7 +115,38 @@ function loadSpecificAuction(auctionID) {
                      
                   </div>
               </div>
-          </div>              
+          </div>
+          <div class="text-center bg-dark text-light">
+            <p>Maiores lances p/ usuário</p>
+          </div>       
+          
+          <table class="table table-sm">
+            <thead>
+                <tr class="bg-dark">
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Valor</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                </tr>
+                <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                </tr>
+                <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                </tr>
+            </tbody>
+            </table>
+       
               `
             )
 
