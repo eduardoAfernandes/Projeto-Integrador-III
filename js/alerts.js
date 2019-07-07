@@ -284,3 +284,32 @@ function confirmCadastroQuadrinho(){
             enviarDadosQuadrinho();        }
     })
 }
+
+function confirmarAtualizacaoLeilao(){
+    Swal.fire({
+        title: 'Confirmar atualização do leilão?',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sim, atualizar!',
+        cancelButtonText: 'Cancelar!'
+    }).then((result) => {
+        if (result.value) {
+            $('#modalCarregando').modal('show');
+            enviarDadosAtualizarLeilao();   
+             }
+    })
+}
+
+function leilaoAtualizadoSucesso(){
+    Swal.fire({
+        position: 'center',
+        type: 'success',
+        title: 'Leilão atualizado com sucesso!!',
+        showConfirmButton: true,
+        timer: 2500
+    }).then(() => {
+        history.go(0);
+    })
+}

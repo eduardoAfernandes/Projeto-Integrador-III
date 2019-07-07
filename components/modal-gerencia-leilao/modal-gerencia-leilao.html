@@ -54,16 +54,20 @@
                                     </h3>
                                 </div>
                                 <div class="col-12" >
-                                    <p id="duracaoQuadrinho">:</p> 
+                                    <p id="dtInicio"></p> 
                                 </div>
                                 <div class="col-12" >
-                                    <p id="vlrInicial">Valor Inicial: ssss</p> 
+                                    <p id="duracaoQuadrinho"></p> 
+                                </div>
+                                
+                                <div class="col-12" >
+                                    <p id="vlrInicial"></p> 
                                 </div>
                                 <div class="col-12">
-                                    <p id="vlrAtual">Valor Atual:</p>
+                                    <p id="vlrAtual"></p>
                                 </div>
                                 <div class="col-12">
-                                    <p id="lncPadrao">Lance padrão:</p>
+                                    <p id="lncPadrao"></p>
                                 </div>
                             </div>
                         </div>
@@ -103,7 +107,7 @@
                                                         title="Insira em dias o tempo de duração deste item...">
                                                         ?
                                                     </span>
-                                                    <input type="text" class="form-control " id="duracao"
+                                                    <input type="text" maxlength="3" class="form-control " id="duracao"
                                                         placeholder="0" onblur="verifyInputModalLeilao(this.id)">
                                                     <div class="invalid-feedback text-center d-none col-12 pt-2 text-danger"
                                                         id="aviso-erro-duracao">
@@ -161,7 +165,7 @@
                         <div class="row">
                             <div class="col-9">
                                 <input type="button" id="btnAtivarLeilao" class="btn btn-success btn-form-modal"
-                                    value="Confirmar" onclick="validFormII()">
+                                    value="Confirmar" onclick="validFormIII()">
 
                             </div>
                             <div class="col-3">
