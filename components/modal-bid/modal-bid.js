@@ -1,6 +1,5 @@
 $(document).on("click", ".btn-dar-lance", function () {
     var auctionID = $(this).data('id');
-    $('#modal-bid-title').html('');
 
     // console.log(auctionID);
 
@@ -18,6 +17,17 @@ $(document).on("click", ".btn-dar-lance", function () {
 
    
 function loadSpecificAuction(auctionID) {
+    $('#modal-bid-title').html('');
+    $('#modal-bid-body').html('').append(`<div id="divCarregandoBid" class="progresso py-4">
+        <div class="row ">
+            <div class="col-12 text-center">
+                <p style="font-size: 15px">Carregando</p>
+            </div>
+            <div class="col-12 text-center">
+                <img src="img/Spinner-1s-200px.gif" alt="" srcset="" width="30px">
+            </div>
+        </div>
+    </div>`)
     $('#divCarregandoBid').fadeIn('slow');
 
     var settings = {
@@ -59,57 +69,27 @@ function loadSpecificAuction(auctionID) {
             $('#modal-bid-title').html(productTitle);
 
             $('#modal-bid-body').html('').append(
-                `<table class="table table-sm">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                  </tr>
-                </tbody>
-              </table>
-              
-              
-              <div class='col-10 col-md-10 col-lg-10 text-center py-4 mx-auto' style='width: 255px; min-width: 255px; max-width: 255px; height: 396px; min-height: 396px; max-height: 396px;'>
-              <div class='cx-item text-light' style='width: 255px; min-width: 255px; max-width: 255px; height: 396px; min-height: 396px; max-height: 396px;'>
-              <div class='cx-header'>
-              <div class='row'>
-              <div class='col-10 text-center '>
-              <h5 class='py-1'>
-              Finaliza em ${timeToFinalize}
-              </h5>
-              </div>
-              <div class='col-3'>
-              ${statusIcon}
-              </div>
-              </div>
-              </div>
-              <div class='cx-body' style='width: 255px; min-width: 255px; max-width: 255px; height: 396px; min-height: 396px; max-height: 396px;'>
-              <img src='${coverImage}' class='img-fluid' style='width: 255px; min-width: 255px; max-width: 255px; height: 396px; min-height: 396px; max-height: 396px; padding-top: 50px;' alt='Imagem da capa do quadrinho ${name}' id='img-card${i}'>
+                `          
+              <div class='col-12 col-md-12 col-lg-12 text-center py-4;' style='margin: 15px 30px 35px 0px; width: 255px; min-width: 255px; max-width: 255px; height: 396px; min-height: 396px; max-height: 396px;'>
+                    <div class='cx-item text-light' style='width: 255px; min-width: 255px; max-width: 255px; height: 396px; min-height: 396px; max-height: 396px;'>
+                    <div class='cx-header'>
+                    <div class='row'>
+                    <div class='col-9 text-center '>
+                    <h5 class='py-1'>
+                    Finaliza em ${timeToFinalize}
+                    </h5>
+                    </div>
+                    <div class='col-3'>
+                    ${statusIcon}
+                    </div>
+                    </div>
+                    </div>
+                    <div class='cx-body' style='width: 255px; min-width: 255px; max-width: 255px; height: 396px; min-height: 396px; max-height: 396px;'>
+                    <img src='${coverImage}' class='img-fluid' style='width: 255px; min-width: 255px; max-width: 255px; height: 396px; min-height: 396px; max-height: 396px;' alt='Imagem da capa do quadrinho ${name}' id='img-card${i}'>
               </div>
               <div class='cx-footer bg-dark'>
               <div class='row'>
-              <div class='col-6 text-center'>
+              <div class='col-6 text-center pulse'>
               <div class='row'>
               <div class='col-12 text-center'>
               <dl class='mt-2'>
@@ -125,19 +105,17 @@ function loadSpecificAuction(auctionID) {
                                   <span class='badge badge-light'>+${defaultBid}</span>
                               </button>
                           </div>
-                          <div class='row border-top caixa-link-detalhes text-center '>
+                          <!-- <div class='row border-top caixa-link-detalhes text-center '>
                               <div class='col-12 bg-dark'>
                                   <a href='#' class='link-detalhes'>Ver mais detalhes</a>
                                   <span class='oi oi-arrow-circle-right ml-1'></span>
                               </div>        
-                          </div>
-                      
+                          </div> -->                      
                       </div>
                      
                   </div>
               </div>
-          </div>
-              
+          </div>              
               `
             )
 

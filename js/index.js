@@ -82,7 +82,7 @@ function loadDados() {
                     <div class='cx-item text-light' style='width: 255px; min-width: 255px; max-width: 255px; height: 396px; min-height: 396px; max-height: 396px;'>
                     <div class='cx-header'>
                     <div class='row'>
-                    <div class='col-10 text-center '>
+                    <div class='col-9 text-center '>
                     <h5 class='py-1'>
                     Finaliza em ${timeToFinalize}
                     </h5>
