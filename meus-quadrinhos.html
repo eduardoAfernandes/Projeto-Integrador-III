@@ -294,7 +294,9 @@
 
 <script>
     $(function () {
-        $('#header').load('./components/header/header.html');
+        $('#header').load('./components/header/header.html', function() {
+            $("#headerMeusQuadrinhos").addClass('active');
+        });
         $('#footer').load('./components/footer/footer.html');
         $('#modal').load('./components/modal-como-funciona/modal.html');
         $('#favicon').load('./components/favicon/favicon.html');

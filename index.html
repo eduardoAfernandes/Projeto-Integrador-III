@@ -45,6 +45,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <script src="js/index.js"></script>
     <script src="components/modal-bid/modal-bid.js"></script>
     <script src="js/verify-session.js"></script>
@@ -67,7 +69,6 @@
 
     <div id="grant-slider"></div>
     <div id="modal-bid"></div>
-
 
     <section class="container-fluid pt-3">
         <div class="row">
@@ -99,6 +100,7 @@
                                 </span>
                             </button>
                         </div>
+                        <span id="sectionSearch"></span>
 
                         <div class="collapse navbar-collapse justify-content-center" id="collapsibleFilter">
                             <div class="row container-fluid pt-3 ">
@@ -110,32 +112,37 @@
                                 </form> -->
                                 <div class="col-12 col-md-4 col-lg-4">
                                     <div class="form-group text-center ">
-                                        <input class="form-control mr-sm-0" type="search"
+                                        <input id="titleToSearch" class="form-control mr-sm-0" type="search"
                                             placeholder="Nome do quadrinho..." aria-label="Search">
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-3 col-lg-3">
+                                <div class="col-12 col-md-2 col-lg-2">
                                     <div class="form-group text-center ">
-                                        <select class="custom-select" id="exampleFormControlSelect1">
-                                            <option>Todas</option>
-                                            <option>Marvel</option>
-                                            <option>DC</option>
-                                            <option>Outros...</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-3 col-lg-3">
-                                    <div class="form-group text-center">
-                                        <select class="custom-select" id="exampleFormControlSelect1">
-                                            <option>Mais Recentes</option>
-                                            <option>Maiores Lances</option>
-                                            <option>Menores Lances</option>
+                                        <select class="custom-select" id="publishingCompanys">
+                                            <option value="Todas">Todas</option>
+                                            <option value="Marvel">Marvel</option>
+                                            <option value="DC">DC</option>
+                                            <option value="Outras">Outros...</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-2 col-lg-2">
                                     <div class="form-group text-center">
-                                        <button class="btn btn-form btn-success">Buscar</button>
+                                        <select class="custom-select" id="columnToOrderBy">
+                                            <option value="data_inicio|desc">Mais Recentes</option>
+                                            <option value="lance_padrao|desc">Maiores Lances</option>
+                                            <option value="lance_padrao|asc">Menores Lances</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-2 col-lg-2">
+                                    <div class="form-group text-center">
+                                        <button style="width: 100%; color: #fff" class="btn btn-form btn-warning" onclick="searchClear()">Limpar</button>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-2 col-lg-2">
+                                    <div class="form-group text-center">
+                                        <button style="width: 100%; color: #fff" class="btn btn-form btn-success" onclick="search()">Buscar</button>
                                     </div>
                                 </div>
                                 <!-- <div class="col-12 col-md-3 col-lg-3 py-2  text-center">
