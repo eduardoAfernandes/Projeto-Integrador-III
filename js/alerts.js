@@ -6,7 +6,7 @@ function produtoAtualizadoSucesso() {
         showConfirmButton: true,
         timer: 1500
     }).then(() => {
-        window.location.reload();
+        history.go(0);
     })
 }
 
@@ -51,7 +51,7 @@ function AtivaçãoLeilao() {
         showConfirmButton: true,
         timer: 2500
     }).then(() => {
-        window.location.reload();
+        history.go(0);
     })
 }
 
@@ -63,7 +63,7 @@ function statusAlteradStatusProdutoSuccesso() {
         showConfirmButton: true,
         timer: 2500
     }).then(() => {
-        window.location.reload();
+        history.go(0);
     })
 }
 
@@ -92,7 +92,7 @@ function alteracaoStatusLeilaoSucesso() {
         showConfirmButton: true,
         timer: 2500
     }).then(() => {
-        window.location.reload();
+        history.go(0);
     })
 }
 
@@ -113,7 +113,7 @@ function sucessoInativarProduto() {
         showConfirmButton: true,
         timer: 2500
     }).then(() => {
-        window.location.reload();
+        history.go(0);
     })
 }
 
@@ -143,7 +143,7 @@ function alertLeilaoCanceladoSucesso() {
         showConfirmButton: true,
         timer: 2500
     }).then(() => {
-        window.location.reload();
+        history.go(0);
     })
 }
 
@@ -256,7 +256,7 @@ function quadrinhoCadastradoSucesso(){
         showConfirmButton: true,
         timer: 2500
     }).then(() => {
-        window.location.reload();
+        history.go(0);
     })
 }
 
