@@ -56,7 +56,7 @@ function loadDados() {
             $('#divCarregando').fadeOut('slow');
             localStorage.setItem('find-all-auctions', JSON.stringify(response));
 
-            if (response.data.length === 0) {
+            if (response.data.length === 0 || response.data.length < step) {
                 endOfList = true;
                 $('#divFimLista').fadeIn('slow');
                 $('#loadMoreProducts').fadeOut('slow');
