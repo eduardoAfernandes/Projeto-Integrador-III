@@ -311,7 +311,42 @@ function validFormII() {
         confirmAtivacaoLeilao();
     }
 }
+function validFormIII() {
+    var dataInput = document.getElementById('dt-inicio').value;
+    var duracaoLeilao = document.getElementById('duracao').value;
+    var valorInicial = document.getElementById('vlr-inicial').value;
+    var lancePadrao = document.getElementById('lancePadrao').value;
 
+    var now = moment();
+    var dataInicio = moment(dataInput);
+    dataInicio.startOf("date");
+    now.startOf("date");
+
+    var validData = moment(dataInicio).isBefore(now);
+    var validDuracao = onlyNumber(duracaoLeilao);
+    var diaAtual = now.get("date") + '-' + (now.get("month") + 1) + '-' + now.get("year");
+
+    var formatDataInput = dataInicio.get("date") + '-' + (dataInicio.get("month") + 1) + '-' + dataInicio.get("year");
+
+    var inicioEhHoje = ehIgual(diaAtual, formatDataInput);
+    if (dataInput == '' | validData) {
+        document.getElementById('dt-inicio').style.border = "3px solid red";
+        document.getElementById('aviso-erro-data').classList.replace('d-none', 'd-block');
+        document.getElementById('aviso-erro-data').innerHTML = "Informe a data de inicio do leilão!!"
+
+    } else if (!validDuracao) {
+        document.getElementById('duracao').style.border = "3px solid red";
+        document.getElementById('aviso-erro-duracao').classList.replace('d-none', 'd-block');
+    } else if (valorInicial == '') {
+        document.getElementById('vlr-inicial').style.border = "3px solid red";
+        document.getElementById('aviso-erro-vlrInicial').classList.replace('d-none', 'd-block');
+    } else if (lancePadrao == '') {
+        document.getElementById('lancePadrao').style.border = "3px solid red";
+        document.getElementById('aviso-erro-lancePadrao').classList.replace('d-none', 'd-block');
+    } else {
+        confirmarAtualizacaoLeilao();
+    }
+}
 function enviarDadosLeilao() {
     var dataInput = document.getElementById('dt-inicio').value;
     var duracaoLeilao = document.getElementById('duracao').value;
@@ -333,7 +368,7 @@ function enviarDadosLeilao() {
         "data": {
             "productID": idProduct,
             "duration": duracaoLeilao,
-            "initialDate": GetFormattedDate(),
+            "initialDate": GetFormattedDate(dataInput),
             "initialValue": initialValueFormatted,
             "baseBid": baseBidFormatted
         },
@@ -351,6 +386,45 @@ function enviarDadosLeilao() {
         });
 }
 
+function enviarDadosAtualizarLeilao() {
+    let dataInicioLeilao = document.getElementById('dt-inicio').value;
+    let initialValue = document.getElementById('vlr-inicial').value;
+    let baseBid = document.getElementById('lancePadrao').value;
+    let duracao = document.getElementById('duracao').value;
+    let auctionStatusID = document.getElementById('idStatusAuction').value;
+    let productID = document.getElementById('idProduct').value;
+    let auctionID = document.getElementById('idLeilao').value;
+    var initialValueFormatted = GetFormattedValue(initialValue);
+    var baseBidFormatted = GetFormattedValue(baseBid);
+
+    alert(productID + ' ' + auctionID);
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://webserver-leilao.azurewebsites.net/webserver-leilao/controller/update-auction",
+        "method": "POST",
+        "headers": {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "cache-control": "no-cache",
+        },
+        "data": {
+            "productID": productID,
+            "duration": duracao,
+            "initialDate": GetFormattedDate(dataInicioLeilao),
+            "initialValue": initialValueFormatted,
+            "baseBid": baseBidFormatted,
+            "auctionStatusID": auctionStatusID,
+            "auctionID": auctionID
+        },    "xhrFields": {
+            "withCredentials": true
+        }
+    }
+        $.ajax(settings).done(function (response) {
+            console.log(response)
+            $('#modalCarregando').modal('hide');
+            leilaoAtualizadoSucesso();
+        });
+}
 
 function alertSuccessAtivacao(response) {
     $('#modalCadastrandoLeilao').modal('hide');
@@ -358,9 +432,8 @@ function alertSuccessAtivacao(response) {
     AtivaçãoLeilao();
 }
 
-function GetFormattedDate() {
-    var dataInput = document.getElementById('dt-inicio').value;
-    var partes = dataInput.split("-");
+function GetFormattedDate(valor) {
+    var partes = valor.split("-");
     let ano = partes[0];
     let mes = partes[1];
     let dia = partes[2];
@@ -411,13 +484,13 @@ function ChangeStatusToActive() {
 function mostraFormEditarLeilao() {
     document.getElementById('changeStatusAuction').classList.replace('d-block', 'd-none');
     document.getElementById('gerenciarLeilao').classList.replace('d-none', 'd-block');
-    document.getElementById('dadosLeilao').classList.replace('d-block','d-none');
+    document.getElementById('dadosLeilao').classList.replace('d-block', 'd-none');
 }
 
-function mostraDadosLeilao(){
+function mostraDadosLeilao() {
     document.getElementById('changeStatusAuction').classList.replace('d-block', 'd-none');
     document.getElementById('gerenciarLeilao').classList.replace('d-block', 'd-none');
-    document.getElementById('dadosLeilao').classList.replace('d-none','d-block');
+    document.getElementById('dadosLeilao').classList.replace('d-none', 'd-block');
 }
 
 function mostraAvisoProdutoEmLeilao() {
@@ -501,7 +574,7 @@ function formatDate(timestamp) {
 function changeStatusAuction() {
     document.getElementById('changeStatusAuction').classList.replace('d-none', 'd-block');
     document.getElementById('gerenciarLeilao').classList.replace('d-block', 'd-none');
-    document.getElementById('dadosLeilao').classList.replace('d-block','d-none');
+    document.getElementById('dadosLeilao').classList.replace('d-block', 'd-none');
 
     let idAuction = document.getElementById('idLeilao').value;
     let statusAuction = document.getElementById('statusAuction').value;

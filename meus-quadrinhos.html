@@ -126,24 +126,27 @@
                             document.getElementById('idLeilao').value = response.data[i].auctionID;
                             document.getElementById('statusAuction').value = response.data[i].auctionStatus
                                 .status;
+                                document.getElementById('idProduct').value = response.data[i].product.productID;
+
+                                document.getElementById('dataLeilao').value = response.data[i].initialDate;
                             document.getElementById('idStatusAuction').value = response.data[i]
                                 .auctionStatus.auctionStatusID;
                             document.getElementById('imgModalEditLeilao').src = response.data[i].product
                                 .coverImage;
                                 document.getElementById('dataLeilao').value = response.data[i].initialDate;
                                 document.getElementById('tituloQuadrinho').innerHTML = response.data[i].product.title;
+                                document.getElementById('dtInicio').innerHTML = "Data de Inicio: " + GetFormattedDate(document.getElementById('dataLeilao').value);
                                 document.getElementById('duracaoQuadrinho').innerHTML = "Duração: " + response.data[i].duration + " dias" ;
                                 document.getElementById('vlrInicial').innerHTML = "Valor Inicial: R$ "+ response.data[i].initialValue;
                                 document.getElementById('vlrAtual').innerHTML = "Valor Atual: R$ "+ response.data[i].currentValue;
                                 document.getElementById('lncPadrao').innerHTML = "Lance Padrão: R$ "+ response.data[i].defaultBid;
-
                             $(".modal-body #duracao").val(response.data[i].duration);
                             $(".modal-body #vlr-inicial").val(response.data[i].initialValue);
                             $(".modal-body #lancePadrao").val(response.data[i].defaultBid);
+                            $(".modal-body #dt-inicio").val(response.data[i].initialDate);
 
                         }
                     }
-                    formatDate(document.getElementById('dataLeilao').value);
 
                 })
         });
@@ -201,18 +204,19 @@
             <div class="row border-bottom pt-1">
                 <div class="col-6  py-4 pb-3" style="background-color: #343a40;cursor: pointer;" id="option-table-meus-quadrinhos"
                     onclick="changetableQuadrinhos()">
-                    <h4 class="text-light text-center">Meus Quadrinhos</h4>
+                    <h4 class="text-light text-center" id="tituloAbaMeusQuadrinhos">Meus Quadrinhos</h4>
                     <div class="col-12 text-info text-center" style="display: none" id="textoTableQuadrinhos">
-                        Quadrinhos cadastrados!
+                       <p id="textAbaMeusQuadrinhos">  Quadrinhos cadastrados!</p>
                     </div>
                 </div>
                 <div class="col-6 bg-dark py-4 pb-3 border-left" style="opacity: 0.5;cursor: pointer;" id="option-table-participations"
                     onclick="changetableParticipations()">
-                    <h4 class="text-light text-center">
+                    <h4 class="text-light text-center" id="tituloAbaParticipations">
                         Lances Efetuados
                     </h4>
                     <div class="col-12 text-info text-center" id="textoTableParticipations">
-                        Leilões que voce participa!
+                       <p id="textAbaParticipations"> Leilões que voce participa!</p>
+                        
                     </div>
                 </div>
             </div>
