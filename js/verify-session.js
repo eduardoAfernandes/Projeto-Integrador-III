@@ -21,11 +21,11 @@ function session() {
     }
 
     $.ajax(settings)
-        .done(function (response) {showResponse(response)})
+        .done(function (response) {showResponseV(response)})
         .fail(function (response) {goLogin(response)});
 }
 
-function showResponse(response) {
+function showResponseV(response) {
     console.log(response.user);
     if ($('#statusUser'.length)) {
         $('#statusUser').html(response.user.name);
