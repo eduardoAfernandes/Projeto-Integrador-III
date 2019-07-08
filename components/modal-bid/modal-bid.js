@@ -8,7 +8,7 @@ $(document).on('hide.bs.modal', '#modalBid', function () {
     clearPollings();
 });
 
-$(document).on('click', '.swal2-cancel', function() {
+$(document).on('click', '.swal2-cancel', function () {
     if (!($('#modalBid').hasClass('show'))) {
         clearPollings();
     }
@@ -266,44 +266,46 @@ function loadSpecificAuction(auctionID, auto) {
             localStorage.setItem('find-auction-by-id', JSON.stringify(response));
 
             if ($('#modalBid').hasClass('show') || $('.swal2-confirm').length > 0) {
+                if (!response.data) {
+                    $("#modal-bid-body").append('<p>Leilão inexistente ou encerrado.</p>');
+                } else {
+                    let auctionID = response.data.auctionID;
+                    let initialDate = response.data.initialDate;
+                    let duration = response.data.duration;
+                    let initialValue = response.data.initialValue;
+                    let currentValue = formatValueToFloat(response.data.currentValue);
+                    let defaultBid = formatValueToFloat(response.data.defaultBid);
+                    let auctionStatus = response.data.auctionStatus.status;
+                    let coverImage = response.data.product.coverImage;
+                    let timeToFinalize = duration > 1 ? duration + ' dias' : duration + ' dia';
+                    let statusIcon = "<span class='oi oi-circle-check py-2' style='color: lightgreen'></span>";
+                    if (duration == 0) statusIcon = "<span class='oi oi-circle-x py-2' style='color: lightred'></span>";
+                    let productTitle = response.data.product.title;
+                    let productPagesNumber = response.data.product.pagesNumber;
+                    let productWeight = response.data.product.weight;
+                    let productPublisher = response.data.product.publisher;
+                    let productComicFormat = response.data.product.comicFormat;
+                    let productStatus = response.data.product.productStatus.status;
+                    let originCity = response.data.product.user.city;
+                    let originUF = response.data.product.user.state;
+                    let originUserName = response.data.product.user.name;
 
-                let auctionID = response.data.auctionID;
-                let initialDate = response.data.initialDate;
-                let duration = response.data.duration;
-                let initialValue = response.data.initialValue;
-                let currentValue = formatValueToFloat(response.data.currentValue);
-                let defaultBid = formatValueToFloat(response.data.defaultBid);
-                let auctionStatus = response.data.auctionStatus.status;
-                let coverImage = response.data.product.coverImage;
-                let timeToFinalize = duration > 1 ? duration + ' dias' : duration + ' dia';
-                let statusIcon = "<span class='oi oi-circle-check py-2' style='color: lightgreen'></span>";
-                if (duration == 0) statusIcon = "<span class='oi oi-circle-x py-2' style='color: lightred'></span>";
-                let productTitle = response.data.product.title;
-                let productPagesNumber = response.data.product.pagesNumber;
-                let productWeight = response.data.product.weight;
-                let productPublisher = response.data.product.publisher;
-                let productComicFormat = response.data.product.comicFormat;
-                let productStatus = response.data.product.productStatus.status;
-                let originCity = response.data.product.user.city;
-                let originUF = response.data.product.user.state;
-                let originUserName = response.data.product.user.name;
-
-                let bidValue = '';
-                bidValue = formatValueToFloat(response.data.currentValue + response.data.defaultBid);
-                if ($('.swal2-confirm').length > 0) {
-                    if ($('.swal2-confirm').html() !== 'Sim!') {
-                        $('.swal2-confirm').prop('disabled', false).html(`Efetuar lance: ${bidValue}`);
+                    let bidValue = '';
+                    bidValue = formatValueToFloat(response.data.currentValue + response.data.defaultBid);
+                    if ($('.swal2-confirm').length > 0) {
+                        if ($('.swal2-confirm').html() !== 'Sim!') {
+                            $('.swal2-confirm').prop('disabled', false).html(`Efetuar lance: ${bidValue}`);
+                        }
                     }
-                }
 
-                $('#modal-bid-title').html(productTitle);
+                    $('#modal-bid-title').html(productTitle);
 
-                if (!auto) {
-                    $('#modal-bid-body').html('');
-                }
+                    if (!auto) {
+                        $('#modal-bid-body').html('');
+                    }
 
-                $('#modal-bid-body').html(
-                    `          
+                    $('#modal-bid-body').html(
+                        `          
                     <div class='col-12 col-md-12 col-lg-12 text-center py-4;' style='margin: 15px 30px 35px 0px; width: 255px; min-width: 255px; max-width: 255px; height: 396px; min-height: 396px; max-height: 396px;'>
                     <div class='cx-item text-light' style='width: 255px; min-width: 255px; max-width: 255px; height: 396px; min-height: 396px; max-height: 396px;'>
                     <div class='cx-header'>
@@ -441,13 +443,15 @@ function loadSpecificAuction(auctionID, auto) {
             </tbody>
             </table>
               `
-                )
+                    )
 
-                setTopUsers(response);
+                    setTopUsers(response);
 
-                setTimeout(function () {
-                    loadSpecificAuction(auctionID, true);
-                }, 5000);
+                    setTimeout(function () {
+                        loadSpecificAuction(auctionID, true);
+                    }, 5000);
+
+                }
             } else {
                 clearPollings();
             }

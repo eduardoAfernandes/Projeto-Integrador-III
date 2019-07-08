@@ -20,9 +20,22 @@ $(document).on("click", "#conhecerBtn2", function () {
     $('#titleToSearch').val('The Avengers - The Kree-Skrull').change();
     $('#btnSearchProduct0').click();
 })
-
+$.urlParam = function (name) {
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    if (results == null) {
+        return null;
+    } else {
+        return results[1] || 0;
+    }
+}
 $(function () {
     loadDados();
+    if ($.urlParam('auction')) {
+        console.log('oieee')
+        setTimeout(function () {
+            $('#paliativo').attr('data-id', $.urlParam('auction')).click();            
+        }, 3000);
+    }
     $("#titleToSearch").keypress(function (event) {
         // event.preventDefault();
         if (event.key.toLowerCase() === 'enter'.toLowerCase()) {
@@ -77,6 +90,7 @@ function loadDados() {
                 $('#divFimLista').fadeIn('slow');
                 $('#loadMoreProducts').fadeOut('slow');
             }
+
 
             console.log(response);
             for (i = 0; i < response.data.length; i++) {
@@ -151,7 +165,7 @@ function loadDados() {
             isSearch = false;
         })
 
-    }
+}
 
 function formatDate(timestamp) {
     var date = new Date(timestamp);
@@ -261,4 +275,3 @@ function searchClear() {
     publishingCompanys = $('#publishingCompanys').val();
     loadDados();
 }
-
