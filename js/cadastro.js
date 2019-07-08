@@ -6,7 +6,9 @@ let validacaoPassword = false;
 let validacaoConfPassword = false;
 let validacaoDtNascimento = false;
 
-
+$(function () {
+    $("#nomeUser").focus();
+})
 
 
 function validaCampo(id) {
