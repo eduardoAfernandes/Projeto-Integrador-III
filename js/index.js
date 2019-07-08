@@ -107,8 +107,8 @@ function loadDados() {
                 let productTitle = response.data[i].product.title;
 
                 let thisUserId = -1;
-                if (response.user && response.user.userID) {
-                    thisUserId = response.user.userID;
+                if (response.data && response.data.user && response.data.user.userID) {
+                    thisUserId = response.data.user.userID;
                 }
 
                 let statusIcon = "<span class='oi oi-circle-check py-2' style='color: lightgreen'></span>";
