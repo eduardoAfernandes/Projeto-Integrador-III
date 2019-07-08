@@ -146,7 +146,7 @@ function loadDados() {
                     </div>
                     </div>
                     <div class='col-6'>
-                    <button id="btnConfirmBid" type='button' class='btn btn-dar-lance btn-primary' onclick="confirmBid(${auctionID}, '${productTitle}', ${thisUserId}">
+                    <button id="btnConfirmBid" type='button' class='btn btn-dar-lance btn-primary' onclick="confirmBid(${auctionID}, '${productTitle}', ${thisUserId})">
                     Dar Lance
                                         <span class='badge badge-light'>+${defaultBid}</span>
                                     </button>

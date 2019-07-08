@@ -75,7 +75,7 @@ $(document).on("click", ".link-detalhes", function () {
 });
 
 // $(document).on("click", "#btnConfirmBid", function () {
-//     if ($('.swal2-confirm').html() !== 'Sim!') {
+//     if ($('.swal2-confirm').html() !== 'Ok!') {
 //         // refreshValue();
 //         loadSpecificAuction();
 //     }
@@ -83,7 +83,7 @@ $(document).on("click", ".link-detalhes", function () {
 
 
 function refreshValue() {
-    if ($('.swal2-confirm').html() !== 'Sim!') {
+    if ($('.swal2-confirm').html() !== 'Ok!') {
         $('.swal2-confirm').prop('disabled', true).html("Carregando. Aguarde...");
     }
 
@@ -111,7 +111,7 @@ function refreshValue() {
         if (response.data.length > 0) {
             bidValue = formatValueToFloat(response.data[0].auction.currentValue + response.data[0].auction.defaultBid);
             if ($('.swal2-confirm').length > 0) {
-                if ($('.swal2-confirm').html() !== 'Sim!') {
+                if ($('.swal2-confirm').html() !== 'Ok!') {
                     $('.swal2-confirm').prop('disabled', false).html(`Efetuar lance: ${bidValue}`);
                 }
             }
@@ -217,7 +217,7 @@ function loadSpecificAuction(auctionID, auto) {
         auctionID = localStorage.getItem("auctionContext");
     }
     findBids(auctionID);
-    if ($('.swal2-confirm').length > 0 && $('.swal2-confirm').html() !== 'Sim!') {
+    if ($('.swal2-confirm').length > 0 && $('.swal2-confirm').html() !== 'Ok!') {
         $('.swal2-confirm').prop('disabled', true).html("Carregando. Aguarde...");
     }
     if (!auto) {
@@ -252,7 +252,7 @@ function loadSpecificAuction(auctionID, auto) {
     $.ajax(settings).done(function (response) {
 
             if ($('.swal2-confirm').length > 0) {
-                if ($('.swal2-confirm').html() !== 'Sim!') {
+                if ($('.swal2-confirm').html() !== 'Ok!') {
                     $('.swal2-confirm').prop('disabled', false).html(`Efetuar lance: ${formatValueToFloat(response.data.currentValue + response.data.defaultBid)}`);
                 }
                 // setTimeout(refreshValue, timeToRetry);
@@ -293,7 +293,7 @@ function loadSpecificAuction(auctionID, auto) {
                     let bidValue = '';
                     bidValue = formatValueToFloat(response.data.currentValue + response.data.defaultBid);
                     if ($('.swal2-confirm').length > 0) {
-                        if ($('.swal2-confirm').html() !== 'Sim!') {
+                        if ($('.swal2-confirm').html() !== 'Ok!') {
                             $('.swal2-confirm').prop('disabled', false).html(`Efetuar lance: ${bidValue}`);
                         }
                     }
@@ -460,7 +460,7 @@ function loadSpecificAuction(auctionID, auto) {
         })
         .fail(function (response) {
             if ($('.swal2-confirm').length > 0) {
-                if ($('.swal2-confirm').html() !== 'Sim!') {
+                if ($('.swal2-confirm').html() !== 'Ok!') {
                     setTimeout(refreshValue, timeToRetry);
                 }
             } else {
@@ -554,7 +554,7 @@ function confirmBid(auctionID, productTitle, userID) {
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Sim!',
+            confirmButtonText: 'Ok!',
             cancelButtonText: 'Cancelar!'
         }).then((result) => {
             if (result.value) {
