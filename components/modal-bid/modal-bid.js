@@ -291,9 +291,10 @@ function loadSpecificAuction(auctionID, auto) {
                     let originUserName = response.data.product.user.name;
                     let thisUserId = -1;
                     
-                    if (response.user && response.user.userID) {
-                        thisUserId = response.user.userID;
+                    if (response.data && response.data.user && response.data.user.userID) {
+                        thisUserId = response.data.user.userID;
                     }
+    
                     let bidValue = '';
                     bidValue = formatValueToFloat(response.data.currentValue + response.data.defaultBid);
                     if ($('.swal2-confirm').length > 0) {
