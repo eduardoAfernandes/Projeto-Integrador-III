@@ -289,7 +289,11 @@ function loadSpecificAuction(auctionID, auto) {
                     let originCity = response.data.product.user.city;
                     let originUF = response.data.product.user.state;
                     let originUserName = response.data.product.user.name;
-
+                    let thisUserId = -1;
+                    
+                    if (response.user && response.user.userID) {
+                        thisUserId = response.user.userID;
+                    }
                     let bidValue = '';
                     bidValue = formatValueToFloat(response.data.currentValue + response.data.defaultBid);
                     if ($('.swal2-confirm').length > 0) {
@@ -336,7 +340,7 @@ function loadSpecificAuction(auctionID, auto) {
               </div>
               </div>
               <div class='col-6'>
-              <button type='button' class='btn btn-dar-lance btn-primary' onclick="confirmBid(${auctionID}, '${productTitle}')">
+              <button type='button' class='btn btn-dar-lance btn-primary' onclick="confirmBid(${auctionID}, '${productTitle}', ${thisUserId})">
               Dar Lance
                                   <span class='badge badge-light'>+${defaultBid}</span>
                               </button>
