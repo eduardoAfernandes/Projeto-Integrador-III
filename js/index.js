@@ -106,6 +106,11 @@ function loadDados() {
                 let timeToFinalize = duration > 1 ? duration + ' dias' : duration + ' dia';
                 let productTitle = response.data[i].product.title;
 
+                let thisUserId = -1;
+                if (response.user && response.user.userID) {
+                    thisUserId = response.user.userID;
+                }
+
                 let statusIcon = "<span class='oi oi-circle-check py-2' style='color: lightgreen'></span>";
                 if (duration == 0) statusIcon = "<span class='oi oi-circle-x py-2' style='color: lightred'></span>";
 
@@ -141,7 +146,7 @@ function loadDados() {
                     </div>
                     </div>
                     <div class='col-6'>
-                    <button id="btnConfirmBid" type='button' class='btn btn-dar-lance btn-primary' onclick="confirmBid(${auctionID}, '${productTitle}')">
+                    <button id="btnConfirmBid" type='button' class='btn btn-dar-lance btn-primary' onclick="confirmBid(${auctionID}, '${productTitle}', ${thisUserId}">
                     Dar Lance
                                         <span class='badge badge-light'>+${defaultBid}</span>
                                     </button>

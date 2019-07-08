@@ -472,7 +472,7 @@ function loadSpecificAuction(auctionID, auto) {
 }
 
 
-function confirmBid(auctionID, productTitle) {
+function confirmBid(auctionID, productTitle, userID) {
     var id = window.setTimeout(function () {}, 0);
 
     while (id--) {
@@ -480,7 +480,11 @@ function confirmBid(auctionID, productTitle) {
     }
     localStorage.setItem("auctionContext", auctionID);
     loadSpecificAuction(auctionID);
-    if (localStorage.getItem("logged") == "true") {
+
+    if (parseInt(localStorage.getItem("userID")) == userID) {
+        
+
+    } else if (localStorage.getItem("logged") == "true") {
         Swal.fire({
             title: `Confirmar lance no quadrinho <br><br> "${productTitle}"?`,
             type: 'warning',
