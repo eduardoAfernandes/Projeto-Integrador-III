@@ -61,43 +61,58 @@ function loadDados() {
                 // console.log('Status: '+ response.data[i].productStatus.status)
                 // console.log('Formato: '+ response.data[i].comicFormat)
                 // console.log('--------------------------------------')
-                if (response.data[i].productStatus.productStatusID == '3') {
-                    $("#tabela").append("<tr style='background-color:#FFFF66'>" +
-                        "<td class='text-center'><img src='" + response.data[i].coverImage + "' alt='' height='100'></img></td>" +
-                        "<td><h5 class='text-center'>" + response.data[i].title + "</h5></td>" + "<td class='text-center text-primary'>" + response.data[i].productStatus.status + "<input type='hidden'  value='" + response.data[i].productID + "'>" + "</td>" +
-                        "<td class='text-center'>" + "<img class='btnModalProduto' src='img/edit.png' onclick='mostraAvisoProdutoEmLeilao()'" + "</td>" +
-                        "<td class='text-center'>" + "<input type='hidden'id='productID'  value='" + response.data[i].productID + "'>" + "<img class='btnModalGerenciarLeilao'" + "data-toggle='modal' data-id='" + response.data[i].productID + "' data-target='#modalGerenciaLeilao' " +
-                        "src='img/auction.png'" + "<input type='hidden'id='productID'  value='" + response.data[i].productID + "'>" + "<td class='text-center'>" + "<input type='hidden'id='productID'  value='" + response.data[i].productID + "'>" + "<img src='img/delete.png' class='btnDelectProduct'" +
-                        "data-toggle='modal' data-id='" + response.data[i].productID + "' data-target='#modalExcluiProduto' " +
-                        +"</td>" +
-                        "</tr>");
+                if (response.data[i].productStatus.productStatusID == 3) {
+                    $("#tabela").append(
+                        `<tr style='background-color:#FFFF66'>
+                        <td class='text-center'><img height='100' src='${response.data[i].coverImage}'></img></td>
+                        <td><h5 class='text-center'>${response.data[i].title}</h5></td>
+                        <td class='text-center text-primary'>EM LEILÃO<input type='hidden' value='${response.data[i].productID}'></td>                        
+                        <td class='text-center'><img class='btnModalProduto' src='img/edit.png' onclick='mostraAvisoProdutoEmLeilao()'></td>              
+                        <td class='text-center'><input type='hidden'id='productID'  value='${response.data[i].productID}'><img class='btnModalGerenciarLeilao' data-toggle='modal' data-id='${response.data[i].productID}' data-target='#modalGerenciaLeilao' src='img/auction.png'>
+                        <input type='hidden' id='productID'  value='${response.data[i].productID}'></td>
+                        <td class='text-center'><img src='img/delete.png' onclick='avisoNaoDelete()' class='btnDelectProduct' data-target='#modalExcluiProduto'></td>
+                        `)
+
                 } else if (response.data[i].productStatus.productStatusID == 4) {
-                    $("#tabela").append("<tr>" +
-                        "<td class='text-center'><img src='" + response.data[i].coverImage + "' alt='' height='100'></img></td>" +
-                        "<td class='text-center'><h5 class='text-center'>" + response.data[i].title + "</h5></td>" + "<td class='text-center'>" + response.data[i].productStatus.status + "<td>" + "<p class='text-danger'> Leiloado </p>" + "</td>" + "</td>" +
-                        "<td class='text-center'>" + "<p class='text-success'>Produto Leiloado</p>" + "</td>" +
-                        "<td class='text-center'>" + "<img src='img/delete.png''" + "</td>" +
-                        "</tr>");
+                    $("#tabela").append(
+                        `
+                        <tr>
+                        <td class='text-center'><img src='${response.data[i].coverImage}' alt='' height='100'></img></td>
+                        <td class='text-center'><h5 class='text-center'>${response.data[i].title}</h5></td>
+                        <td class='text-center'>${response.data[i].productStatus.status}
+                        <td><p class='text-danger'> Leiloado </p></td></td>
+                        <td class='text-center'><p class='text-success'>Produto Leiloado</p></td>
+                        </tr>
+                        `
+                    )
                 } else if (response.data[i].productStatus.productStatusID == 2) {
-                    $("#tabela").append("<tr style='background-color:#ea8b6e;' class='my-2 '>" +
-                        "<td class='text-center'><img src='" + response.data[i].coverImage + "' alt='' height='100'></img></td>" +
-                        "<td class='text-center'><h5 class='text-center'>" + response.data[i].title + "</h5></td>" + "<td class='text-center'><p class='text-danger'>" + response.data[i].productStatus.status + "</p><input type='hidden'  value='" + response.data[i].productID + "'>" + "</td>" +
-                        "<td class='text-center'>" + "<img class='btnModalProduto'" + "data-toggle='modal' data-id='" + response.data[i].productID + "' data-target='#modalDadosQuadrinho' " +
-                        "src='img/edit.png'" + "<input type='hidden'id='productID'  value='" + response.data[i].productID + "'>" + "</td>" +
-                        "<td class='text-center'>" + "<img class='btnModalAtivar'" + "data-toggle='modal' data-id='" + response.data[i].productID + "' data-target='#modalAviso' " +
-                        "src='img/auction.png'" + "</td>" + "<td class='text-center'>" + "<input type='hidden'id='productID'  value='" + response.data[i].productID + "'>" + "<img src='img/delete.png' class='btnDelectProduct'" +
-                        "data-toggle='modal' data-id='" + response.data[i].productID + "' data-target='#modalExcluiProduto' " + "</td>" +
-                        "</tr>");
+                    $("#tabela").append(
+                        `
+                        <tr style='background-color:#ea8b6e;' class='my-2'>
+                        <td class='text-center'><img src='${response.data[i].coverImage}' alt='' height='100'></img></td>
+                        <td class='text-center'><h5 class='text-center'>${response.data[i].title}</h5></td>
+                        <td class='text-center'><p class='text-danger'>${response.data[i].productStatus.status}</p><input type='hidden'  value='${response.data[i].productID}'></td>
+                        <td class='text-center'><img class='btnModalProduto' data-toggle='modal' data-id='${response.data[i].productID}' data-target='#modalDadosQuadrinho' src='img/edit.png'><input type='hidden'id='productID'  value='${response.data[i].productID}'></td>
+                        <td class='text-center'><img class='btnModalAtivar' data-toggle='modal' data-id='${response.data[i].productID}' data-target='#modalAviso'  src='img/auction.png' </td>
+                        <td class='text-center'><input type='hidden' id='productID'  value='${response.data[i].productID}'><img src='img/delete.png' class='btnDelectProduct' data-toggle='modal' data-id='${response.data[i].productID}' data-target='#modalExcluiProduto'></td>                
+                        </tr>
+                        `
+                    );
                 } else {
-                    $("#tabela").append("<tr style='background-color:lightgreen'> " +
-                        "<td class='text-center'><img src='" + response.data[i].coverImage + "' alt='' height='100'></img></td>" +
-                        "<td class='text-center'><h5>" + response.data[i].title + "</h5></td>" + "<td class='text-center'>" + response.data[i].productStatus.status + "<input type='hidden'  value='" + response.data[i].productID + "'>" + "</td>" +
-                        "<td class='text-center'>" + "<img class='btnModalProduto'" + "data-toggle='modal' data-id='" + response.data[i].productID + "' data-target='#modalDadosQuadrinho' " +
-                        "src='img/edit.png'" + "<input type='hidden'id='productID'  value='" + response.data[i].productID + "'>" + "</td>" +
-                        "<td class='text-center'>" + "<img class='btnModalChangeToActivate'" + "data-toggle='modal' data-id='" + response.data[i].productID + "' data-target='#modalLeilao' " +
-                        "src='img/auction.png'" + "</td>" + "<td class='text-center'>" + "<input type='hidden'id='productID'  value='" + response.data[i].productID + "'>" + "<img src='img/delete.png' class='btnDelectProduct'" +
-                        "data-toggle='modal' data-id='" + response.data[i].productID + "' data-target='#modalExcluiProduto' " + "</td>" +
-                        "</tr>");
+                    $("#tabela").append(
+                        `
+                        <tr style='background-color:lightgreen'>
+                        <td class='text-center'><img src='${response.data[i].coverImage}' alt='' height='100'></img></td>
+                        <td class='text-center'><h5>${response.data[i].title}</h5></td>
+                        <td class='text-center'>${response.data[i].productStatus.status}<input type='hidden' value='${response.data[i].productID}'></td>
+                        <td class='text-center'><img class='btnModalProduto' data-toggle='modal' data-id='${response.data[i].productID}' data-target='#modalDadosQuadrinho' 
+                        src='img/edit.png' <input type='hidden' id='productID'  value='${response.data[i].productID}'></td>
+                        <td class='text-center'><img class='btnModalChangeToActivate' data-toggle='modal' data-id='${response.data[i].productID}' data-target='#modalLeilao'
+                        src='img/auction.png'></td>
+                        <td class='text-center'><input type='hidden'id='productID'  value='${response.data[i].productID}'>
+                        <img src='img/delete.png' class='btnDelectProduct' data-toggle='modal' data-id='${response.data[i].productID}' data-target='#modalExcluiProduto'></td>
+                        </tr>
+                        `);
                 }
             }
         });

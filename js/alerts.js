@@ -31,7 +31,6 @@ function erroAtualizaçãoProduto() {
         type: 'error',
         title: 'Oops...',
         text: 'Ocorreu um erro ao atualizar o produto!',
-        footer: '<a href>Why do I have this issue?</a>'
     })
 }
 
@@ -311,5 +310,13 @@ function leilaoAtualizadoSucesso(){
         timer: 2500
     }).then(() => {
         history.go(0);
+    })
+}
+
+function avisoNaoDelete(){
+    Swal.fire({
+        type: 'error',
+        title: 'Oops...',
+        text: 'Não é possível inativar produtos que estejam em leilão!',
     })
 }

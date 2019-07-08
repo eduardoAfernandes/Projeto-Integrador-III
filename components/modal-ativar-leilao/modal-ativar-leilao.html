@@ -28,7 +28,7 @@
                                                 <label for="títuloQuadrinho">Data inicio</label>
                                                 <input type="date" class="form-control " id="dt-inicio"
                                                     placeholder="Insira o data de inicio do leilao"
-                                                    onblur="verifyInputModalLeilao(this.id)">
+                                                    onblur="verifyInputModalCriarLeilao(this.id)">
                                                 <div class="invalid-feedback text-center d-none col-12 pt-2 text-danger"
                                                     id="aviso-erro-data">
                                                     Data de inicio inválida!
@@ -44,7 +44,7 @@
                                                     ?
                                                 </span>
                                                 <input type="text" class="form-control" maxlength="3" id="duracao" placeholder="0"
-                                                    onblur="verifyInputModalLeilao(this.id)">
+                                                    onblur="verifyInputModalCriarLeilao(this.id)">
                                                 <div class="invalid-feedback text-center d-none col-12 pt-2 text-danger"
                                                     id="aviso-erro-duracao">
                                                     Informe em dias o tempo de duração deste quadrinho!!
@@ -71,7 +71,7 @@
                                     </span>
                                     <input type="text" class="form-control " id="vlr-inicial" placeholder="R$ 0.00"
                                         onKeyPress="return(moeda(this,'.',',',event))"
-                                        onblur="verifyInputModalLeilao(this.id)">
+                                        onblur="verifyInputModalCriarLeilao(this.id)">
                                     <div class=" invalid-feedback text-center d-none col-12 pt-2 text-danger"
                                         id="aviso-erro-vlrInicial">
                                         Informe o valor inicial deste leilão!!
@@ -89,7 +89,7 @@
                                     </span>
                                     <input type="text" class="form-control " id="lancePadrao" placeholder="R$ 0.00"
                                         onKeyPress="return(moeda(this,'.',',',event))"
-                                        onblur="verifyInputModalLeilao(this.id)">
+                                        onblur="verifyInputModalCriarLeilao(this.id)">
                                     <div class=" invalid-feedback text-center d-none col-12 pt-2 text-danger"
                                         id="aviso-erro-lancePadrao">
                                         Informe o valor de lance padrão para este leilão!!
@@ -101,7 +101,7 @@
                     <div class="row">
                         <div class="col-6">
                             <input type="button" id="btnAtivarLeilao" class="btn btn-success btn-form-modal"
-                                value="Confirmar" onclick="validFormII()">
+                                value="Confirmar" onclick="validFormCriarLeilao()">
 
                         </div>
                         <div class="col-3">

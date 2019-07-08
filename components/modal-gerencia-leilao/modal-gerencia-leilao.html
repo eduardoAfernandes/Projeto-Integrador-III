@@ -90,7 +90,7 @@
                                             <div class="form-row">
                                                 <div class="form-group col-12">
                                                     <label for="títuloQuadrinho">Data inicio</label>
-                                                    <input type="date" class="form-control " id="dt-inicio"
+                                                    <input type="date" class="form-control " id="dt-inicio-editar-leilao"
                                                         placeholder="Insira o data de inicio do leilao"
                                                         onblur="verifyInputModalLeilao(this.id)">
                                                     <div class="invalid-feedback text-center d-none col-12 pt-2 text-danger"
@@ -107,7 +107,7 @@
                                                         title="Insira em dias o tempo de duração deste item...">
                                                         ?
                                                     </span>
-                                                    <input type="text" maxlength="3" class="form-control " id="duracao"
+                                                    <input type="text" maxlength="3" class="form-control " id="duracao-editar-leilao"
                                                         placeholder="0" onblur="verifyInputModalLeilao(this.id)">
                                                     <div class="invalid-feedback text-center d-none col-12 pt-2 text-danger"
                                                         id="aviso-erro-duracao">
@@ -133,7 +133,7 @@
                                             title="Insira em reais o valor inicial deste item...">
                                             ?
                                         </span>
-                                        <input type="text" class="form-control " id="vlr-inicial" placeholder="R$ 0,00"
+                                        <input type="text" class="form-control " id="vlr-inicial-editar-leilao" placeholder="R$ 0,00"
                                             onKeyPress="return(moeda(this,'.',',',event))"
                                             onblur="verifyInputModalLeilao(this.id)">
                                         <div class=" invalid-feedback text-center d-none col-12 pt-2 text-danger"
@@ -151,7 +151,7 @@
                                             title="Insira o padrão de lance para este item (Por exemplo: se você esolher 5, os usuários so irão dar lances de 5 reais!!)...">
                                             ?
                                         </span>
-                                        <input type="text" class="form-control " id="lancePadrao" placeholder="R$ 0,00"
+                                        <input type="text" class="form-control " id="lancePadrao-editar-leilao" placeholder="R$ 0,00"
                                             onKeyPress="return(moeda(this,'.',',',event))"
                                             onblur="verifyInputModalLeilao(this.id)">
                                         <div class=" invalid-feedback text-center d-none col-12 pt-2 text-danger"
@@ -165,7 +165,7 @@
                         <div class="row">
                             <div class="col-9">
                                 <input type="button" id="btnAtivarLeilao" class="btn btn-success btn-form-modal"
-                                    value="Confirmar" onclick="validFormIII()">
+                                    value="Confirmar" onclick="validFormEditarLeilao()">
 
                             </div>
                             <div class="col-3">
