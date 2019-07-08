@@ -565,3 +565,20 @@ function readURL(input) {
 function clickInputFile() {
     document.getElementById('cpQuadrinho').click();
 }
+
+function limpaValues(){
+    document.getElementById('idLeilao').value = null;
+    document.getElementById('idProduct').value = null;
+    document.getElementById('dataLeilao').value = null;
+    document.getElementById('idProduct').value = null;
+    document.getElementById('statusAuction').value = null;
+    document.getElementById('idStatusAuction').value = null;
+    document.getElementById('initialValue').value = null;
+    document.getElementById('currentValue').value = null;
+    document.getElementById('dt-inicio-editar-leilao').value = null;
+    document.getElementById('duracao-editar-leilao').value = null;
+    document.getElementById('vlr-inicial-editar-leilao').value = null;
+    document.getElementById('lancePadrao-editar-leilao').value =null;
+
+
+}

@@ -8,7 +8,7 @@ $(document).on('hide.bs.modal', '#modalBid', function () {
     clearPollings();
 });
 
-$(document).on('click', '.swal2-cancel', function() {
+$(document).on('click', '.swal2-cancel', function () {
     if (!($('#modalBid').hasClass('show'))) {
         clearPollings();
     }
@@ -75,7 +75,7 @@ $(document).on("click", ".link-detalhes", function () {
 });
 
 // $(document).on("click", "#btnConfirmBid", function () {
-//     if ($('.swal2-confirm').html() !== 'Sim!') {
+//     if ($('.swal2-confirm').html() !== 'Ok!') {
 //         // refreshValue();
 //         loadSpecificAuction();
 //     }
@@ -83,7 +83,7 @@ $(document).on("click", ".link-detalhes", function () {
 
 
 function refreshValue() {
-    if ($('.swal2-confirm').html() !== 'Sim!') {
+    if ($('.swal2-confirm').html() !== 'Ok!') {
         $('.swal2-confirm').prop('disabled', true).html("Carregando. Aguarde...");
     }
 
@@ -111,7 +111,7 @@ function refreshValue() {
         if (response.data.length > 0) {
             bidValue = formatValueToFloat(response.data[0].auction.currentValue + response.data[0].auction.defaultBid);
             if ($('.swal2-confirm').length > 0) {
-                if ($('.swal2-confirm').html() !== 'Sim!') {
+                if ($('.swal2-confirm').html() !== 'Ok!') {
                     $('.swal2-confirm').prop('disabled', false).html(`Efetuar lance: ${bidValue}`);
                 }
             }
@@ -217,7 +217,7 @@ function loadSpecificAuction(auctionID, auto) {
         auctionID = localStorage.getItem("auctionContext");
     }
     findBids(auctionID);
-    if ($('.swal2-confirm').length > 0 && $('.swal2-confirm').html() !== 'Sim!') {
+    if ($('.swal2-confirm').length > 0 && $('.swal2-confirm').html() !== 'Ok!') {
         $('.swal2-confirm').prop('disabled', true).html("Carregando. Aguarde...");
     }
     if (!auto) {
@@ -252,7 +252,7 @@ function loadSpecificAuction(auctionID, auto) {
     $.ajax(settings).done(function (response) {
 
             if ($('.swal2-confirm').length > 0) {
-                if ($('.swal2-confirm').html() !== 'Sim!') {
+                if ($('.swal2-confirm').html() !== 'Ok!') {
                     $('.swal2-confirm').prop('disabled', false).html(`Efetuar lance: ${formatValueToFloat(response.data.currentValue + response.data.defaultBid)}`);
                 }
                 // setTimeout(refreshValue, timeToRetry);
@@ -266,44 +266,50 @@ function loadSpecificAuction(auctionID, auto) {
             localStorage.setItem('find-auction-by-id', JSON.stringify(response));
 
             if ($('#modalBid').hasClass('show') || $('.swal2-confirm').length > 0) {
-
-                let auctionID = response.data.auctionID;
-                let initialDate = response.data.initialDate;
-                let duration = response.data.duration;
-                let initialValue = response.data.initialValue;
-                let currentValue = formatValueToFloat(response.data.currentValue);
-                let defaultBid = formatValueToFloat(response.data.defaultBid);
-                let auctionStatus = response.data.auctionStatus.status;
-                let coverImage = response.data.product.coverImage;
-                let timeToFinalize = duration > 1 ? duration + ' dias' : duration + ' dia';
-                let statusIcon = "<span class='oi oi-circle-check py-2' style='color: lightgreen'></span>";
-                if (duration == 0) statusIcon = "<span class='oi oi-circle-x py-2' style='color: lightred'></span>";
-                let productTitle = response.data.product.title;
-                let productPagesNumber = response.data.product.pagesNumber;
-                let productWeight = response.data.product.weight;
-                let productPublisher = response.data.product.publisher;
-                let productComicFormat = response.data.product.comicFormat;
-                let productStatus = response.data.product.productStatus.status;
-                let originCity = response.data.product.user.city;
-                let originUF = response.data.product.user.state;
-                let originUserName = response.data.product.user.name;
-
-                let bidValue = '';
-                bidValue = formatValueToFloat(response.data.currentValue + response.data.defaultBid);
-                if ($('.swal2-confirm').length > 0) {
-                    if ($('.swal2-confirm').html() !== 'Sim!') {
-                        $('.swal2-confirm').prop('disabled', false).html(`Efetuar lance: ${bidValue}`);
+                if (!response.data) {
+                    $("#modal-bid-body").append('<p>Leilão inexistente ou encerrado.</p>');
+                } else {
+                    let auctionID = response.data.auctionID;
+                    let initialDate = response.data.initialDate;
+                    let duration = response.data.duration;
+                    let initialValue = response.data.initialValue;
+                    let currentValue = formatValueToFloat(response.data.currentValue);
+                    let defaultBid = formatValueToFloat(response.data.defaultBid);
+                    let auctionStatus = response.data.auctionStatus.status;
+                    let coverImage = response.data.product.coverImage;
+                    let timeToFinalize = duration > 1 ? duration + ' dias' : duration + ' dia';
+                    let statusIcon = "<span class='oi oi-circle-check py-2' style='color: lightgreen'></span>";
+                    if (duration == 0) statusIcon = "<span class='oi oi-circle-x py-2' style='color: lightred'></span>";
+                    let productTitle = response.data.product.title;
+                    let productPagesNumber = response.data.product.pagesNumber;
+                    let productWeight = response.data.product.weight;
+                    let productPublisher = response.data.product.publisher;
+                    let productComicFormat = response.data.product.comicFormat;
+                    let productStatus = response.data.product.productStatus.status;
+                    let originCity = response.data.product.user.city;
+                    let originUF = response.data.product.user.state;
+                    let originUserName = response.data.product.user.name;
+                    let thisUserId = -1;
+                    
+                    if (response.user && response.user.userID) {
+                        thisUserId = response.user.userID;
                     }
-                }
+                    let bidValue = '';
+                    bidValue = formatValueToFloat(response.data.currentValue + response.data.defaultBid);
+                    if ($('.swal2-confirm').length > 0) {
+                        if ($('.swal2-confirm').html() !== 'Ok!') {
+                            $('.swal2-confirm').prop('disabled', false).html(`Efetuar lance: ${bidValue}`);
+                        }
+                    }
 
-                $('#modal-bid-title').html(productTitle);
+                    $('#modal-bid-title').html(productTitle);
 
-                if (!auto) {
-                    $('#modal-bid-body').html('');
-                }
+                    if (!auto) {
+                        $('#modal-bid-body').html('');
+                    }
 
-                $('#modal-bid-body').html(
-                    `          
+                    $('#modal-bid-body').html(
+                        `          
                     <div class='col-12 col-md-12 col-lg-12 text-center py-4;' style='margin: 15px 30px 35px 0px; width: 255px; min-width: 255px; max-width: 255px; height: 396px; min-height: 396px; max-height: 396px;'>
                     <div class='cx-item text-light' style='width: 255px; min-width: 255px; max-width: 255px; height: 396px; min-height: 396px; max-height: 396px;'>
                     <div class='cx-header'>
@@ -334,7 +340,7 @@ function loadSpecificAuction(auctionID, auto) {
               </div>
               </div>
               <div class='col-6'>
-              <button type='button' class='btn btn-dar-lance btn-primary' onclick="confirmBid(${auctionID}, '${productTitle}')">
+              <button type='button' class='btn btn-dar-lance btn-primary' onclick="confirmBid(${auctionID}, '${productTitle}', ${thisUserId})">
               Dar Lance
                                   <span class='badge badge-light'>+${defaultBid}</span>
                               </button>
@@ -441,13 +447,15 @@ function loadSpecificAuction(auctionID, auto) {
             </tbody>
             </table>
               `
-                )
+                    )
 
-                setTopUsers(response);
+                    setTopUsers(response);
 
-                setTimeout(function () {
-                    loadSpecificAuction(auctionID, true);
-                }, 5000);
+                    setTimeout(function () {
+                        loadSpecificAuction(auctionID, true);
+                    }, 5000);
+
+                }
             } else {
                 clearPollings();
             }
@@ -456,7 +464,7 @@ function loadSpecificAuction(auctionID, auto) {
         })
         .fail(function (response) {
             if ($('.swal2-confirm').length > 0) {
-                if ($('.swal2-confirm').html() !== 'Sim!') {
+                if ($('.swal2-confirm').html() !== 'Ok!') {
                     setTimeout(refreshValue, timeToRetry);
                 }
             } else {
@@ -468,7 +476,7 @@ function loadSpecificAuction(auctionID, auto) {
 }
 
 
-function confirmBid(auctionID, productTitle) {
+function confirmBid(auctionID, productTitle, userID) {
     var id = window.setTimeout(function () {}, 0);
 
     while (id--) {
@@ -476,7 +484,16 @@ function confirmBid(auctionID, productTitle) {
     }
     localStorage.setItem("auctionContext", auctionID);
     loadSpecificAuction(auctionID);
-    if (localStorage.getItem("logged") == "true") {
+
+    if (parseInt(localStorage.getItem("userID")) == userID) {
+        Swal.fire({
+            title: 'Você é o dono deste produto e por isso não pode efetuar lances nele.',
+            type: 'warning',    
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ok!'
+        })
+    } else if (localStorage.getItem("logged") == "true") {
         Swal.fire({
             title: `Confirmar lance no quadrinho <br><br> "${productTitle}"?`,
             type: 'warning',
@@ -541,7 +558,7 @@ function confirmBid(auctionID, productTitle) {
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Sim!',
+            confirmButtonText: 'Ok!',
             cancelButtonText: 'Cancelar!'
         }).then((result) => {
             if (result.value) {

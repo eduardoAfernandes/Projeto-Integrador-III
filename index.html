@@ -61,12 +61,12 @@
 </head>
 
 <body>
-
     <div id="header">
-
+        
     </div>
-
+    
     <h1 class="deactivate">Leilão de Quadrinhos</h1>
+    <a href="#" id='paliativo' class="link-detalhes deactivate" data-toggle="modal" data-target="#modalBid" data-id="">Ver mais detalhes<span class="oi oi-arrow-circle-right ml-1"></span></a>
 
     <div id="grant-slider"></div>
     <div id="modal-bid"></div>
@@ -113,8 +113,13 @@
                                 </form> -->
                                 <div class="col-12 col-md-4 col-lg-4">
                                     <div class="form-group text-center ">
+<<<<<<< HEAD
                                         <input id="titleToSearch" class="form-control mr-sm-0" type="search"
-                                            placeholder="Nome do quadrinho..." aria-label="Search" accesskey="s">
+                                            placeholder="Nome do quadrinho..." aria-label="Search">
+=======
+                                        <input accesskey="s" id="titleToSearch" class="form-control mr-sm-0" type="search"
+                                            placeholder="Nome do quadrinho..." aria-label="Search">
+>>>>>>> 62ea12b1b340a9f17441de679cb69da2a4cc2032
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-2 col-lg-2">
@@ -143,7 +148,7 @@
                                 </div>
                                 <div class="col-12 col-md-2 col-lg-2">
                                     <div class="form-group text-center">
-                                        <button style="width: 100%; color: #fff" class="btn btn-form btn-success" onclick="search()">Buscar</button>
+                                        <button id="btnSearchProduct0" style="width: 100%; color: #fff" class="btn btn-form btn-success" onclick="search()">Buscar</button>
                                     </div>
                                 </div>
                                 <!-- <div class="col-12 col-md-3 col-lg-3 py-2  text-center">

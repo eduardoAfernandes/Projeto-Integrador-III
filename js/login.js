@@ -1,5 +1,21 @@
 let validacaoEmail = false;
 let validacaoSenha = false;
+$(function () {
+    $("#email").focus().keypress(function (event) {
+        if (event.key.toLowerCase() === 'enter'.toLowerCase()) {
+            event.preventDefault();
+            $('#btnEntrar').click();
+        }
+    });
+    $("#password").keypress(function (event) {
+        console.log(event.key.toLowerCase());
+        if (event.key.toLowerCase() === 'enter'.toLowerCase()) {
+            event.preventDefault();
+            $('#btnEntrar').click();
+        }
+    });
+
+})
 
 
 function validaCampo(id) {

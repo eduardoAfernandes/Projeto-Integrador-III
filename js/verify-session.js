@@ -40,6 +40,7 @@ function showResponse(response) {
         )
         $('body').removeClass('deactivate');
         localStorage.setItem("logged", "true");
+        localStorage.setItem("userID", response.user.userID);
 
     }
 }

@@ -8,8 +8,34 @@ var titleToSearch = '';
 var publishingCompanys = '';
 var isSearch = false;
 
+$(document).on("click", "#conhecerBtn0", function () {
+    $('#titleToSearch').val('Avengers').change();
+    $('#btnSearchProduct0').click();
+})
+$(document).on("click", "#conhecerBtn1", function () {
+    $('#titleToSearch').val('LJA - Justice League - 11').change();
+    $('#btnSearchProduct0').click();
+})
+$(document).on("click", "#conhecerBtn2", function () {
+    $('#titleToSearch').val('The Avengers - The Kree-Skrull').change();
+    $('#btnSearchProduct0').click();
+})
+$.urlParam = function (name) {
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    if (results == null) {
+        return null;
+    } else {
+        return results[1] || 0;
+    }
+}
 $(function () {
     loadDados();
+    if ($.urlParam('auction')) {
+        console.log('oieee')
+        setTimeout(function () {
+            $('#paliativo').attr('data-id', $.urlParam('auction')).click();            
+        }, 3000);
+    }
     $("#titleToSearch").keypress(function (event) {
         // event.preventDefault();
         if (event.key.toLowerCase() === 'enter'.toLowerCase()) {
@@ -65,6 +91,7 @@ function loadDados() {
                 $('#loadMoreProducts').fadeOut('slow');
             }
 
+
             console.log(response);
             for (i = 0; i < response.data.length; i++) {
 
@@ -79,9 +106,15 @@ function loadDados() {
                 let timeToFinalize = duration > 1 ? duration + ' dias' : duration + ' dia';
                 let productTitle = response.data[i].product.title;
 
+                let thisUserId = -1;
+                if (response.user && response.user.userID) {
+                    thisUserId = response.user.userID;
+                }
+
                 let statusIcon = "<span class='oi oi-circle-check py-2' style='color: lightgreen'></span>";
                 if (duration == 0) statusIcon = "<span class='oi oi-circle-x py-2' style='color: lightred'></span>";
 
+                if (duration <= 0) continue;
                 $("#sub-sectionProdutos").append(
                     `<div class='col-12 col-md-8 col-lg-4 text-center py-4;' style='margin: 15px 30px 35px 0px; width: 255px; min-width: 255px; max-width: 255px; height: 396px; min-height: 396px; max-height: 396px;'>
                     <div class='cx-item text-light' style='width: 255px; min-width: 255px; max-width: 255px; height: 396px; min-height: 396px; max-height: 396px;'>
@@ -113,7 +146,7 @@ function loadDados() {
                     </div>
                     </div>
                     <div class='col-6'>
-                    <button id="btnConfirmBid" type='button' class='btn btn-dar-lance btn-primary' onclick="confirmBid(${auctionID}, '${productTitle}')">
+                    <button id="btnConfirmBid" type='button' class='btn btn-dar-lance btn-primary' onclick="confirmBid(${auctionID}, '${productTitle}', ${thisUserId})">
                     Dar Lance
                                         <span class='badge badge-light'>+${defaultBid}</span>
                                     </button>
@@ -137,7 +170,7 @@ function loadDados() {
             isSearch = false;
         })
 
-    }
+}
 
 function formatDate(timestamp) {
     var date = new Date(timestamp);
@@ -247,4 +280,3 @@ function searchClear() {
     publishingCompanys = $('#publishingCompanys').val();
     loadDados();
 }
-
