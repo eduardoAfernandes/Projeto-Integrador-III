@@ -20,11 +20,17 @@
                 <input type="hidden" id="initialValue">
                 <input type="hidden" id="currentValue">
                 <div id="conteudo" class="d-none">
-                    <div class="row border-bottom pb-3" id="botoesGerLeilao">
+                    <div class="row border-bottom pb3 d-none" id="mensagemLances" >
+                        <div class="col-12 text-center">
+                                <p class='text-center text-info'>Este leilão já sofreu lances, portanto náo é possível fazer qualquer tipo de alteração!</p>
+                        </div>
+
+                    </div>
+                    <div class="row border-bottom pb-3" id="botoesGerLeilao" class="d-block">
                  
 
                         <div class="col-3">
-                            <button type="button" id="btnMostraForm" class="btn btn-warning text-light" onclick="mostraFormEditarLeilao()"
+                            <button type="button" id="btnMostraForm" class="btn btn-warning " onclick="mostraFormEditarLeilao()"
                                 style="width: 100%">
                                 Editar Leilão
                             </button>
@@ -36,7 +42,7 @@
                             </button>
                         </div>
                         <div class="col-3">
-                            <button type="button" id="btnChangeStatusAuction" class="btn btn-danger" onclick="changeStatusAuction()"
+                            <button type="button" id="btnChangeStatusAuction" class="btn btn-secondary" onclick="changeStatusAuction()"
                                 style="width: 100%">
                                 Status Leilão
                             </button>
