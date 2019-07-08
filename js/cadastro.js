@@ -300,7 +300,7 @@ function apiCidades() {
     }
     console.log(codEstado);
 
-    fetch("http://servicodados.ibge.gov.br/api/v1/localidades/estados/" + codEstado + "/municipios")
+    fetch("https://servicodados.ibge.gov.br/api/v1/localidades/estados/" + codEstado + "/municipios")
         .then(function (response) {
             return response.json();
         })
