@@ -6,9 +6,10 @@
             <div class="modal-header bg-dark text-light">
                 <h4 class="modal-title" id="exampleModalLabel">Gerenciar leilão <span id="titleQuadrinho"></span>
                 </h4>
-                <button type="button" id="btnFechaModalAtivaLeilao" class="close" data-dismiss="modal">
-                    <span aria-hidden=" true" class="text-light pt-3">X</span>
+                <button type="button" id="btnFechaModalAtivaLeilao"  onclick="limpaValues()" class="close" data-dismiss="modal">
+                    <span aria-hidden=" true" class="text-light pt-3" >X</span>
                 </button>
+
             </div>
             <div class="modal-body container-fluid">
                 <input type="hidden" id="idLeilao">
@@ -38,7 +39,7 @@
                         </div>
 
                         <div class="col-3">
-                            <button type="button"  class="btn btn-info" style="width: 100%" onclick="mostraDadosLeilao()">
+                            <button type="button" id="btnDados" class="btn btn-info" style="width: 100%" onclick="mostraDadosLeilao()">
                                 Dados do Leilão
                             </button>
                         </div>

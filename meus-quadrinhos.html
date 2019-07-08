@@ -159,25 +159,26 @@
                     } })
                     .done(function (response) {
                         if(document.getElementById('currentValue').value > document.getElementById('initialValue').value){
-                            document.getElementById('btnMostraForm').disabled = "true";
-                            document.getElementById('btnMostraForm').style.backgroundColor = "gray";
-                            document.getElementById('btnMostraForm').style.transform = "scale(0.8)"
+                            $("#btnMostraForm").attr("disabled", true);
+                            $("#btnCancelAuction").attr("disabled", true);
+                            $("#btnChangeStatusAuction").attr("disabled", true);
+                            
+                            document.getElementById('dadosLeilao').classList.replace('d-none','d-block') ;
 
-                            document.getElementById('btnChangeStatusAuction').disabled = "true";
-                            document.getElementById('btnChangeStatusAuction').style.backgroundColor = "gray";
-                            document.getElementById('btnChangeStatusAuction').style.transform = "scale(0.8)"
+                            document.getElementById('gerenciarLeilao').classList.replace('d-block','d-none') ;
+                            document.getElementById('changeStatusAuction').classList.replace('d-block','d-none') ;
 
-                            document.getElementById('btnCancelAuction').disabled = "true";
-                            document.getElementById('btnCancelAuction').style.backgroundColor = "gray";
-                            document.getElementById('btnCancelAuction').style.transform = "scale(0.8)";
-                            botoesGerLeilao
                             document.getElementById('mensagemLances').classList.replace('d-none','d-block') ;
                             document.getElementById('botoesGerLeilao').classList.replace('d-block','d-none') ;
 
-                        }else{
+                        }else if(document.getElementById('currentValue').value == document.getElementById('initialValue').value){
                             document.getElementById('mensagemLances').classList.replace('d-block','d-none') ;
-                            document.getElementById('btnMostraForm').classList.add('btn', 'btn-warning')
                             document.getElementById('btnMostraForm').style.transform = "scale(1)"
+                            $("#btnMostraForm").removeAttr("disabled");
+
+                            document.getElementById('btnChangeStatusAuction').removeAttribute("disabled");
+                            document.getElementById('btnCancelAuction').removeAttribute("disabled");
+                            document.getElementById('btnMostraForm').style.backgroundColor = "yellow";
 
                             document.getElementById('btnChangeStatusAuction').classList.add('btn', 'btn-secondary')
                             document.getElementById('btnChangeStatusAuction').style.transform = "scale(1)"
