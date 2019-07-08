@@ -276,7 +276,6 @@ function enviarDadosAtualizarLeilao() {
     formdata.append('baseBid', baseBidFormatted);
     formdata.append('auctionStatusID',auctionStatusID);
     formdata.append('auctionID',auctionID)
-    alert(productID + ' ' + auctionID);
     var settings = {
         "async": true,
         "crossDomain": true,
