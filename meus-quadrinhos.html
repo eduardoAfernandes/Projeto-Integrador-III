@@ -127,6 +127,8 @@
                             document.getElementById('idLeilao').value = response.data[i].auctionID;
                             document.getElementById('statusAuction').value = response.data[i].auctionStatus
                                 .status;
+                            document.getElementById('currentValue').value = response.data[i].currentValue;
+                            document.getElementById('initialValue').value = response.data[i].initialValue;
                             document.getElementById('idProduct').value = response.data[i].product.productID;
 
                             document.getElementById('dataLeilao').value = response.data[i].initialDate;
@@ -153,11 +155,38 @@
                                 .duration;
                             document.getElementById('vlr-inicial-editar-leilao').value = response.data[i].initialValue;
                             document.getElementById('lancePadrao-editar-leilao').value = response.data[i].defaultBid;
+                        }
+                    } })
+                    .done(function (response) {
+                        if(document.getElementById('currentValue').value > document.getElementById('initialValue').value){
+                            document.getElementById('btnMostraForm').disabled = "true";
+                            document.getElementById('btnMostraForm').style.backgroundColor = "gray";
+                            document.getElementById('btnMostraForm').style.transform = "scale(0.8)"
+
+                            document.getElementById('btnChangeStatusAuction').disabled = "true";
+                            document.getElementById('btnChangeStatusAuction').style.backgroundColor = "gray";
+                            document.getElementById('btnChangeStatusAuction').style.transform = "scale(0.8)"
+
+                            document.getElementById('btnCancelAuction').disabled = "true";
+                            document.getElementById('btnCancelAuction').style.backgroundColor = "gray";
+                            document.getElementById('btnCancelAuction').style.transform = "scale(0.8)";
+                            botoesGerLeilao
+                            document.getElementById('mensagemLances').classList.replace('d-none','d-block') ;
+                            document.getElementById('botoesGerLeilao').classList.replace('d-block','d-none') ;
+
+                        }else{
+                            document.getElementById('mensagemLances').classList.replace('d-block','d-none') ;
+                            document.getElementById('btnMostraForm').classList.add('btn', 'btn-warning')
+                            document.getElementById('btnMostraForm').style.transform = "scale(1)"
+
+                            document.getElementById('btnChangeStatusAuction').classList.add('btn', 'btn-secondary')
+                            document.getElementById('btnChangeStatusAuction').style.transform = "scale(1)"
+
+                            document.getElementById('btnCancelAuction').classList.add('btn', 'btn-danger')
+                            document.getElementById('btnCancelAuction').style.transform = "scale(1)";
 
                         }
-                    }
-
-                })
+                    })
         });
         //    
         $(document).ready(function () {

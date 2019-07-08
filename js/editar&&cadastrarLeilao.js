@@ -227,22 +227,24 @@ function enviarDadosLeilao() {
     var initialValueFormatted = GetFormattedValue(valorInicial);
     var baseBidFormatted = GetFormattedValue(lancePadrao);
 
+    var formdata = new FormData();
+
+    formdata.append('productID', idProduct);
+    formdata.append('duration', duracaoLeilao);
+    formdata.append('initialDate',GetFormattedDate(dataInput));
+    formdata.append('initialValue', initialValueFormatted);
+    formdata.append('baseBid', baseBidFormatted);
+
     var settings = {
         "async": true,
         "crossDomain": true,
         "url": "https://webserver-leilao.azurewebsites.net/webserver-leilao/controller/insert-new-auction",
         "method": "POST",
-        "headers": {
-            "content-type": "application/x-www-form-urlencoded",
-            "cache-control": "no-cache",
-        },
-        "data": {
-            "productID": idProduct,
-            "duration": duracaoLeilao,
-            "initialDate": GetFormattedDate(dataInput),
-            "initialValue": initialValueFormatted,
-            "baseBid": baseBidFormatted
-        },
+        "method": "POST",
+        "cache": false,
+        "processData": false,
+        "contentType": false,
+        "data": formdata,
         "xhrFields": {
             "withCredentials": true
         }

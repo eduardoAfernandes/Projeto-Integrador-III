@@ -12,31 +12,45 @@
             </div>
             <div class="modal-body container-fluid">
                 <input type="hidden" id="idLeilao">
+                <input type="hidden" id="idProduct">
+                <input type="hidden" id="dataLeilao">
+                <input type="hidden" id="idProduct">
+                <input type="hidden" id="statusAuction">
+                <input type="hidden" id="idStatusAuction">
+                <input type="hidden" id="initialValue">
+                <input type="hidden" id="currentValue">
+                <div class="row border-bottom pb-3 d-none" id="mensagemLances" >
+                        <div class="col-12 text-center">
+                                <p class='text-center text-info'>Este leilão já sofreu lances, portanto náo é possível fazer qualquer tipo de alteração!</p>
+                        </div>
+
+                    </div>
                 <div id="conteudo" class="d-none">
-                    <div class="row border-bottom pb-3" id="botoesGerLeilao">
-                        <input type="hidden" id="idProduct">
-                        <input type="hidden" id="dataLeilao">
+   
+                    <div class="row border-bottom pb-3" id="botoesGerLeilao" class="d-block">
+                 
+
                         <div class="col-3">
-                            <button type="button" class="btn btn-warning text-light" onclick="mostraFormEditarLeilao()"
+                            <button type="button" id="btnMostraForm" class="btn btn-warning " onclick="mostraFormEditarLeilao()"
                                 style="width: 100%">
                                 Editar Leilão
                             </button>
                         </div>
 
                         <div class="col-3">
-                            <button type="button" class="btn btn-info" style="width: 100%" onclick="mostraDadosLeilao()">
+                            <button type="button"  class="btn btn-info" style="width: 100%" onclick="mostraDadosLeilao()">
                                 Dados do Leilão
                             </button>
                         </div>
                         <div class="col-3">
-                            <button type="button" class="btn btn-danger" onclick="changeStatusAuction()"
+                            <button type="button" id="btnChangeStatusAuction" class="btn btn-secondary" onclick="changeStatusAuction()"
                                 style="width: 100%">
                                 Status Leilão
                             </button>
                         </div>
 
                         <div class="col-3">
-                            <button type="button" class="btn btn-danger" onclick="confirmaCancelamentoLeilao()"
+                            <button type="button" id="btnCancelAuction" class="btn btn-danger" onclick="confirmaCancelamentoLeilao()"
                                 style="width: 100%">
                                 Cancelar Leilão
                             </button>
@@ -46,7 +60,7 @@
 
                     </div>
 
-                    <div id="dadosLeilao" class="d-none">
+                    <div id="dadosLeilao" class="d-block">
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-12 text-center">
@@ -74,7 +88,7 @@
 
                     </div>
 
-                    <div id="gerenciarLeilao" class="d-block">
+                    <div id="gerenciarLeilao" class="d-none">
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-12 col-md-5">
@@ -85,7 +99,6 @@
                                 </div>
                                 <div class="col-12 col-md-7  text-left">
                                     <form>
-                                        <input type="hidden" id="idProduct">
                                         <div class="col-12 pt-3">
                                             <div class="form-row">
                                                 <div class="form-group col-12">
@@ -179,8 +192,8 @@
                     <div id="changeStatusAuction" class="d-none">
                         <div class="row pt-4">
                             <div class="col-12 text-left">
-                                <input type="hidden" id="statusAuction">
-                                <input type="hidden" id="idStatusAuction">
+                   
+
                                 <h4 id="statusProduto">
                                 </h4>
                             </div>
