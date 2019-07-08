@@ -114,10 +114,7 @@
 
             $.ajax(settings).done(function (response) {
                     $('#botoesGerLeilao').show();
-                    document.getElementById('conteudo').classList.replace('d-none', 'd-block');
-
                     return response
-
                 })
                 .done(function (response) {
                     console.log(response.data);
