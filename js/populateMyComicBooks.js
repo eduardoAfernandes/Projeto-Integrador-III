@@ -17,13 +17,13 @@ function carregarTooltip() {
     document.getElementById('tpTitulo').title = tooltips.titulo;
     document.getElementById('tpEditora').title = tooltips.editora;
     document.getElementById('tpCategoria').title = tooltips.categoria;
-    document.getElementById('tpCategoriaTPB').title = tooltips.categoriaTPB;
-    document.getElementById('tpCategoriaMENSAL').title = tooltips.categoriaMENSAL;
+    // document.getElementById('tpCategoriaTPB').title = tooltips.categoriaTPB;
+    // document.getElementById('tpCategoriaMENSAL').title = tooltips.categoriaMENSAL;
     document.getElementById('tpNPaginas').title = tooltips.numeroPaginas;
     document.getElementById('tpPeso').title = tooltips.pesoQuadrinho;
-    document.getElementById('tpTipoCapa').title = tooltips.tipoCapa;
-    document.getElementById('tpTipoCapaDura').title = tooltips.tipoCapaDura;
-    document.getElementById('tpTipoCapaMole').title = tooltips.tipoCapaMole;
+    // document.getElementById('tpTipoCapa').title = tooltips.tipoCapa;
+    // document.getElementById('tpTipoCapaDura').title = tooltips.tipoCapaDura;
+    // document.getElementById('tpTipoCapaMole').title = tooltips.tipoCapaMole;
 }
 
 
@@ -52,7 +52,7 @@ function loadDados() {
             $('#optionsTables').show();
             populateTableParticipations();
 
-            for (i = 0; i <= response.data.length; i++) {
+            for (i = 0; i < response.data.length; i++) {
                 // console.log('ID do Produto: '+response.data[i].productID)
                 // console.log('Numero de Paginas '+response.data[i].pagesNumber)
                 // console.log('Peso '+response.data[i].weight)
@@ -189,7 +189,7 @@ function populateTableParticipations() {
         })
         .done(function (response) {
             localStorage.setItem('find-bids-by-user', JSON.stringify(response));
-            for (i = 0; i <= response.data.length; i++) {
+            for (i = 0; i < response.data.length; i++) {
                 $("#tabelaParticipationsDados").append(
                     "<tr>" +
                     "<td class='text-center'><img src='" + response.data[i].auction.product.coverImage + "' alt='' height='100'></img></td>" +
@@ -208,5 +208,10 @@ function populateTableParticipations() {
 
 function loadData() {
     loadDados();
-    carregarTooltip();
 }
+
+$(function () {
+    setTimeout(function () {
+        carregarTooltip();
+    }, 4000);
+})
