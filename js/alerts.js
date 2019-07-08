@@ -320,3 +320,15 @@ function avisoNaoDelete(){
         text: 'Não é possível inativar produtos que estejam em leilão!',
     })
 }
+
+function cadastroSucesso(){
+    Swal.fire({
+        position: 'center',
+        type: 'success',
+        title: 'Cadastro efetuado com sucesso!!',
+        showConfirmButton: true,
+        timer: 2500
+    }).then(() => {
+        window.open('index.html','_self');
+    })
+}
