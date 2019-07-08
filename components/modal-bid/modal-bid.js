@@ -1,4 +1,8 @@
 let timeToRetry = 3000;
+let firstUser = "";
+let secordUser = "";
+let thirdUser = "";
+let loggedUser = "";
 
 // $("body").keypress(function (event) {
 //     // event.preventDefault();
@@ -7,7 +11,14 @@ let timeToRetry = 3000;
 //         $(".swal2-cancel").click();
 //     }
 // });
-
+has = function (obj, key) {
+    return key.split(".").every(function (x) {
+        if (typeof obj != "object" || obj === null || !x in obj)
+            return false;
+        obj = obj[x];
+        return true;
+    });
+}
 
 $(document).on("click", ".link-detalhes", function () {
     var auctionID = $(this).data('id');
@@ -37,12 +48,17 @@ $(document).on("click", ".link-detalhes", function () {
 });
 
 $(document).on("click", "#btnConfirmBid", function () {
-    refreshValue();
+    if ($('.swal2-confirm').html() !== 'Sim!') {
+        refreshValue();
+    }
 });
 
 
 function refreshValue() {
-    $('.swal2-confirm').prop('disabled', true).html("Carregando. Aguarde...");
+    if ($('.swal2-confirm').html() !== 'Sim!') {
+        $('.swal2-confirm').prop('disabled', true).html("Carregando. Aguarde...");
+    }
+
     // let auctionID = 11;
     let auctionID = localStorage.getItem("auctionContext");
 
@@ -67,7 +83,9 @@ function refreshValue() {
         if (response.data.length > 0) {
             bidValue = formatValueToFloat(response.data[0].auction.currentValue + response.data[0].auction.defaultBid);
             if ($('.swal2-confirm').length > 0) {
-                $('.swal2-confirm').prop('disabled', false).html(`Efetuar lance: ${bidValue}`);
+                if ($('.swal2-confirm').html() !== 'Sim!') {
+                    $('.swal2-confirm').prop('disabled', false).html(`Efetuar lance: ${bidValue}`);
+                }
                 setTimeout(refreshValue, timeToRetry);
             }
         } else {
@@ -77,7 +95,89 @@ function refreshValue() {
     })
 }
 
+// Sim está duplicado... erro de implementação. to do para corrigir.
+function findBids(auctionID) {
+    // let auctionID = 11;
+    // let auctionID = localStorage.getItem("auctionContext");
+
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": `https://webserver-leilao.azurewebsites.net/webserver-leilao/controller/public/find-bid-by-auction?auctionID=${auctionID}`,
+        "method": "GET",
+        "headers": {
+            "content-type": "application/x-www-form-urlencoded",
+            "cache-control": "no-cache",
+        },
+        "xhrFields": {
+            "withCredentials": true
+        }
+    }
+
+    $.ajax(settings).done(function (response) {
+
+            // console.log('Sucesso Bid Call |' + JSON.stringify(response) );
+
+            var tree = {};
+            if (response.data[0]) {
+                tree = response.data[0];
+            }
+            firstUser = has(tree, 'user.userID') ? (tree.user.userID + " - " + tree.user.name) : firstUser;
+
+            tree = {};
+            if (response.data[1]) {
+                tree = response.data[1];
+            }
+            secordUser = has(tree, 'user.userID') ? (tree.user.userID + " - " + tree.user.name) : secordUser;
+
+            tree = {};
+            if (response.data[2]) {
+                tree = response.data[2];
+            }
+            thirdUser = has(tree, 'user.userID') ? (tree.user.userID + " - " + tree.user.name) : thirdUser;
+
+            loggedUser = has(response, 'user.userID') ? response.user.userID + " - " + response.user.name : '';
+
+            if (loggedUser != '' && firstUser === loggedUser) {
+                $('#firstUserTd').addClass('bg-success').html('Você');
+                firstUser = 'Você';
+            } else {
+                if (firstUser.length > 25) {
+                    firstUser = firstUser.substring(0, 25) + ' ...';
+                }
+                $('#firstUserTd').removeClass('bg-success').html(firstUser);
+            }
+            if (loggedUser != '' && secordUser === loggedUser) {
+                $('#secondUserTd').addClass('bg-success').html('Você');
+                secordUser = 'Você';
+            } else {
+                if (secordUser.length > 25) {
+                    secordUser = secordUser.substring(0, 25) + ' ...';
+                }
+                $('#secondUserTd').removeClass('bg-success').html(secordUser);
+            }
+            if (loggedUser != '' && thirdUser === loggedUser) {
+                $('#thirdUserTd').addClass('bg-success').html('Você');
+                thirdUser = 'Você';
+            } else {
+                if (thirdUser.length > 25) {
+                    thirdUser = thirdUser.substring(0, 25) + ' ...';
+                }
+                $('#thirdUserTd').removeClass('bg-success').html(thirdUser);
+            }
+
+            $('#nometa').html("Nome");
+
+
+        })
+        .fail(function (response) {
+            console.log('Falha Bid Call |' + JSON.stringify(response));
+            findBids(auctionID);
+        })
+}
+
 function loadSpecificAuction(auctionID, auto) {
+    findBids(auctionID);
     if (!auto) {
         $('#modal-bid-title').html('');
         $('#modal-bid-body').html('').append(`<div id="divCarregandoBid" class="progresso py-4">
@@ -110,7 +210,9 @@ function loadSpecificAuction(auctionID, auto) {
     $.ajax(settings).done(function (response) {
 
             if ($('.swal2-confirm').length > 0) {
-                $('.swal2-confirm').prop('disabled', false).html(`Efetuar lance: ${formatValueToFloat(response.data.currentValue + response.data.defaultBid)}`);
+                if ($('.swal2-confirm').html() !== 'Sim!') {
+                    $('.swal2-confirm').prop('disabled', false).html(`Efetuar lance: ${formatValueToFloat(response.data.currentValue + response.data.defaultBid)}`);
+                }
                 setTimeout(refreshValue, timeToRetry);
             }
 
@@ -146,9 +248,13 @@ function loadSpecificAuction(auctionID, auto) {
 
                 $('#modal-bid-title').html(productTitle);
 
-                $('#modal-bid-body').html('').append(
+                if (!auto) {
+                    $('#modal-bid-body').html('');
+                }
+
+                $('#modal-bid-body').html(
                     `          
-              <div class='col-12 col-md-12 col-lg-12 text-center py-4;' style='margin: 15px 30px 35px 0px; width: 255px; min-width: 255px; max-width: 255px; height: 396px; min-height: 396px; max-height: 396px;'>
+                    <div class='col-12 col-md-12 col-lg-12 text-center py-4;' style='margin: 15px 30px 35px 0px; width: 255px; min-width: 255px; max-width: 255px; height: 396px; min-height: 396px; max-height: 396px;'>
                     <div class='cx-item text-light' style='width: 255px; min-width: 255px; max-width: 255px; height: 396px; min-height: 396px; max-height: 396px;'>
                     <div class='cx-header'>
                     <div class='row'>
@@ -202,26 +308,22 @@ function loadSpecificAuction(auctionID, auto) {
             <thead>
                 <tr class="bg-info text-light">
                 <th scope="col">#</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Valor</th>
+                <th scope="col" id="nometa">Carregando...</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                </tr>
-                <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                </tr>
-                <tr>
-                <th scope="row">3</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                </tr>
+            <tr>
+            <th scope="row">1</th>
+            <td id="firstUserTd"></td>
+            </tr>
+            <tr>
+            <th scope="row">2</th>
+            <td id="secondUserTd"></td>
+            </tr>
+            <tr>
+            <th scope="row">3</th>
+            <td id="thirdUserTd"></td>
+            </tr>
             </tbody>
             </table>
             <div class="text-center bg-dark text-light">
@@ -300,7 +402,9 @@ function loadSpecificAuction(auctionID, auto) {
         })
         .fail(function (response) {
             if ($('.swal2-confirm').length > 0) {
-                setTimeout(refreshValue, timeToRetry);
+                if ($('.swal2-confirm').html() !== 'Sim!') {
+                    setTimeout(refreshValue, timeToRetry);
+                }
             } else {
                 loadSpecificAuction(auctionID);
             }

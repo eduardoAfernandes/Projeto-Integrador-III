@@ -83,7 +83,7 @@ function loadDados() {
                 if (duration == 0) statusIcon = "<span class='oi oi-circle-x py-2' style='color: lightred'></span>";
 
                 $("#sub-sectionProdutos").append(
-                    `<div class='col-12 col-md-8 col-lg-4 text-center py-4;' style='margin: 15px 5px 35px 5px; width: 255px; min-width: 255px; max-width: 255px; height: 396px; min-height: 396px; max-height: 396px;'>
+                    `<div class='col-12 col-md-8 col-lg-4 text-center py-4;' style='margin: 15px 30px 35px 0px; width: 255px; min-width: 255px; max-width: 255px; height: 396px; min-height: 396px; max-height: 396px;'>
                     <div class='cx-item text-light' style='width: 255px; min-width: 255px; max-width: 255px; height: 396px; min-height: 396px; max-height: 396px;'>
                     <div class='cx-header'>
                     <div class='row'>
