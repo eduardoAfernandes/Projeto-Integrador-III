@@ -162,7 +162,7 @@ function register() {
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "https://webserver-leilao.azurewebsites.net/webserver-leilao/controller/insertUser",
+        "url": "https://webserver-leilao.azurewebsites.net/webserver-leilao/controller/public/insertUser",
         "method": "POST",
         "headers": {
             "content-type": "application/x-www-form-urlencoded",
