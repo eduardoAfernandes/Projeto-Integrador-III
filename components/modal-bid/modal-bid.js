@@ -3,7 +3,27 @@ let firstUser = "";
 let secordUser = "";
 let thirdUser = "";
 let loggedUser = "";
+let lastPosition = -1;
+$(document).on('hide.bs.modal', '#modalBid', function () {
+    clearPollings();
+});
 
+$(document).on('click', '.swal2-cancel', function() {
+    if (!($('#modalBid').hasClass('show'))) {
+        clearPollings();
+    }
+})
+
+
+function clearPollings() {
+    console.log("Fechando todos os pollings");
+
+    var id = window.setTimeout(function () {}, 0);
+
+    while (id--) {
+        window.clearTimeout(id); // will do nothing if no timeout with id is present
+    }
+}
 // $("body").keypress(function (event) {
 //     // event.preventDefault();
 //     console.log("opaaa")
@@ -22,7 +42,11 @@ has = function (obj, key) {
 
 $(document).on("click", ".link-detalhes", function () {
     var auctionID = $(this).data('id');
+    var id = window.setTimeout(function () {}, 0);
 
+    while (id--) {
+        window.clearTimeout(id); // will do nothing if no timeout with id is present
+    }
     // console.log(auctionID);
 
     // var auction = JSON.parse(localStorage.getItem('find-all-auctions')).data.filter((obj) => {
@@ -30,28 +54,32 @@ $(document).on("click", ".link-detalhes", function () {
     // })[0]
 
     // console.log(auction);
-
+    firstUser = "";
+    secordUser = "";
+    thirdUser = "";
+    loggedUser = "";
     loadSpecificAuction(auctionID);
     // $("#modal-bid-title").html( auction.product.title );
 
-    let modalBidIsShow = false;
+    // let modalBidIsShow = false;
 
-    setTimeout(function () {
-        modalBidIsShow = ($("#modalBidd").data('bs.modal') || {})._isShown;
-    }, 2000);
+    // setTimeout(function () {
+    //     modalBidIsShow = ($("#modalBidd").data('bs.modal') || {})._isShown;
+    // }, 2000);
 
-    console.log(modalBidIsShow)
-    while (modalBidIsShow) {
-        console.log("Entrou...");
-    }
+    // console.log(modalBidIsShow)
+    // while (modalBidIsShow) {
+    //     console.log("Entrou...");
+    // }
 
 });
 
-$(document).on("click", "#btnConfirmBid", function () {
-    if ($('.swal2-confirm').html() !== 'Sim!') {
-        refreshValue();
-    }
-});
+// $(document).on("click", "#btnConfirmBid", function () {
+//     if ($('.swal2-confirm').html() !== 'Sim!') {
+//         // refreshValue();
+//         loadSpecificAuction();
+//     }
+// });
 
 
 function refreshValue() {
@@ -86,7 +114,6 @@ function refreshValue() {
                 if ($('.swal2-confirm').html() !== 'Sim!') {
                     $('.swal2-confirm').prop('disabled', false).html(`Efetuar lance: ${bidValue}`);
                 }
-                setTimeout(refreshValue, timeToRetry);
             }
         } else {
             loadSpecificAuction(auctionID);
@@ -117,67 +144,82 @@ function findBids(auctionID) {
     $.ajax(settings).done(function (response) {
 
             // console.log('Sucesso Bid Call |' + JSON.stringify(response) );
-
-            var tree = {};
-            if (response.data[0]) {
-                tree = response.data[0];
-            }
-            firstUser = has(tree, 'user.userID') ? (tree.user.userID + " - " + tree.user.name) : firstUser;
-
-            tree = {};
-            if (response.data[1]) {
-                tree = response.data[1];
-            }
-            secordUser = has(tree, 'user.userID') ? (tree.user.userID + " - " + tree.user.name) : secordUser;
-
-            tree = {};
-            if (response.data[2]) {
-                tree = response.data[2];
-            }
-            thirdUser = has(tree, 'user.userID') ? (tree.user.userID + " - " + tree.user.name) : thirdUser;
-
-            loggedUser = has(response, 'user.userID') ? response.user.userID + " - " + response.user.name : '';
-
-            if (loggedUser != '' && firstUser === loggedUser) {
-                $('#firstUserTd').addClass('bg-success').html('Você');
-                firstUser = 'Você';
-            } else {
-                if (firstUser.length > 25) {
-                    firstUser = firstUser.substring(0, 25) + ' ...';
-                }
-                $('#firstUserTd').removeClass('bg-success').html(firstUser);
-            }
-            if (loggedUser != '' && secordUser === loggedUser) {
-                $('#secondUserTd').addClass('bg-success').html('Você');
-                secordUser = 'Você';
-            } else {
-                if (secordUser.length > 25) {
-                    secordUser = secordUser.substring(0, 25) + ' ...';
-                }
-                $('#secondUserTd').removeClass('bg-success').html(secordUser);
-            }
-            if (loggedUser != '' && thirdUser === loggedUser) {
-                $('#thirdUserTd').addClass('bg-success').html('Você');
-                thirdUser = 'Você';
-            } else {
-                if (thirdUser.length > 25) {
-                    thirdUser = thirdUser.substring(0, 25) + ' ...';
-                }
-                $('#thirdUserTd').removeClass('bg-success').html(thirdUser);
-            }
-
-            $('#nometa').html("Nome");
-
+            setTopUsers(response);
 
         })
         .fail(function (response) {
             console.log('Falha Bid Call |' + JSON.stringify(response));
-            findBids(auctionID);
+            // if ($('#modalBid').hasClass('show')) {
+            //     findBids(auctionID);
+            // }
         })
 }
 
+function setTopUsers(response) {
+
+    var tree = {};
+    if (response.data[0]) {
+        tree = response.data[0];
+    }
+    firstUser = has(tree, 'user.userID') ? (tree.user.userID + " - " + tree.user.name) : firstUser;
+
+    tree = {};
+    if (response.data[1]) {
+        tree = response.data[1];
+    }
+    secordUser = has(tree, 'user.userID') ? (tree.user.userID + " - " + tree.user.name) : secordUser;
+
+    tree = {};
+    if (response.data[2]) {
+        tree = response.data[2];
+    }
+    thirdUser = has(tree, 'user.userID') ? (tree.user.userID + " - " + tree.user.name) : thirdUser;
+
+    loggedUser = has(response, 'user.userID') ? response.user.userID + " - " + response.user.name : '';
+
+    if (loggedUser != '' && firstUser === loggedUser) {
+        $('#firstUserTd').html('Você');
+        firstUser = 'Você';
+        lastPosition = 0;
+    } else {
+        if (firstUser.length > 25) {
+            firstUser = firstUser.substring(0, 25) + ' ...';
+        }
+        $('#firstUserTd').html(firstUser);
+    }
+    if (loggedUser != '' && secordUser === loggedUser) {
+        $('#secondUserTd').html('Você');
+        secordUser = 'Você';
+        lastPosition = 1;
+    } else {
+        if (secordUser.length > 25) {
+            secordUser = secordUser.substring(0, 25) + ' ...';
+        }
+        $('#secondUserTd').html(secordUser);
+    }
+    if (loggedUser != '' && thirdUser === loggedUser) {
+        $('#thirdUserTd').html('Você');
+        thirdUser = 'Você';
+        lastPosition = 2;
+    } else {
+        if (thirdUser.length > 25) {
+            thirdUser = thirdUser.substring(0, 25) + ' ...';
+        }
+        $('#thirdUserTd').html(thirdUser);
+    }
+
+    $('#nometa').html("Nome");
+
+}
+
 function loadSpecificAuction(auctionID, auto) {
+    if (!auctionID) {
+        auctionID = localStorage.getItem("auctionContext");
+    }
     findBids(auctionID);
+    if ($('.swal2-confirm').length > 0 && $('.swal2-confirm').html() !== 'Sim!') {
+        $('.swal2-confirm').prop('disabled', true).html("Carregando. Aguarde...");
+    }
     if (!auto) {
         $('#modal-bid-title').html('');
         $('#modal-bid-body').html('').append(`<div id="divCarregandoBid" class="progresso py-4">
@@ -213,7 +255,7 @@ function loadSpecificAuction(auctionID, auto) {
                 if ($('.swal2-confirm').html() !== 'Sim!') {
                     $('.swal2-confirm').prop('disabled', false).html(`Efetuar lance: ${formatValueToFloat(response.data.currentValue + response.data.defaultBid)}`);
                 }
-                setTimeout(refreshValue, timeToRetry);
+                // setTimeout(refreshValue, timeToRetry);
             }
 
             return response
@@ -223,7 +265,7 @@ function loadSpecificAuction(auctionID, auto) {
             $('#divCarregandoBid').fadeOut('slow');
             localStorage.setItem('find-auction-by-id', JSON.stringify(response));
 
-            if ($('#modalBid').hasClass('show')) {
+            if ($('#modalBid').hasClass('show') || $('.swal2-confirm').length > 0) {
 
                 let auctionID = response.data.auctionID;
                 let initialDate = response.data.initialDate;
@@ -245,6 +287,14 @@ function loadSpecificAuction(auctionID, auto) {
                 let originCity = response.data.product.user.city;
                 let originUF = response.data.product.user.state;
                 let originUserName = response.data.product.user.name;
+
+                let bidValue = '';
+                bidValue = formatValueToFloat(response.data.currentValue + response.data.defaultBid);
+                if ($('.swal2-confirm').length > 0) {
+                    if ($('.swal2-confirm').html() !== 'Sim!') {
+                        $('.swal2-confirm').prop('disabled', false).html(`Efetuar lance: ${bidValue}`);
+                    }
+                }
 
                 $('#modal-bid-title').html(productTitle);
 
@@ -314,15 +364,15 @@ function loadSpecificAuction(auctionID, auto) {
             <tbody>
             <tr>
             <th scope="row">1</th>
-            <td id="firstUserTd"></td>
+            <td data-verifySt="${firstUser}" id="firstUserTd"></td>
             </tr>
             <tr>
             <th scope="row">2</th>
-            <td id="secondUserTd"></td>
+            <td data-verifySt="${secordUser}" id="secondUserTd"></td>
             </tr>
             <tr>
             <th scope="row">3</th>
-            <td id="thirdUserTd"></td>
+            <td data-verifySt="${thirdUser}" id="thirdUserTd"></td>
             </tr>
             </tbody>
             </table>
@@ -393,9 +443,13 @@ function loadSpecificAuction(auctionID, auto) {
               `
                 )
 
+                setTopUsers(response);
+
                 setTimeout(function () {
                     loadSpecificAuction(auctionID, true);
                 }, 5000);
+            } else {
+                clearPollings();
             }
 
 
@@ -415,7 +469,13 @@ function loadSpecificAuction(auctionID, auto) {
 
 
 function confirmBid(auctionID, productTitle) {
+    var id = window.setTimeout(function () {}, 0);
+
+    while (id--) {
+        window.clearTimeout(id); // will do nothing if no timeout with id is present
+    }
     localStorage.setItem("auctionContext", auctionID);
+    loadSpecificAuction(auctionID);
     if (localStorage.getItem("logged") == "true") {
         Swal.fire({
             title: `Confirmar lance no quadrinho <br><br> "${productTitle}"?`,
@@ -423,11 +483,15 @@ function confirmBid(auctionID, productTitle) {
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: '',
+            confirmButtonText: 'Carregando',
             cancelButtonText: 'Cancelar!'
         }).then((result) => {
             if (result.value) {
+                var id = window.setTimeout(function () {}, 0);
 
+                while (id--) {
+                    window.clearTimeout(id); // will do nothing if no timeout with id is present
+                }
                 var settings = {
                     "async": true,
                     "crossDomain": true,
@@ -446,10 +510,27 @@ function confirmBid(auctionID, productTitle) {
                 }
 
                 $.ajax(settings).done(function (response) {
-                    loadSpecificAuction(auctionID);
-                    if ($('#modalBid').length) {
-                        $('#modalBid').modal('show');
+                    toastr.options = {
+                        "closeButton": true,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": true,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": true,
+                        "onclick": null,
+                        "showDuration": "3000",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
                     }
+
+                    toastr["success"]("Lance efetuado com sucesso.", "Mensagem");
+                    loadSpecificAuction(auctionID);
+
                 })
             }
         })

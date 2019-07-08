@@ -15,7 +15,7 @@
 
 .btn {
   font-weight: 900;
-    transition: 0.5s;
+  transition: 0.5s;
 }
 
 .btn:hover {
@@ -27,7 +27,7 @@ label {
   font-weight: 800;
 }
 
-dt{
+dt {
   font-size: 18px;
 }
 
@@ -41,16 +41,39 @@ a {
   margin: 8% 0;
 }
 
-p,h1,h2,h3,h4,h5,label,span,select,option,button,::placeholder,input,a,.btn,.nav-link,dl,dt,b,dd,th,td{
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+label,
+span,
+select,
+option,
+button,
+::placeholder,
+input,
+a,
+.btn,
+.nav-link,
+dl,
+dt,
+b,
+dd,
+th,
+td {
   font-family: 'LeilaoDeQuadrinhos';
 
 }
+
 .bounce {
   -moz-animation: bounce 2s infinite;
   -webkit-animation: bounce 2s infinite;
   animation: bounce 2s infinite;
 }
-.input-group-prepend{
+
+.input-group-prepend {
   cursor: pointer;
 }
 
@@ -76,20 +99,43 @@ p,h1,h2,h3,h4,h5,label,span,select,option,button,::placeholder,input,a,.btn,.nav
 .pulse {
   animation-name: pulse_animation;
   animation-duration: 5000ms;
-  transform-origin:70% 70%;
+  transform-origin: 70% 70%;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
 }
 
 @keyframes pulse_animation {
-  0% { transform: scale(1); }
-  30% { transform: scale(1); }
-  40% { transform: scale(1.08); }
-  50% { transform: scale(1); }
-  60% { transform: scale(1); }
-  70% { transform: scale(1.05); }
-  80% { transform: scale(1); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+
+  30% {
+    transform: scale(1);
+  }
+
+  40% {
+    transform: scale(1.08);
+  }
+
+  50% {
+    transform: scale(1);
+  }
+
+  60% {
+    transform: scale(1);
+  }
+
+  70% {
+    transform: scale(1.05);
+  }
+
+  80% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
 
 #tpTitulo,
@@ -100,9 +146,10 @@ p,h1,h2,h3,h4,h5,label,span,select,option,button,::placeholder,input,a,.btn,.nav
 #tpNPaginas,
 #tpPeso,
 #tpTipoCapa {
-    cursor: help;
+  cursor: help;
 }
-body{
+
+body {
   letter-spacing: 1.5px;
 }
 
@@ -110,3 +157,6 @@ body{
   display: none;
 }
 
+td[data-verifySt="Você"] {
+  background-color: pink;
+}
