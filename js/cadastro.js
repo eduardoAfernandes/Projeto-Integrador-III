@@ -178,7 +178,7 @@ function register() {
     }
 
     $.ajax(settings).done(function (response) {
-        window.open("index.html","_self");
+        showResponseCadastro(response);
     });
 }
 
@@ -196,12 +196,31 @@ function GetFormattedDate() {
 
 }
 
-function showResponse(resposta) {
-    if (resposta == "Usuário cadastrado") {
-        alertify.alert('Leilão de Quadrinhos', 'Cadastro efetuado com sucesso...');
+function showResponseCadastro(resposta) {
+    if (resposta.data == "Registered user") {
+        // alertify.alert('Leilão de Quadrinhos', 'Cadastro efetuado com sucesso...');
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": true,
+            "onclick": null,
+            "showDuration": "3000",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+    
+        toastr["success"]("Cadastro efetuado com sucesso redirecionando para login...", "Mensagem");
         setTimeout(function () {
-            window.open('index.html', '_self');
-        }, 4000);
+            window.open('login.html', '_self');
+        }, 3000);
     } else {
         document.getElementById('email').style.border = "3px solid red";
         document.getElementById('aviso-erro-email').classList.replace('d-none', 'd-block');
