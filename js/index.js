@@ -8,6 +8,19 @@ var titleToSearch = '';
 var publishingCompanys = '';
 var isSearch = false;
 
+$(document).on("click", "#conhecerBtn0", function () {
+    $('#titleToSearch').val('Avengers').change();
+    $('#btnSearchProduct0').click();
+})
+$(document).on("click", "#conhecerBtn1", function () {
+    $('#titleToSearch').val('LJA - Justice League - 11').change();
+    $('#btnSearchProduct0').click();
+})
+$(document).on("click", "#conhecerBtn2", function () {
+    $('#titleToSearch').val('The Avengers - The Kree-Skrull').change();
+    $('#btnSearchProduct0').click();
+})
+
 $(function () {
     loadDados();
     $("#titleToSearch").keypress(function (event) {
