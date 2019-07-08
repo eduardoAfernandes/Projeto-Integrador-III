@@ -178,8 +178,7 @@ function register() {
     }
 
     $.ajax(settings).done(function (response) {
-        showResponse(response);
-        console.log(response)
+        window.open("index.html","_self");
     });
 }
 

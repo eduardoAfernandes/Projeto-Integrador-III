@@ -143,8 +143,7 @@
                                 .data[i].currentValue;
                             document.getElementById('lncPadrao').innerHTML = "Lance Padrão: R$ " + response
                                 .data[i].defaultBid;
-                                document.getElementById('linkLeilao').innerHTML = "<a class='btn btn-primary' href='"+response.data[i].auctionID+"'>"+"Acesse o Leilao"+"</a>"
-                            document.getElementById('dt-inicio-editar-leilao').value = response.data[i]
+                                document.getElementById('linkLeilao').innerHTML = "<a class='btn btn-primary' href='https://leilaodequadrinhos.com/?auction="+response.data[i].auctionID+"'>"+"Acesse o Leilao"+"</a>"                            document.getElementById('dt-inicio-editar-leilao').value = response.data[i]
                                 .initialDate;
                             document.getElementById('duracao-editar-leilao').value = response.data[i].duration;
                             document.getElementById('vlr-inicial-editar-leilao').value = response.data[i].initialValue;

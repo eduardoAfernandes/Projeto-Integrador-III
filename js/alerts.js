@@ -325,10 +325,10 @@ function cadastroSucesso(){
     Swal.fire({
         position: 'center',
         type: 'success',
-        title: 'Cadastro efetuado com sucesso!!',
+        title: 'Quadrinho cadastrado com sucesso!!',
         showConfirmButton: true,
         timer: 2500
     }).then(() => {
-        window.open('index.html','_self');
+        history.go(0);
     })
 }
