@@ -482,8 +482,13 @@ function confirmBid(auctionID, productTitle, userID) {
     loadSpecificAuction(auctionID);
 
     if (parseInt(localStorage.getItem("userID")) == userID) {
-        
-
+        Swal.fire({
+            title: 'Você é o dono deste produto e por isso não pode efetuar lances nele.',
+            type: 'warning',    
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ok!'
+        })
     } else if (localStorage.getItem("logged") == "true") {
         Swal.fire({
             title: `Confirmar lance no quadrinho <br><br> "${productTitle}"?`,
